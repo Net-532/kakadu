@@ -1,6 +1,6 @@
 namespace backend
 {
-    class Product
+    internal class Product
     {
 
     }
