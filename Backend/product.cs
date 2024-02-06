@@ -1,0 +1,7 @@
+namespace backend
+{
+    class Product
+    {
+
+    }
+}
