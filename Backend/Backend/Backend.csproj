@@ -40,6 +40,8 @@
     <Compile Include="IProductService.cs" />
     <Compile Include="IProductRepository.cs" />
     <Compile Include="IUserService.cs" />
+    <Compile Include="order.cs" />
+    <Compile Include="OrderService.cs" />
     <Compile Include="product.cs" />
     <Compile Include="ProductRepositoryXML.cs" />
     <Compile Include="ProductService.cs" />
