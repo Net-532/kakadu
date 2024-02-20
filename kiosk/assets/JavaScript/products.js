@@ -1,14 +1,13 @@
-
 fetch('https://fakestoreapi.com/products')
     .then(res => res.json())
     .then(products => {
         const productList = document.getElementById('product-list');
         let row; 
+        var column = 3;
 
-        
         products.forEach((product, index) => {
          
-            if (index % 3 === 0) {
+            if (index % column === 0) {
                 row = document.createElement('div');
                 row.classList.add('row');
                 productList.appendChild(row);
