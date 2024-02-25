@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Backend
 {
-    internal class ProductRepositoryXML : IProductRepository
+    internal class ProductRepository : IProductRepository
     {
         public void deleteById(int id)
         {

@@ -6,11 +6,16 @@ namespace Backend
 {
     internal class UserService : IUserService
     {
+        private readonly IUserService userService;
+        UserService(IUserService userService)
+        {
+            this.userService = userService;
+        }
         List<User> IUserService.getAll()
         {
             List<User> users = null;
 
-            users = getAllUsersXML();
+            users = userService.getAll();
 
             if (users == null)
             {
@@ -22,7 +27,7 @@ namespace Backend
         User IUserService.getById(int id)
         {
             User user = null;
-            user = getUserByIDXML(2);
+            user = userService.getById(id);
             if (user == null)
             {
                 throw new UserNotFoundException("User NOT found!");
@@ -31,15 +36,22 @@ namespace Backend
         }
         void IUserService.save(User user)
         {
-            saveUserXML(user);
+            if (user != null)
+            {
+                userService.save(user);
+            }
+            else
+            {
+                throw new UserNotFoundException("User has NOT been saved!");
+            }
         }
         void IUserService.deleteById(int id)
         {
-            deleteUserByID(id);
+            userService.deleteById(id);
         }
         void IUserService.update(int id, User user)
         {
-            updateUser(id, user);
+            userService.update(id, user);
         }
     }
 }
