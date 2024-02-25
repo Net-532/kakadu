@@ -12,7 +12,7 @@ namespace Backend.Repositories
         List<User> getAll();
         User getById(int id);
 
-        void save(Product product);
+        void save(User user);
         void deleteById(int id);
 
         void update(int id, Product product);
