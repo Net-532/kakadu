@@ -15,6 +15,6 @@ namespace Backend.Repositories
         void save(User user);
         void deleteById(int id);
 
-        void update(int id, Product product);
+        void update(int id, User user);
     }
 }
