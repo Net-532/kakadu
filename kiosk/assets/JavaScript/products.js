@@ -1,6 +1,6 @@
 fetchlink = "https://fakestoreapi.com/products";
 
-    fetch(fetchlink)
+fetch(fetchlink)
     .then(res => res.json())
     .then(products => {
         const productList = document.getElementById('product-list');
@@ -47,7 +47,7 @@ fetchlink = "https://fakestoreapi.com/products";
                 Description: ${product.description} <br>
                 Id: ${id} `;
             });
-           
+          
             row.appendChild(productCard);
         });
     })
