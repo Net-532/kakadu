@@ -28,7 +28,7 @@ fetch(fetchlink)
                             <p class="card-text">$${product.price}</p>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-outline-primary">Add to cart</button>
+                    <button data-id="${product.id}" type="button" class="add-to-cart-button btn btn-outline-primary">Add to cart</button>
                 </div>
             `;
 
@@ -47,7 +47,32 @@ fetch(fetchlink)
                 Description: ${product.description} <br>
                 Id: ${id} `;
             });
-          
+            const addToCartButton = productCard.querySelector('.add-to-cart-button');
+            addToCartButton.addEventListener('click', function(event) {
+                var idButton = this.parentNode.getAttribute("data-id");
+                console.log('button clicked', idButton);
+                const product = {
+                  id: idButton,
+                  name: `Product ${idButton}`,
+                };
+        
+                let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                
+                let existingProductIndex = cartItems.findIndex(item => item.id === idButton);
+                
+                if (existingProductIndex !== -1) {
+                    cartItems[existingProductIndex].quantity = (cartItems[existingProductIndex].quantity || 1) + 1;
+                } else {
+                    product.quantity = 1;
+                    cartItems.push(product);
+                }
+                
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        
+                console.log('Product added to cart!');
+                
+            });
+
             row.appendChild(productCard);
         });
     })
