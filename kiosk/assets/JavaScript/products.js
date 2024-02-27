@@ -1,4 +1,3 @@
-//import { fetchlink } from "Config.js";
 fetchlink = "https://fakestoreapi.com/products";
 
     fetch("https://fakestoreapi.com/products")
