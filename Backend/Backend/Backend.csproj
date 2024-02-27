@@ -37,7 +37,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Repositories\IUserRepository.cs" />
-    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Services\IOrderService.cs" />
     <Compile Include="Services\IProductService.cs" />
     <Compile Include="Repositories\IProductRepository.cs" />
@@ -45,7 +44,6 @@
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Entities\Product.cs" />
-    <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Entities\User.cs" />
   </ItemGroup>
