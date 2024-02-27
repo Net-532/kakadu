@@ -1,6 +1,6 @@
 fetchlink = "https://fakestoreapi.com/products";
 
-    fetch("https://fakestoreapi.com/products")
+    fetch(fetchlink)
     .then(res => res.json())
     .then(products => {
         const productList = document.getElementById('product-list');
