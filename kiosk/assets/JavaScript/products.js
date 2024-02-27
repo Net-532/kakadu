@@ -1,4 +1,6 @@
-fetch('https://fakestoreapi.com/products')
+fetchlink = "https://fakestoreapi.com/products";
+
+fetch(fetchlink)
     .then(res => res.json())
     .then(products => {
         const productList = document.getElementById('product-list');
@@ -29,7 +31,23 @@ fetch('https://fakestoreapi.com/products')
                     <button type="button" class="btn btn-outline-primary">Add to cart</button>
                 </div>
             `;
-           
+
+            const cardPreBody = productCard.querySelector('.card-pre-body');
+            cardPreBody.addEventListener('click', function(event) {
+                var id = product.id;
+                cardPreBody.disabled = true;
+                var myModal = new bootstrap.Modal(document.getElementById('full_description_modal'));
+                
+                myModal.show();
+                var textinside = document.getElementById('full-card-text');
+                textinside.innerHTML = `
+                <img src="${product.image}" alt="${product.title}" style="max-width: 100%;">
+                Name: ${product.title} <br>
+                Price: ${product.price} <br>
+                Description: ${product.description} <br>
+                Id: ${id} `;
+            });
+          
             row.appendChild(productCard);
         });
     })
