@@ -9,10 +9,11 @@ namespace Backend
     internal class Order
     {
         public int OrderNumber { get; set; }
+        public int Id { get; set; }
         public decimal TotalPrice { get; set; }
         public DateTime OrderDate { get; set; }
-        public string OrderStatus { get; set; }
-        public List<OrderItem> OrderDetails { get; set; }
+        public string Status { get; set; }
+        public List<OrderItem> Items { get; set; }
     }
   
 }
