@@ -36,17 +36,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IOrderService.cs" />
-    <Compile Include="IProductService.cs" />
-    <Compile Include="IProductRepository.cs" />
-    <Compile Include="IUserService.cs" />
-    <Compile Include="Order.cs" />
-    <Compile Include="OrderItem.cs" />
-    <Compile Include="OrderService.cs" />
-    <Compile Include="product.cs" />
-    <Compile Include="ProductRepositoryXML.cs" />
-    <Compile Include="ProductService.cs" />
-    <Compile Include="user.cs" />
+    <Compile Include="Repositories\IUserRepository.cs" />
+    <Compile Include="Services\IOrderService.cs" />
+    <Compile Include="Services\IProductService.cs" />
+    <Compile Include="Repositories\IProductRepository.cs" />
+    <Compile Include="Services\IUserService.cs" />
+    <Compile Include="Entities\Order.cs" />
+    <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Entities\Product.cs" />
+    <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Entities\User.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
