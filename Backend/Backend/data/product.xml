@@ -2,7 +2,7 @@
     <product>
         <Id>1</Id>
         <Title>The Smokey Burger</Title>
-        <Price>99,00 ₴</Price>
+        <Price>99,00</Price>
         <PhotoUrl>https://api.getorder.biz/product/192546/image/356/650/420/75147984-685f-4889-8e81-7b01e38c62df.webp?v=2024030113</PhotoUrl>
         <Description>Соковита котлета під сиром Hochland з листям салату та карамелізованю цибулею. Все це в ніжних булочках з кунжутом та соусом Айолі зробить твій настрій краще.</Description>
     </product>
@@ -10,7 +10,7 @@
     <product>
         <Id>2</Id>
         <Title>Біг-Бен</Title>
-        <Price>83,00 ₴</Price>
+        <Price>83,00</Price>
         <PhotoUrl>https://api.getorder.biz/product/192550/image/356/650/420/e6291967-49e9-439c-abf6-e2829faa6574.webp?v=2024030113</PhotoUrl>
         <Description>Соковите куряче філе обсмажене на грилі в поєднанні з курячою котлетою, листя свіжого салату та скибочка помідору, заправлені вишуканим соусом Франсуа на булочці з кунжутом. Найкраще втамує голод - швидко та смачно.</Description>
     </product>
@@ -18,7 +18,7 @@
  <product>
         <Id>3</Id>
         <Title>Бургер №1</Title>
-        <Price>108,00 ₴</Price>
+        <Price>108,00</Price>
         <PhotoUrl>https://api.getorder.biz/product/192549/image/356/650/420/3b77c53e-7163-4b85-940f-59c78282f0ac.webp?v=2024030113</PhotoUrl>
         <Description>Класична куряча котлета з двома шматочками сиру Hochland, листя салату, хрустке куряче філе, цибуля під соусом Чікен та Репіш завернуті в дві ніжні булочки з кунжутом.</Description>
     </product>
@@ -26,7 +26,7 @@
  <product>
         <Id>4</Id>
         <Title>Бургер з рваною свининою</Title>
-        <Price>99,00 ₴</Price>
+        <Price>99,00</Price>
         <PhotoUrl>https://api.getorder.biz/product/192551/image/356/650/420/78d80f6a-4e52-4866-8d09-700398340a23.webp?v=2024030113</PhotoUrl>
         <Description>Соковита свинина сувід, свіжа рукола та помідор, маринована цибуля та сир, під двома видами соусів: Андалузьким та соусом Дяді Бена</Description>
     </product>
@@ -34,7 +34,7 @@
  <product>
         <Id>5</Id>
         <Title>Бургер Пестато</Title>
-        <Price>99,00 ₴</Price>
+        <Price>99,00</Price>
         <PhotoUrl>https://api.getorder.biz/product/192553/image/356/650/420/d99116a1-ae3e-4b81-a137-01dfa0d7bf04.webp?v=2024030113</PhotoUrl>
         <Description>Ніжна котлета з яловичини, помідор з запашною руколою та сиром Hochland під неймовірним поєднанням соусів - Песто, Базилік з Бальзамічним кремом.</Description>
     </product>
@@ -42,7 +42,7 @@
  <product>
         <Id>6</Id>
         <Title>Вейкапер</Title>
-        <Price>70,00 ₴</Price>
+        <Price>70,00</Price>
         <PhotoUrl>https://api.getorder.biz/product/192552/image/356/650/420/bb2efba8-df2c-4d30-8c77-c2d3d0f54ca5.webp?v=2024030113</PhotoUrl>
         <Description>Твій неймовірний сніданок - це запашна булочка з листям салату, помідорою, хрумким беконом з шматочком Голандського сиру, смаженим яйцем і все це під соусом Франсуа.</Description>
     </product>
@@ -50,7 +50,7 @@
  <product>
         <Id>7</Id>
         <Title>Гамбургер</Title>
-        <Price>39,00 ₴</Price>
+        <Price>39,00</Price>
         <PhotoUrl>https://api.getorder.biz/product/200241/image/356/650/420/a77785ae-204e-43c2-a7ab-95f1a7382d78.webp?v=2024030113</PhotoUrl>
         <Description>Класична куряча котлета на м'якій булочці з кунжутом заправленій кетчупом та Французьким соусом із гірчицею, цибулею та шматочками маринованих огірків.</Description>
     </product>
@@ -58,7 +58,7 @@
  <product>
         <Id>8</Id>
         <Title>Гриль-бургер</Title>
-        <Price>68,00 ₴</Price>
+        <Price>68,00</Price>
         <PhotoUrl>https://api.getorder.biz/product/192555/image/356/650/420/5674edfd-9953-46f7-8034-37627547c47f.webp?v=2024030113</PhotoUrl>
         <Description>Овочевий мікс: листя салату та скибочка помідору. Соковите куряче філе обсмажене на грилі. Булочка з кунжутом заправлена соусом Барбекю.</Description>
     </product>
@@ -66,7 +66,7 @@
  <product>
         <Id>9</Id>
         <Title>Дабл-бургер</Title>
-        <Price>69,00 ₴</Price>
+        <Price>69,00</Price>
         <PhotoUrl>https://api.getorder.biz/product/192557/image/356/650/420/480cf839-2750-43d9-883a-e0ac8f316e55.webp?v=2024030113</PhotoUrl>
         <Description>Дві курячі котлети, шматочок сиру Hochland, пікантна цибуля, шматочки маринованих огірків в булочці з кунжутом заправленій кетчупом та Французьким соусом з гірчицею.</Description>
     </product>
@@ -74,7 +74,7 @@
  <product>
         <Id>10</Id>
         <Title>ОЗЗБургер</Title>
-        <Price>106,00 ₴</Price>
+        <Price>106,00</Price>
         <PhotoUrl>https://api.getorder.biz/product/192560/image/356/650/420/19e08a59-6cc4-46f5-958b-47490aac4f65.webp?v=2024030113</PhotoUrl>
         <Description>Максимальна кількість смаку - це дві котлети із соковитої телятини, SPECIAL соус Реліш, шматочок сиру Hochland, пікантна цибуля та соус Пікантний.</Description>
     </product>
