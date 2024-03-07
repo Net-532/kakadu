@@ -7,35 +7,53 @@ using System.Threading.Tasks;
 
 namespace Backend
 {
-    internal class ProductService : IProductService
+     internal class ProductService : IProductService
     {
         private readonly IProductRepository productRepository;
-        ProductService(IProductRepository productRepository) {
+
+        public ProductService(IProductRepository productRepository)
+        {
             this.productRepository = productRepository;
         }
+
         public void deleteById(int id)
         {
-            throw new NotImplementedException();
+            var product = productRepository.getById(id);
+            if (product == null)
+            {
+                throw new ProductNotFoundException($"Продукт з вказаним id {id} не знайдено");
+            }
+            productRepository.deleteById(id);
         }
 
         public List<Product> getAll()
         {
-            throw new NotImplementedException();
+            return productRepository.getAll();
         }
 
         public Product getById(int id)
         {
-            throw new NotImplementedException();
+            var product = productRepository.getById(id);
+            if (product == null)
+            {
+                throw new ProductNotFoundException($"Продукт з вказаним id {id} не знайдено");
+            }
+            return product;
         }
 
         public void save(Product product)
         {
-            throw new NotImplementedException();
+            productRepository.save(product);
         }
 
         public void update(int id, Product product)
         {
-            throw new NotImplementedException();
+            var existingProduct = productRepository.getById(id);
+            if (existingProduct == null)
+            {
+                throw new ProductNotFoundException($"Продукт з вказаним id {id} не знайдено");
+            }
+            productRepository.update(id, product);
         }
     }
 }

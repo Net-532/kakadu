@@ -43,6 +43,7 @@
     <Compile Include="order.cs" />
     <Compile Include="OrderService.cs" />
     <Compile Include="product.cs" />
+    <Compile Include="ProductNotFoundException.cs" />
     <Compile Include="ProductRepositoryXML.cs" />
     <Compile Include="ProductService.cs" />
     <Compile Include="user.cs" />
