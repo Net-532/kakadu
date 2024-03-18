@@ -1,11 +1,12 @@
-﻿using backend;
+﻿using Kakadu.Backend.Entities;
+using Kakadu.Backend.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Backend
+namespace Kakadu.Backend.Services
 {
      internal class ProductService : IProductService
     {

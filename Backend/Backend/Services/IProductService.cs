@@ -1,6 +1,7 @@
+using Kakadu.Backend.Entities;
 using System.Collections.Generic;
 
-namespace backend
+namespace Kakadu.Backend.Services
 {
     interface IProductService
     {
