@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using System.Windows;
+
 namespace Backoffice
 {
     /// <summary>
@@ -23,6 +25,11 @@ namespace Backoffice
         public MainWindow()
         {
             InitializeComponent();
+        }
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+            Close();
         }
     }
 }
