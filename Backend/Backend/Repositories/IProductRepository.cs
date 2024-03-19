@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Backend
 {
-    internal interface IProductRepository
+    public interface IProductRepository
     {
         List<Product> getAll();
         Product getById(int id);
