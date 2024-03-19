@@ -1,4 +1,5 @@
-﻿using System;
+﻿using backend;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -30,20 +31,14 @@ namespace Backoffice.Views
         {
             string username = UsernameTextBox.Text;
             string password = PasswordBox.Password;
-    
-            // TEMPORARY: Hardcoded credentials
-            // here will be a query to the database, no cap
-            if (username == "admin" && password == "password")
-            {
-                MainWindow Main = new MainWindow();
-                Main.Show();
 
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Invalid username or password.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            User user = AuthenticationService.Authenticate(username, password);
+
+            MainWindow Main = new MainWindow(user);
+            Main.Show();
+
+            this.Close();
+
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

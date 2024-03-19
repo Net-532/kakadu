@@ -1,4 +1,5 @@
-﻿using System;
+﻿using backend;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,10 @@ namespace Backoffice
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(User user)
         {
             InitializeComponent();
+            TestLabel.Content = $"Hello, {user.Id}: {user.Username}";
         }
     }
 }
