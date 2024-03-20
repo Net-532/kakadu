@@ -1,6 +1,4 @@
-﻿
-
-namespace Backend
+﻿namespace Kakadu.Backend.Entities
 {
     internal class OrderItem
     {
