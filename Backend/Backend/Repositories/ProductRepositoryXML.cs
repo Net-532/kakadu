@@ -1,9 +1,9 @@
-﻿using backend;
+﻿using Kakadu.Backend.Entities;
 using System;
 using System.Collections.Generic;
 using System.Xml;
 
-namespace Backend
+namespace Kakadu.Backend.Repositories
 {
     public class ProductRepositoryXML : IProductRepository
     {
