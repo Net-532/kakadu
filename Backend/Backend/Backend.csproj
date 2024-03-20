@@ -5,8 +5,8 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{F0956F1C-18BF-43C5-9639-53CD28DF5C25}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Backend</RootNamespace>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Kakadu.Backend</RootNamespace>
     <AssemblyName>Backend</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -44,9 +44,11 @@
     <Compile Include="Repositories\IProductRepository.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Entities\Order.cs" />
+    <Compile Include="Entities\OrderItem.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Services\ProductNotFoundException.cs" />
     <Compile Include="Entities\User.cs" />
   </ItemGroup>
   <ItemGroup>
