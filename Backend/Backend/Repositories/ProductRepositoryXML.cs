@@ -1,17 +1,24 @@
 ﻿using backend;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Xml;
 
 namespace Backend
 {
     public class ProductRepositoryXML : IProductRepository
     {
-        private readonly string filePath = "D:/3CoursePart2/Dot/kakadu/Backend/Backend/data/";
+        private readonly string filePath = "./data/products.xml";
 
-        public ProductRepositoryXML(string filePath)
+        private Product ConvertToProduct(XmlNode node)
         {
-            this.filePath = filePath;
+            Product product = new Product();
+            product.Id = int.Parse(node.SelectSingleNode("Id").InnerText);
+            product.Title = node.SelectSingleNode("Title").InnerText;
+            product.Price = decimal.Parse(node.SelectSingleNode("Price").InnerText, CultureInfo.InvariantCulture);
+            product.PhotoUrl = node.SelectSingleNode("PhotoUrl").InnerText;
+            product.Description = node.SelectSingleNode("Description").InnerText;
+            return product;
         }
 
         public void deleteById(int id)
@@ -34,12 +41,7 @@ namespace Backend
             doc.Load(filePath);
             foreach (XmlNode node in doc.SelectNodes("/products/product"))
             {
-                Product product = new Product();
-                product.Id = int.Parse(node.SelectSingleNode("Id").InnerText);
-                product.Title = node.SelectSingleNode("Title").InnerText;
-                product.Price = decimal.Parse(node.SelectSingleNode("Price").InnerText);
-                product.PhotoUrl = node.SelectSingleNode("PhotoUrl").InnerText;
-                product.Description = node.SelectSingleNode("Description").InnerText;
+                Product product = ConvertToProduct(node);
                 products.Add(product);
             }
 
@@ -53,13 +55,7 @@ namespace Backend
             XmlNode node = doc.SelectSingleNode($"/products/product[Id = '{id}']");
             if (node != null)
             {
-                Product product = new Product();
-                product.Id = int.Parse(node.SelectSingleNode("Id").InnerText);
-                product.Title = node.SelectSingleNode("Title").InnerText;
-                product.Price = decimal.Parse(node.SelectSingleNode("Price").InnerText);
-                product.PhotoUrl = node.SelectSingleNode("PhotoUrl").InnerText;
-                product.Description = node.SelectSingleNode("Description").InnerText;
-                return product;
+                return ConvertToProduct(node);
             }
             return null;
         }
@@ -82,7 +78,7 @@ namespace Backend
             productElement.AppendChild(titleElement);
 
             XmlNode priceElement = doc.CreateElement("Price");
-            priceElement.InnerText = product.Price.ToString();
+            priceElement.InnerText = product.Price.ToString(CultureInfo.InvariantCulture);
             productElement.AppendChild(priceElement);
 
             XmlNode photoUrlElement = doc.CreateElement("PhotoUrl");
@@ -108,7 +104,7 @@ namespace Backend
             {
                 node.SelectSingleNode("Id").InnerText = product.Id.ToString();
                 node.SelectSingleNode("Title").InnerText = product.Title;
-                node.SelectSingleNode("Price").InnerText = product.Price.ToString();
+                node.SelectSingleNode("Price").InnerText = product.Price.ToString(CultureInfo.InvariantCulture);
                 node.SelectSingleNode("PhotoUrl").InnerText = product.PhotoUrl;
                 node.SelectSingleNode("Description").InnerText = product.Description;
                 doc.Save(filePath);
