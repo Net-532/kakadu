@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Kakadu.Backend.Services
 {
-    interface IOrderService
+    internal class ProductNotFoundException : ApplicationException
     {
+        public ProductNotFoundException(string message) : base(message) { }
     }
 }
