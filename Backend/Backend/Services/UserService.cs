@@ -1,5 +1,6 @@
-﻿using backend;
-using Backend.Repositories;
+﻿using Kakadu.Backend.Entities;
+using Kakadu.Backend.Repositories;
+using Kakadu.Backend.Services;
 using System.Collections.Generic;
 
 namespace Backend.Services
