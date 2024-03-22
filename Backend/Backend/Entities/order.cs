@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Kakadu.Backend.Entities
 {
-    internal class Order
+    public class Order
     {
         public int OrderNumber { get; set; }
         public int Id { get; set; }

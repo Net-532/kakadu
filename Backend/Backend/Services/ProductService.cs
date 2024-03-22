@@ -1,14 +1,10 @@
 ﻿using Kakadu.Backend.Entities;
 using Kakadu.Backend.Repositories;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kakadu.Backend.Services
 {
-     internal class ProductService : IProductService
+    public class ProductService : IProductService
     {
         private readonly IProductRepository productRepository;
 
@@ -17,7 +13,7 @@ namespace Kakadu.Backend.Services
             this.productRepository = productRepository;
         }
 
-        public void deleteById(int id)
+        public void DeleteById(int id)
         {
             var product = productRepository.getById(id);
             if (product == null)
@@ -27,12 +23,12 @@ namespace Kakadu.Backend.Services
             productRepository.deleteById(id);
         }
 
-        public List<Product> getAll()
+        public List<Product> GetAll()
         {
             return productRepository.getAll();
         }
 
-        public Product getById(int id)
+        public Product GetById(int id)
         {
             var product = productRepository.getById(id);
             if (product == null)
@@ -42,12 +38,12 @@ namespace Kakadu.Backend.Services
             return product;
         }
 
-        public void save(Product product)
+        public void Save(Product product)
         {
             productRepository.save(product);
         }
 
-        public void update(int id, Product product)
+        public void Update(int id, Product product)
         {
             var existingProduct = productRepository.getById(id);
             if (existingProduct == null)

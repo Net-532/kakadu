@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Kakadu.Backend.Repositories
 {
-    interface IUserRepository
+    public interface IUserRepository
     {
         List<User> getAll();
         User getById(int id);
