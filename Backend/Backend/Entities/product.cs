@@ -1,4 +1,4 @@
-namespace backend
+namespace Kakadu.Backend.Entities
 {
     internal class Product
     {

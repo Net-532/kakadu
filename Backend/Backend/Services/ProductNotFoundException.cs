@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Backend
+namespace Kakadu.Backend.Services
 {
     internal class ProductNotFoundException : ApplicationException
     {

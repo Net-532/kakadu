@@ -1,7 +1,9 @@
-﻿using backend;
+using Kakadu.Backend.Entities;
+using Kakadu.Backend.Repositories;
+using System;
 using System.Collections.Generic;
 
-namespace Backend
+namespace Kakadu.Backend.Services
 {
     internal class ProductService : IProductService
     {

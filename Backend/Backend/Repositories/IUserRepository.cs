@@ -1,7 +1,8 @@
-﻿using backend;
+using Kakadu.Backend.Entities;
+using System;
 using System.Collections.Generic;
 
-namespace Backend.Repositories
+namespace Kakadu.Backend.Repositories
 {
     interface IUserRepository
     {
