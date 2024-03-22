@@ -49,5 +49,10 @@
     <Compile Include="Services\ProductNotFoundException.cs" />
     <Compile Include="Entities\User.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="data\users.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup> 
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
