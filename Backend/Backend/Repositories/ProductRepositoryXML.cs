@@ -8,7 +8,7 @@ namespace Kakadu.Backend.Repositories
 {
     public class ProductRepositoryXML : IProductRepository
     {
-        private readonly string filePath = "./data/products.xml";
+        private static readonly string filePath = "./data/products.xml";
 
         private Product ConvertToProduct(XmlNode node)
         {
