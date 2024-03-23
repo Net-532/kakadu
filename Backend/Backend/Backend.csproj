@@ -55,7 +55,10 @@
     <Content Include="data\products.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
+    <Content Include="data\users.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup> 
   <ItemGroup>
     <Reference Include="System.Xml" />
   </ItemGroup>
