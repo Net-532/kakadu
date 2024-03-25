@@ -9,12 +9,12 @@ namespace Kakadu.Backend.Repositories
 {
     public interface IUserRepository
     {
-        List<User> getAll();
-        User getById(int id);
+        List<User> GetAll();
+        User GetById(int id);
 
-        void save(User user);
-        void deleteById(int id);
+        void Save(User user);
+        void DeleteById(int id);
 
-        void update(int id, User user);
+        void Update(int id, User user);
     }
 }

@@ -9,12 +9,12 @@ namespace Kakadu.Backend.Repositories
 {
     public interface IProductRepository
     {
-        List<Product> getAll();
-        Product getById(int id);
+        List<Product> GetAll();
+        Product GetById(int id);
 
-        void save(Product product);
-        void deleteById(int id);
+        void Save(Product product);
+        void DeleteById(int id);
 
-        void update(int id, Product product);
+        void Update(int id, Product product);
     }
 }
