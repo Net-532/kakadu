@@ -1,6 +1,6 @@
 ﻿namespace Kakadu.Backend.Services
 {
-    interface IOrderService
+     public interface IOrderService
     {
     }
 }

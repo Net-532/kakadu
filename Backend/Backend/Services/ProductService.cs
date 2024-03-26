@@ -15,22 +15,22 @@ namespace Kakadu.Backend.Services
 
         public void DeleteById(int id)
         {
-            var product = productRepository.getById(id);
+            var product = productRepository.GetById(id);
             if (product == null)
             {
                 throw new ProductNotFoundException($"Продукт з вказаним id {id} не знайдено");
             }
-            productRepository.deleteById(id);
+            productRepository.DeleteById(id);
         }
 
         public List<Product> GetAll()
         {
-            return productRepository.getAll();
+            return productRepository.GetAll();
         }
 
         public Product GetById(int id)
         {
-            var product = productRepository.getById(id);
+            var product = productRepository.GetById(id);
             if (product == null)
             {
                 throw new ProductNotFoundException($"Продукт з вказаним id {id} не знайдено");
@@ -40,17 +40,17 @@ namespace Kakadu.Backend.Services
 
         public void Save(Product product)
         {
-            productRepository.save(product);
+            productRepository.Save(product);
         }
 
         public void Update(int id, Product product)
         {
-            var existingProduct = productRepository.getById(id);
+            var existingProduct = productRepository.GetById(id);
             if (existingProduct == null)
             {
                 throw new ProductNotFoundException($"Продукт з вказаним id {id} не знайдено");
             }
-            productRepository.update(id, product);
+            productRepository.Update(id, product);
         }
     }
 }
