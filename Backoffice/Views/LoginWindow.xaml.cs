@@ -1,5 +1,4 @@
-﻿using backend;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -13,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Kakadu.Backend.Entities;
 
 namespace Backoffice.Views
 {
@@ -32,12 +32,20 @@ namespace Backoffice.Views
             string username = UsernameTextBox.Text;
             string password = PasswordBox.Password;
 
-            User user = AuthenticationService.Authenticate(username, password);
+            try
+            {
+                User user = AuthenticationService.Authenticate(username, password);
 
-            MainWindow Main = new MainWindow(user);
-            Main.Show();
+                MainWindow Main = new MainWindow(user);
+                Main.Show();
 
-            this.Close();
+                this.Close();
+            }
+            catch (AuthenticationException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
 
         }
 
