@@ -1,16 +1,15 @@
 ﻿using System.Net;
 using System.Net.Sockets;
-using System.Security;
 using System.Text;
 
-namespace WebServer
+namespace Kakadu.WebServer
 {
     public class Program
     {
         private static TcpListener server = null;
         
-        private static Int32 port = 8085;
-        private static IPAddress address = IPAddress.Parse("127.0.0.1");
+        private static readonly Int32 port = 8085;
+        private static readonly IPAddress address = IPAddress.Parse("127.0.0.1");
         public static async Task Main()
         {
             try
@@ -30,7 +29,6 @@ namespace WebServer
                     byte[] responseData = Encoding.UTF8.GetBytes(response);
                     await stream.WriteAsync(responseData, 0, responseData.Length);
 
-                    //stream.Close();
                     client.Close();
                     
                     Console.WriteLine("Response sent");
