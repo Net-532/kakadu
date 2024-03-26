@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Backend.Services
+namespace Kakadu.Backend.Services
 {
     internal class UserNotFoundException : ApplicationException
     {

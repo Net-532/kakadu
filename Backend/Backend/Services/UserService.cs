@@ -3,15 +3,17 @@ using Kakadu.Backend.Repositories;
 using Kakadu.Backend.Services;
 using System.Collections.Generic;
 
-namespace Backend.Services
+namespace Kakadu.Backend.Services
 {
     internal class UserService : IUserService
     {
         private readonly IUserRepository userRepository;
+
         public UserService(IUserRepository userRepository)
         {
             this.userRepository = userRepository;
         }
+        
         public void deleteById(int id)
         {
             var user = userRepository.getById(id);
