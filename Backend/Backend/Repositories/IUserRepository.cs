@@ -1,17 +1,18 @@
 using Kakadu.Backend.Entities;
-using System;
 using System.Collections.Generic;
 
 namespace Kakadu.Backend.Repositories
 {
-    interface IUserRepository
+    public interface IUserRepository
     {
-        List<User> getAll();
-        User getById(int id);
+        List<User> GetAll();
 
-        void save(User user);
-        void deleteById(int id);
+        User GetById(int id);
 
-        void update(int id, User user);
+        void Save(User user);
+
+        void DeleteById(int id);
+
+        void Update(int id, User user);
     }
 }

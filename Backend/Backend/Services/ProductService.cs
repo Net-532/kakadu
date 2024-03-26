@@ -1,11 +1,10 @@
 using Kakadu.Backend.Entities;
 using Kakadu.Backend.Repositories;
-using System;
 using System.Collections.Generic;
 
 namespace Kakadu.Backend.Services
 {
-    internal class ProductService : IProductService
+    public class ProductService : IProductService
     {
         private readonly IProductRepository productRepository;
 
@@ -14,24 +13,24 @@ namespace Kakadu.Backend.Services
             this.productRepository = productRepository;
         }
 
-        public void deleteById(int id)
+        public void DeleteById(int id)
         {
-            var product = productRepository.getById(id);
+            var product = productRepository.GetById(id);
             if (product == null)
             {
                 throw new ProductNotFoundException($"Продукт з вказаним id {id} не знайдено");
             }
-            productRepository.deleteById(id);
+            productRepository.DeleteById(id);
         }
 
-        public List<Product> getAll()
+        public List<Product> GetAll()
         {
-            return productRepository.getAll();
+            return productRepository.GetAll();
         }
 
-        public Product getById(int id)
+        public Product GetById(int id)
         {
-            var product = productRepository.getById(id);
+            var product = productRepository.GetById(id);
             if (product == null)
             {
                 throw new ProductNotFoundException($"Продукт з вказаним id {id} не знайдено");
@@ -39,19 +38,19 @@ namespace Kakadu.Backend.Services
             return product;
         }
 
-        public void save(Product product)
+        public void Save(Product product)
         {
-            productRepository.save(product);
+            productRepository.Save(product);
         }
 
-        public void update(int id, Product product)
+        public void Update(int id, Product product)
         {
-            var existingProduct = productRepository.getById(id);
+            var existingProduct = productRepository.GetById(id);
             if (existingProduct == null)
             {
                 throw new ProductNotFoundException($"Продукт з вказаним id {id} не знайдено");
             }
-            productRepository.update(id, product);
+            productRepository.Update(id, product);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Kakadu.Backend.Entities;
 using Kakadu.Backend.Repositories;
-using Kakadu.Backend.Services;
 using System.Collections.Generic;
 
 namespace Kakadu.Backend.Services
@@ -14,24 +13,24 @@ namespace Kakadu.Backend.Services
             this.userRepository = userRepository;
         }
         
-        public void deleteById(int id)
+        public void DeleteById(int id)
         {
-            var user = userRepository.getById(id);
+            var user = userRepository.GetById(id);
             if (user == null)
             {
                 throw new UserNotFoundException($"Користувача з вказаним id {id} не знайдено");
             }
-            userRepository.deleteById(id);
+            userRepository.DeleteById(id);
         }
 
-        public List<User> getAll()
+        public List<User> GetAll()
         {
-            return userRepository.getAll();
+            return userRepository.GetAll();
         }
 
-        public User getById(int id)
+        public User GetById(int id)
         {
-            var user = userRepository.getById(id);
+            var user = userRepository.GetById(id);
             if (user == null)
             {
                 throw new UserNotFoundException($"Користувача з вказаним id {id} не знайдено");
@@ -39,19 +38,19 @@ namespace Kakadu.Backend.Services
             return user;
         }
 
-        public void save(User user)
+        public void Save(User user)
         {
-            userRepository.save(user);
+            userRepository.Save(user);
         }
 
-        public void update(int id, User user)
+        public void Update(int id, User user)
         {
-            var existingUser = userRepository.getById(id);
+            var existingUser = userRepository.GetById(id);
             if (existingUser == null)
             {
                 throw new UserNotFoundException($"Користувача з вказаним id {id} не знайдено");
             }
-            userRepository.update(id, existingUser);
+            userRepository.Update(id, existingUser);
         }
     }
 }
