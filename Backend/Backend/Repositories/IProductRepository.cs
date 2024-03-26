@@ -1,20 +1,19 @@
 ﻿using Kakadu.Backend.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Kakadu.Backend.Repositories
 {
-    internal interface IProductRepository
+    public interface IProductRepository
     {
-        List<Product> getAll();
-        Product getById(int id);
+        List<Product> GetAll();
 
-        void save(Product product);
-        void deleteById(int id);
+        Product GetById(int id);
 
-        void update(int id, Product product);
+        void Save(Product product);
+
+        void DeleteById(int id);
+
+        void Update(int id, Product product);
     }
 }
