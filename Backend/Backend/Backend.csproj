@@ -50,6 +50,8 @@
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\ProductNotFoundException.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Services\UserNotFoundException.cs" />
+    <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\products.xml">
