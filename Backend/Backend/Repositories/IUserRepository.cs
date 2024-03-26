@@ -1,11 +1,11 @@
-﻿using backend;
+﻿using Kakadu.Backend.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Backend.Repositories
+namespace Kakadu.Backend.Repositories
 {
     interface IUserRepository
     {
