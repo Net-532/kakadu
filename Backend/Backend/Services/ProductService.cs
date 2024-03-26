@@ -1,4 +1,4 @@
-﻿using Kakadu.Backend.Entities;
+using Kakadu.Backend.Entities;
 using Kakadu.Backend.Repositories;
 using System.Collections.Generic;
 
