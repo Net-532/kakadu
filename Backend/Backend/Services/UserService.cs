@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Kakadu.Backend.Services
 {
-    internal class UserService : IUserService
+    public class UserService : IUserService
     {
         private readonly IUserRepository userRepository;
 
