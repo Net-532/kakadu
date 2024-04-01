@@ -21,7 +21,7 @@ namespace Kakadu.Backend.Repositories
             return product;
         }
 
-        public void deleteById(int id)
+        public void DeleteById(int id)
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(filePath);
@@ -33,7 +33,7 @@ namespace Kakadu.Backend.Repositories
             }
         }
 
-        public List<Product> getAll()
+        public List<Product> GetAll()
         {
             List<Product> products = new List<Product>();
 
@@ -48,7 +48,7 @@ namespace Kakadu.Backend.Repositories
             return products;
         }
 
-        public Product getById(int id)
+        public Product GetById(int id)
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(filePath);
@@ -60,7 +60,7 @@ namespace Kakadu.Backend.Repositories
             return null;
         }
 
-        public void save(Product product)
+        public void Save(Product product)
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(filePath);
@@ -94,7 +94,7 @@ namespace Kakadu.Backend.Repositories
             doc.Save(filePath);
         }
 
-        public void update(int id, Product product)
+        public void Update(int id, Product product)
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(filePath);
