@@ -8,10 +8,11 @@ namespace Backend.Repositories
 {
     internal interface IOrderRepository
     {
-
-        Order getById(int id);
-        List<Order> getAll();
-        void save(Order order);
-        void changeStatus(int id, string status);
+        Order GetById(int id);
+        List<Order> GetAll();
+        void Save(Order order);
+        void ChangeStatus(int id, string status);
     }
 }
+
+
