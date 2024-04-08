@@ -29,16 +29,15 @@ namespace Kakadu.WebServer
                 {
                     productService = new ProductService(new ProductRepositoryXML());
 
-                    TcpClient client = server.AcceptTcpClient();
+                    Socket clientSocket = server.AcceptSocket();
 
-                    NetworkStream stream = client.GetStream();
 
                     List<Product> products = productService.GetAll();
 
                     if (products != null)
                     {
                         StringBuilder jsonBuilder = new StringBuilder();
-                        string response = "HTTP/1.1 200 OK\r\n" + "Content-Type: application/json\r\n" + "Access-Control-Allow-Origin: *\r\n\r\n" + "{\"products\": [";
+                        string response = "HTTP/1.1 200 OK\r\n" + "Content-Type: application/json\r\n" + "Access-Control-Allow-Origin: *\r\n\r\n" + "[";
                         foreach (Product product in products)
                         {
                             string productJson = $"{{\"Id\": {product.Id}, \"Title\": \"{product.Title}\", \"Price\": {product.Price}, \"PhotoUrl\": \"{product.PhotoUrl}\", \"Description\": \"{product.Description}\"}},";
@@ -52,11 +51,11 @@ namespace Kakadu.WebServer
                         Console.WriteLine(response);
 
                         byte[] responseData = Encoding.UTF8.GetBytes(response);
-                        stream.Write(responseData, 0, responseData.Length);
+                        clientSocket.Send(responseData);
                     }
 
-                    stream.Close();
-                    client.Close();
+                    clientSocket.Shutdown(SocketShutdown.Send);
+                    clientSocket.Close();
 
                     Console.WriteLine("Response sent");
                 }
