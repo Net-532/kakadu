@@ -1,8 +1,6 @@
-﻿
-
-namespace Backend
+﻿namespace Kakadu.Backend.Entities
 {
-    internal class OrderItem
+    public class OrderItem
     {
         public int Id { get; set; }
         public int ProductId { get; set; }

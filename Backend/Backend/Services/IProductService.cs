@@ -1,13 +1,18 @@
+using Kakadu.Backend.Entities;
 using System.Collections.Generic;
 
-namespace backend
+namespace Kakadu.Backend.Services
 {
-    interface IProductService
+    public interface IProductService
     {
-        List<Product> getAll();
-        Product getById(int id);
-        void save(Product product);
-        void deleteById(int id);
-        void update(int id, Product product);
+        List<Product> GetAll();
+
+        Product GetById(int id);
+
+        void Save(Product product);
+
+        void DeleteById(int id);
+
+        void Update(int id, Product product);
     }
 }
