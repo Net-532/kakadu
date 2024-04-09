@@ -11,17 +11,6 @@ namespace Kakadu.Backend.Repositories
     {
         private static readonly string filePath = "./data/Orders.xml";
 
-        private Order ConvertToOrder(XmlNode node)
-        {
-            Order order = new Order();
-            order.OrderNumber = int.Parse(node.SelectSingleNode("OrderNumber").InnerText);
-            order.Id = int.Parse(node.SelectSingleNode("Id").InnerText);
-            order.TotalPrice = decimal.Parse(node.SelectSingleNode("TotalPrice").InnerText, CultureInfo.InvariantCulture);
-            order.OrderDate = DateTime.Parse(node.SelectSingleNode("OrderDate").InnerText);
-            order.Status = node.SelectSingleNode("Status").InnerText;
-
-            return order;
-        }
         public Order GetById(int id)
         {
             XmlDocument doc = new XmlDocument();
@@ -83,6 +72,7 @@ namespace Kakadu.Backend.Repositories
 
             doc.Save(filePath);
         }
+
         public void ChangeStatus(int id, string status)
         {
             XmlDocument doc = new XmlDocument();
@@ -96,6 +86,16 @@ namespace Kakadu.Backend.Repositories
             }
         }
 
+        private Order ConvertToOrder(XmlNode node)
+        {
+            Order order = new Order();
+            order.OrderNumber = int.Parse(node.SelectSingleNode("OrderNumber").InnerText);
+            order.Id = int.Parse(node.SelectSingleNode("Id").InnerText);
+            order.TotalPrice = decimal.Parse(node.SelectSingleNode("TotalPrice").InnerText, CultureInfo.InvariantCulture);
+            order.OrderDate = DateTime.Parse(node.SelectSingleNode("OrderDate").InnerText);
+            order.Status = node.SelectSingleNode("Status").InnerText;
 
+            return order;
+        }
     }
 }
