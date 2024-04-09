@@ -1,8 +1,6 @@
 ﻿using Kakadu.Backend.Entities;
 using Kakadu.Backend.Repositories;
 using Kakadu.Backend.Services;
-using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -13,7 +11,7 @@ namespace Kakadu.WebServer
     {
         private static readonly Int32 port = 8085;
         private static readonly IPAddress address = IPAddress.Parse("127.0.0.1");
-        private static IProductService productService;
+        private static IProductService productService = new ProductService(new ProductRepositoryXML());
 
         public static void Main()
         {
@@ -27,8 +25,6 @@ namespace Kakadu.WebServer
 
                 while (true)
                 {
-                    productService = new ProductService(new ProductRepositoryXML());
-
                     Socket clientSocket = server.AcceptSocket();
 
 
@@ -40,11 +36,14 @@ namespace Kakadu.WebServer
                         string response = "HTTP/1.1 200 OK\r\n" + "Content-Type: application/json\r\n" + "Access-Control-Allow-Origin: *\r\n\r\n" + "[";
                         foreach (Product product in products)
                         {
-                            string productJson = $"{{\"Id\": {product.Id}, \"Title\": \"{product.Title}\", \"Price\": {product.Price}, \"PhotoUrl\": \"{product.PhotoUrl}\", \"Description\": \"{product.Description}\"}},";
+                            string priceString = product.Price.ToString();
+                            priceString = priceString.Replace(",", ".");
+
+                            string productJson = $"{{\"id\": {product.Id}, \"title\": \"{product.Title}\", \"price\": {priceString}, \"photoUrl\": \"{product.PhotoUrl}\", \"description\": \"{product.Description}\"}},";
                             jsonBuilder.Append(productJson);
                         }
                         jsonBuilder.Remove(jsonBuilder.Length - 1, 1);
-                        jsonBuilder.Append("]}");
+                        jsonBuilder.Append("]");
 
                         response += jsonBuilder.ToString();
 
