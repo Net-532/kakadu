@@ -7,9 +7,9 @@ using System.Xml;
 
 namespace Kakadu.Backend.Repositories
 {
-    internal class OrderRepositoryXML : IOrderRepository
+    public class OrderRepositoryXML : IOrderRepository
     {
-        private static readonly string filePath = "./data/Orders.xml";
+        private static readonly string filePath = "./data/orders.xml";
 
         public Order GetById(int id)
         {
