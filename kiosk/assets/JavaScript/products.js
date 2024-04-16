@@ -61,10 +61,16 @@ fetch("https://fakestoreapi.com/products")
                 };
 
                 addToCart(product);
+                document.getElementById('open-offcanvas').addEventListener('click', function() {
+                    const bsOffcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasBottom'));
+                    bsOffcanvas.show();
+                });
+
             });
 
             row.appendChild(productCard);
         });
+
     })
     .catch(error => {
         console.error('Помилка завантаження продуктів:', error);
