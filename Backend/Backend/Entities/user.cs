@@ -1,6 +1,6 @@
-namespace backend
+namespace Kakadu.Backend.Entities
 {
-    internal class User
+    public class User
     {
         public int Id { get; set; }
         public string Username { get; set; }

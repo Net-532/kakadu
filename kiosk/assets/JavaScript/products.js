@@ -1,4 +1,6 @@
-fetch("https://fakestoreapi.com/products")
+const fetchlink = "http://localhost:8085/products";
+
+fetch(fetchlink)
     .then(res => res.json())
     .then(products => {
         const productList = document.getElementById('product-list');
@@ -16,18 +18,19 @@ fetch("https://fakestoreapi.com/products")
             const productCard = document.createElement('div');
             productCard.classList.add('col');
             productCard.innerHTML = `
-        <div class="card product" style="width: 18rem;" data-id="${product.id}">
-        <div class="card-pre-body">
-        <img src="${product.image}" class="card-img-top" alt="${product.title}">
-        <div class="card-body">
-        <h5 class="card-title">${product.title}</h5>
-        <p class="card-text">${product.description}</p>
-        <p class="card-text">$${product.price}</p>
-        </div>
-        </div>
-        <button data-id="${product.id}" type="button" class="add-to-cart-button btn btn-outline-primary">Add to cart</button>
-        </div>
-        `;
+                <div class="card product" style="width: 18rem;" data-id="${product.id}">
+                    <div class="card-pre-body">
+                        <img src="${product.photoUrl}" class="card-img-top" alt="${product.title}">
+                        <div class="card-body">
+                            <h5 class="card-title">${product.title}</h5>
+                            <p class="card-text">${product.description}</p>
+                            <p class="card-text">$${product.price}</p>
+                        </div>
+                    </div>
+                    <button data-id="${product.id}" type="button" class="add-to-cart-button btn btn-outline-primary">Add to cart</button>
+                </div>
+            `;
+
             const cardPreBody = productCard.querySelector('.card-pre-body');
             cardPreBody.addEventListener('click', function(event) {
                 const id = product.id;
@@ -37,7 +40,7 @@ fetch("https://fakestoreapi.com/products")
                 myModal.show();
                 const textinside = document.getElementById('full-card-text');
                 textinside.innerHTML = `
-                <img src="${product.image}" alt="${product.title}" style="max-width: 100%;">
+                <img src="${product.photoUrl}" alt="${product.title}" style="max-width: 100%;">
                 Name: ${product.title} <br>
                 Price: ${product.price} <br>
                 Description: ${product.description} <br>
