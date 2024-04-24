@@ -1,73 +1,75 @@
 ﻿using Kakadu.Backend.Entities;
 using Kakadu.Backend.Repositories;
 using Kakadu.Backend.Services;
-using System.Net;
+using Serilog;
+using Serilog.Core;
 using System.Net.Sockets;
+using System.Net;
 using System.Text;
 
-namespace Kakadu.WebServer
+public class WebServer
 {
-    public class WebServer
+    private static readonly Int32 port = 8085;
+    private static readonly IPAddress address = IPAddress.Parse("127.0.0.1");
+    private static IProductService productService = new ProductService(new ProductRepositoryXML());
+
+    public static void Main()
     {
-        private static readonly Int32 port = 8085;
-        private static readonly IPAddress address = IPAddress.Parse("127.0.0.1");
-        private static IProductService productService = new ProductService(new ProductRepositoryXML());
+        Log.Logger = new LoggerConfiguration()
+            .WriteTo.Console()
+            .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
+            .CreateLogger();
 
-        public static void Main()
+        TcpListener server = null;
+        try
         {
-            TcpListener server = null;
-            try
+            server = new TcpListener(address, port);
+            server.Start();
+
+            Log.Information($"Web Server Running on {address.ToString()} on port {port}...");
+
+            while (true)
             {
-                server = new TcpListener(address, port);
-                server.Start();
+                Socket clientSocket = server.AcceptSocket();
 
-                Console.WriteLine($"Web Server Running on {address.ToString()} on port {port}...");
+                List<Product> products = productService.GetAll();
 
-                while (true)
+                if (products != null)
                 {
-                    Socket clientSocket = server.AcceptSocket();
-
-
-                    List<Product> products = productService.GetAll();
-
-                    if (products != null)
+                    StringBuilder jsonBuilder = new StringBuilder();
+                    string response = "HTTP/1.1 200 OK\r\n" + "Content-Type: application/json\r\n" + "Access-Control-Allow-Origin: *\r\n\r\n" + "[";
+                    foreach (Product product in products)
                     {
-                        StringBuilder jsonBuilder = new StringBuilder();
-                        string response = "HTTP/1.1 200 OK\r\n" + "Content-Type: application/json\r\n" + "Access-Control-Allow-Origin: *\r\n\r\n" + "[";
-                        foreach (Product product in products)
-                        {
-                            string priceString = product.Price.ToString();
-                            priceString = priceString.Replace(",", ".");
+                        string priceString = product.Price.ToString();
+                        priceString = priceString.Replace(",", ".");
 
-                            string productJson = $"{{\"id\": {product.Id}, \"title\": \"{product.Title}\", \"price\": {priceString}, \"photoUrl\": \"{product.PhotoUrl}\", \"description\": \"{product.Description}\"}},";
-                            jsonBuilder.Append(productJson);
-                        }
-                        jsonBuilder.Remove(jsonBuilder.Length - 1, 1);
-                        jsonBuilder.Append("]");
-
-                        response += jsonBuilder.ToString();
-
-                        Console.WriteLine(response);
-
-                        byte[] responseData = Encoding.UTF8.GetBytes(response);
-                        clientSocket.Send(responseData);
+                        string productJson = $"{{\"id\": {product.Id}, \"title\": \"{product.Title}\", \"price\": {priceString}, \"photoUrl\": \"{product.PhotoUrl}\", \"description\": \"{product.Description}\"}},";
+                        jsonBuilder.Append(productJson);
                     }
+                    jsonBuilder.Remove(jsonBuilder.Length - 1, 1);
+                    jsonBuilder.Append("]");
 
-                    clientSocket.Shutdown(SocketShutdown.Send);
-                    clientSocket.Close();
+                    response += jsonBuilder.ToString();
 
-                    Console.WriteLine("Response sent");
+                    Log.Information(response);
+
+                    byte[] responseData = Encoding.UTF8.GetBytes(response);
+                    clientSocket.Send(responseData);
                 }
 
+                clientSocket.Shutdown(SocketShutdown.Send);
+                clientSocket.Close();
+
+                Log.Information("Response sent");
             }
-            catch (SocketException e)
-            {
-                Console.WriteLine(e.ToString());
-            }
-            finally
-            {
-                server.Stop();
-            }
+        }
+        catch (SocketException e)
+        {
+            Log.Error(e, "SocketException occurred");
+        }
+        finally
+        {
+            server?.Stop();
         }
     }
 }
