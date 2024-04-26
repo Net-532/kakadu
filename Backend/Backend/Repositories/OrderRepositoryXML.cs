@@ -74,6 +74,11 @@ namespace Kakadu.Backend.Repositories
                 itemIdElement.InnerText = item.Id.ToString();
                 itemElement.AppendChild(itemIdElement);
 
+                XmlNode orderIdElement = doc.CreateElement("OrderId");
+                itemIdElement.InnerText = item.OrderId.ToString();
+                itemElement.AppendChild(itemIdElement);
+
+
                 XmlNode productIdElement = doc.CreateElement("ProductId");
                 productIdElement.InnerText = item.ProductId.ToString();
                 itemElement.AppendChild(productIdElement);
@@ -118,8 +123,7 @@ namespace Kakadu.Backend.Repositories
 
           
             XmlNodeList itemNodes = node.SelectNodes("Items/Item");
-            if (itemNodes != null)
-            {
+           
                 foreach (XmlNode itemNode in itemNodes)
                 {
                     OrderItem item = new OrderItem
@@ -132,7 +136,7 @@ namespace Kakadu.Backend.Repositories
                     };
                     order.Items.Add(item);
                 }
-            }
+            
 
             return order;
         }
