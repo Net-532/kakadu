@@ -1,9 +1,9 @@
-﻿<Window x:Class="Backoffice.MainWindow"
+﻿<Window x:Class="Kakadu.Backoffice.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Backoffice"
+        xmlns:local="clr-namespace:Kakadu.Backoffice.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 	<DockPanel>
@@ -15,6 +15,8 @@
 			<Button Content="Вийти" Margin="5" Click="ExitButton_Click"/>
 		</StackPanel>
     <Grid>
+        <Label Content="Label" x:Name="TestLabel" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center" FontSize="18"/>
 
     </Grid>
 	</DockPanel>
