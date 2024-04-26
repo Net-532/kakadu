@@ -20,4 +20,10 @@
     <ProjectReference Include="..\Backend\Backend\Backend.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="serilog.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
