@@ -13,5 +13,10 @@ namespace Kakadu.Backoffice.Views
             InitializeComponent();
             TestLabel.Content = null;
         }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
