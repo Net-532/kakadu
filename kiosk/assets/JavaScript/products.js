@@ -1,4 +1,4 @@
-fetchlink = "https://fakestoreapi.com/products";
+const fetchlink = "http://localhost:8085/products";
 
 fetch(fetchlink)
     .then(res => res.json())
@@ -21,7 +21,7 @@ fetch(fetchlink)
             productCard.innerHTML = `
                 <div class="card product" style="width: 18rem;" data-id="${product.id}">
                     <div class="card-pre-body">
-                        <img src="${product.image}" class="card-img-top" alt="${product.title}">
+                        <img src="${product.photoUrl}" class="card-img-top" alt="${product.title}">
                         <div class="card-body">
                             <h5 class="card-title">${product.title}</h5>
                             <p class="card-text">${product.description}</p>
@@ -41,7 +41,7 @@ fetch(fetchlink)
                 myModal.show();
                 var textinside = document.getElementById('full-card-text');
                 textinside.innerHTML = `
-                <img src="${product.image}" alt="${product.title}" style="max-width: 100%;">
+                <img src="${product.photoUrl}" alt="${product.title}" style="max-width: 100%;">
                 Name: ${product.title} <br>
                 Price: ${product.price} <br>
                 Description: ${product.description} <br>
