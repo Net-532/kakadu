@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using Kakadu.Backend.Entities;
+using Kakadu.Backoffice.Services;
 
-namespace Backoffice.Views
+namespace Kakadu.Backoffice.Views
 {
     /// <summary>
     /// Interaction logic for LoginWindow.xaml
@@ -30,20 +19,23 @@ namespace Backoffice.Views
         {
             string username = UsernameTextBox.Text;
             string password = PasswordBox.Password;
-    
-            // TEMPORARY: Hardcoded credentials
-            // here will be a query to the database, no cap
-            if (username == "admin" && password == "password")
+
+            try
             {
+                AuthenticationService AuthService = new AuthenticationService();
+                User user = AuthService.Authenticate(username, password);
+
                 MainWindow Main = new MainWindow();
                 Main.Show();
 
                 this.Close();
             }
-            else
+            catch (AuthenticationException ex)
             {
-                MessageBox.Show("Invalid username or password.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
