@@ -1,20 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using Kakadu.Backend.Entities;
+using Kakadu.Backoffice.Services;
 
-namespace Backoffice.Views
+namespace Kakadu.Backoffice.Views
 {
     /// <summary>
     /// Interaction logic for LoginWindow.xaml
@@ -34,9 +22,10 @@ namespace Backoffice.Views
 
             try
             {
-                User user = AuthenticationService.Authenticate(username, password);
+                AuthenticationService AuthService = new AuthenticationService();
+                User user = AuthService.Authenticate(username, password);
 
-                MainWindow Main = new MainWindow(user);
+                MainWindow Main = new MainWindow();
                 Main.Show();
 
                 this.Close();
