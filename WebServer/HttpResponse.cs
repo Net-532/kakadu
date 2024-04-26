@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Kakadu.WebServer
+﻿namespace Kakadu.WebServer
 {
     public class HttpResponse
     {
@@ -15,4 +9,6 @@ namespace Kakadu.WebServer
         public HttpResponse()
         {
             Headers = new Dictionary<string, string>();
-        }}}
+        }
+    }
+}

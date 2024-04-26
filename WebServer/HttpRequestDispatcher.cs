@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
-
-namespace Kakadu.WebServer
+﻿namespace Kakadu.WebServer
 {
     public enum HttpStatus
     {
@@ -14,6 +7,7 @@ namespace Kakadu.WebServer
         NotFound = 404,
         InternalServerError = 500
     }
+
     public class HttpRequestDispatcher
     {
         public HttpResponse Dispatch(HttpRequest httpRequest)
@@ -23,15 +17,14 @@ namespace Kakadu.WebServer
             switch (httpRequest.RootPath)
             {
                 case "/products":
-                    
+
                     response = ProcessProductsRequest(httpRequest);
                     break;
                 default:
-                    
+
                     response.Status = HttpStatus.NotFound;
                     response.Body = $"No endpoint found for the {httpRequest.RootPath}";
-
-;
+                    response.Body = $"No endpoint found for the {httpRequest.RootPath}";
                     break;
             }
 
@@ -43,9 +36,11 @@ namespace Kakadu.WebServer
 
         private HttpResponse ProcessProductsRequest(HttpRequest request)
         {
-            
+
             HttpResponse response = new HttpResponse();
             response.Status = HttpStatus.OK;
             response.Body = "Це домашня сторінка";
             return response;
-        }}}
+        }
+    }
+}
