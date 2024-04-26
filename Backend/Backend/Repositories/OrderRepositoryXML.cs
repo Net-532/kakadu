@@ -42,9 +42,7 @@ namespace Kakadu.Backend.Repositories
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(filePath);
-
             XmlNode root = doc.DocumentElement;
-
             XmlNode orderElement = doc.CreateElement("order");
 
             XmlNode orderNumberElement = doc.CreateElement("OrderNumber");
@@ -67,9 +65,37 @@ namespace Kakadu.Backend.Repositories
             statusElement.InnerText = order.Status;
             orderElement.AppendChild(statusElement);
 
-         
-            root.AppendChild(orderElement);
+            XmlNode itemsElement = doc.CreateElement("Items");
+            foreach (OrderItem item in order.Items)
+            {
+                XmlNode itemElement = doc.CreateElement("Item");
 
+                XmlNode itemIdElement = doc.CreateElement("Id");
+                itemIdElement.InnerText = item.Id.ToString();
+                itemElement.AppendChild(itemIdElement);
+
+                XmlNode orderIdElement = doc.CreateElement("OrderId");
+                itemIdElement.InnerText = item.OrderId.ToString();
+                itemElement.AppendChild(itemIdElement);
+
+
+                XmlNode productIdElement = doc.CreateElement("ProductId");
+                productIdElement.InnerText = item.ProductId.ToString();
+                itemElement.AppendChild(productIdElement);
+
+                XmlNode quantityElement = doc.CreateElement("Quantity");
+                quantityElement.InnerText = item.Quantity.ToString();
+                itemElement.AppendChild(quantityElement);
+
+                XmlNode priceElement = doc.CreateElement("Price");
+                priceElement.InnerText = item.Price.ToString(CultureInfo.InvariantCulture);
+                itemElement.AppendChild(priceElement);
+
+                itemsElement.AppendChild(itemElement);
+            }
+
+            orderElement.AppendChild(itemsElement);
+            root.AppendChild(orderElement);
             doc.Save(filePath);
         }
 
@@ -94,6 +120,23 @@ namespace Kakadu.Backend.Repositories
             order.TotalPrice = decimal.Parse(node.SelectSingleNode("TotalPrice").InnerText, CultureInfo.InvariantCulture);
             order.OrderDate = DateTime.Parse(node.SelectSingleNode("OrderDate").InnerText);
             order.Status = node.SelectSingleNode("Status").InnerText;
+
+          
+            XmlNodeList itemNodes = node.SelectNodes("Items/Item");
+           
+                foreach (XmlNode itemNode in itemNodes)
+                {
+                    OrderItem item = new OrderItem
+                    {
+                        Id = int.Parse(itemNode.SelectSingleNode("Id").InnerText),
+                        ProductId = int.Parse(itemNode.SelectSingleNode("ProductId").InnerText),
+                        Quantity = int.Parse(itemNode.SelectSingleNode("Quantity").InnerText),
+                        Price = decimal.Parse(itemNode.SelectSingleNode("Price").InnerText, CultureInfo.InvariantCulture),
+                        OrderId = order.Id
+                    };
+                    order.Items.Add(item);
+                }
+            
 
             return order;
         }
