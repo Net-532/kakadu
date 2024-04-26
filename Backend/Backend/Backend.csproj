@@ -36,6 +36,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Repositories\IOrderRepository.cs" />
+    <Compile Include="Repositories\IUserRepository.cs" />
+    <Compile Include="Repositories\OrderRepositoryXML.cs" />
     <Compile Include="Entities\OrderItem.cs" />
     <Compile Include="Repositories\IOrderRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
@@ -56,6 +59,9 @@
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="data\orders.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\products.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

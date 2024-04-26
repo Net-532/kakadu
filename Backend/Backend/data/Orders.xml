@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Orders>
-	<Order>
+<orders>
+	<order>
 		<OrderNumber>1</OrderNumber>
 		<Id>101</Id>
 		<TotalPrice>580.00</TotalPrice>
@@ -36,8 +36,8 @@
 				<OrderId>101</OrderId>
 			</OrderItem>
 		</OrderItems>
-	</Order>
-	<Order>
+	</order>
+	<order>
 		<OrderNumber>2</OrderNumber>
 		<Id>102</Id>
 		<TotalPrice>542.00</TotalPrice>
@@ -73,8 +73,8 @@
 				<OrderId>102</OrderId>
 			</OrderItem>
 		</OrderItems>
-	</Order>
-	<Order>
+	</order>
+	<order>
 		<OrderNumber>3</OrderNumber>
 		<Id>103</Id>
 		<TotalPrice>713.00</TotalPrice>
@@ -110,8 +110,8 @@
 				<OrderId>103</OrderId>
 			</OrderItem>
 		</OrderItems>
-	</Order>
-	<Order>
+	</order>
+	<order>
 		<OrderNumber>4</OrderNumber>
 		<Id>104</Id>
 		<TotalPrice>434.00</TotalPrice>
@@ -147,8 +147,8 @@
 				<OrderId>104</OrderId>
 			</OrderItem>
 		</OrderItems>
-	</Order>
-	<Order>
+	</order>
+	<order>
 		<OrderNumber>5</OrderNumber>
 		<Id>105</Id>
 		<TotalPrice>662.00</TotalPrice>
@@ -184,5 +184,5 @@
 				<OrderId>105</OrderId>
 			</OrderItem>
 		</OrderItems>
-	</Order>
-</Orders>
+	</order>
+</orders>
