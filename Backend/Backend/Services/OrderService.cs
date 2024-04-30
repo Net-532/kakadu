@@ -13,8 +13,6 @@ namespace Kakadu.Backend.Services
             this.orderRepository = orderRepository;
         }
 
-
-
         public List<Order> GetAll()
         {
             return orderRepository.GetAll();
