@@ -1,9 +1,5 @@
 ﻿using Kakadu.Backend.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kakadu.Backend.Repositories
 {
@@ -14,5 +10,7 @@ namespace Kakadu.Backend.Repositories
         Order GetById(int id);
 
         void Save(Order order);
+
+        void ChangeStatus(int id, string status);
     }
 }
