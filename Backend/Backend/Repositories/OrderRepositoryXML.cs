@@ -140,5 +140,20 @@ namespace Kakadu.Backend.Repositories
 
             return order;
         }
+
+        public int getNextOrderNumber()
+        {
+            List<Order> Orders = GetAll();
+            int MaxNumber= 0;
+            foreach (Order o in Orders)
+            {
+                if (o.OrderNumber > MaxNumber)
+                    MaxNumber = o.OrderNumber;
+            }
+
+     
+            return MaxNumber + 1;
+        }
+
     }
 }
