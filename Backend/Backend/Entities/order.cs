@@ -11,7 +11,7 @@ namespace Kakadu.Backend.Entities
         public decimal TotalPrice { get; set; }
         public DateTime OrderDate { get; set; }
         public string Status { get; set; }
-        public List<OrderItem> Items { get; set; }
+        public List<OrderItem> Items { get; set; } = new List<OrderItem>();
     }
   
 }

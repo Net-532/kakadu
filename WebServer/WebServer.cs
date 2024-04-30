@@ -1,9 +1,11 @@
 ﻿using Kakadu.Backend.Entities;
 using Kakadu.Backend.Repositories;
 using Kakadu.Backend.Services;
-using System.Net;
+using Serilog;
 using System.Net.Sockets;
+using System.Net;
 using System.Text;
+using Microsoft.Extensions.Configuration;
 
 namespace Kakadu.WebServer
 {
@@ -11,22 +13,27 @@ namespace Kakadu.WebServer
     {
         private static readonly Int32 port = 8085;
         private static readonly IPAddress address = IPAddress.Parse("127.0.0.1");
-        private static IProductService productService = new ProductService(new ProductRepositoryXML());
+        private static readonly IProductService productService = new ProductService(new ProductRepositoryXML());
 
         public static void Main()
         {
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(new ConfigurationBuilder()
+                    .AddJsonFile("serilog.json")
+                    .Build())
+                .CreateLogger();
+
             TcpListener server = null;
             try
             {
                 server = new TcpListener(address, port);
                 server.Start();
 
-                Console.WriteLine($"Web Server Running on {address.ToString()} on port {port}...");
+                Log.Information("Web Server Running on {Address} on port {Port}...", address, port);
 
                 while (true)
                 {
                     Socket clientSocket = server.AcceptSocket();
-
 
                     List<Product> products = productService.GetAll();
 
@@ -47,7 +54,7 @@ namespace Kakadu.WebServer
 
                         response += jsonBuilder.ToString();
 
-                        Console.WriteLine(response);
+                        Log.Information(response);
 
                         byte[] responseData = Encoding.UTF8.GetBytes(response);
                         clientSocket.Send(responseData);
@@ -56,17 +63,16 @@ namespace Kakadu.WebServer
                     clientSocket.Shutdown(SocketShutdown.Send);
                     clientSocket.Close();
 
-                    Console.WriteLine("Response sent");
+                    Log.Information("Response sent");
                 }
-
             }
             catch (SocketException e)
             {
-                Console.WriteLine(e.ToString());
+                Log.Error(e, "SocketException occurred");
             }
             finally
             {
-                server.Stop();
+                server?.Stop();
             }
         }
     }
