@@ -65,7 +65,7 @@ namespace Kakadu.Backend.Repositories
 
             XmlNode root = doc.DocumentElement;
 
-            XmlNode UserElement = doc.CreateElement("User");
+            XmlNode UserElement = doc.CreateElement("user");
 
             XmlNode idElement = doc.CreateElement("Id");
             idElement.InnerText = User.Id.ToString();
