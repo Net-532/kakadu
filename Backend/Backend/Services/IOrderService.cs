@@ -11,8 +11,5 @@ namespace Kakadu.Backend.Services
 
         void Save(Order order);
 
-        void DeleteById(int id);
-
-        void Update(int id, Order order);
     }
 }

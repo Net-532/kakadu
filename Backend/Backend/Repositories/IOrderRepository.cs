@@ -14,9 +14,5 @@ namespace Kakadu.Backend.Repositories
         Order GetById(int id);
 
         void Save(Order order);
-
-        void DeleteById(int id);
-
-        void Update(int id, Order order);
     }
 }
