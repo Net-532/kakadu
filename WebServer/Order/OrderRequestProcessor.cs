@@ -1,35 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Kakadu.Backend.Repositories;
+using Kakadu.Backend.Entities;
+
 
 namespace Kakadu.WebServer.Order
 {
     public class OrderRequestProcessor
     {
+        private readonly IOrderRepository _orderService;
 
-        private readonly OrderService _orderService;
-
-        public OrderRequestProcessor(OrderService orderService)
+        public OrderRequestProcessor(IOrderRepository orderService)
         {
             _orderService = orderService;
         }
 
         public void Process(OrderRequest orderRequest)
         {
-            var order = new Order
+            var order = new Backend.Entities.Order
             {
                 Items = orderRequest.Items.Select(item => new OrderItem
                 {
                     ProductId = item.ProductId,
-                    Quantity = item.Quantity
-                }).ToList()
+                    Quantity = item.Quantity,
+                    
+                }).ToList(),
+                TotalPrice = 0, 
+                OrderDate = DateTime.UtcNow
             };
 
-            _orderService.save(order);
+            _orderService.Save(order);
         }
     }
-
 }
-
