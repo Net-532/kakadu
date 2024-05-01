@@ -34,8 +34,6 @@
 
             request.RootPath = requestLine[1];
 
-            request.Headers = new Dictionary<string, string>();
-            request.Parameters = new Dictionary<string, string>();
 
             int emptyLineIndex = Array.IndexOf(lines, "");
 
