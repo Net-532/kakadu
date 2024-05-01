@@ -69,7 +69,6 @@ namespace Kakadu.WebServer
                             byte[] responseData = Encoding.UTF8.GetBytes(response);
                             clientSocket.Send(responseData);
                         }
-                        Console.WriteLine("Response sent");
                     }
                     else if (requestMethod == "POST" && request.Contains("/orders"))
                     {
