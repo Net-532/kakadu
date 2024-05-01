@@ -25,21 +25,22 @@ namespace Kakadu.WebServer.Order
                     Id = index + 1,
                     ProductId = item.ProductId,
                     Quantity = item.Quantity,
-                    Price = _productService.GetById(item.ProductId).Price,
+                    Price = item.Quantity * _productService.GetById(item.ProductId).Price,
                 }).ToList(),
                
-                OrderDate = DateTime.UtcNow
+                OrderDate = DateTime.Now
             };
             order.TotalPrice = CalculateTotalPrice(order.Items);
             _orderRepository.Save(order);
         }
+
         private decimal CalculateTotalPrice(List<OrderItem> orderItems)
         {
             decimal totalPrice = 0;
 
             foreach (var item in orderItems)
             { 
-                totalPrice += item.Price * item.Quantity;
+                totalPrice += item.Price;
             }
 
             return totalPrice;
