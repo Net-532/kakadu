@@ -72,7 +72,7 @@ namespace Kakadu.WebServer
                     }
                     else if (requestMethod == "POST" && request.Contains("/orders"))
                     {
-                        Order order = new Backend.Entities.Order();
+                        var order = new Backend.Entities.Order();
                         orderRepository.Save(order);
                     }
 
