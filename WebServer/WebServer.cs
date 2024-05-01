@@ -50,7 +50,7 @@ namespace Kakadu.WebServer
                         if (products != null)
                         {
                             StringBuilder jsonBuilder = new StringBuilder();
-                            string response = "HTTP/1.1 200 OK\r\n" + \"Content-Type: application/json\\r\\n\" + \"Access-Control-Allow-Origin: *\r\n\r\n" + "["";
+                            string response = "HTTP/1.1 200 OK\r\n" + "Content-Type: application/json\r\n\" + \"Access-Control-Allow-Origin: *\r\n\r\n" + "[";
                             foreach (Product product in products)
                             {
                                 string priceString = product.Price.ToString();
@@ -72,7 +72,7 @@ namespace Kakadu.WebServer
                     }
                     else if (requestMethod == "POST" && request.Contains("/orders"))
                     {
-                        Order order = new Order();
+                        Order order = new Backend.Entities.Order();
                         orderRepository.Save(order);
                     }
 
