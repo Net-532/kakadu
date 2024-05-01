@@ -48,7 +48,6 @@
     <Compile Include="Repositories\IProductRepository.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Entities\Order.cs" />
-    <Compile Include="Entities\OrderItem.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Services\ProductService.cs" />
