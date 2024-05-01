@@ -1,6 +1,8 @@
 ﻿using Kakadu.Backend.Entities;
 using Kakadu.Backend.Repositories;
 using Kakadu.Backend.Services;
+using Microsoft.Extensions.Configuration;
+using Serilog;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -17,13 +19,19 @@ namespace Kakadu.WebServer
 
         public static void Main()
         {
-            TcpListener server = null;
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(new ConfigurationBuilder()
+                    .AddJsonFile("serilog.json")
+                    .Build())
+                .CreateLogger();
+
+            TcpListener? server = null;
             try
             {
                 server = new TcpListener(address, port);
                 server.Start();
 
-                Console.WriteLine($"Web Server Running on {address.ToString()} on port {port}...");
+                Log.Information("Web Server Running on {Address} on port {Port}...", address, port);
 
                 while (true)
                 {
@@ -56,7 +64,7 @@ namespace Kakadu.WebServer
 
                             response += jsonBuilder.ToString();
 
-                            Console.WriteLine(response);
+                            Log.Information(response);
 
                             byte[] responseData = Encoding.UTF8.GetBytes(response);
                             clientSocket.Send(responseData);
@@ -71,15 +79,17 @@ namespace Kakadu.WebServer
 
                     clientSocket.Shutdown(SocketShutdown.Send);
                     clientSocket.Close();
+
+                    Log.Information("Response sent");
                 }
             }
             catch (SocketException e)
             {
-                Console.WriteLine(e.ToString());
+                Log.Error(e, "SocketException occurred");
             }
             finally
             {
-                server.Stop();
+                server?.Stop();
             }
         }
     }
