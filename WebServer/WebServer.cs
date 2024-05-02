@@ -14,8 +14,8 @@ namespace Kakadu.WebServer
     {
         private static readonly int port = 8085;
         private static readonly IPAddress address = IPAddress.Parse("127.0.0.1");
-        private static readonly HttpRequestDispatcher httpRequestDispatcher;
-        private static readonly HttpMessageConverter httpMessageConverter;
+        private static readonly HttpRequestDispatcher httpRequestDispatcher = new HttpRequestDispatcher();
+        private static readonly HttpMessageConverter httpMessageConverter = new HttpMessageConverter();
 
         public static void Main()
         {
