@@ -26,6 +26,8 @@ namespace Kakadu.WebServer
                 }
             }
 
+            builder.AppendLine();
+
             if (!string.IsNullOrEmpty(Body))
             {
                 builder.Append(Body);
