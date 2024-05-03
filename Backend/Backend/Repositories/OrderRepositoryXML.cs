@@ -70,9 +70,7 @@ namespace Kakadu.Backend.Repositories
             statusElement.InnerText = order.Status;
             orderElement.AppendChild(statusElement);
 
-            root.AppendChild(orderElement);
-
-            doc.Save(filePath);
+            
             XmlNode itemsElement = doc.CreateElement("Items");
             foreach (OrderItem item in order.Items)
             {
@@ -103,6 +101,9 @@ namespace Kakadu.Backend.Repositories
             }
 
             orderElement.AppendChild(itemsElement);
+            root.AppendChild(orderElement);
+
+            doc.Save(filePath);
         }
 
 
