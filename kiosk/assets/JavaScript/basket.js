@@ -85,8 +85,29 @@ function renderCart() {
     checkoutButton.textContent = 'Оформити замовлення';
     checkoutButton.classList.add('btn', 'btn-success', 'fixed-bottom', 'mx-auto', 'd-block');
     checkoutButton.addEventListener('click', function(event) {
-      ///
+        const items = JSON.parse(localStorage.getItem('cartItems')) || [];
+        const sendRequest = {
+            items: items.map(item => ({
+                productId: item.id,
+                quantity: item.quantity
+            }))
+        };
+        fetch(ordersEndpoint, {
+            method: 'POST',
+            body: JSON.stringify(sendRequest)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Замовлення виконано');
+            localStorage.removeItem('cartItems');
+            renderCart();
+        })
+        .catch(error => {
+            console.error('Помилка: ', error);
+        });
     });
+    
+
 
     offcanvasBody.appendChild(checkoutButton);
 
