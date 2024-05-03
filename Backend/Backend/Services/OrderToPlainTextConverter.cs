@@ -24,8 +24,8 @@ namespace Kakadu.Backend.Services
             sb.AppendLine();
             sb.AppendLine("            Чек");
             sb.AppendLine("********************************");
-            sb.AppendLine($"Дата: {order.OrderDate:dd.MM.yyyy}    Дод.iнф: txt");
-            sb.AppendLine($"Час: {order.OrderDate:HH:mm}          Дод.iнф: txt");
+            sb.AppendLine($"Дата: {order.OrderDate:dd.MM.yyyy}");
+            sb.AppendLine($"Час: {order.OrderDate:HH:mm}");
             sb.AppendLine("********************************");
 
             foreach (var item in order.Items)
