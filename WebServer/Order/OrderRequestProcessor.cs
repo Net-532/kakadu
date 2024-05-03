@@ -25,7 +25,7 @@ namespace Kakadu.WebServer.Order
                     Id = index + 1,
                     ProductId = item.ProductId,
                     Quantity = item.Quantity,
-                    Price = item.Quantity * _productService.GetById(item.ProductId).Price,
+                    Amount = item.Quantity * _productService.GetById(item.ProductId).Price
                 }).ToList(),
                
                 OrderDate = DateTime.Now

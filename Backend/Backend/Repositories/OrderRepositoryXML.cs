@@ -91,6 +91,10 @@ namespace Kakadu.Backend.Repositories
                 priceElement.InnerText = item.Price.ToString(CultureInfo.InvariantCulture);
                 itemElement.AppendChild(priceElement);
 
+                XmlNode amountElement = doc.CreateElement("Amount");
+                amountElement.InnerText = item.Amount.ToString(CultureInfo.InvariantCulture);
+                itemElement.AppendChild(amountElement);
+
                 itemsElement.AppendChild(itemElement);
             }
 
@@ -132,6 +136,7 @@ namespace Kakadu.Backend.Repositories
                         ProductId = int.Parse(itemNode.SelectSingleNode("ProductId").InnerText),
                         Quantity = int.Parse(itemNode.SelectSingleNode("Quantity").InnerText),
                         Price = decimal.Parse(itemNode.SelectSingleNode("Price").InnerText, CultureInfo.InvariantCulture),
+                        Amount = decimal.Parse(itemNode.SelectSingleNode("Amount").InnerText, CultureInfo.InvariantCulture),
                         OrderId = order.Id
                     };
                     order.Items.Add(item);
