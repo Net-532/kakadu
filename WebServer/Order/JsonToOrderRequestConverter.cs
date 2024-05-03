@@ -1,93 +1,141 @@
 ﻿using System;
 using System.Collections.Generic;
-using static Kakadu.WebServer.Order.OrderRequest;
 
 namespace Kakadu.WebServer.Order
 {
-
-    public class JsonObject
-    {
-        public Dictionary<string, object> Properties { get; } = new Dictionary<string, object>();
-
-        public void Add(string key, object value)
-        {
-            Properties[key] = value;
-        }
-    }
-
     public class JsonToOrderRequestConverter
     {
         public OrderRequest Convert(string json)
         {
-            try
-            {
-               
-                var jsonObject = ParseJson(json);
+            var orderRequest = new OrderRequest();
 
-                var orderRequest = new OrderRequest();
-                orderRequest.Items = new List<OrderItemRequest>();
-
-                
-                foreach (var item in (List<object>)jsonObject.Properties["items"])
-                {
-                    var orderItem = new OrderItemRequest();
-                    var itemProperties = (Dictionary<string, object>)item;
-
-                    orderItem.ProductId = (int)itemProperties["productId"];
-                    orderItem.Quantity = (int)itemProperties["quantity"];
-
-                    orderRequest.Items.Add(orderItem);
-                }
-
+            if (string.IsNullOrWhiteSpace(json))
                 return orderRequest;
-            }
-            catch (Exception ex)
+
+            var itemsStart = json.IndexOf("items", StringComparison.OrdinalIgnoreCase);
+            if (itemsStart == -1)
+                return orderRequest;
+
+            itemsStart = json.IndexOf("[", itemsStart);
+            if (itemsStart == -1)
+                return orderRequest;
+
+            var itemsEnd = json.IndexOf("]", itemsStart);
+            if (itemsEnd == -1)
+                return orderRequest;
+
+            var itemsJson = json.Substring(itemsStart + 1, itemsEnd - itemsStart - 1);
+
+            while (itemsJson.Length > 0)
             {
-                
-                Console.WriteLine($"Помилка конвертації JSON: {ex.Message}");
+                var itemJson = GetJsonObject(ref itemsJson);
+                if (itemJson == null)
+                    break;
+
+                var orderItemRequest = new OrderRequest.OrderItemRequest();
+
+                var productIdJson = GetJsonProperty(itemJson, "productId");
+                if (productIdJson.HasValue)
+                    orderItemRequest.ProductId = productIdJson.Value;
+
+                var quantityJson = GetJsonProperty(itemJson, "quantity");
+                if (quantityJson.HasValue)
+                    orderItemRequest.Quantity = quantityJson.Value;
+
+                orderRequest.Items.Add(orderItemRequest);
+            }
+
+            return orderRequest;
+        }
+
+        private string GetJsonObject(ref string json)
+        {
+            var start = json.IndexOf("{");
+            if (start == -1)
                 return null;
-            }
+
+            var end = FindClosingBracket(json, start);
+            if (end == -1)
+                return null;
+
+            var result = json.Substring(start, end - start + 1);
+            json = json.Substring(end + 1).Trim();
+            return result;
         }
 
-        private JsonObject ParseJson(string json)
+        private int? GetJsonProperty(string json, string propertyName)
         {
-            var jsonObject = new JsonObject();
+            var start = json.IndexOf($"\"{propertyName}\":", StringComparison.OrdinalIgnoreCase);
+            if (start == -1)
+                return null;
 
-          
-            var tokens = json.Split(',', '{', '}', ':');
+            start += propertyName.Length + 3;
+            int end;
 
-            string currentKey = null;
-            foreach (var token in tokens)
+            if (json[start] == '"')
             {
-                var trimmedToken = token.Trim();
-
-                if (!string.IsNullOrEmpty(trimmedToken))
-                {
-                    if (trimmedToken.StartsWith("\"") && trimmedToken.EndsWith("\""))
-                    {
-                        currentKey = trimmedToken.Trim('"');
-                    }
-                    else
-                    {
-                       
-                        jsonObject.Add(currentKey, ParseValue(trimmedToken));
-                    }
-                }
-            }
-
-            return jsonObject;
-        }
-
-        private object ParseValue(string value)
-        {
-            if (int.TryParse(value, out int intValue))
-            {
-                return intValue;
+                // Значення обмежене лапками
+                start++;
+                end = FindClosingQuote(json, start);
+                if (end == -1)
+                    return null;
             }
             else
             {
-                return value.Trim('"');
+                // Значення не обмежене лапками
+                end = json.IndexOfAny(new char[] { ',', '}' }, start);
+                if (end == -1)
+                    return null;
             }
+
+            var value = json.Substring(start, end - start).Trim();
+
+            if (int.TryParse(value, out var result))
+                return result;
+            else
+                return null;
+        }
+        private int FindClosingBracket(string json, int start)
+        {
+            var bracketStack = new Stack<char>();
+            bracketStack.Push(json[start]);
+
+            for (var i = start + 1; i < json.Length; i++)
+            {
+                if (json[i] == '{')
+                    bracketStack.Push('{');
+                else if (json[i] == '}')
+                {
+                    bracketStack.Pop();
+                    if (bracketStack.Count == 0)
+                        return i;
+                }
+            }
+
+            return -1;
+        }
+
+        private int FindClosingQuote(string json, int start)
+        {
+            bool escaped = false;
+
+            for (var i = start; i < json.Length; i++)
+            {
+                if (json[i] == '\\')
+                {
+                    escaped = !escaped;
+                }
+                else if (json[i] == '"' && !escaped)
+                {
+                    return i;
+                }
+                else
+                {
+                    escaped = false;
+                }
+            }
+
+            return -1;
         }
     }
 }
