@@ -40,6 +40,7 @@
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\OrderRepositoryXML.cs" />
     <Compile Include="Entities\OrderItem.cs" />
+    <Compile Include="Repositories\IOrderRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\ProductRepositoryXML.cs" />
     <Compile Include="Repositories\UserRepositoryXML.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\OrderItem.cs" />
+    <Compile Include="Services\OrderNotFoundException.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Services\ProductService.cs" />
@@ -67,9 +69,6 @@
     <Content Include="data\users.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Xml" />
