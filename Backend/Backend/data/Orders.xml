@@ -6,36 +6,36 @@
 		<TotalPrice>580.00</TotalPrice>
 		<OrderDate>2024-03-02T10:00:00</OrderDate>
 		<Status>Processing</Status>
-		<OrderItems>
-			<OrderItem>
+		<Items>
+			<Item>
 				<Id>3</Id>
 				<ProductId>3</ProductId>
 				<Quantity>1</Quantity>
 				<Price>108.00</Price>
 				<OrderId>101</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</Item>
+			<Item>
 				<Id>5</Id>
 				<ProductId>5</ProductId>
 				<Quantity>2</Quantity>
 				<Price>99.00</Price>
 				<OrderId>101</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</Item>
+			<Item>
 				<Id>6</Id>
 				<ProductId>6</ProductId>
 				<Quantity>1</Quantity>
 				<Price>70.00</Price>
 				<OrderId>101</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</Item>
+			<Item>
 				<Id>8</Id>
 				<ProductId>8</ProductId>
 				<Quantity>3</Quantity>
 				<Price>68.00</Price>
 				<OrderId>101</OrderId>
-			</OrderItem>
-		</OrderItems>
+			</Item>
+		</Items>
 	</order>
 	<order>
 		<OrderNumber>2</OrderNumber>
@@ -43,36 +43,36 @@
 		<TotalPrice>542.00</TotalPrice>
 		<OrderDate>2024-03-02T10:15:00</OrderDate>
 		<Status>Processing</Status>
-		<OrderItems>
-			<OrderItem>
+		<Items>
+			<Item>
 				<Id>4</Id>
 				<ProductId>4</ProductId>
 				<Quantity>3</Quantity>
 				<Price>99.00</Price>
 				<OrderId>102</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</Item>
+			<Item>
 				<Id>7</Id>
 				<ProductId>7</ProductId>
 				<Quantity>1</Quantity>
 				<Price>39.00</Price>
 				<OrderId>102</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</Item>
+			<Item>
 				<Id>8</Id>
 				<ProductId>8</ProductId>
 				<Quantity>1</Quantity>
 				<Price>68.00</Price>
 				<OrderId>102</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</Item>
+			<Item>
 				<Id>9</Id>
 				<ProductId>9</ProductId>
 				<Quantity>2</Quantity>
 				<Price>69.00</Price>
 				<OrderId>102</OrderId>
-			</OrderItem>
-		</OrderItems>
+			</Item>
+		</Items>
 	</order>
 	<order>
 		<OrderNumber>3</OrderNumber>
@@ -80,36 +80,36 @@
 		<TotalPrice>713.00</TotalPrice>
 		<OrderDate>2024-03-02T10:30:00</OrderDate>
 		<Status>Processing</Status>
-		<OrderItems>
-			<OrderItem>
+		<Items>
+			<Item>
 				<Id>1</Id>
 				<ProductId>1</ProductId>
 				<Quantity>1</Quantity>
 				<Price>99.00</Price>
 				<OrderId>103</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</Item>
+			<Item>
 				<Id>2</Id>
 				<ProductId>2</ProductId>
 				<Quantity>1</Quantity>
 				<Price>83.00</Price>
 				<OrderId>103</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</Item>
+			<Item>
 				<Id>3</Id>
 				<ProductId>3</ProductId>
 				<Quantity>4</Quantity>
 				<Price>108.00</Price>
 				<OrderId>103</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</Item>
+			<Item>
 				<Id>5</Id>
 				<ProductId>5</ProductId>
 				<Quantity>1</Quantity>
 				<Price>99.00</Price>
 				<OrderId>103</OrderId>
-			</OrderItem>
-		</OrderItems>
+			</Item>
+		</Items>
 	</order>
 	<order>
 		<OrderNumber>4</OrderNumber>
@@ -117,36 +117,36 @@
 		<TotalPrice>434.00</TotalPrice>
 		<OrderDate>2024-03-02T10:45:00</OrderDate>
 		<Status>Processing</Status>
-		<OrderItems>
-			<OrderItem>
+		<Items>
+			<Item>
 				<Id>1</Id>
 				<ProductId>1</ProductId>
 				<Quantity>1</Quantity>
 				<Price>99.00</Price>
 				<OrderId>104</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</Item>
+			<Item>
 				<Id>2</Id>
 				<ProductId>2</ProductId>
 				<Quantity>2</Quantity>
 				<Price>83.00</Price>
 				<OrderId>104</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</Item>
+			<Item>
 				<Id>4</Id>
 				<ProductId>4</ProductId>
 				<Quantity>1</Quantity>
 				<Price>99.00</Price>
 				<OrderId>104</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</Item>
+			<Item>
 				<Id>6</Id>
 				<ProductId>6</ProductId>
 				<Quantity>1</Quantity>
 				<Price>70.00</Price>
 				<OrderId>104</OrderId>
-			</OrderItem>
-		</OrderItems>
+			</Item>
+		</Items>
 	</order>
 	<order>
 		<OrderNumber>5</OrderNumber>
@@ -154,35 +154,35 @@
 		<TotalPrice>662.00</TotalPrice>
 		<OrderDate>2024-03-02T11:00:00</OrderDate>
 		<Status>Processing</Status>
-		<OrderItems>
-			<OrderItem>
+		<Items>
+			<Item>
 				<Id>1</Id>
 				<ProductId>1</ProductId>
 				<Quantity>1</Quantity>
 				<Price>99.00</Price>
 				<OrderId>105</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</Item>
+			<Item>
 				<Id>3</Id>
 				<ProductId>3</ProductId>
 				<Quantity>3</Quantity>
 				<Price>108.00</Price>
 				<OrderId>105</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</Item>
+			<Item>
 				<Id>5</Id>
 				<ProductId>5</ProductId>
 				<Quantity>1</Quantity>
 				<Price>99.00</Price>
 				<OrderId>105</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</Item>
+			<Item>
 				<Id>6</Id>
 				<ProductId>6</ProductId>
 				<Quantity>2</Quantity>
 				<Price>70.00</Price>
 				<OrderId>105</OrderId>
-			</OrderItem>
-		</OrderItems>
+			</Item>
+		</Items>
 	</order>
 </orders>
