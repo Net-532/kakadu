@@ -92,7 +92,7 @@ function renderCart() {
                 quantity: item.quantity
             }))
         };
-        fetch(fetchlink, {
+        fetch(ordersEndpoint, {
             method: 'POST',
             body: JSON.stringify(sendRequest)
         })
