@@ -40,9 +40,8 @@ namespace Kakadu.Backend.Services
             {
                 throw new OrderNotFoundException($"Замовлення з вказаним id {id} не знайдено");
             }
-             
-            order.Status = status;
-            orderRepository.Save(order);           
+
+            orderRepository.ChangeStatus(id, status);   
         }
     }
 }
