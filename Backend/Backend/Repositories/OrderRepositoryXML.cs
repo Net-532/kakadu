@@ -63,7 +63,7 @@ namespace Kakadu.Backend.Repositories
             orderElement.AppendChild(totalPriceElement);
 
             XmlNode orderDateElement = doc.CreateElement("OrderDate");
-            orderDateElement.InnerText = order.OrderDate.ToString();
+            orderDateElement.InnerText = order.OrderDate.ToString("s", CultureInfo.InvariantCulture);
             orderElement.AppendChild(orderDateElement);
 
             XmlNode statusElement = doc.CreateElement("Status");
@@ -81,9 +81,8 @@ namespace Kakadu.Backend.Repositories
                 itemElement.AppendChild(itemIdElement);
 
                 XmlNode orderIdElement = doc.CreateElement("OrderId");
-                itemIdElement.InnerText = item.OrderId.ToString();
-                itemElement.AppendChild(itemIdElement);
-
+                orderIdElement.InnerText = item.OrderId.ToString();
+                itemElement.AppendChild(orderIdElement);
 
                 XmlNode productIdElement = doc.CreateElement("ProductId");
                 productIdElement.InnerText = item.ProductId.ToString();
