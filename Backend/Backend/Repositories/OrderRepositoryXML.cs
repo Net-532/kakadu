@@ -42,11 +42,16 @@ namespace Kakadu.Backend.Repositories
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(filePath);
+
             XmlNode root = doc.DocumentElement;
+
+
             XmlNode orderElement = doc.CreateElement("order");
 
             XmlNode orderNumberElement = doc.CreateElement("OrderNumber");
-            orderNumberElement.InnerText = order.OrderNumber.ToString();
+
+            int nextOrderNumber = getNextOrderNumber();
+            orderNumberElement.InnerText = nextOrderNumber.ToString(); 
             orderElement.AppendChild(orderNumberElement);
 
             XmlNode idElement = doc.CreateElement("Id");
@@ -65,6 +70,7 @@ namespace Kakadu.Backend.Repositories
             statusElement.InnerText = order.Status;
             orderElement.AppendChild(statusElement);
 
+            
             XmlNode itemsElement = doc.CreateElement("Items");
             foreach (OrderItem item in order.Items)
             {
@@ -95,6 +101,7 @@ namespace Kakadu.Backend.Repositories
 
             orderElement.AppendChild(itemsElement);
             root.AppendChild(orderElement);
+
             doc.Save(filePath);
         }
 
@@ -157,3 +164,4 @@ namespace Kakadu.Backend.Repositories
 
     }
 }
+
