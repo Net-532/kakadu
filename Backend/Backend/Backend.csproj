@@ -53,6 +53,7 @@
     <Compile Include="Services\OrderNotFoundException.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Entities\Product.cs" />
+    <Compile Include="Services\OrderToPlainTextConverter.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\ProductNotFoundException.cs" />
     <Compile Include="Entities\User.cs" />
