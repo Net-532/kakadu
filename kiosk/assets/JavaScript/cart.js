@@ -2,7 +2,7 @@ function createCartItemElement(item) {
     const itemElement = document.createElement('div');
     itemElement.innerHTML = `
 
-    <img style="width: 70px" src="${item.image}">
+    <img style="width: 70px" src="${item.photoUrl}">
     <button class="remove-button btn btn-close"></button>
     <div>Product Title: ${item.title}</div>
     <div>Price: ${item.price}</div>
@@ -16,11 +16,13 @@ function createCartItemElement(item) {
     const incrementButton = itemElement.querySelector('.increment-button');
     incrementButton.addEventListener('click', function(event) {
         addToCart({ id: item.id });
+        renderCart();
     });
 
     const decrementButton = itemElement.querySelector('.decrement-button');
     decrementButton.addEventListener('click', function(event) {
         removeFromCart({ id: item.id });
+        renderCart();
     });
 
     const removeButton = itemElement.querySelector('.remove-button');
@@ -42,7 +44,6 @@ function addToCart(product) {
     }
 
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    renderCart();
 }
 
 function removeFromCart(product) {
@@ -71,8 +72,6 @@ function removeItemFromCart(product) {
 }
 
 function renderCart() {
-    const offcanvasElement = document.getElementById('offcanvasBottom');
-    const bsOffcanvas = new bootstrap.Offcanvas(offcanvasElement);
     const offcanvasBody = document.querySelector('#offcanvasBottom .offcanvas-body');
     offcanvasBody.innerHTML = '';
     let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
@@ -106,13 +105,6 @@ function renderCart() {
             console.error('Помилка: ', error);
         });
     });
-    
-
 
     offcanvasBody.appendChild(checkoutButton);
-
-
-    if (!offcanvasElement.classList.contains('show')) {
-        bsOffcanvas.show();
-    }
 }

@@ -48,34 +48,18 @@ fetch(fetchlink)
                 Id: ${id} `;
             });
             const addToCartButton = productCard.querySelector('.add-to-cart-button');
-            addToCartButton.addEventListener('click', function(event) {
-                const productCard = this.parentNode;
-                const idButton = productCard.getAttribute("data-id");
-                const title = productCard.querySelector('.card-title').textContent;
-                const price = productCard.querySelector('.card-text:nth-child(3)').textContent;
-                const image = productCard.querySelector('.card-img-top').src;
-                const description = productCard.querySelector('.card-text:nth-child(2)').textContent;
-
-                const product = {
-                    id: idButton,
-                    title: title,
-                    price: price,
-                    image: image,
-                    description: description
-                };
-
-                addToCart(product);
-                document.getElementById('open-offcanvas').addEventListener('click', function() {
-                    const bsOffcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasBottom'));
-                    bsOffcanvas.show();
-                });
-
-            });
-
+            addToCartButton.addEventListener('click', () => addToCart(product));
             row.appendChild(productCard);
         });
 
+        document.getElementById('open-cart').addEventListener('click', function() {
+            const bsOffcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasBottom'));
+            bsOffcanvas.show();
+            renderCart();
+        });
     })
     .catch(error => {
         console.error('Помилка завантаження продуктів:', error);
     });
+
+    
