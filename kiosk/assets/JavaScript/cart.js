@@ -80,6 +80,18 @@ function renderCart() {
         offcanvasBody.appendChild(itemElement);
     });
 
+    if (cartItems.length === 0) {
+        const emptyCart = document.createElement('div');
+        emptyCart.textContent = 'Кошик порожній';
+        offcanvasBody.appendChild(emptyCart);
+    }
+
+    const clearCartButton = document.getElementById('clear-cart');
+    clearCartButton.addEventListener('click', function(event) {
+        localStorage.removeItem('cartItems');
+        renderCart();
+    });
+
     const checkoutButton = document.createElement('button');
     checkoutButton.textContent = 'Оформити замовлення';
     checkoutButton.classList.add('btn', 'btn-success', 'fixed-bottom', 'mx-auto', 'd-block');
