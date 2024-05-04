@@ -44,10 +44,11 @@ namespace Kakadu.WebServer
 
                     HttpRequest httpRequest = httpMessageConverter.Convert(request);
                     HttpResponse httpResponse = httpRequestDispatcher.Dispatch(httpRequest);
+                    var response = httpResponse.ToString();
+                    Log.Debug("Response is {0}", response);
+                    byte[] responseData = Encoding.UTF8.GetBytes(response);
 
-                    byte[] responseData = Encoding.UTF8.GetBytes(httpResponse.Body);
                     clientSocket.Send(responseData);
-
                     clientSocket.Shutdown(SocketShutdown.Send);
                     clientSocket.Close();
 
