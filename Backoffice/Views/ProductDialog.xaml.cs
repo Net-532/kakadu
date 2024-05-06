@@ -30,12 +30,14 @@ namespace Kakadu.Backoffice.Views
             }
         }
 
-        public ProductDialog(Action<Product> SaveItem, int lastId)
+        public ProductDialog(Action<Product> SaveItem)
         {
             InitializeComponent();
+
+            _SaveItem = SaveItem;
             
             _selectedItem = new Product();
-            _selectedItem.Id = lastId;
+            _selectedItem.Id = 0;
 
             IdTextBox.Text = _selectedItem.Id.ToString();
 

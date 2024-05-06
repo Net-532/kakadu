@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Kakadu.Backend.Entities;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace Kakadu.Backoffice.Views
@@ -19,7 +20,7 @@ namespace Kakadu.Backoffice.Views
 
         private void LoadProducts()
         {
-            List<Backend.Entities.Product> products = productManager.LoadItems();
+            List<Product> products = productManager.LoadItems();
             if (products != null)
             {
                 dataGrid.ItemsSource = products;
@@ -28,25 +29,24 @@ namespace Kakadu.Backoffice.Views
 
         private void DeleteProduct(object sender, RoutedEventArgs e)
         {
-            var selectedItem = dataGrid.SelectedItem as Kakadu.Backend.Entities.Product;
+            var selectedItem = dataGrid.SelectedItem as Product;
             if (selectedItem != null) {
                 productManager.DeleteItem(selectedItem.Id);
             }
 
             //Reload Grid
-            dataGrid.Items.Refresh();
+            LoadProducts();
         }
 
         private void EditProduct(object sender, RoutedEventArgs e)
         {
-            var selectedItem = dataGrid.SelectedItem as Kakadu.Backend.Entities.Product;
+            var selectedItem = dataGrid.SelectedItem as Product;
             if (selectedItem != null)
             {
                 var dialog = new ProductDialog(selectedItem);
                 if (dialog.ShowDialog() == true)
                 {
                     productManager.EditItem(selectedItem.Id, selectedItem);
-
                 }
                 else
                 {
@@ -55,20 +55,18 @@ namespace Kakadu.Backoffice.Views
             }
 
             //Reload Grid
-            dataGrid.Items.Refresh();
+            LoadProducts();
         }
 
         private void AddProduct(object sender, RoutedEventArgs e)
         {
 
-            // productManager.LoadItems().ToArray()[^1].Id == last item id
-
-            var dialog = new ProductDialog(productManager.AddItem, productManager.LoadItems().ToArray()[^1].Id);
+            var dialog = new ProductDialog(productManager.AddItem);
             if (dialog.ShowDialog() != true) {
                 MessageBox.Show("Can't add new product.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
-            dataGrid.Items.Refresh();
+            LoadProducts();
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
@@ -76,7 +74,7 @@ namespace Kakadu.Backoffice.Views
             Close();
         }
 
-        private void ProductButton(object sender, RoutedEventArgs e)
+        private void ProductButton_Click(object sender, RoutedEventArgs e)
         {
             dataGrid.Visibility = Visibility.Visible;
             LoadProducts();
