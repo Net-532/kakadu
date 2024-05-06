@@ -34,7 +34,6 @@ namespace Kakadu.Backoffice.Views
                 productManager.DeleteItem(selectedItem.Id);
             }
 
-            //Reload Grid
             LoadProducts();
         }
 
@@ -54,7 +53,6 @@ namespace Kakadu.Backoffice.Views
                 }
             }
 
-            //Reload Grid
             LoadProducts();
         }
 
