@@ -15,19 +15,19 @@ function createCartItemElement(item) {
 
     const incrementButton = itemElement.querySelector('.increment-button');
     incrementButton.addEventListener('click', function(event) {
-        addToCart({ id: item.id });
+        addToCart(item);
         renderCart();
     });
 
     const decrementButton = itemElement.querySelector('.decrement-button');
     decrementButton.addEventListener('click', function(event) {
-        removeFromCart({ id: item.id });
+        removeFromCart(item);
         renderCart();
     });
 
     const removeButton = itemElement.querySelector('.remove-button');
     removeButton.addEventListener('click', function(event) {
-        removeItemFromCart({ id: item.id });
+        removeItemFromCart(item);
     });
 
     return itemElement;
@@ -44,6 +44,7 @@ function addToCart(product) {
     }
 
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    displayAlert("success", product.title, "додано в кошик");
 }
 
 function removeFromCart(product) {
@@ -119,4 +120,20 @@ function renderCart() {
     });
 
     offcanvasBody.appendChild(checkoutButton);
+}
+
+
+
+function displayAlert(type, item, message) {
+    let alert = `
+        <div class="alert alert-${type} alert-dismissible" id="add-alert" role="alert">
+            <div>${item} ${message}</div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    `;
+
+    let alertContainer = document.getElementById('alert-container');
+    if (alertContainer) {
+        alertContainer.innerHTML = alert;
+    } 
 }

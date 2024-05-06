@@ -53,9 +53,9 @@ fetch(fetchlink)
         });
 
         document.getElementById('open-cart').addEventListener('click', function() {
+            renderCart();
             const bsOffcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasBottom'));
             bsOffcanvas.show();
-            renderCart();
         });
     })
     .catch(error => {
