@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace Kakadu.Backoffice.Views
 {
