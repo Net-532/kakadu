@@ -83,7 +83,9 @@ namespace Kakadu.WebServer
             var order = new Backend.Entities.Order();
             orderRepository.Save(order);
 
-            return new HttpResponse();
+            var response = new HttpResponse();
+            response.Body = "{}";
+            return response;
         }
 
     }

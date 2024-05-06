@@ -1,9 +1,5 @@
-﻿using Kakadu.Backend.Entities;
-using Kakadu.Backend.Repositories;
-using Kakadu.Backend.Services;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Serilog;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
