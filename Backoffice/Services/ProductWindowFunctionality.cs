@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Kakadu.Backend.Entities;
 using Kakadu.Backend.Repositories;
+using Kakadu.Backend.Services;
 using Kakadu.Backoffice.Services;
 
 
@@ -8,31 +9,31 @@ namespace Kakadu.Backoffice.Views
 {
     public class ProductManager : IManageable<Product>
     {
-        private IProductRepository ProductRep;
+        private ProductService ProductServ;
 
         public ProductManager()
         {
-            ProductRep = new ProductRepositoryXML();
+            ProductServ = new ProductService(new ProductRepositoryXML());
         }
 
         public List<Product> LoadItems()
         {
-            return ProductRep.GetAll();
+            return ProductServ.GetAll();
         }
 
         public void AddItem(Product item)
         {
-            ProductRep.Save(item);
+            ProductServ.Save(item);
         }
 
         public void DeleteItem(int Id)
         {
-            ProductRep.DeleteById(Id);
+            ProductServ.DeleteById(Id);
         }
 
         public void EditItem(int itemId, Product newItem)
         {
-            ProductRep.Update(itemId, newItem);
+            ProductServ.Update(itemId, newItem);
         }
 
     }
