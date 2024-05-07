@@ -1,7 +1,9 @@
 ﻿using Kakadu.Backend.Entities;
+using Kakadu.Backend.Services;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Xml;
 
 namespace Kakadu.Backend.Repositories
@@ -60,6 +62,19 @@ namespace Kakadu.Backend.Repositories
             return null;
         }
 
+        private int getNextProductId()
+        {
+            List<Product> Products = GetAll();
+
+            if (Products != null && Products.Count > 0)
+            {
+                int MaxNumber = Products.Max(o => o.Id);
+                return MaxNumber + 1;
+            }
+
+            return 1;
+        }
+
         public void Save(Product product)
         {
             XmlDocument doc = new XmlDocument();
@@ -68,6 +83,8 @@ namespace Kakadu.Backend.Repositories
             XmlNode root = doc.DocumentElement;
 
             XmlNode productElement = doc.CreateElement("product");
+
+            product.Id = getNextProductId();
 
             XmlNode idElement = doc.CreateElement("Id");
             idElement.InnerText = product.Id.ToString();
