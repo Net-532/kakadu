@@ -1,9 +1,9 @@
-﻿
-using Kakadu.Backend.Entities;
+﻿using Kakadu.Backend.Entities;
 using System;
 using System.Collections.Generic;
-using System.Globalization; 
-using System.Xml; 
+using System.Globalization;
+using System.Xml;
+using System.Linq;
 
 namespace Kakadu.Backend.Repositories
 {
@@ -38,6 +38,19 @@ namespace Kakadu.Backend.Repositories
             return orders;
         }
 
+        private int getNextOrderId()
+        {
+            List<Order> Orders = GetAll();
+
+            if (Orders != null && Orders.Count > 0)
+            {
+                int MaxNumber = Orders.Max(o => o.Id);
+                return MaxNumber + 1;
+            }
+
+            return 1;
+        }
+
         public void Save(Order order)
         {
             XmlDocument doc = new XmlDocument();
@@ -45,10 +58,11 @@ namespace Kakadu.Backend.Repositories
 
             XmlNode root = doc.DocumentElement;
 
-
             XmlNode orderElement = doc.CreateElement("order");
 
             XmlNode orderNumberElement = doc.CreateElement("OrderNumber");
+
+            order.Id = getNextOrderId();
 
             int nextOrderNumber = getNextOrderNumber();
             orderNumberElement.InnerText = nextOrderNumber.ToString(); 
