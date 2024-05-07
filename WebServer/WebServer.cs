@@ -1,7 +1,4 @@
-﻿using Kakadu.Backend.Entities;
-using Kakadu.Backend.Repositories;
-using Kakadu.Backend.Services;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Serilog;
 using System.Net;
 using System.Net.Sockets;
@@ -11,11 +8,10 @@ namespace Kakadu.WebServer
 {
     public class WebServer
     {
-        private static readonly Int32 port = 8085;
+        private static readonly int port = 8085;
         private static readonly IPAddress address = IPAddress.Parse("127.0.0.1");
-        private static IProductService productService = new ProductService(new ProductRepositoryXML());
-        private static IOrderService orderService = new OrderService();
-        private static IOrderRepository orderRepository = new OrderRepositoryXML();
+        private static readonly HttpRequestDispatcher httpRequestDispatcher = new HttpRequestDispatcher();
+        private static readonly HttpMessageConverter httpMessageConverter = new HttpMessageConverter();
 
         public static void Main()
         {
@@ -41,41 +37,14 @@ namespace Kakadu.WebServer
                     int bytesReceived = clientSocket.Receive(buffer);
 
                     string request = Encoding.UTF8.GetString(buffer, 0, bytesReceived);
-                    string requestMethod = request.Split(' ')[0];
 
-                    if (requestMethod == "GET" && request.Contains("/products"))
-                    {
-                        List<Product> products = productService.GetAll();
+                    HttpRequest httpRequest = httpMessageConverter.Convert(request);
+                    HttpResponse httpResponse = httpRequestDispatcher.Dispatch(httpRequest);
+                    var response = httpResponse.ToString();
+                    Log.Debug("Response is {0}", response);
+                    byte[] responseData = Encoding.UTF8.GetBytes(response);
 
-                        if (products != null)
-                        {
-                            StringBuilder jsonBuilder = new StringBuilder();
-                            string response = "HTTP/1.1 200 OK\r\n" + "Content-Type: application/json\r\n" + "Access-Control-Allow-Origin: *\r\n\r\n" + "[";
-                            foreach (Product product in products)
-                            {
-                                string priceString = product.Price.ToString();
-                                priceString = priceString.Replace(",", ".");
-
-                                string productJson = $"{{\"id\": {product.Id}, \"title\": \"{product.Title}\", \"price\": {priceString}, \"photoUrl\": \"{product.PhotoUrl}\", \"description\": \"{product.Description}\"}},";
-                                jsonBuilder.Append(productJson);
-                            }
-                            jsonBuilder.Remove(jsonBuilder.Length - 1, 1);
-                            jsonBuilder.Append("]");
-
-                            response += jsonBuilder.ToString();
-
-                            Log.Information(response);
-
-                            byte[] responseData = Encoding.UTF8.GetBytes(response);
-                            clientSocket.Send(responseData);
-                        }
-                    }
-                    else if (requestMethod == "POST" && request.Contains("/orders"))
-                    {
-                        var order = new Backend.Entities.Order();
-                        orderRepository.Save(order);
-                    }
-
+                    clientSocket.Send(responseData);
                     clientSocket.Shutdown(SocketShutdown.Send);
                     clientSocket.Close();
 
