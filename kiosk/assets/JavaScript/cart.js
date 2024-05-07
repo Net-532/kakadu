@@ -1,16 +1,15 @@
 function createCartItemElement(item) {
     const itemElement = document.createElement('div');
     itemElement.innerHTML = `
-
     <img style="width: 70px" src="${item.photoUrl}">
-    <button class="remove-button btn btn-close"></button>
-    <div>Product Title: ${item.title}</div>
-    <div>Price: ${item.price}</div>
-    <div>Quantity: ${item.quantity}</div>
-    <button class="increment-button btn btn-primary">+</button>
-    <button class="decrement-button btn btn-primary">-</button>
-    
-    <hr>
+        <img style="width: 70px" src="${item.photoUrl}">
+        <button class="remove-button btn btn-close"></button>
+        <div>Product Title: ${item.title}</div>
+        <div>Price: ${item.price}</div>
+        <div>Quantity: ${item.quantity}</div>
+        <button class="increment-button btn btn-primary">+</button>
+        <button class="decrement-button btn btn-primary">-</button>
+        <hr>
     `;
 
     const incrementButton = itemElement.querySelector('.increment-button');
@@ -87,42 +86,37 @@ function renderCart() {
         offcanvasBody.appendChild(emptyCart);
     }
 
-    const clearCartButton = document.getElementById('clear-cart');
-    clearCartButton.addEventListener('click', function(event) {
-        localStorage.removeItem('cartItems');
-        renderCart();
-    });
-
     const checkoutButton = document.createElement('button');
     checkoutButton.textContent = 'Оформити замовлення';
     checkoutButton.classList.add('btn', 'btn-success', 'fixed-bottom', 'mx-auto', 'd-block');
     checkoutButton.addEventListener('click', function(event) {
-        const items = JSON.parse(localStorage.getItem('cartItems')) || [];
-        const sendRequest = {
-            items: items.map(item => ({
-                productId: item.id,
-                quantity: item.quantity
-            }))
-        };
-        fetch(ordersEndpoint, {
-            method: 'POST',
-            body: JSON.stringify(sendRequest)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Замовлення виконано');
-            localStorage.removeItem('cartItems');
-            renderCart();
-        })
-        .catch(error => {
-            console.error('Помилка: ', error);
-        });
+        if (cartItems.length === 0) {
+            window.location.href = 'error.html';
+        } else {
+            const sendRequest = {
+                items: cartItems.map(item => ({
+                    productId: item.id,
+                    quantity: item.quantity
+                }))
+            };
+            fetch(ordersEndpoint, {
+                method: 'POST',
+                body: JSON.stringify(sendRequest)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Замовлення виконано');
+                localStorage.removeItem('cartItems');
+                renderCart();
+            })
+            .catch(error => {
+                console.error('Помилка: ', error);
+            });
+        }
     });
 
     offcanvasBody.appendChild(checkoutButton);
 }
-
-
 
 function displayAlert(type, item, message) {
     let alert = `

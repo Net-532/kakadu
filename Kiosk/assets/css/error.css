@@ -1,0 +1,26 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0; 
+}
+
+.container {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8); 
+    padding: 20px;
+}
+
+.container .col {
+    flex: 1;
+    text-align: left; 
+    
+}
+
+.container img {
+    max-width: 20%; 
+}
+
