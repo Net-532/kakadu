@@ -62,11 +62,11 @@ namespace Kakadu.Backend.Repositories
 
             XmlNode orderNumberElement = doc.CreateElement("OrderNumber");
 
-            order.Id = getNextOrderId();
-
             int nextOrderNumber = getNextOrderNumber();
             orderNumberElement.InnerText = nextOrderNumber.ToString(); 
             orderElement.AppendChild(orderNumberElement);
+
+            order.Id = getNextOrderId();
 
             XmlNode idElement = doc.CreateElement("Id");
             idElement.InnerText = order.Id.ToString();
@@ -95,7 +95,7 @@ namespace Kakadu.Backend.Repositories
                 itemElement.AppendChild(itemIdElement);
 
                 XmlNode orderIdElement = doc.CreateElement("OrderId");
-                orderIdElement.InnerText = item.OrderId.ToString();
+                orderIdElement.InnerText = order.Id.ToString();
                 itemElement.AppendChild(orderIdElement);
 
                 XmlNode productIdElement = doc.CreateElement("ProductId");
