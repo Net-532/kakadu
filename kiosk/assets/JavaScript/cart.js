@@ -1,7 +1,6 @@
 function createCartItemElement(item) {
     const itemElement = document.createElement('div');
     itemElement.innerHTML = `
-    <img style="width: 70px" src="${item.photoUrl}">
         <img style="width: 70px" src="${item.photoUrl}">
         <button class="remove-button btn btn-close"></button>
         <div>Product Title: ${item.title}</div>
