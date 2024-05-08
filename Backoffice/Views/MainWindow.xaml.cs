@@ -21,14 +21,5 @@ namespace Kakadu.Backoffice.Views
         {
             Close();
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        { 
-        }
-
-        public void PrintButton_Click(object sender, RoutedEventArgs e)
-        {
-            PrintService printdef = new PrintService();
-            printdef.Print("Kakadu ^)");
-        }
     }
 }
