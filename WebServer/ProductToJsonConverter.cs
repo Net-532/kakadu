@@ -14,7 +14,7 @@ namespace Kakadu.WebServer
             jsonsBuilder.Append("\"title\":").Append("\"").Append(product.Title).Append("\"").Append(",");
             jsonsBuilder.Append("\"price\":").Append("\"").Append(product.Price.ToString(CultureInfo.InvariantCulture)).Append("\"").Append(",");
             jsonsBuilder.Append("\"photoUrl\":").Append("\"").Append(product.PhotoUrl).Append("\"").Append(",");
-            jsonsBuilder.Append("\"description\":").Append("\"").Append(product.Description);
+            jsonsBuilder.Append("\"description\":").Append("\"").Append(product.Description).Append("\"");
             jsonsBuilder.Append("}");
             return jsonsBuilder.ToString();
         }
