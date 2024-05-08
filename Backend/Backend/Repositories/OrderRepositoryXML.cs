@@ -62,8 +62,8 @@ namespace Kakadu.Backend.Repositories
 
             XmlNode orderNumberElement = doc.CreateElement("OrderNumber");
 
-            int nextOrderNumber = getNextOrderNumber();
-            orderNumberElement.InnerText = nextOrderNumber.ToString(); 
+            order.OrderNumber = getNextOrderNumber();
+            orderNumberElement.InnerText = order.OrderNumber.ToString();
             orderElement.AppendChild(orderNumberElement);
 
             order.Id = getNextOrderId();
