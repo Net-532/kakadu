@@ -38,7 +38,7 @@ namespace Kakadu.Backend.Repositories
             return orders;
         }
 
-        public void Save(Order order)
+        public Order Save(Order order)
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(filePath);
@@ -96,6 +96,8 @@ namespace Kakadu.Backend.Repositories
             orderElement.AppendChild(itemsElement);
             root.AppendChild(orderElement);
             doc.Save(filePath);
+            return order;
+
         }
 
 
@@ -110,6 +112,7 @@ namespace Kakadu.Backend.Repositories
                 node.SelectSingleNode("Status").InnerText = status;
                 doc.Save(filePath);
             }
+
         }
 
         private Order ConvertToOrder(XmlNode node)
