@@ -13,9 +13,8 @@
 			<Button Content="Користувачі" Margin="5"/>
 			<Button Content="Замовлення" Margin="5"/>
 			<Button Content="Вийти" Margin="5" Click="ExitButton_Click"/>
-            <Button Content="Друкувати Текст" Margin="5" Click="PrintButton_Click" />
-       
-		</StackPanel>
+
+        </StackPanel>
     <Grid>
         <Label Content="Label" x:Name="TestLabel" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center"
                VerticalContentAlignment="Center" FontSize="18"/>
