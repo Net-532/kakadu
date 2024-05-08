@@ -4,7 +4,7 @@
         <Username>admin</Username>
         <FirstName>AdminFirstName</FirstName>
         <LastName>AdminLastName</LastName>
-        <Password>AdminPassword</Password>
+        <Password>admin</Password>
     </user>
     <user>
         <Id>2</Id>
