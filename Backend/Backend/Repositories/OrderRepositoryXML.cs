@@ -62,8 +62,8 @@ namespace Kakadu.Backend.Repositories
 
             XmlNode orderNumberElement = doc.CreateElement("OrderNumber");
 
-            int nextOrderNumber = getNextOrderNumber();
-            orderNumberElement.InnerText = nextOrderNumber.ToString(); 
+            order.OrderNumber = getNextOrderNumber();
+            orderNumberElement.InnerText = order.OrderNumber.ToString();
             orderElement.AppendChild(orderNumberElement);
 
             order.Id = getNextOrderId();
@@ -121,6 +121,8 @@ namespace Kakadu.Backend.Repositories
             root.AppendChild(orderElement);
 
             doc.Save(filePath);
+            return order;
+
         }
 
 
@@ -135,6 +137,7 @@ namespace Kakadu.Backend.Repositories
                 node.SelectSingleNode("Status").InnerText = status;
                 doc.Save(filePath);
             }
+
         }
 
         private Order ConvertToOrder(XmlNode node)
