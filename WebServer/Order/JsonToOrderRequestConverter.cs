@@ -44,13 +44,12 @@ namespace Kakadu.WebServer.Order
 
         private string GetJsonArray(string json, string propertyName)
         {
-            var parts = json.Split(':');
-            if (parts.Length != 2)
-                throw new ArgumentException("Invalid JSON format");
+             var parts = json.Split($"{propertyName}:");
 
-            var name = parts[0].Trim('"').Trim();
-            if (name != propertyName)
+            if (parts.Length != 2)
+            {
                 throw new ArgumentException($"Property '{propertyName}' not found");
+            }
 
             var value = parts[1].Trim();
             if (!value.StartsWith("[") || !value.EndsWith("]"))
@@ -61,18 +60,15 @@ namespace Kakadu.WebServer.Order
 
         private string GetJsonObject(ref string json)
         {
-            var start = json.IndexOf("{");
-            if (start == -1)
-                return null;
+            json = json.Trim();
+            if (!json.StartsWith("{") || !json.EndsWith("}"))
+                throw new ArgumentException("Invalid JSON format");
 
-            var end = FindClosingBracket(json, start);
-            if (end == -1)
-                return null;
-
-            var result = json.Substring(start, end - start + 1);
-            json = json.Substring(end + 1).Trim();
+            var result = json.Substring(1, json.Length - 2);
+            json = ""; // Очищення рядка json, оскільки ми вже отримали його значення
             return result;
         }
+
 
         private int? GetJsonProperty(string json, string propertyName)
         {
