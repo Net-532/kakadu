@@ -51,7 +51,7 @@ namespace Kakadu.Backend.Repositories
             return 1;
         }
 
-        public void Save(Order order)
+        public Order Save(Order order)
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(filePath);
@@ -155,18 +155,15 @@ namespace Kakadu.Backend.Repositories
             {
                 OrderItem item = new OrderItem
                 {
-                    OrderItem item = new OrderItem
-                    {
-                        Id = int.Parse(itemNode.SelectSingleNode("Id").InnerText),
-                        ProductId = int.Parse(itemNode.SelectSingleNode("ProductId").InnerText),
-                        Quantity = int.Parse(itemNode.SelectSingleNode("Quantity").InnerText),
-                        Price = decimal.Parse(itemNode.SelectSingleNode("Price").InnerText, CultureInfo.InvariantCulture),
-                        Amount = decimal.Parse(itemNode.SelectSingleNode("Amount").InnerText, CultureInfo.InvariantCulture),
-                        OrderId = order.Id
-                    };
-                    order.Items.Add(item);
-                }
-            
+                    Id = int.Parse(itemNode.SelectSingleNode("Id").InnerText),
+                    ProductId = int.Parse(itemNode.SelectSingleNode("ProductId").InnerText),
+                    Quantity = int.Parse(itemNode.SelectSingleNode("Quantity").InnerText),
+                    Price = decimal.Parse(itemNode.SelectSingleNode("Price").InnerText, CultureInfo.InvariantCulture),
+                    Amount = decimal.Parse(itemNode.SelectSingleNode("Amount").InnerText, CultureInfo.InvariantCulture),
+                    OrderId = order.Id
+                };
+                order.Items.Add(item);
+            }
 
             return order;
         }
