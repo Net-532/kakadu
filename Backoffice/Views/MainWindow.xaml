@@ -9,7 +9,7 @@
 	<DockPanel>
 		<!-- Панель навігації -->
 		<StackPanel DockPanel.Dock="Left" Background="LightGray" Width="150">
-            <Button Content="Продукти" Margin="5" Click="ProductButton_Click"/>
+        		<Button Content="Продукти" Margin="5" Click="ProductButton_Click"/>
 			<Button Content="Користувачі" Margin="5"/>
 			<Button Content="Замовлення" Margin="5"/>
 			<Button Content="Вийти" Margin="5" Click="ExitButton_Click"/>
