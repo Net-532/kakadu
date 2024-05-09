@@ -40,27 +40,24 @@
     <Compile Include="Repositories\IOrderRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\OrderRepositoryXML.cs" />
-    <Compile Include="Entities\OrderItem.cs" />
-    <Compile Include="Repositories\IOrderRepository.cs" />
-    <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\ProductRepositoryXML.cs" />
+    <Compile Include="Repositories\IProductRepository.cs" />
     <Compile Include="Repositories\UserRepositoryXML.cs" />
-    <Compile Include="Services\FileName.cs" />
+    <Compile Include="Entities\Order.cs" />
+    <Compile Include="Entities\OrderItem.cs" />
+    <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Services\IOrderService.cs" />
     <Compile Include="Services\IProductService.cs" />
-    <Compile Include="Repositories\IProductRepository.cs" />
     <Compile Include="Services\IUserService.cs" />
-    <Compile Include="Entities\Order.cs" />
     <Compile Include="Services\OrderNotFoundException.cs" />
     <Compile Include="Services\OrderService.cs" />
-    <Compile Include="Entities\Product.cs" />
-    <Compile Include="Services\PrintService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\ProductNotFoundException.cs" />
-    <Compile Include="Entities\User.cs" />
     <Compile Include="Services\UserNotFoundException.cs" />
     <Compile Include="Services\UserService.cs" />
-  </ItemGroup>
+    <Compile Include="Services\PrintService.cs" />
+ </ItemGroup>
   <ItemGroup>
     <Content Include="data\orders.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
