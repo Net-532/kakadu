@@ -9,16 +9,22 @@
 	<DockPanel>
 		<!-- Панель навігації -->
 		<StackPanel DockPanel.Dock="Left" Background="LightGray" Width="150">
-			<Button Content="Продукти" Margin="5"/>
+        		<Button Content="Продукти" Margin="5" Click="ProductButton_Click"/>
 			<Button Content="Користувачі" Margin="5"/>
 			<Button Content="Замовлення" Margin="5"/>
 			<Button Content="Вийти" Margin="5" Click="ExitButton_Click"/>
-
-        </StackPanel>
-    <Grid>
-        <Label Content="Label" x:Name="TestLabel" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center"
-               VerticalContentAlignment="Center" FontSize="18"/>
-
-    </Grid>
-	</DockPanel>
+		</StackPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" x:Name="ProductButtonsPanel" Grid.Row="0" Visibility="Hidden" HorizontalAlignment="Right" Margin="5">
+                <Button x:Name="AddButton" Content="Add Product" Margin="5"/>
+                <Button x:Name="EditButton" Content="Edit Product" Margin="5"/>
+                <Button x:Name="DeleteButton" Content="Delete Product" Margin="5"/>
+            </StackPanel>
+            <DataGrid x:Name="dataGrid" Visibility="Visible" Grid.Row="1" Margin="5" AutoGenerateColumns="True" IsReadOnly="True"/>
+        </Grid>
+    </DockPanel>
 </Window>

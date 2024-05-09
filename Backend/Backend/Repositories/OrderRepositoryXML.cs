@@ -1,9 +1,9 @@
-﻿
-using Kakadu.Backend.Entities;
+﻿using Kakadu.Backend.Entities;
 using System;
 using System.Collections.Generic;
-using System.Globalization; 
-using System.Xml; 
+using System.Globalization;
+using System.Xml;
+using System.Linq;
 
 namespace Kakadu.Backend.Repositories
 {
@@ -38,6 +38,19 @@ namespace Kakadu.Backend.Repositories
             return orders;
         }
 
+        private int getNextOrderId()
+        {
+            List<Order> Orders = GetAll();
+
+            if (Orders != null && Orders.Count > 0)
+            {
+                int MaxNumber = Orders.Max(o => o.Id);
+                return MaxNumber + 1;
+            }
+
+            return 1;
+        }
+
         public void Save(Order order)
         {
             XmlDocument doc = new XmlDocument();
@@ -45,14 +58,15 @@ namespace Kakadu.Backend.Repositories
 
             XmlNode root = doc.DocumentElement;
 
-
             XmlNode orderElement = doc.CreateElement("order");
 
             XmlNode orderNumberElement = doc.CreateElement("OrderNumber");
 
-            int nextOrderNumber = getNextOrderNumber();
-            orderNumberElement.InnerText = nextOrderNumber.ToString(); 
+            order.OrderNumber = getNextOrderNumber();
+            orderNumberElement.InnerText = order.OrderNumber.ToString();
             orderElement.AppendChild(orderNumberElement);
+
+            order.Id = getNextOrderId();
 
             XmlNode idElement = doc.CreateElement("Id");
             idElement.InnerText = order.Id.ToString();
@@ -81,7 +95,7 @@ namespace Kakadu.Backend.Repositories
                 itemElement.AppendChild(itemIdElement);
 
                 XmlNode orderIdElement = doc.CreateElement("OrderId");
-                orderIdElement.InnerText = item.OrderId.ToString();
+                orderIdElement.InnerText = order.Id.ToString();
                 itemElement.AppendChild(orderIdElement);
 
                 XmlNode productIdElement = doc.CreateElement("ProductId");
@@ -96,6 +110,10 @@ namespace Kakadu.Backend.Repositories
                 priceElement.InnerText = item.Price.ToString(CultureInfo.InvariantCulture);
                 itemElement.AppendChild(priceElement);
 
+                XmlNode amountElement = doc.CreateElement("Amount");
+                amountElement.InnerText = item.Amount.ToString(CultureInfo.InvariantCulture);
+                itemElement.AppendChild(amountElement);
+
                 itemsElement.AppendChild(itemElement);
             }
 
@@ -103,6 +121,8 @@ namespace Kakadu.Backend.Repositories
             root.AppendChild(orderElement);
 
             doc.Save(filePath);
+            return order;
+
         }
 
 
@@ -117,6 +137,7 @@ namespace Kakadu.Backend.Repositories
                 node.SelectSingleNode("Status").InnerText = status;
                 doc.Save(filePath);
             }
+
         }
 
         private Order ConvertToOrder(XmlNode node)
@@ -139,6 +160,7 @@ namespace Kakadu.Backend.Repositories
                         ProductId = int.Parse(itemNode.SelectSingleNode("ProductId").InnerText),
                         Quantity = int.Parse(itemNode.SelectSingleNode("Quantity").InnerText),
                         Price = decimal.Parse(itemNode.SelectSingleNode("Price").InnerText, CultureInfo.InvariantCulture),
+                        Amount = decimal.Parse(itemNode.SelectSingleNode("Amount").InnerText, CultureInfo.InvariantCulture),
                         OrderId = order.Id
                     };
                     order.Items.Add(item);

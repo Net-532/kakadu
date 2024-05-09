@@ -1,21 +1,21 @@
 const fetchlink = "http://localhost:8085/products";
+const ordersEndpoint = "http://localhost:8085/orders";
 
 fetch(fetchlink)
     .then(res => res.json())
     .then(products => {
         const productList = document.getElementById('product-list');
-        let row; 
-        var column = 3;
+        let row;
+        const column = 3;
 
         products.forEach((product, index) => {
-         
+
             if (index % column === 0) {
                 row = document.createElement('div');
                 row.classList.add('row');
                 productList.appendChild(row);
             }
 
-        
             const productCard = document.createElement('div');
             productCard.classList.add('col');
             productCard.innerHTML = `
@@ -34,12 +34,12 @@ fetch(fetchlink)
 
             const cardPreBody = productCard.querySelector('.card-pre-body');
             cardPreBody.addEventListener('click', function(event) {
-                var id = product.id;
+                const id = product.id;
                 cardPreBody.disabled = true;
-                var myModal = new bootstrap.Modal(document.getElementById('full_description_modal'));
-                
+                const myModal = new bootstrap.Modal(document.getElementById('full_description_modal'));
+
                 myModal.show();
-                var textinside = document.getElementById('full-card-text');
+                const textinside = document.getElementById('full-card-text');
                 textinside.innerHTML = `
                 <img src="${product.photoUrl}" alt="${product.title}" style="max-width: 100%;">
                 Name: ${product.title} <br>
@@ -48,34 +48,18 @@ fetch(fetchlink)
                 Id: ${id} `;
             });
             const addToCartButton = productCard.querySelector('.add-to-cart-button');
-            addToCartButton.addEventListener('click', function(event) {
-                var idButton = this.parentNode.getAttribute("data-id");
-                console.log('button clicked', idButton);
-                const product = {
-                  id: idButton,
-                  name: `Product ${idButton}`,
-                };
-        
-                let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-                
-                let existingProductIndex = cartItems.findIndex(item => item.id === idButton);
-                
-                if (existingProductIndex !== -1) {
-                    cartItems[existingProductIndex].quantity = (cartItems[existingProductIndex].quantity || 1) + 1;
-                } else {
-                    product.quantity = 1;
-                    cartItems.push(product);
-                }
-                
-                localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        
-                console.log('Product added to cart!');
-                
-            });
-
+            addToCartButton.addEventListener('click', () => addToCart(product));
             row.appendChild(productCard);
+        });
+
+        document.getElementById('open-cart').addEventListener('click', function() {
+            renderCart();
+            const bsOffcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasBottom'));
+            bsOffcanvas.show();
         });
     })
     .catch(error => {
         console.error('Помилка завантаження продуктів:', error);
     });
+
+    

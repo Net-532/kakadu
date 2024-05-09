@@ -15,35 +15,29 @@ namespace Kakadu.WebServer.Order
             _orderRepository = orderRepository;
             _productService = productService;
         }
-
+    
         public void Process(OrderRequest orderRequest)
         {
             var order = new Backend.Entities.Order
             {
-                Items = orderRequest.Items.Select((item, index) => new OrderItem
+                Items = orderRequest.Items.Select((item, index) =>
                 {
-                    Id = index + 1,
-                    ProductId = item.ProductId,
-                    Quantity = item.Quantity,
-                    Price = item.Quantity * _productService.GetById(item.ProductId).Price,
+                    var product_price = _productService.GetById(item.ProductId).Price;
+                    var amount = product_price * item.Quantity;
+                    return new OrderItem
+                    {
+                        Id = index + 1,
+                        ProductId = item.ProductId,
+                        Quantity = item.Quantity,
+                        Price = product_price,
+                        Amount = amount
+                    };
                 }).ToList(),
-               
                 OrderDate = DateTime.Now
             };
-            order.TotalPrice = CalculateTotalPrice(order.Items);
+
+            order.TotalPrice = order.Items.Sum(item => item.Amount);
             _orderRepository.Save(order);
-        }
-
-        private decimal CalculateTotalPrice(List<OrderItem> orderItems)
-        {
-            decimal totalPrice = 0;
-
-            foreach (var item in orderItems)
-            { 
-                totalPrice += item.Price;
-            }
-
-            return totalPrice;
         }
     }
 }
