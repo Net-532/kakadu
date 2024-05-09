@@ -4,3 +4,41 @@
     --font-size: 10px;
     --font-family: Arial, sans-serif;;
   }
+  .banner {
+    position: relative;
+    height: 200px; /* Висота банера */
+    background-color: #f8f9fa; /* Колір фону */
+    overflow: hidden; /* Приховує зайві частини зображення, якщо вони виходять за межі контейнера */
+}
+
+.banner img {
+    width: 100%; /* Займає всю ширину контейнера */
+    height: auto; /* Автоматично розраховує висоту зображення для збереження пропорцій */
+    object-fit: cover; /* Зображення збільшується/зменшується, щоб повністю заповнити контейнер, зберігаючи пропорції */
+}
+
+.banner-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff; /* Колір тексту */
+    z-index: 1; /* Зберігає контент поверх зображення */
+}
+
+.banner-content h1 {
+    font-size: 2.5rem; /* Розмір заголовку */
+    margin-bottom: 10px; /* Відступ між заголовком і текстом */
+}
+
+.banner-content p {
+    font-size: 1.2rem; /* Розмір тексту */
+    margin-bottom: 20px; /* Відступ між текстом і кнопкою */
+}
+
+.banner-content a.btn {
+    font-size: 1.2rem; /* Розмір тексту кнопки */
+}
+
+
