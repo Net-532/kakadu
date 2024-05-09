@@ -7,45 +7,56 @@ namespace Kakadu.WebServer.Order
     {
         public OrderRequest Convert(string json)
         {
-            var orderRequest = new OrderRequest();
-
             if (string.IsNullOrWhiteSpace(json))
-                return orderRequest;
+                throw new ArgumentException("JSON string is empty");
 
-            var itemsStart = json.IndexOf("items", StringComparison.OrdinalIgnoreCase);
-            if (itemsStart == -1)
-                return orderRequest;
+            var orderRequest = new OrderRequest();
+            var rootObj = GetJsonObject(ref json);
 
-            itemsStart = json.IndexOf("[", itemsStart);
-            if (itemsStart == -1)
-                return orderRequest;
-
-            var itemsEnd = json.IndexOf("]", itemsStart);
-            if (itemsEnd == -1)
-                return orderRequest;
-
-            var itemsJson = json.Substring(itemsStart + 1, itemsEnd - itemsStart - 1);
-
-            while (itemsJson.Length > 0)
+            if (rootObj != null)
             {
-                var itemJson = GetJsonObject(ref itemsJson);
-                if (itemJson == null)
-                    break;
+                var itemsJson = GetJsonArray(rootObj, "items");
+                if (itemsJson != null)
+                {
+                    while (itemsJson.Length > 0)
+                    {
+                        var itemJson = GetJsonObject(ref itemsJson);
+                        if (itemJson == null)
+                            break;
 
-                var orderItemRequest = new OrderRequest.OrderItemRequest();
+                        var orderItemRequest = new OrderRequest.OrderItemRequest();
 
-                var productIdJson = GetJsonProperty(itemJson, "productId");
-                if (productIdJson.HasValue)
-                    orderItemRequest.ProductId = productIdJson.Value;
+                        var productIdJson = GetJsonProperty(itemJson, "productId");
+                        if (productIdJson.HasValue)
+                            orderItemRequest.ProductId = productIdJson.Value;
 
-                var quantityJson = GetJsonProperty(itemJson, "quantity");
-                if (quantityJson.HasValue)
-                    orderItemRequest.Quantity = quantityJson.Value;
+                        var quantityJson = GetJsonProperty(itemJson, "quantity");
+                        if (quantityJson.HasValue)
+                            orderItemRequest.Quantity = quantityJson.Value;
 
-                orderRequest.Items.Add(orderItemRequest);
+                        orderRequest.Items.Add(orderItemRequest);
+                    }
+                }
             }
 
             return orderRequest;
+        }
+
+        private string GetJsonArray(string json, string propertyName)
+        {
+            var parts = json.Split(':');
+            if (parts.Length != 2)
+                throw new ArgumentException("Invalid JSON format");
+
+            var name = parts[0].Trim('"').Trim();
+            if (name != propertyName)
+                throw new ArgumentException($"Property '{propertyName}' not found");
+
+            var value = parts[1].Trim();
+            if (!value.StartsWith("[") || !value.EndsWith("]"))
+                throw new ArgumentException("Invalid JSON array format");
+
+            return value.Substring(1, value.Length - 2);
         }
 
         private string GetJsonObject(ref string json)
@@ -95,6 +106,7 @@ namespace Kakadu.WebServer.Order
             else
                 return null;
         }
+
         private int FindClosingBracket(string json, int start)
         {
             var bracketStack = new Stack<char>();

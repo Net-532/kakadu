@@ -14,7 +14,7 @@ namespace Kakadu.WebServer
         private static readonly Int32 port = 8085;
         private static readonly IPAddress address = IPAddress.Parse("127.0.0.1");
         private static IProductService productService = new ProductService(new ProductRepositoryXML());
-        private static IOrderService orderService = new OrderService();
+        private static IOrderService orderService = new OrderService(orderRepository);
         private static IOrderRepository orderRepository = new OrderRepositoryXML();
 
         public static void Main()
