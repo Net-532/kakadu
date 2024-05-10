@@ -9,7 +9,7 @@ namespace WebServerTests
         {
             string json = """
                 { 
-                items: [ 
+                "items": [ 
                      {
                      "productId": 10,
                       "quantity": 2
