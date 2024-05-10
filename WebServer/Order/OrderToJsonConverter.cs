@@ -1,26 +1,29 @@
 ﻿using System.Text;
 using Kakadu.Backend.Entities;
 using System;
+using System.Globalization;
+using Kakadu.Backend.Services;
+using Kakadu.Backend.Repositories;
 
 namespace Kakadu.WebServer
 {
     public class OrderToJsonConverter
     {
+        private static IProductService productService = new ProductService(new ProductRepositoryXML());
         public string Convert(Kakadu.Backend.Entities.Order order)
         {
             StringBuilder jsonBuilder = new StringBuilder();
-            jsonBuilder.Append("{");
-            jsonBuilder.Append($"\"orderNumber\": {order.OrderNumber},");
-            jsonBuilder.Append($"\"orderDate\": \"{order.OrderDate.ToString("dd.MM.yyyy")}\",");
-            jsonBuilder.Append($"\"totalPrice\": {order.TotalPrice},");
-            jsonBuilder.Append("\"items\": [");
+            jsonBuilder.Append("{").Append($"\"orderNumber\": {order.OrderNumber},")
+            .Append($"\"orderDate\": \"{order.OrderDate.ToString("dd.MM.yyyy")}\",")
+            .Append($"\"totalPrice\": {order.TotalPrice.ToString(CultureInfo.InvariantCulture)},")
+            .Append("\"items\": [");
 
             foreach (var item in order.Items)
             {
                 jsonBuilder.Append("{");
-                jsonBuilder.Append($"\"title\": \"{item.ProductId}\",");
+                jsonBuilder.Append($"\"title\": \"{productService.GetById(item.ProductId).Title}\",");
                 jsonBuilder.Append($"\"quantity\": {item.Quantity},");
-                jsonBuilder.Append($"\"price\": {item.Price},");
+                jsonBuilder.Append($"\"price\": {item.Price.ToString(CultureInfo.InvariantCulture)},");
                 jsonBuilder.Append($"\"amount\": {item.Quantity * item.Price}"); 
                 jsonBuilder.Append("},");
             }
