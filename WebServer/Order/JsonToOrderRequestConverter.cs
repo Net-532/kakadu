@@ -11,16 +11,15 @@ namespace Kakadu.WebServer.Order
                 throw new ArgumentException("JSON string is empty");
 
             var orderRequest = new OrderRequest();
-            var rootObj = GetJsonObject(ref json);
+            var rootObj = GetJsonObject( json);
 
-            if (rootObj != null)
-            {
+           
                 var itemsJson = GetJsonArray(rootObj, "items");
                 if (itemsJson != null)
                 {
                     while (itemsJson.Length > 0)
                     {
-                        var itemJson = GetJsonObject(ref itemsJson);
+                        var itemJson = GetJsonObject( itemsJson);
                         if (itemJson == null)
                             break;
 
@@ -37,14 +36,14 @@ namespace Kakadu.WebServer.Order
                         orderRequest.Items.Add(orderItemRequest);
                     }
                 }
-            }
+            
 
             return orderRequest;
         }
 
         private string GetJsonArray(string json, string propertyName)
         {
-             var parts = json.Split($"{propertyName}:");
+            var parts = json.Split($"\"{propertyName}\":");
 
             if (parts.Length != 2)
             {
@@ -58,15 +57,13 @@ namespace Kakadu.WebServer.Order
             return value.Substring(1, value.Length - 2);
         }
 
-        private string GetJsonObject(ref string json)
+        private string GetJsonObject(string json)
         {
             json = json.Trim();
             if (!json.StartsWith("{") || !json.EndsWith("}"))
                 throw new ArgumentException("Invalid JSON format");
 
-            var result = json.Substring(1, json.Length - 2);
-            json = ""; // Очищення рядка json, оскільки ми вже отримали його значення
-            return result;
+            return json.Substring(1, json.Length - 2);          
         }
 
 
