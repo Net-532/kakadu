@@ -17,7 +17,9 @@ namespace Kakadu.WebServer.Order
 
         public HttpResponse Process(HttpRequest httpRequest)
         {
+            var orderRequest = new OrderRequest();
             var order = new Backend.Entities.Order
+
             {
                 Items = orderRequest.Items.Select((item, index) =>
                 {
