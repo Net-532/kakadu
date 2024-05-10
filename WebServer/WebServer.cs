@@ -1,9 +1,5 @@
-﻿using Kakadu.Backend.Entities;
-using Kakadu.Backend.Repositories;
-using Kakadu.Backend.Services;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Serilog;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -14,8 +10,8 @@ namespace Kakadu.WebServer
     {
         private static readonly int port = 8085;
         private static readonly IPAddress address = IPAddress.Parse("127.0.0.1");
-        private static readonly HttpRequestDispatcher httpRequestDispatcher;
-        private static readonly HttpMessageConverter httpMessageConverter;
+        private static readonly HttpRequestDispatcher httpRequestDispatcher = new HttpRequestDispatcher();
+        private static readonly HttpMessageConverter httpMessageConverter = new HttpMessageConverter();
 
         public static void Main()
         {
@@ -44,10 +40,11 @@ namespace Kakadu.WebServer
 
                     HttpRequest httpRequest = httpMessageConverter.Convert(request);
                     HttpResponse httpResponse = httpRequestDispatcher.Dispatch(httpRequest);
+                    var response = httpResponse.ToString();
+                    Log.Debug("Response is {0}", response);
+                    byte[] responseData = Encoding.UTF8.GetBytes(response);
 
-                    byte[] responseData = Encoding.UTF8.GetBytes(httpResponse.Body);
                     clientSocket.Send(responseData);
-
                     clientSocket.Shutdown(SocketShutdown.Send);
                     clientSocket.Close();
 

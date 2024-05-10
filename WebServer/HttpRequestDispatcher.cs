@@ -1,5 +1,4 @@
-﻿// HttpRequestDispatcher.cs
-using Kakadu.Backend.Entities;
+﻿using Kakadu.Backend.Entities;
 using Kakadu.Backend.Repositories;
 using Kakadu.Backend.Services;
 using System.Text;
@@ -16,6 +15,10 @@ namespace Kakadu.WebServer
 
     public class HttpRequestDispatcher
     {
+        private static IProductRepository productRepository = new ProductRepositoryXML();
+        private static IProductService productService = new ProductService(productRepository);
+        private static IOrderRepository orderRepository = new OrderRepositoryXML();
+
         public HttpResponse Dispatch(HttpRequest httpRequest)
         {
             HttpResponse response = new HttpResponse();
@@ -33,7 +36,7 @@ namespace Kakadu.WebServer
                     response.Body = $"No endpoint found for the {httpRequest.RootPath}";
                     break;
             }
-
+            response.Status = HttpStatus.OK;
             response.Headers.Add("Content-Type", "application/json");
             response.Headers.Add("Access-Control-Allow-Origin", "*");
 
@@ -43,9 +46,6 @@ namespace Kakadu.WebServer
         private HttpResponse ProcessProductsRequest(HttpRequest request)
         {
             HttpResponse response = new HttpResponse();
-
-            IProductRepository productRepository = new ProductRepositoryXML();
-            IProductService productService = new ProductService(productRepository);
 
             List<Product> products = productService.GetAll();
             if (products != null)
@@ -80,42 +80,12 @@ namespace Kakadu.WebServer
         private HttpResponse ProcessOrdersRequest(HttpRequest request)
         {
 
-            // Не має опису та реалізації IOrderSevice та OrderService
+            var order = new Backend.Entities.Order();
+            orderRepository.Save(order);
 
-            //HttpResponse response = new HttpResponse();
-
-            //IOrderRepository orderRepository = new OrderRepositoryXML();
-            //IOrderService orderService = new OrderService(orderRepository);
-
-            //List<Order> orders = orderService.GetAll();
-            //if (orders != null)
-            //{
-            //    StringBuilder jsonBuilder = new StringBuilder();
-            //    jsonBuilder.Append("[");
-            //    foreach (Order order in orders)
-            //    {
-            //        string totalPriceString = order.TotalPrice.ToString();
-            //        totalPriceString = totalPriceString.Replace(",", ".");
-            //        string orderJson = $"{{\"orderNumber\": {order.OrderNumber}, \"id\": {order.Id}, \"totalPrice\": {totalPriceString}, \"orderDate\": \"{order.OrderDate}\", \"status\": \"{order.Status}\"}},";
-            //        jsonBuilder.Append(orderJson);
-            //    }
-
-            //    if (orders.Count > 0)
-            //    {
-            //        jsonBuilder.Remove(jsonBuilder.Length - 1, 1);
-            //    }
-
-            //    jsonBuilder.Append("]");
-            //    response.Body = jsonBuilder.ToString();
-            //}
-            //else
-            //{
-            //    response.Status = HttpStatus.InternalServerError;
-            //    response.Body = "Error occurred while fetching orders";
-            //}
-
-            //return response;
-            return null;
+            var response = new HttpResponse();
+            response.Body = "{}";
+            return response;
         }
 
     }
