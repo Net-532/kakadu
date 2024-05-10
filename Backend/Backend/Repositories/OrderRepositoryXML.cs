@@ -22,6 +22,16 @@ namespace Kakadu.Backend.Repositories
             }
             return null;
         }
+        public Order GetByNumber(int number) {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(filePath);
+            XmlNode node = doc.SelectSingleNode($"/orders/order[OrderNumber = '{number}']");
+            if (node != null)
+            {
+                return ConvertToOrder(node);
+            }
+            return null;
+        }
 
         public List<Order> GetAll()
         {

@@ -1,6 +1,8 @@
 ﻿using Kakadu.Backend.Entities;
+using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Kakadu.Backoffice.Views
 {
@@ -11,10 +13,12 @@ namespace Kakadu.Backoffice.Views
     {
 
         private ProductManager productManager;
+        private OrderManager orderManager;
         public MainWindow()
         {
             InitializeComponent();
             productManager = new ProductManager();
+            orderManager = new OrderManager();
         }
 
 
@@ -25,6 +29,26 @@ namespace Kakadu.Backoffice.Views
             {
                 dataGrid.ItemsSource = products;
             }
+        }
+
+        private void LoadOrders()
+        {
+            List<Order> orders = orderManager.LoadItems();
+            if(orders != null)
+            {
+                dataGrid.ItemsSource = orders;
+            }
+        }
+
+        private void ChangeOrderStatus(object sender, RoutedEventArgs e)
+        {
+            var selectedItem = dataGrid.SelectedItem as Order;
+            if (selectedItem != null)
+            {
+                orderManager.ChangeStatus(selectedItem.Id, "Done");
+            }
+            LoadOrders();
+
         }
 
         private void DeleteProduct(object sender, RoutedEventArgs e)
@@ -55,7 +79,43 @@ namespace Kakadu.Backoffice.Views
 
             LoadProducts();
         }
+        private void SearchBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            foreach (char c in e.Text)
+            {
+                if (!char.IsDigit(c))
+                {
+                    e.Handled = true;
+                    return;
+                }
+            }
+        }
+        private void SearchOrder(object sender, RoutedEventArgs e)
+        {
+            if(string.IsNullOrEmpty(SearchBox.Text))
+            {
+                dataGrid.ItemsSource = orderManager.LoadItems();
 
+            }
+            else{
+                int number = Convert.ToInt32(SearchBox.Text);
+                List<Order> orders = new List<Order>();
+                Order numOrder = orderManager.GetByNumber(number);
+                if(numOrder != null)
+                {
+                    orders.Add(numOrder);
+                    dataGrid.ItemsSource = null;
+                    dataGrid.ItemsSource = orders;
+                }
+                else
+                {
+                    MessageBox.Show("Замовлення з таким номером не існує", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                
+            }
+            
+            
+        }
         private void AddProduct(object sender, RoutedEventArgs e)
         {
 
@@ -78,10 +138,19 @@ namespace Kakadu.Backoffice.Views
             LoadProducts();
 
             ProductButtonsPanel.Visibility = Visibility.Visible;
+            OrderButtonsPanel.Visibility = Visibility.Hidden;
 
             DeleteButton.Click += DeleteProduct;
             EditButton.Click += EditProduct;
             AddButton.Click += AddProduct;
+        }
+        private void OrderButton_Click(object sender,RoutedEventArgs e) {
+            dataGrid.Visibility = Visibility.Visible;
+            ProductButtonsPanel.Visibility = Visibility.Hidden;
+            OrderButtonsPanel.Visibility = Visibility.Visible;
+            LoadOrders();
+            
+
         }
     }
 }

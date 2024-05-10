@@ -6,25 +6,33 @@
         xmlns:local="clr-namespace:Kakadu.Backoffice.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-	<DockPanel>
-		<!-- Панель навігації -->
-		<StackPanel DockPanel.Dock="Left" Background="LightGray" Width="150">
-        		<Button Content="Продукти" Margin="5" Click="ProductButton_Click"/>
-			<Button Content="Користувачі" Margin="5"/>
-			<Button Content="Замовлення" Margin="5"/>
-			<Button Content="Вийти" Margin="5" Click="ExitButton_Click"/>
-		</StackPanel>
+    <DockPanel>
+        <!-- Панель навігації -->
+        <StackPanel DockPanel.Dock="Left" Background="LightGray" Width="150">
+            <Button Content="Продукти" Margin="5" Click="ProductButton_Click"/>
+            <Button Content="Користувачі" Margin="5"/>
+            <Button Content="Замовлення" Margin="5" Click="OrderButton_Click"/>
+            <Button Content="Вийти" Margin="5" Click="ExitButton_Click"/>
+        </StackPanel>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" x:Name="ProductButtonsPanel" Grid.Row="0" Visibility="Hidden" HorizontalAlignment="Right" Margin="5">
+            <StackPanel Orientation="Horizontal" x:Name="ProductButtonsPanel" Grid.Row="0" Visibility="Hidden" HorizontalAlignment ="Right" Margin="5">
                 <Button x:Name="AddButton" Content="Add Product" Margin="5"/>
                 <Button x:Name="EditButton" Content="Edit Product" Margin="5"/>
                 <Button x:Name="DeleteButton" Content="Delete Product" Margin="5"/>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" x:Name="OrderButtonsPanel" Grid.Row="0" Visibility="Visible"  HorizontalAlignment="Right" Margin="5">
+                <Label HorizontalAlignment="Left" Margin ="0,5,10,0" Content ="Номер Замовлення:"/>
+                <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Margin="0,5,10,0" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Top" Width="200" Height="25" PreviewTextInput="SearchBox_PreviewTextInput"/>
+                <Button x:Name="SearchButton" Content="Пошук" Margin="0,5,50,0" HorizontalAlignment="Center" Width="50" Height="25" Click="SearchOrder"/>
+                <Button x:Name ="ChangeStatusButton" Content= "Відмітити замовлення як готове" Margin="0,5,0,0" Click="ChangeOrderStatus" Height="25"></Button>
+                
+            </StackPanel>
             <DataGrid x:Name="dataGrid" Visibility="Visible" Grid.Row="1" Margin="5" AutoGenerateColumns="True" IsReadOnly="True"/>
+            
         </Grid>
     </DockPanel>
 </Window>
