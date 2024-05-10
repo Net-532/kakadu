@@ -2,7 +2,7 @@
 using Kakadu.Backend.Services;
 using Kakadu.WebServer;
 
-namespace WebServer.ProductAPI
+namespace Kakadu.WebServer.ProductAPI
 {
     public class ProductRequestProcessor
     {
