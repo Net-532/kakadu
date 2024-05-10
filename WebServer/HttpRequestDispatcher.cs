@@ -2,6 +2,7 @@
 using Kakadu.Backend.Repositories;
 using Kakadu.Backend.Services;
 using System.Text;
+using WebServer.ProductAPI;
 
 namespace Kakadu.WebServer
 {
@@ -18,6 +19,7 @@ namespace Kakadu.WebServer
         private static IProductRepository productRepository = new ProductRepositoryXML();
         private static IProductService productService = new ProductService(productRepository);
         private static IOrderRepository orderRepository = new OrderRepositoryXML();
+        private static ProductRequestProcessor productRequestProcessor = new ProductRequestProcessor(productService, new ProductToJsonConverter());
 
         public HttpResponse Dispatch(HttpRequest httpRequest)
         {
@@ -45,36 +47,7 @@ namespace Kakadu.WebServer
 
         private HttpResponse ProcessProductsRequest(HttpRequest request)
         {
-            HttpResponse response = new HttpResponse();
-
-            List<Product> products = productService.GetAll();
-            if (products != null)
-            {
-                StringBuilder jsonBuilder = new StringBuilder();
-                jsonBuilder.Append("[");
-                foreach (Product product in products)
-                {
-                    string priceString = product.Price.ToString();
-                    priceString = priceString.Replace(",", ".");
-                    string productJson = $"{{\"id\": {product.Id}, \"title\": \"{product.Title}\", \"price\": {priceString}, \"photoUrl\": \"{product.PhotoUrl}\", \"description\": \"{product.Description}\"}},";
-                    jsonBuilder.Append(productJson);
-                }
-
-                if (products.Count > 0)
-                {
-                    jsonBuilder.Remove(jsonBuilder.Length - 1, 1);
-                }
-
-                jsonBuilder.Append("]");
-                response.Body = jsonBuilder.ToString();
-            }
-            else
-            {
-                response.Status = HttpStatus.InternalServerError;
-                response.Body = "Error occurred while fetching products";
-            }
-
-            return response;
+            return productRequestProcessor.Process(request);
         }
 
         private HttpResponse ProcessOrdersRequest(HttpRequest request)
