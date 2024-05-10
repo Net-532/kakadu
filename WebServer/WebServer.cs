@@ -1,6 +1,5 @@
-﻿using Kakadu.Backend.Entities;
-using Kakadu.Backend.Repositories;
-using Kakadu.Backend.Services;
+﻿using Microsoft.Extensions.Configuration;
+using Serilog;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -9,64 +8,56 @@ namespace Kakadu.WebServer
 {
     public class WebServer
     {
-        private static readonly Int32 port = 8085;
+        private static readonly int port = 8085;
         private static readonly IPAddress address = IPAddress.Parse("127.0.0.1");
-        private static IProductService productService = new ProductService(new ProductRepositoryXML());
+        private static readonly HttpRequestDispatcher httpRequestDispatcher = new HttpRequestDispatcher();
+        private static readonly HttpMessageConverter httpMessageConverter = new HttpMessageConverter();
 
         public static void Main()
         {
-            TcpListener server = null;
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(new ConfigurationBuilder()
+                    .AddJsonFile("serilog.json")
+                    .Build())
+                .CreateLogger();
+
+            TcpListener? server = null;
             try
             {
                 server = new TcpListener(address, port);
                 server.Start();
 
-                Console.WriteLine($"Web Server Running on {address.ToString()} on port {port}...");
+                Log.Information("Web Server Running on {Address} on port {Port}...", address, port);
 
                 while (true)
                 {
                     Socket clientSocket = server.AcceptSocket();
 
+                    byte[] buffer = new byte[1024];
+                    int bytesReceived = clientSocket.Receive(buffer);
 
-                    List<Product> products = productService.GetAll();
+                    string request = Encoding.UTF8.GetString(buffer, 0, bytesReceived);
 
-                    if (products != null)
-                    {
-                        StringBuilder jsonBuilder = new StringBuilder();
-                        string response = "HTTP/1.1 200 OK\r\n" + "Content-Type: application/json\r\n" + "Access-Control-Allow-Origin: *\r\n\r\n" + "[";
-                        foreach (Product product in products)
-                        {
-                            string priceString = product.Price.ToString();
-                            priceString = priceString.Replace(",", ".");
+                    HttpRequest httpRequest = httpMessageConverter.Convert(request);
+                    HttpResponse httpResponse = httpRequestDispatcher.Dispatch(httpRequest);
+                    var response = httpResponse.ToString();
+                    Log.Debug("Response is {0}", response);
+                    byte[] responseData = Encoding.UTF8.GetBytes(response);
 
-                            string productJson = $"{{\"id\": {product.Id}, \"title\": \"{product.Title}\", \"price\": {priceString}, \"photoUrl\": \"{product.PhotoUrl}\", \"description\": \"{product.Description}\"}},";
-                            jsonBuilder.Append(productJson);
-                        }
-                        jsonBuilder.Remove(jsonBuilder.Length - 1, 1);
-                        jsonBuilder.Append("]");
-
-                        response += jsonBuilder.ToString();
-
-                        Console.WriteLine(response);
-
-                        byte[] responseData = Encoding.UTF8.GetBytes(response);
-                        clientSocket.Send(responseData);
-                    }
-
+                    clientSocket.Send(responseData);
                     clientSocket.Shutdown(SocketShutdown.Send);
                     clientSocket.Close();
 
-                    Console.WriteLine("Response sent");
+                    Log.Information("Response sent");
                 }
-
             }
             catch (SocketException e)
             {
-                Console.WriteLine(e.ToString());
+                Log.Error(e, "SocketException occurred");
             }
             finally
             {
-                server.Stop();
+                server?.Stop();
             }
         }
     }

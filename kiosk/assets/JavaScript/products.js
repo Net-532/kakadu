@@ -1,13 +1,16 @@
 const fetchlink = "http://localhost:8085/products";
+const ordersEndpoint = "http://localhost:8085/orders";
 
 fetch(fetchlink)
     .then(res => res.json())
     .then(products => {
         const productList = document.getElementById('product-list');
         let row;
+        const column = 2
 
         products.forEach((product, index) => {
-            if (index % 2 === 0) {
+
+            if (index % column === 0) {
                 row = document.createElement('div');
                 row.classList.add('row');
                 productList.appendChild(row);
@@ -46,7 +49,15 @@ fetch(fetchlink)
 
             row.appendChild(productCard);
         });
+
+        document.getElementById('open-cart').addEventListener('click', function() {
+            renderCart();
+            const bsOffcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasBottom'));
+            bsOffcanvas.show();
+        });
     })
     .catch(error => {
         console.error('Error loading products:', error);
     });
+
+    

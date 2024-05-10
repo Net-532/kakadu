@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <orders>
 	<order>
 		<OrderNumber>1</OrderNumber>
@@ -6,36 +6,40 @@
 		<TotalPrice>580.00</TotalPrice>
 		<OrderDate>2024-03-02T10:00:00</OrderDate>
 		<Status>Processing</Status>
-		<OrderItems>
-			<OrderItem>
+		<items>
+			<item>
 				<Id>3</Id>
 				<ProductId>3</ProductId>
 				<Quantity>1</Quantity>
 				<Price>108.00</Price>
+				<Amount>108.00</Amount>
 				<OrderId>101</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</item>
+			<item>
 				<Id>5</Id>
 				<ProductId>5</ProductId>
 				<Quantity>2</Quantity>
 				<Price>99.00</Price>
+				<Amount>198.00</Amount>
 				<OrderId>101</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</item>
+			<item>
 				<Id>6</Id>
 				<ProductId>6</ProductId>
 				<Quantity>1</Quantity>
 				<Price>70.00</Price>
+				<Amount>70.00</Amount>
 				<OrderId>101</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</item>
+			<item>
 				<Id>8</Id>
 				<ProductId>8</ProductId>
 				<Quantity>3</Quantity>
 				<Price>68.00</Price>
+				<Amount>204.00</Amount>
 				<OrderId>101</OrderId>
-			</OrderItem>
-		</OrderItems>
+			</item>
+		</items>
 	</order>
 	<order>
 		<OrderNumber>2</OrderNumber>
@@ -43,36 +47,40 @@
 		<TotalPrice>542.00</TotalPrice>
 		<OrderDate>2024-03-02T10:15:00</OrderDate>
 		<Status>Processing</Status>
-		<OrderItems>
-			<OrderItem>
+		<items>
+			<item>
 				<Id>4</Id>
 				<ProductId>4</ProductId>
 				<Quantity>3</Quantity>
 				<Price>99.00</Price>
+				<Amount>297.00</Amount>
 				<OrderId>102</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</item>
+			<item>
 				<Id>7</Id>
 				<ProductId>7</ProductId>
 				<Quantity>1</Quantity>
 				<Price>39.00</Price>
+				<Amount>39.00</Amount>
 				<OrderId>102</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</item>
+			<item>
 				<Id>8</Id>
 				<ProductId>8</ProductId>
 				<Quantity>1</Quantity>
 				<Price>68.00</Price>
+				<Amount>68.00</Amount>
 				<OrderId>102</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</item>
+			<item>
 				<Id>9</Id>
 				<ProductId>9</ProductId>
 				<Quantity>2</Quantity>
 				<Price>69.00</Price>
+				<Amount>138.00</Amount>
 				<OrderId>102</OrderId>
-			</OrderItem>
-		</OrderItems>
+			</item>
+		</items>
 	</order>
 	<order>
 		<OrderNumber>3</OrderNumber>
@@ -80,36 +88,40 @@
 		<TotalPrice>713.00</TotalPrice>
 		<OrderDate>2024-03-02T10:30:00</OrderDate>
 		<Status>Processing</Status>
-		<OrderItems>
-			<OrderItem>
+		<items>
+			<item>
 				<Id>1</Id>
 				<ProductId>1</ProductId>
 				<Quantity>1</Quantity>
 				<Price>99.00</Price>
+				<Amount>99.00</Amount>
 				<OrderId>103</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</item>
+			<item>
 				<Id>2</Id>
 				<ProductId>2</ProductId>
 				<Quantity>1</Quantity>
 				<Price>83.00</Price>
+				<Amount>83.00</Amount>
 				<OrderId>103</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</item>
+			<item>
 				<Id>3</Id>
 				<ProductId>3</ProductId>
 				<Quantity>4</Quantity>
 				<Price>108.00</Price>
+				<Amount>432.00</Amount>
 				<OrderId>103</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</item>
+			<item>
 				<Id>5</Id>
 				<ProductId>5</ProductId>
 				<Quantity>1</Quantity>
 				<Price>99.00</Price>
+				<Amount>99.00</Amount>
 				<OrderId>103</OrderId>
-			</OrderItem>
-		</OrderItems>
+			</item>
+		</items>
 	</order>
 	<order>
 		<OrderNumber>4</OrderNumber>
@@ -117,36 +129,40 @@
 		<TotalPrice>434.00</TotalPrice>
 		<OrderDate>2024-03-02T10:45:00</OrderDate>
 		<Status>Processing</Status>
-		<OrderItems>
-			<OrderItem>
+		<items>
+			<item>
 				<Id>1</Id>
 				<ProductId>1</ProductId>
 				<Quantity>1</Quantity>
 				<Price>99.00</Price>
+				<Amount>99.00</Amount>
 				<OrderId>104</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</item>
+			<item>
 				<Id>2</Id>
 				<ProductId>2</ProductId>
 				<Quantity>2</Quantity>
 				<Price>83.00</Price>
+				<Amount>166.00</Amount>
 				<OrderId>104</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</item>
+			<item>
 				<Id>4</Id>
 				<ProductId>4</ProductId>
 				<Quantity>1</Quantity>
 				<Price>99.00</Price>
+				<Amount>99.00</Amount>
 				<OrderId>104</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</item>
+			<item>
 				<Id>6</Id>
 				<ProductId>6</ProductId>
 				<Quantity>1</Quantity>
 				<Price>70.00</Price>
+				<Amount>70.00</Amount>
 				<OrderId>104</OrderId>
-			</OrderItem>
-		</OrderItems>
+			</item>
+		</items>
 	</order>
 	<order>
 		<OrderNumber>5</OrderNumber>
@@ -154,35 +170,39 @@
 		<TotalPrice>662.00</TotalPrice>
 		<OrderDate>2024-03-02T11:00:00</OrderDate>
 		<Status>Processing</Status>
-		<OrderItems>
-			<OrderItem>
+		<items>
+			<item>
 				<Id>1</Id>
 				<ProductId>1</ProductId>
 				<Quantity>1</Quantity>
 				<Price>99.00</Price>
+				<Amount>99.00</Amount>
 				<OrderId>105</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</item>
+			<item>
 				<Id>3</Id>
 				<ProductId>3</ProductId>
 				<Quantity>3</Quantity>
 				<Price>108.00</Price>
+				<Amount>324.00</Amount>
 				<OrderId>105</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</item>
+			<item>
 				<Id>5</Id>
 				<ProductId>5</ProductId>
 				<Quantity>1</Quantity>
 				<Price>99.00</Price>
+				<Amount>99.00</Amount>
 				<OrderId>105</OrderId>
-			</OrderItem>
-			<OrderItem>
+			</item>
+			<item>
 				<Id>6</Id>
 				<ProductId>6</ProductId>
 				<Quantity>2</Quantity>
 				<Price>70.00</Price>
+				<Amount>140.00</Amount>
 				<OrderId>105</OrderId>
-			</OrderItem>
-		</OrderItems>
+			</item>
+		</items>
 	</order>
 </orders>
