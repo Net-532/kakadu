@@ -1,8 +1,6 @@
-﻿using Kakadu.Backend.Entities;
-using Kakadu.Backend.Repositories;
+﻿using Kakadu.Backend.Repositories;
 using Kakadu.Backend.Services;
-using System.Text;
-using WebServer.ProductAPI;
+using Kakadu.WebServer.ProductAPI;
 
 namespace Kakadu.WebServer
 {
