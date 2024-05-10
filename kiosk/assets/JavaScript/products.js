@@ -1,19 +1,25 @@
-
 const fetchlink = "http://localhost:8085/products";
 
 fetch(fetchlink)
     .then(res => res.json())
     .then(products => {
         const productList = document.getElementById('product-list');
+        let row;
 
-        for (let product of products) {
+        products.forEach((product, index) => {
+            if (index % 2 === 0) {
+                row = document.createElement('div');
+                row.classList.add('row');
+                productList.appendChild(row);
+            }
+
             const productCard = document.createElement('div');
             productCard.classList.add('col', 'col-md-6', 'mb-3', 'position-relative');
 
             const cardContent = `
                 <div class="card product shadow">
                     <div class="card-pre-body d-flex align-items-center justify-content-center" style="aspect-ratio: 1;">
-                        <img src="${product.photoUrl}" class="card-img-top img-fluid" alt="${product.title}" style="max-width: 80%;"> <!-- Змінили стилі для зображення -->
+                        <img src="${product.photoUrl}" class="card-img-top img-fluid" alt="${product.title}" style="max-width: 80%;"> 
                     </div>
                     <div class="card-body text-center mt-2"> <!-- Додали відступ зверху -->
                         <h5 class="card-title fw-bold">${product.title}</h5> <!-- Зробили текст жирним -->
@@ -38,8 +44,8 @@ fetch(fetchlink)
                     Id: ${id} `;
             });
 
-            productList.appendChild(productCard);
-        }
+            row.appendChild(productCard);
+        });
     })
     .catch(error => {
         console.error('Error loading products:', error);
