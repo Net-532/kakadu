@@ -1,7 +1,7 @@
 function createCartItemElement(item) {
     const itemElement = document.createElement('div');
     itemElement.innerHTML = `
-
+    <div>
     <img style="width: 70px" src="${item.photoUrl}">
     <button class="remove-button btn btn-close"></button>
     <div>Product Title: ${item.title}</div>
@@ -9,8 +9,8 @@ function createCartItemElement(item) {
     <div>Quantity: ${item.quantity}</div>
     <button class="increment-button btn btn-primary">+</button>
     <button class="decrement-button btn btn-primary">-</button>
-    
-    <hr>
+    </div>
+    <br>
     `;
 
     const incrementButton = itemElement.querySelector('.increment-button');
