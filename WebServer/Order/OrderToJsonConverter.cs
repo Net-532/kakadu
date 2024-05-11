@@ -23,7 +23,7 @@ namespace Kakadu.WebServer
                 jsonBuilder.Append($"\"title\": \"{productService.GetById(item.ProductId).Title}\",");
                 jsonBuilder.Append($"\"quantity\": {item.Quantity},");
                 jsonBuilder.Append($"\"price\": {item.Price.ToString(CultureInfo.InvariantCulture)},");
-                jsonBuilder.Append($"\"amount\": {item.Quantity * item.Price}");
+                jsonBuilder.Append($"\"amount\": {item.Amount.ToString(CultureInfo.InvariantCulture)}");
                 jsonBuilder.Append("},");
             }
 
