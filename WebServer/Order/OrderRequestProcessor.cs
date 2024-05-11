@@ -5,39 +5,47 @@ using Kakadu.Backend.Services;
 namespace Kakadu.WebServer.Order
 {
     public class OrderRequestProcessor
-
     {
         private readonly IOrderRepository _orderRepository;
-        private readonly ProductService _productService;
+        private readonly IProductService _productService;
 
-        public OrderRequestProcessor(IOrderRepository orderRepository, ProductService productService)
+        public OrderRequestProcessor(IOrderRepository orderRepository, IProductService productService)
         {
             _orderRepository = orderRepository;
             _productService = productService;
         }
-    
-        public void Process(OrderRequest orderRequest)
+
+        public HttpResponse Process(HttpRequest httpRequest)
         {
+            var orderRequest = new OrderRequest();
             var order = new Backend.Entities.Order
             {
                 Items = orderRequest.Items.Select((item, index) =>
                 {
-                    var product_price = _productService.GetById(item.ProductId).Price;
-                    var amount = product_price * item.Quantity;
+                    var product = _productService.GetById(item.ProductId);
                     return new OrderItem
                     {
                         Id = index + 1,
                         ProductId = item.ProductId,
                         Quantity = item.Quantity,
-                        Price = product_price,
-                        Amount = amount
+                        Price = product.Price,
+                        Amount = product.Price * item.Quantity
                     };
-                }).ToList(),
+                }
+                ).ToList(),
                 OrderDate = DateTime.Now
             };
 
             order.TotalPrice = order.Items.Sum(item => item.Amount);
+            order.Status = "Processing";
             _orderRepository.Save(order);
+
+            var response = new HttpResponse
+            {
+                Body = "{}"
+            };
+            return response;
         }
     }
 }
+
