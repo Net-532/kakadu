@@ -1,14 +1,19 @@
 function createCartItemElement(item) {
     const itemElement = document.createElement('div');
     itemElement.innerHTML = `
-    <div>
-    <img style="width: 70px" src="${item.photoUrl}">
-    <button class="remove-button btn btn-close"></button>
-    <div>Product Title: ${item.title}</div>
-    <div>Price: ${item.price}</div>
-    <div>Quantity: ${item.quantity}</div>
-    <button class="increment-button btn btn-primary">+</button>
-    <button class="decrement-button btn btn-primary">-</button>
+    <div id="cart-item-full">
+        <img src="${item.photoUrl}" id="cart-item-img">
+        <div id="cart-item-text">
+            <div id="cart-text-bold">${item.title}</div>
+            <div id="cart-text-small">${item.description}</div>
+        </div>
+        <div id="cart-item-price">${item.price} грн</div>
+        <div id="cart-item-buttons">
+            <button class="increment-button" id="cart-button-change">+</button>
+            <div id="cart-item-quantity">${item.quantity}</div>
+            <button class="decrement-button" id="cart-button-change">-</button>
+        </div>
+        <button class="remove-button btn btn-close" id="cart-remove-button"></button>
     </div>
     <br>
     `;
@@ -72,6 +77,15 @@ function removeItemFromCart(product) {
     renderCart();
 }
 
+function calculateTotalSum() {
+    let totalSum = 0;
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    cartItems.forEach(item => {
+        totalSum += item.price * item.quantity;
+    });
+    return totalSum;
+}
+
 function renderCart() {
     const offcanvasBody = document.querySelector('#offcanvasBottom .offcanvas-body');
     offcanvasBody.innerHTML = '';
@@ -87,7 +101,13 @@ function renderCart() {
         offcanvasBody.appendChild(emptyCart);
     }
 
-    const clearCartButton = document.getElementById('clear-cart');
+    const totalSumElements = document.querySelectorAll('.cart-numb');
+    totalSumElements.forEach(element => {
+        const totalSum = calculateTotalSum();
+        element.textContent = `${totalSum} грн`;
+    });
+
+    const clearCartButton = document.getElementById('cart-clear-button');
     clearCartButton.addEventListener('click', function(event) {
         localStorage.removeItem('cartItems');
         renderCart();
@@ -95,7 +115,7 @@ function renderCart() {
 
     const checkoutButton = document.createElement('button');
     checkoutButton.textContent = 'Оформити замовлення';
-    checkoutButton.classList.add('btn', 'btn-success', 'fixed-bottom', 'mx-auto', 'd-block');
+    checkoutButton.classList.add('cart-button-order');
     checkoutButton.addEventListener('click', function(event) {
         const items = JSON.parse(localStorage.getItem('cartItems')) || [];
         const sendRequest = {
@@ -121,6 +141,7 @@ function renderCart() {
 
     offcanvasBody.appendChild(checkoutButton);
 }
+
 
 
 

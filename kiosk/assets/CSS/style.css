@@ -1,8 +1,4 @@
-         #offcanvasBottom {
-              height: 75%;
-          }
-
-          #open-cart {
+          /*#open-cart {
             position: fixed;
             bottom: 20px;
             left: 50%;
@@ -12,7 +8,7 @@
         #clear-cart {
             margin-bottom: 10px;
             margin-right: 20px;
-        }
+        } */
 
         #add-alert {
             width: auto;
