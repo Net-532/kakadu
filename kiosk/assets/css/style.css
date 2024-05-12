@@ -1,3 +1,8 @@
+         :root {
+             --bs-body-font-size: 13px;
+             --bs-body-font-family: "Inter", sans-serif;
+         }
+         
          #offcanvasBottom {
               height: 75%;
           }
@@ -45,9 +50,6 @@
             width: 100px;
             height: 100px;
         }
-                :root {
-                    --bs-body-font-size: 13px;
-                    --bs-body-font-family: "Inter", sans-serif;
-                }
+                
                 
         
