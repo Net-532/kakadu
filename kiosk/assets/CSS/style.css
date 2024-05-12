@@ -1,4 +1,9 @@
-          /*#open-cart {
+:root {
+    --bs-body-font-size: 13px;
+    --bs-body-font-family: "Inter", sans-serif;
+}
+
+        /*#open-cart {
             position: fixed;
             bottom: 20px;
             left: 50%;
@@ -41,4 +46,3 @@
             width: 100px;
             height: 100px;
         }
-        
