@@ -28,3 +28,21 @@
             background-repeat: no-repeat;
             height: 110px;
         }
+
+        .card.product {
+            width: 150px;
+            height: 150px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .card.product:hover {
+            transform: scale(1.10);
+        }
+        
+        
+        .card.product img {
+            width: 100px;
+            height: 100px;
+        }
+        

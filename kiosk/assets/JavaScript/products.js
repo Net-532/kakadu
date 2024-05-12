@@ -33,6 +33,11 @@ fetch(fetchlink)
 
             productCard.innerHTML = cardContent;
 
+            const productCards = productCard.querySelectorAll('.card.product');
+            productCards.forEach(card => {
+                card.classList.add('p-1');
+            });
+
             productCard.addEventListener('click', function() {
                 const myModal = new bootstrap.Modal(document.getElementById('full_description_modal'));
                 const textinside = document.getElementById('full-card-text');
@@ -48,6 +53,12 @@ fetch(fetchlink)
             });
 
             row.appendChild(productCard);
+
+            const productImages = productCard.querySelectorAll(`img[src="${product.photoUrl}"]`);
+            productImages.forEach(image => {
+                image.removeAttribute('class');
+                image.removeAttribute('style');
+            });
         });
 
         document.getElementById('open-cart').addEventListener('click', function() {
@@ -58,6 +69,5 @@ fetch(fetchlink)
     })
     .catch(error => {
         console.error('Error loading products:', error);
-    });
-
+    }); 
     
