@@ -9,7 +9,7 @@ namespace Kakadu.Backend.Services
 
         Order GetById(int id);
 
-        void Save(Order order);
+        Order Save(Order order);
 
         void ChangeStatus(int id, string status);
 

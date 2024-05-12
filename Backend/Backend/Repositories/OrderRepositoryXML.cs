@@ -1,9 +1,9 @@
-﻿
-using Kakadu.Backend.Entities;
+﻿using Kakadu.Backend.Entities;
 using System;
 using System.Collections.Generic;
-using System.Globalization; 
-using System.Xml; 
+using System.Globalization;
+using System.Xml;
+using System.Linq;
 
 namespace Kakadu.Backend.Repositories
 {
@@ -38,21 +38,35 @@ namespace Kakadu.Backend.Repositories
             return orders;
         }
 
-        public void Save(Order order)
+        private int getNextOrderId()
+        {
+            List<Order> Orders = GetAll();
+
+            if (Orders != null && Orders.Count > 0)
+            {
+                int MaxNumber = Orders.Max(o => o.Id);
+                return MaxNumber + 1;
+            }
+
+            return 1;
+        }
+
+        public Order Save(Order order)
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(filePath);
 
             XmlNode root = doc.DocumentElement;
 
-
             XmlNode orderElement = doc.CreateElement("order");
 
             XmlNode orderNumberElement = doc.CreateElement("OrderNumber");
 
-            int nextOrderNumber = getNextOrderNumber();
-            orderNumberElement.InnerText = nextOrderNumber.ToString(); 
+            order.OrderNumber = getNextOrderNumber();
+            orderNumberElement.InnerText = order.OrderNumber.ToString();
             orderElement.AppendChild(orderNumberElement);
+
+            order.Id = getNextOrderId();
 
             XmlNode idElement = doc.CreateElement("Id");
             idElement.InnerText = order.Id.ToString();
@@ -70,18 +84,18 @@ namespace Kakadu.Backend.Repositories
             statusElement.InnerText = order.Status;
             orderElement.AppendChild(statusElement);
 
-            
-            XmlNode itemsElement = doc.CreateElement("Items");
+
+            XmlNode itemsElement = doc.CreateElement("items");
             foreach (OrderItem item in order.Items)
             {
-                XmlNode itemElement = doc.CreateElement("Item");
+                XmlNode itemElement = doc.CreateElement("item");
 
                 XmlNode itemIdElement = doc.CreateElement("Id");
                 itemIdElement.InnerText = item.Id.ToString();
                 itemElement.AppendChild(itemIdElement);
 
                 XmlNode orderIdElement = doc.CreateElement("OrderId");
-                orderIdElement.InnerText = item.OrderId.ToString();
+                orderIdElement.InnerText = order.Id.ToString();
                 itemElement.AppendChild(orderIdElement);
 
                 XmlNode productIdElement = doc.CreateElement("ProductId");
@@ -107,6 +121,8 @@ namespace Kakadu.Backend.Repositories
             root.AppendChild(orderElement);
 
             doc.Save(filePath);
+            return order;
+
         }
 
 
@@ -132,23 +148,22 @@ namespace Kakadu.Backend.Repositories
             order.OrderDate = DateTime.Parse(node.SelectSingleNode("OrderDate").InnerText);
             order.Status = node.SelectSingleNode("Status").InnerText;
 
-          
-            XmlNodeList itemNodes = node.SelectNodes("Items/Item");
-           
-                foreach (XmlNode itemNode in itemNodes)
+
+            XmlNodeList itemNodes = node.SelectNodes("items/item");
+
+            foreach (XmlNode itemNode in itemNodes)
+            {
+                OrderItem item = new OrderItem
                 {
-                    OrderItem item = new OrderItem
-                    {
-                        Id = int.Parse(itemNode.SelectSingleNode("Id").InnerText),
-                        ProductId = int.Parse(itemNode.SelectSingleNode("ProductId").InnerText),
-                        Quantity = int.Parse(itemNode.SelectSingleNode("Quantity").InnerText),
-                        Price = decimal.Parse(itemNode.SelectSingleNode("Price").InnerText, CultureInfo.InvariantCulture),
-                        Amount = decimal.Parse(itemNode.SelectSingleNode("Amount").InnerText, CultureInfo.InvariantCulture),
-                        OrderId = order.Id
-                    };
-                    order.Items.Add(item);
-                }
-            
+                    Id = int.Parse(itemNode.SelectSingleNode("Id").InnerText),
+                    ProductId = int.Parse(itemNode.SelectSingleNode("ProductId").InnerText),
+                    Quantity = int.Parse(itemNode.SelectSingleNode("Quantity").InnerText),
+                    Price = decimal.Parse(itemNode.SelectSingleNode("Price").InnerText, CultureInfo.InvariantCulture),
+                    Amount = decimal.Parse(itemNode.SelectSingleNode("Amount").InnerText, CultureInfo.InvariantCulture),
+                    OrderId = order.Id
+                };
+                order.Items.Add(item);
+            }
 
             return order;
         }
@@ -156,14 +171,14 @@ namespace Kakadu.Backend.Repositories
         public int getNextOrderNumber()
         {
             List<Order> Orders = GetAll();
-            int MaxNumber= 0;
+            int MaxNumber = 0;
             foreach (Order o in Orders)
             {
                 if (o.OrderNumber > MaxNumber)
                     MaxNumber = o.OrderNumber;
             }
 
-     
+
             return MaxNumber + 1;
         }
 

@@ -35,11 +35,10 @@ namespace Kakadu.Backoffice.Views
             InitializeComponent();
 
             _SaveItem = SaveItem;
-            
-            _selectedItem = new Product();
-            _selectedItem.Id = 0;
 
-            IdTextBox.Text = _selectedItem.Id.ToString();
+            _selectedItem = new Product();
+
+            IdTextBox.Text = "Automated";
 
             isNew = true;
             
