@@ -1,26 +1,35 @@
-body {
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0; 
+    background-color: #ffffff;
+    font-family: 'Inter', sans-serif;
 }
 
-.container {
+.row {
     display: flex;
-    flex-direction: row; 
+    justify-content: center; 
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.8); 
-    padding: 20px;
+    width: 100%;
 }
 
-.container .col {
-    flex: 1;
+.col {
+
+    text-align: center; 
+}
+
+img {
+    max-width: 100%; 
+    display: block; 
+    margin: 0 auto; 
+}
+h1 {
+    margin-right: 160px; 
+}
+.col:first-child {
+    margin-right: 20px; 
+}
+.col h1 {
     text-align: left; 
-    
-}
-
-.container img {
-    max-width: 20%; 
-}
-
+} 
