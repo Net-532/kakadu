@@ -22,6 +22,7 @@ namespace Kakadu.Backend.Repositories
             }
             return null;
         }
+
         public Order GetByNumber(int number) {
             XmlDocument doc = new XmlDocument();
             doc.Load(filePath);
@@ -134,7 +135,6 @@ namespace Kakadu.Backend.Repositories
             return order;
 
         }
-
 
         public void ChangeStatus(int id, string status)
         {
