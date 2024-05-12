@@ -46,11 +46,15 @@ fetch(fetchlink)
 
         myModal.show();
         textinside.innerHTML = `
-                    <img src="${product.photoUrl}" alt="${product.title}" style="max-width: 100%;">
+                    <img src="${product.photoUrl}" alt="${product.title}" style="max-width: 100%;"> <br>
                     Name: ${product.title} <br>
                     Price: ${product.price} <br>
                     Description: ${product.description} <br>
-                    Id: ${id} `;
+                    Id: ${id} <br>
+                    <button data-id="${product.id}" type="button" class="add-to-cart-button btn btn-outline-primary">Add to cart</button> `;                  
+                    
+        const addToCartButton = document.querySelector('.add-to-cart-button');
+        addToCartButton.addEventListener('click', () => addToCart(product));                   
       });
 
       row.appendChild(productCard);
