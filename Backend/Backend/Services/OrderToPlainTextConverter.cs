@@ -7,41 +7,35 @@ namespace Kakadu.Backend.Services
 {
     public class OrderToPlainTextConverter
     {
-        private readonly IProductRepository _productRepository;
+        private readonly IProductService _productService;
        
 
-        public OrderToPlainTextConverter(IProductRepository productRepository)
+        public OrderToPlainTextConverter(IProductService productService)
         {
-            _productRepository = productRepository;
-           
+            _productService = productService;
         }
-        public static string Convert(Order order, IProductRepository productRepository)
+
+        public string Convert(Order order, IProductService productService)
         {
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine("           Kakadu");
             sb.AppendLine("Адреса: вул. Павла Каспрука 2");
             sb.AppendLine();
-            sb.AppendLine("            Чек");
+            sb.AppendLine($"            Чек №: {order.Id}");
             sb.AppendLine("********************************");
             sb.AppendLine($"Дата: {order.OrderDate:dd.MM.yyyy}");
             sb.AppendLine($"Час: {order.OrderDate:HH:mm}");
             sb.AppendLine("********************************");
 
+            int maxWidth = 28;
             foreach (var item in order.Items)
             {
-                int maxWidth = 28; 
-                Product product = productRepository.GetById(item.ProductId);
-                string title = product != null ? product.Title : $" {item.ProductId}";
-
-                string[] titleParts = title.Split(' ');
-
-                foreach (string part in titleParts)
-                {
-                    int padding = maxWidth - part.Length - item.Price.ToString("0.00").Length;
-                    string spaces = new string(' ', padding);
-                    sb.AppendLine($"{part}{spaces}{item.Price:0.00} грн");
-                }
+                Product product = productService.GetById(item.ProductId);
+                string title = product.Title;
+                int padding = maxWidth - title.Length - item.Price.ToString("0.00").Length;
+                string spaces = new string(' ', padding);
+                sb.AppendLine($"{title}{spaces}{item.Price:0.00}");
             }
 
             sb.AppendLine("--------------------------------");
