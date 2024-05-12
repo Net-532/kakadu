@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Kakadu.WebServer
 {
-    internal class ProductToJsonConverter
+    public class ProductToJsonConverter
     {
         public string Convert(Product product)
         {
