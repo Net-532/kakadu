@@ -11,37 +11,27 @@ namespace Kakadu.WebServer.Order
                 throw new ArgumentException("JSON string is empty");
 
             var orderRequest = new OrderRequest();
-            var rootObj = GetJsonObject( json);
+            var rootObj = GetJsonObject(json);
 
-           
-                var itemsJson = GetJsonArray(rootObj, "items");
-                if (itemsJson != null)
-                {
-                    while (itemsJson.Length > 0)
-                    {
-                        var itemJson = GetJsonObject( itemsJson);
-                        if (itemJson == null)
-                            break;
 
-                        var orderItemRequest = new OrderRequest.OrderItemRequest();
+            var itemsJson = GetJsonArray(rootObj, "items");
+            foreach (var item in itemsJson)
+            {
+                var orderItemRequest = new OrderRequest.OrderItemRequest();
+                var productIdJson = GetJsonProperty(item, "productId");
+                if (productIdJson.HasValue)
+                    orderItemRequest.ProductId = productIdJson.Value;
 
-                        var productIdJson = GetJsonProperty(itemJson, "productId");
-                        if (productIdJson.HasValue)
-                            orderItemRequest.ProductId = productIdJson.Value;
-
-                        var quantityJson = GetJsonProperty(itemJson, "quantity");
-                        if (quantityJson.HasValue)
-                            orderItemRequest.Quantity = quantityJson.Value;
-
-                        orderRequest.Items.Add(orderItemRequest);
-                    }
-                }
-            
+                var quantityJson = GetJsonProperty(item, "quantity");
+                if (quantityJson.HasValue)
+                    orderItemRequest.Quantity = quantityJson.Value;
+                orderRequest.Items.Add(orderItemRequest);
+            }
 
             return orderRequest;
         }
 
-        private string GetJsonArray(string json, string propertyName)
+        private string[] GetJsonArray(string json, string propertyName)
         {
             var parts = json.Split($"\"{propertyName}\":");
 
@@ -54,7 +44,7 @@ namespace Kakadu.WebServer.Order
             if (!value.StartsWith("[") || !value.EndsWith("]"))
                 throw new ArgumentException("Invalid JSON array format");
 
-            return value.Substring(1, value.Length - 2);
+            return value.Substring(1, value.Length - 2).Trim().Split("},");
         }
 
         private string GetJsonObject(string json)
@@ -69,35 +59,26 @@ namespace Kakadu.WebServer.Order
 
         private int? GetJsonProperty(string json, string propertyName)
         {
-            var start = json.IndexOf($"\"{propertyName}\":", StringComparison.OrdinalIgnoreCase);
-            if (start == -1)
-                return null;
-
-            start += propertyName.Length + 3;
-            int end;
-
-            if (json[start] == '"')
+            var poperties = json.Split(',');
+            foreach (var poperty in poperties)
             {
-                // Значення обмежене лапками
-                start++;
-                end = FindClosingQuote(json, start);
-                if (end == -1)
-                    return null;
-            }
-            else
-            {
-                // Значення не обмежене лапками
-                end = json.IndexOfAny(new char[] { ',', '}' }, start);
-                if (end == -1)
-                    return null;
-            }
 
-            var value = json.Substring(start, end - start).Trim();
+                var parts = poperty.Split($"\"{propertyName}\":");
 
-            if (int.TryParse(value, out var result))
-                return result;
-            else
-                return null;
+                if (parts.Length != 2)
+                {
+                    continue;
+                }
+
+                string value = parts[1].Trim().Trim('}');
+
+                if (int.TryParse(value, out var result))
+                    return result;
+                else
+                    return null;
+
+            }
+            throw new ArgumentException($"Property '{propertyName}' not found");
         }
 
         private int FindClosingBracket(string json, int start)
@@ -120,27 +101,6 @@ namespace Kakadu.WebServer.Order
             return -1;
         }
 
-        private int FindClosingQuote(string json, int start)
-        {
-            bool escaped = false;
-
-            for (var i = start; i < json.Length; i++)
-            {
-                if (json[i] == '\\')
-                {
-                    escaped = !escaped;
-                }
-                else if (json[i] == '"' && !escaped)
-                {
-                    return i;
-                }
-                else
-                {
-                    escaped = false;
-                }
-            }
-
-            return -1;
-        }
+       
     }
 }
