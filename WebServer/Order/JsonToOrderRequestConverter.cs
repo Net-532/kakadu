@@ -81,26 +81,7 @@ namespace Kakadu.WebServer.Order
             throw new ArgumentException($"Property '{propertyName}' not found");
         }
 
-        private int FindClosingBracket(string json, int start)
-        {
-            var bracketStack = new Stack<char>();
-            bracketStack.Push(json[start]);
-
-            for (var i = start + 1; i < json.Length; i++)
-            {
-                if (json[i] == '{')
-                    bracketStack.Push('{');
-                else if (json[i] == '}')
-                {
-                    bracketStack.Pop();
-                    if (bracketStack.Count == 0)
-                        return i;
-                }
-            }
-
-            return -1;
-        }
-
+      
        
     }
 }
