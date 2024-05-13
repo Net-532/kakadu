@@ -19,23 +19,18 @@ fetch(fetchlink)
       productCard.classList.add("col", "col-md-6", "mb-3", "position-relative");
 
       const cardContent = `
-                <div class="card product shadow">
-                    <div class="card-pre-body d-flex align-items-center justify-content-center">
-                        <img src="${product.photoUrl}" class="card-img-top img-fluid" alt="${product.title}" style="max-width: 80%;"> 
-                    </div>
-                    <div class="d-flex flex-grow-1 align-items-center justify-content-center"> <!-- Додали відступ зверху -->
-                        <span class="card-title fw-bold text-center">${product.title}</span> <!-- Зробили текст жирним -->
-                    </div>
-                    <button class="btn btn-dark btn-price btn-lg position-absolute top-0 end-0">${product.price}</button>
-                </div>
-            `;
+        <div class="card product shadow p-1 position-relative">
+        <span class="badge bg-dark position-absolute top-0 end-0 product-price p-2">${product.price}</span>
+          <div class="card-pre-body d-flex align-items-center justify-content-center ">
+            <img src="${product.photoUrl}" alt="${product.title}"> 
+          </div>
+          <div class="d-flex flex-grow-1 align-items-center justify-content-center">
+            <span class="card-title fw-bold text-center">${product.title}</span>
+          </div>
+        </div>
+      `;
 
       productCard.innerHTML = cardContent;
-
-      const productCards = productCard.querySelectorAll(".card.product");
-      productCards.forEach((card) => {
-        card.classList.add("p-1");
-      });
 
       productCard.addEventListener("click", function () {
         const myModal = new bootstrap.Modal(
@@ -58,14 +53,6 @@ fetch(fetchlink)
       });
 
       row.appendChild(productCard);
-
-      const productImages = productCard.querySelectorAll(
-        `img[src="${product.photoUrl}"]`
-      );
-      productImages.forEach((image) => {
-        image.removeAttribute("class");
-        image.removeAttribute("style");
-      });
     });
 
     document.getElementById("open-cart").addEventListener("click", function () {
