@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Kakadu.WebServer.Order
+﻿namespace Kakadu.WebServer.Order
 {
     public class JsonToOrderRequestConverter
     {
