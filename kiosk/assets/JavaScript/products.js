@@ -19,16 +19,16 @@ fetch(fetchlink)
       productCard.classList.add("col", "col-md-6", "mb-3");
 
       const cardContent = `
-                <div class="card product shadow p-1 position-relative">
-                    <span class="badge bg-dark position-absolute top-0 end-0" style="font-size: 1rem;">${product.price}</span>
-                    <div class="card-pre-body d-flex align-items-center justify-content-center">
-                        <img src="${product.photoUrl}" alt="${product.title}"> 
-                    </div>
-                    <div class="d-flex flex-grow-1 align-items-center justify-content-center">
-                        <span class="card-title fw-bold text-center">${product.title}</span>
-                    </div>
-                </div>
-            `;
+        <div class="card product shadow p-1 position-relative">
+        <span class="badge bg-dark position-absolute top-0 end-0 product-price p-2">${product.price}</span>
+          <div class="card-pre-body d-flex align-items-center justify-content-center ">
+            <img src="${product.photoUrl}" alt="${product.title}"> 
+          </div>
+          <div class="d-flex flex-grow-1 align-items-center justify-content-center">
+            <span class="card-title fw-bold text-center">${product.title}</span>
+          </div>
+        </div>
+      `;
 
       productCard.innerHTML = cardContent;
 
@@ -41,11 +41,12 @@ fetch(fetchlink)
 
         myModal.show();
         textinside.innerHTML = `
-                    <img src="${product.photoUrl}" alt="${product.title}" style="max-width: 100%;">
-                    Name: ${product.title} <br>
-                    Price: ${product.price} <br>
-                    Description: ${product.description} <br>
-                    Id: ${id} `;
+          <img src="${product.photoUrl}" alt="${product.title}" style="max-width: 100%;">
+          Name: ${product.title} <br>
+          Price: ${product.price} <br>
+          Description: ${product.description} <br>
+          Id: ${id} 
+        `;
       });
 
       row.appendChild(productCard);
