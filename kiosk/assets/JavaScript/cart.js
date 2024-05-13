@@ -1,7 +1,7 @@
 function createCartItemElement(item) {
     const itemElement = document.createElement('div');
+    itemElement.setAttribute('id', 'cart-item-full');
     itemElement.innerHTML = `
-    <div id="cart-item-full">
         <img src="${item.photoUrl}" id="cart-item-img">
         <div id="cart-item-text">
             <div id="cart-text-bold">${item.title}</div>
@@ -13,9 +13,7 @@ function createCartItemElement(item) {
             <div id="cart-item-quantity">${item.quantity}</div>
             <button class="decrement-button" id="cart-button-change">-</button>
         </div>
-        <button class="remove-button btn btn-close" id="cart-remove-button"></button>
-    </div>
-    <br>
+        <button class="remove-button btn btn-close mb-3" id="cart-remove-button"></button>
     `;
 
     const incrementButton = itemElement.querySelector('.increment-button');
@@ -113,9 +111,7 @@ function renderCart() {
         renderCart();
     });
 
-    const checkoutButton = document.createElement('button');
-    checkoutButton.textContent = 'Оформити замовлення';
-    checkoutButton.classList.add('cart-button-order');
+    const checkoutButton = document.getElementById('cart-button-order');
     checkoutButton.addEventListener('click', function(event) {
         const items = JSON.parse(localStorage.getItem('cartItems')) || [];
         const sendRequest = {
@@ -138,8 +134,6 @@ function renderCart() {
             console.error('Помилка: ', error);
         });
     });
-
-    offcanvasBody.appendChild(checkoutButton);
 }
 
 
