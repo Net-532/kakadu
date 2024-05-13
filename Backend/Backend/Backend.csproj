@@ -57,7 +57,8 @@
     <Compile Include="Services\UserNotFoundException.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\PrintService.cs" />
- </ItemGroup>
+    <Compile Include="Services\OrderToPlainTextConverter.cs" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="data\orders.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -28,6 +28,12 @@ namespace Kakadu.Backend.Services
             return order;
         }
 
+        public Order GetByNumber(int number)
+        {
+            var order = orderRepository.GetByNumber(number);
+            return order;
+        }
+
         public Order Save(Order order)
         {
             return orderRepository.Save(order); 
