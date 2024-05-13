@@ -3,18 +3,6 @@
     --bs-body-font-family: "Inter", sans-serif;
 }
 
-        /*#open-cart {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        #clear-cart {
-            margin-bottom: 10px;
-            margin-right: 20px;
-        } */
-
         #add-alert {
             width: auto;
             position: fixed;
