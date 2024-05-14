@@ -1,5 +1,6 @@
 ﻿using Kakadu.Backend.Repositories;
 using Kakadu.Backend.Services;
+using Kakadu.WebServer.OrderAPI;
 using Kakadu.WebServer.ProductAPI;
 
 namespace Kakadu.WebServer
@@ -18,6 +19,7 @@ namespace Kakadu.WebServer
         private static IProductService productService = new ProductService(productRepository);
         private static IOrderRepository orderRepository = new OrderRepositoryXML();
         private static ProductRequestProcessor productRequestProcessor = new ProductRequestProcessor(productService, new ProductToJsonConverter());
+        private static PrintOrderRequestProcessor printOrderRequestProcessor = new PrintOrderRequestProcessor();
 
         public HttpResponse Dispatch(HttpRequest httpRequest)
         {
@@ -30,6 +32,9 @@ namespace Kakadu.WebServer
                     break;
                 case "/orders":
                     response = ProcessOrdersRequest(httpRequest);
+                    break;
+                case "/print":
+                    response = printOrderRequestProcessor.Process(httpRequest);
                     break;
                 default:
                     response.Status = HttpStatus.NotFound;

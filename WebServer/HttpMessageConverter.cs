@@ -32,8 +32,13 @@
                     throw new ArgumentException("Невідомий метод запиту");
             }
 
-            request.RootPath = requestLine[1];
+            string[] requestPathAndValues = requestLine[1].Split('?');
+            request.RootPath = requestPathAndValues[0];
 
+            string[] valueSplit = requestPathAndValues[1].Split('=');
+            string value = valueSplit[1];
+
+            request.Parameters["orderId"] = value;
 
             int emptyLineIndex = Array.IndexOf(lines, "");
 

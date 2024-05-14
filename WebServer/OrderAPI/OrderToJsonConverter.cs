@@ -3,7 +3,7 @@ using System.Globalization;
 using Kakadu.Backend.Services;
 using Kakadu.Backend.Repositories;
 
-namespace Kakadu.WebServer
+namespace Kakadu.WebServer.OrderAPI
 {
     public class OrderToJsonConverter
     {
