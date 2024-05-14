@@ -28,20 +28,26 @@ namespace Kakadu.Backend.Services
             return order;
         }
 
-        public void Save(Order order)
+        public Order GetByNumber(int number)
         {
-            orderRepository.Save(order);
+            var order = orderRepository.GetByNumber(number);
+            return order;
+        }
+
+        public Order Save(Order order)
+        {
+            return orderRepository.Save(order); 
         }
 
         public void ChangeStatus(int id, string status)
         {
             var order = orderRepository.GetById(id);
-            if(order == null)
+            if (order == null)
             {
                 throw new OrderNotFoundException($"Замовлення з вказаним id {id} не знайдено");
             }
 
-            orderRepository.ChangeStatus(id, status);   
+            orderRepository.ChangeStatus(id, status);
         }
     }
 }

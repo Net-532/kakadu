@@ -1,82 +1,370 @@
 <products>
     <product>
         <Id>1</Id>
-        <Title>The Smokey Burger</Title>
-        <Price>99.00</Price>
-        <PhotoUrl>https://api.getorder.biz/product/192546/image/356/650/420/75147984-685f-4889-8e81-7b01e38c62df.webp?v=2024030113</PhotoUrl>
-        <Description>Соковита котлета під сиром Hochland з листям салату та карамелізованю цибулею. Все це в ніжних булочках з кунжутом та соусом Айолі зробить твій настрій краще.</Description>
+        <Title>Чікен бургер</Title>
+        <Price>67.00</Price>
+        <PhotoUrl>https://lh3.googleusercontent.com/d/1jA66msjb0I1BPS7OU-IAmxz23rz8872e=h300</PhotoUrl>
+        <Description>Соковита котлета під сиром Hochland з листям салату та карамелізованю цибулею. Все це в ніжних булочках з смачною котлетою, приготована до золотистої скоринки, покрита ароматним сиром Hochland. Додаємо хрустку зелень салату та карамелізовану цибулю для неперевершеного смаку. Все це між двома пухкими булочками, посипаними кунжутом, із додаванням ніжного соусу Айолі.</Description>
     </product>
   
     <product>
         <Id>2</Id>
-        <Title>Біг-Бен</Title>
-        <Price>83.00</Price>
-        <PhotoUrl>https://api.getorder.biz/product/192550/image/356/650/420/e6291967-49e9-439c-abf6-e2829faa6574.webp?v=2024030113</PhotoUrl>
+        <Title>Гриль бургер</Title>
+        <Price>70.00</Price>
+        <PhotoUrl>https://lh3.googleusercontent.com/d/1QX0pH43FqCB4HktppPCCUEu_8yx3SECq=h300</PhotoUrl>
         <Description>Соковите куряче філе обсмажене на грилі в поєднанні з курячою котлетою, листя свіжого салату та скибочка помідору, заправлені вишуканим соусом Франсуа на булочці з кунжутом. Найкраще втамує голод - швидко та смачно.</Description>
     </product>
 
  <product>
         <Id>3</Id>
-        <Title>Бургер №1</Title>
-        <Price>108.00</Price>
-        <PhotoUrl>https://api.getorder.biz/product/192549/image/356/650/420/3b77c53e-7163-4b85-940f-59c78282f0ac.webp?v=2024030113</PhotoUrl>
-        <Description>Класична куряча котлета з двома шматочками сиру Hochland, листя салату, хрустке куряче філе, цибуля під соусом Чікен та Репіш завернуті в дві ніжні булочки з кунжутом.</Description>
+        <Title>Роял Делюкс</Title>
+        <Price>115.00</Price>
+        <PhotoUrl>https://lh3.googleusercontent.com/d/1hgIeis5se7bw1YHFkLt-f68D6IUZLMPb=h300</PhotoUrl>
+        <Description>Яловича котлетка, огорнута сиром чедер, а також свіжий салат, томат, мариновані огірочки, цибуля та мікс гірчиці, кетчупа й соуса створюють незабутній смак.</Description>
     </product>
 
  <product>
         <Id>4</Id>
-        <Title>Бургер з рваною свининою</Title>
-        <Price>99.00</Price>
-        <PhotoUrl>https://api.getorder.biz/product/192551/image/356/650/420/78d80f6a-4e52-4866-8d09-700398340a23.webp?v=2024030113</PhotoUrl>
-        <Description>Соковита свинина сувід, свіжа рукола та помідор, маринована цибуля та сир, під двома видами соусів: Андалузьким та соусом Дяді Бена</Description>
+        <Title>Black бургер</Title>
+        <Price>129.00</Price>
+        <PhotoUrl>https://lh3.googleusercontent.com/d/1J7-5S620DpQRxRs8fwaueElDpy71CyiU=h300</PhotoUrl>
+        <Description>Булочка з чорнилом каракатиці, соус тартар, соус гірчичний, цибуля маринована, огірок маринований, листя салату, сир чедер, котлета свинна власного приготування.</Description>
     </product>
 
  <product>
         <Id>5</Id>
-        <Title>Бургер Пестато</Title>
-        <Price>99.00</Price>
-        <PhotoUrl>https://api.getorder.biz/product/192553/image/356/650/420/d99116a1-ae3e-4b81-a137-01dfa0d7bf04.webp?v=2024030113</PhotoUrl>
-        <Description>Ніжна котлета з яловичини, помідор з запашною руколою та сиром Hochland під неймовірним поєднанням соусів - Песто, Базилік з Бальзамічним кремом.</Description>
+        <Title>Black бургер з беконом</Title>
+        <Price>150.00</Price>
+        <PhotoUrl>https://lh3.googleusercontent.com/d/1ACtvaw85vvOi_lcAy0I2HVnS7S1DGYQJ=h300</PhotoUrl>
+        <Description>Булочка з чорнилом каракатиці, соус тартар, соус гірчичний, цибуля маринована, огірок маринований, листя салату, помідори, бекон, сир чедер, котлета свинна власного приготування.</Description>
     </product>
 
  <product>
         <Id>6</Id>
-        <Title>Вейкапер</Title>
-        <Price>70.00</Price>
-        <PhotoUrl>https://api.getorder.biz/product/192552/image/356/650/420/bb2efba8-df2c-4d30-8c77-c2d3d0f54ca5.webp?v=2024030113</PhotoUrl>
-        <Description>Твій неймовірний сніданок - це запашна булочка з листям салату, помідорою, хрумким беконом з шматочком Голандського сиру, смаженим яйцем і все це під соусом Франсуа.</Description>
+        <Title>Чікен бургер з беконом</Title>
+        <Price>97.00</Price>
+        <PhotoUrl>https://lh3.googleusercontent.com/d/1YIzsVmBA8zbm6K1PGi_Ksu0lP-KENyxD=h300</PhotoUrl>
+        <Description>Соковита котлета під сиром Hochland з листям салату та карамелізованю цибулею. Все це в ніжних булочках з смачною котлетою, приготована до золотистої скоринки, покрита ароматним сиром Hochland. Додаємо хрустку зелень салату та карамелізовану цибулю, не забуваємо про бекон для неперевершеного смаку. Все це між двома пухкими булочками, посипаними кунжутом, із додаванням ніжного соусу Айолі.</Description>
     </product>
 
  <product>
         <Id>7</Id>
-        <Title>Гамбургер</Title>
-        <Price>39.00</Price>
-        <PhotoUrl>https://api.getorder.biz/product/200241/image/356/650/420/a77785ae-204e-43c2-a7ab-95f1a7382d78.webp?v=2024030113</PhotoUrl>
-        <Description>Класична куряча котлета на м'якій булочці з кунжутом заправленій кетчупом та Французьким соусом із гірчицею, цибулею та шматочками маринованих огірків.</Description>
+        <Title>Воппер</Title>
+        <Price>50.00</Price>
+        <PhotoUrl>https://lh3.googleusercontent.com/d/1LlNzae2jcQOa2rTuUjMUW_T3ePuCzlWG=h300</PhotoUrl>
+        <Description>Цей апетитний бургер складається з соковитої котлети з гриля, покритої розтопленим сиром, що стікає на шар смаженої картоплі. Все це знаходиться між двома м’якими булочками з кунжутом. Цей бургер не лише смачний, а й візуально привабливий!</Description>
     </product>
 
  <product>
         <Id>8</Id>
-        <Title>Гриль-бургер</Title>
-        <Price>68.00</Price>
-        <PhotoUrl>https://api.getorder.biz/product/192555/image/356/650/420/5674edfd-9953-46f7-8034-37627547c47f.webp?v=2024030113</PhotoUrl>
-        <Description>Овочевий мікс: листя салату та скибочка помідору. Соковите куряче філе обсмажене на грилі. Булочка з кунжутом заправлена соусом Барбекю.</Description>
+        <Title>Біг бургер</Title>
+        <Price>145.00</Price>
+        <PhotoUrl>https://lh3.googleusercontent.com/d/1xGpLRcZaj1r7yCnR7iKjYdS1hxaSwMSx=h300</PhotoUrl>
+        <Description>Цей ситний двійний бургер має дві котлети з яловичини, покриті розтопленим сиром, що надає бургеру м’якості та кремовості. Під котлетами видно нарізані огірки, які мають яскравий зелений колір та глянцеву текстуру. Зверху додано свіжий та хрусткий салат, змішаний з соусом, що робить його кремовим.</Description>
     </product>
 
  <product>
         <Id>9</Id>
-        <Title>Дабл-бургер</Title>
-        <Price>69.00</Price>
-        <PhotoUrl>https://api.getorder.biz/product/192557/image/356/650/420/480cf839-2750-43d9-883a-e0ac8f316e55.webp?v=2024030113</PhotoUrl>
-        <Description>Дві курячі котлети, шматочок сиру Hochland, пікантна цибуля, шматочки маринованих огірків в булочці з кунжутом заправленій кетчупом та Французьким соусом з гірчицею.</Description>
+        <Title>Дабл чіз бургер</Title>
+        <Price>200.00</Price>
+        <PhotoUrl>https://lh3.googleusercontent.com/d/1t2HQ3GKgVgSVGI3iHgrjKULW9047GGkS=h300</PhotoUrl>
+        <Description>«Кожен, хто любить хороший бургер, має слабкість до Дабл чіза», — каже наш шеф-кухар. У своїй оді класичному фаст-фуду він замінює середню булочку на хрусткі смажені зелені помідори, які вбирають усі пікантні соки яловичини, плавленого сиру та солодкого майонезу чилі.</Description>
     </product>
 
  <product>
         <Id>10</Id>
-        <Title>ОЗЗБургер</Title>
-        <Price>106.00</Price>
-        <PhotoUrl>https://api.getorder.biz/product/192560/image/356/650/420/19e08a59-6cc4-46f5-958b-47490aac4f65.webp?v=2024030113</PhotoUrl>
-        <Description>Максимальна кількість смаку - це дві котлети із соковитої телятини, SPECIAL соус Реліш, шматочок сиру Hochland, пікантна цибуля та соус Пікантний.</Description>
+        <Title>Бургер Філадельфія</Title>
+        <Price>210.00</Price>
+        <PhotoUrl>https://lh3.googleusercontent.com/d/1LlNzae2jcQOa2rTuUjMUW_T3ePuCzlWG=h300</PhotoUrl>
+        <Description>Всередині бургеру знаходиться м’який та липкий білий рис, що обрамляє яскраві інгредієнти: оранжеву ікру риби, скибочки зеленого авокадо та кремову начинку, що може бути майонезом або сиром крем-чіз. Цей бургер може стати чудовим доповненням до вашого столу, пропонуючи не лише смакову насолоду, а й візуальну привабливість.</Description>
     </product>
-  
+
+	<product>
+		<Id>11</Id>
+		<Title>Чікен рол</Title>
+		<Price>90.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1SYR1iLraKgJ_TPIzIsYh9fiECy5DyTcT=h300</PhotoUrl>
+		<Description>Загорнуті в тонкий лаваш шматочки курятини, свіжі помідори та хрумкий салат- латук – і все це заправлене пікантним гірчично-медовим соусом.</Description>
+	</product>
+
+	<product>
+		<Id>12</Id>
+		<Title>Дабл чікен рол</Title>
+		<Price>100.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1HpInr5TCGsmSsvzeGcdZsxlpWamakLr3=h300</PhotoUrl>
+		<Description>Загорнуті в тонкий лаваш шматочки курятини, свіжі помідори та хрумкий салат- латук – і все це заправлене пікантним гірчично-медовим соусом.</Description>
+	</product>
+	
+	<product>
+		<Id>13</Id>
+		<Title>Рол з креветками</Title>
+		<Price>95.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1K4Fo8ZAk0O_6Tk822fwm5tqRk21lbIjk=h300</PhotoUrl>
+		<Description>Овочевий мікс з капусти та шматочків маринованих огірків, в поєднанні з креветками в паніровці, загорнутий в грузинський лаваш, що заправлений особливим соусом кетчуп.</Description>
+	</product>
+
+	<product>
+		<Id>14</Id>
+		<Title>Фіш рол</Title>
+		<Price>95.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1CPeHO0LIB0oMahiuws82gwkC2-vQJTZr=h300</PhotoUrl>
+		<Description>Свіжий смак овочів у поєднанні з соковитим філе риби в паніруванні. Страва для справжніх гурманів!</Description>
+	</product>
+
+	<product>
+		<Id>15</Id>
+		<Title>Рол Техас</Title>
+		<Price>100.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1fxThB-xhPuGiugP9B2PMcPNqK712dI7f=h300</PhotoUrl>
+		<Description>Цей смачний рол наповнений свіжими інгредієнтами: хрустким салатом, сочними помідорами, відбивною та танучим сиром. Все це загорнуто в м’який, легко підсмажений лаваш, що робить його ідеальним для смачного обіду!</Description>
+	</product>
+
+	<product>
+		<Id>16</Id>
+		<Title>Рол Гурман</Title>
+		<Price>120.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/12Q0KnKI-C2LW9ESwAHbAQrhm8DdKvVgn=h300</PhotoUrl>
+		<Description>Це апетитний рол, який поєднує в собі соковиту смажену ковбаску, обернуту в м’який лаваш, з хрусткими чіпсами та танучим сиром, все це доповнено ароматним кетчупом, що робить страву неймовірно смачною та задовольняє найвибагливіші смаки. Відмінний вибір для швидкого перекусу або ситного обіду</Description>
+	</product>
+
+	<product>
+		<Id>17</Id>
+		<Title>Нагетси</Title>
+		<Price>50.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/19iBeEpdhFaELm0VVoBI5C6rzMr5WAflT=h300</PhotoUrl>
+		<Description>Нагетси - це популярна страва, яка виготовляється з курячого м’яса. М’ясо формується у невеликі шматочки, панірується та смажиться до золотистого кольору. Вони мають хрустку зовнішню оболонку та ніжне, сочне м’ясо всередині. </Description>
+</product>
+
+	<product>
+		<Id>18</Id>
+		<Title>Баффало</Title>
+		<Price>70.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1s6R1Bwohto7O3EoK_JuArXKfs6NF-GZc=h300</PhotoUrl>
+		<Description>Хрусткі курячі крильця в гострому соусі. Спробуй щось нове.</Description>
+	</product>
+
+	<product>
+		<Id>19</Id>
+		<Title>Спайсі Стріпс</Title>
+		<Price>80.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/13w2q0m0imUyfQAUqTx89zHvyTotHTMjA=h300</PhotoUrl>
+		<Description>Куряче філе обсмажене в особливій паніровці власного приготування.</Description>
+	</product>
+
+	<product>
+		<Id>20</Id>
+		<Title>Рибні палички</Title>
+		<Price>80.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1zY-XhT19NUbZaRYrD_Er-9hiN5yX7o3X=h300</PhotoUrl>
+		<Description>Рибні палички - це популярна страва, яка виготовляється з рибного філе. Рибне філе розрізається на палички, панірується та смажиться до золотистого кольору. Вони мають хрустку зовнішню оболонку та ніжне, сочне рибне м’ясо всередині.</Description>
+	</product>
+
+	<product>
+		<Id>21</Id>
+		<Title>Сирні палички</Title>
+		<Price>87.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1jlx6GqmKH5fYIJeMjRFbZBzJvsDJjFeh=h300</PhotoUrl>
+		<Description>Ніжна моцарела обсмажена в хрусткій паніровці. Справді смачний сирний смак.</Description>
+	</product>
+
+	<product>
+		<Id>22</Id>
+		<Title>Крила Кріспі</Title>
+		<Price>90.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1bXekhRkDfPAIisqPqkjS9QaIZbdgL2Jz=h300</PhotoUrl>
+		<Description>Крила Кріспі - це смажені курячі крильця, які мають хрустку зовнішню оболонку та ніжне, сочне м’ясо всередині. Вони готуються за спеціальною технологією, яка дозволяє досягти ідеальної хрусткості.</Description>
+	</product>
+
+	<product>
+		<Id>23</Id>
+		<Title>Сонячний Бліс</Title>
+		<Price>60.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1JI3sh-mw6RBsQ1uR3O6BgkZrlV5QTzBV=h300</PhotoUrl>
+		<Description> Цей торт має яскравий помаранчевий колір, що нагадує про соковиті цитрусові плоди. Він складається з ніжного бісквіту, просоченого ароматним апельсиновим сиропом. Верхній шар торта покритий глянсовою помаранчевою глазур’ю, яка додає торту елегантності. Завершує композицію шматочок вершкового крему, прикрашений червоною вишнею.</Description>
+	</product>
+
+	<product>
+		<Id>24</Id>
+		<Title>Шоколадний Рай</Title>
+		<Price>75.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1kbq2zj3S3WgeztPMpA7jieLgtqy57GOL=h300</PhotoUrl>
+		<Description>Цей торт - справжній шедевр для шоколадних гурманів. Він складається з багатошарового бісквіту, просоченого сиропом, що чергується зі світлими та темними шарами, створюючи гармонію смаків. Поверхня торта покрита блискучою шоколадною глазур’ю, а зверху прикрашена мигдалем, черешнями та свіжою м’ятою. </Description>
+	</product>
+
+	<product>
+		<Id>25</Id>
+		<Title>Шоколадний торт</Title>
+		<Price>50.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1-D4j8OxyhKCd2s7IuSPeJxYuhA-aOXvu=h300</PhotoUrl>
+		<Description>Цей торт - наче витвір мистецтва, що вабить своїм багатим шоколадним ароматом. Він складається з пишних шарів темного шоколадного бісквіту, просочених солодким сиропом для додаткової вологості та смаку. Верхівка торта прикрашена густою шоколадною глазур’ю, яка надає йому вишуканого блиску.</Description>
+	</product>
+
+	<product>
+		<Id>26</Id>
+		<Title>Полуничний Сюрприз</Title>
+		<Price>90.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1yb8F-Io22aQ5kf4xB6Ljdf9OUb5yxK41=h300</PhotoUrl>
+		<Description>Цей торт - справжнє втілення літньої свіжості. “Полуничний Сюрприз” складається з повітряних шарів бісквіту, просочених легким кремом. Верх торта прикрашений пишними хмарками збитих вершків та свіжими, соковитими полуницями, що додають яскравості та ніжності.</Description>
+	</product>
+
+	<product>
+		<Id>27</Id>
+		<Title>Ягідний Вінчестер</Title>
+		<Price>70.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1I8lq3jN967K4F6PuLpbm4hc3Yn24Gp7c=h300</PhotoUrl>
+		<Description>Цей торт - справжній витвір кулінарного мистецтва, що здатен зачарувати своїм виглядом та смаком. “Ягідний Вінчестер” складається з легких бісквітних шарів, просочених солодким кремом, і вінчається глянцевим ягідним желе. Кожен шматочок торта прикрашений свіжою малиною та ніжним листочком м’яти, додаючи елегантності та свіжості.</Description>
+	</product>
+
+	<product>
+		<Id>28</Id>
+		<Title>Шоколадний мафін</Title>
+		<Price>30.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/10w3kvKlYEyrlrsKm-9F1Ln9j4FPaLZGZ=h300</PhotoUrl>
+		<Description>Це чудовий мафін з шоколадним бісквітом, який зачаровує своїм виглядом та смаком. Верхівка мафіна прикрашена рожевим кремом, що має ніжний відтінок та апетитний вигляд, а чорні зірочки на вершині додають вишуканості.</Description>
+	</product>
+
+	<product>
+		<Id>29</Id>
+		<Title>Ванільний мафін</Title>
+		<Price>30.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1FrPGD68QpphsyxXz4w7h0wniIjaMqJI6=h300</PhotoUrl>
+		<Description>Цей мафін - справжнє втілення ніжності та вишуканості. Він має ванільну бісквітну основу, що дарує глибокий смак, а верхівка прикрашена рожевим кремом, який виглядає як м’яка хмаринка. Білі зірочки на кремі додають чарівності, а рожева формочка з білими крапочками підкреслює загальний стиль.</Description>
+	</product>
+
+	<product>
+		<Id>30</Id>
+		<Title>Ванільне морозиво</Title>
+		<Price>45.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1wpGOUN6izFKWEiTpBwWghhVzQIL-POAU=h300</PhotoUrl>
+		<Description>Це морозиво в ріжку - справжній символ літнього задоволення. Воно має ніжну ванільну основу, що м’яко тане в роті, та хрусткий золотистий вафельний ріжок, який додає текстурного контрасту. </Description>
+	</product>
+
+	<product>
+		<Id>31</Id>
+		<Title>Шоколадне морозиво</Title>
+		<Price>45.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1H2vfwQkMqGyWqd2ICtFTFdWYxV3IU9lI=h300</PhotoUrl>
+		<Description>Це морозиво в ріжку - справжній символ літнього задоволення. Воно має ніжну шоколадну основу, що м’яко тане в роті, та хрусткий золотистий вафельний ріжок, який додає текстурного контрасту. </Description>
+	</product>
+
+	<product>
+		<Id>32</Id>
+		<Title>Соус Кетчуп</Title>
+		<Price>15.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1DaIA8-PXaUJJNdGNALm9L_9s11k9SGOg=h300</PhotoUrl>
+		<Description>Кетчуп - це популярний соус, який використовується у всьому світі. Він має густу текстуру та яскравий червоний колір.</Description>
+	</product>
+
+	<product>
+		<Id>33</Id>
+		<Title>Соус Майонез</Title>
+		<Price>15.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1MwkOR09mdWOUWwFflzkrfr0JGesnahvM=h300</PhotoUrl>
+		<Description>Майонез - це популярний соус, який використовується у всьому світі. Він має густу, кремову текстуру та світло-жовтий колір</Description>
+	</product>
+
+	<product>
+		<Id>34</Id>
+		<Title>Соус Барбекю</Title>
+		<Price>15.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1jkhn86UYgZgUlPI_gDHXdZf3HOHMzUoZ=h300</PhotoUrl>
+		<Description> Соус має темний, насичений колір, що свідчить про його багатий смаковий профіль з нотами копченості та солодкості.</Description>
+	</product>
+
+	<product>
+		<Id>35</Id>
+		<Title>Соус Сирний</Title>
+		<Price>15.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1CSgAlZ6zXaEZ_m62_iTgedWNqLYauvLf=h300</PhotoUrl>
+		<Description>Сирний соус - це кремовий та багатий на смак соус, який використовується у різних кулінарних стравах. Він виготовляється з розтопленого сиру, часто з додаванням молока, вершків або бульйону для досягнення бажаної консистенції.</Description>
+	</product>
+
+	<product>
+		<Id>36</Id>
+		<Title>Соус Гірчиця</Title>
+		<Price>15.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1HbhtOdjrDseE7x_mn3lsCNgT-HqY4ajd=h300</PhotoUrl>
+		<Description>Гірчиця - це популярний соус, який використовується у всьому світі. Вона має густу текстуру та яскравий жовтий колір</Description>
+	</product>
+
+	<product>
+		<Id>37</Id>
+		<Title>Соус Цезар</Title>
+		<Price>15.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1FqW76OS0pnXHmwHuMMQw4XxjKMTFzd1V=h300</PhotoUrl>
+		<Description>Основні інгредієнти соусу Цезар включають оливкову олію, жовтки вівсянки, лимонний сік, часник, анчоуси, пармезан та вустерширський соус. Всі ці інгредієнти змішуються до гладкої консистенції, створюючи кремовий соус, який додає салату Цезар неповторний смак.</Description>
+	</product>
+
+	<product>
+		<Id>38</Id>
+		<Title>Соус Каррі</Title>
+		<Price>15.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1qDrOh9tplZdIHCAUiBkt-PpSJMaFGQDL=h300</PhotoUrl>
+		<Description>Основними інгредієнтами соусу каррі є каррі-порошок або паста каррі, які містять багатий мікс спецій, включаючи коріандр, турмерик, кумін, фенхель та інші.</Description>
+	</product>
+
+	<product>
+		<Id>39</Id>
+		<Title>Кока-Кола</Title>
+		<Price>45.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1LyoTpfQr_2FDk0e_PskF-1qzDwMyOYX4=h300</PhotoUrl>
+		<Description>Кока-кола - це газований безалкогольний прохолоджувальний напій.</Description>
+	</product>
+
+	<product>
+		<Id>40</Id>
+		<Title>Фанта</Title>
+		<Price>45.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1Lsj7pfvHItnOHI7os1greQMbVJQGPFS3=h300</PhotoUrl>
+		<Description>Фанта - це газований безалкогольний прохолоджувальний напій.</Description>
+	</product>
+
+	<product>
+		<Id>41</Id>
+		<Title>Живчик</Title>
+		<Price>45.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1jNL0bMU1fLmGy84NF9b9kIJfyaw_198d=h300</PhotoUrl>
+		<Description>Живчик - це газований безалкогольний прохолоджувальний напій.</Description>
+	</product>
+
+
+	<product>
+		<Id>42</Id>
+		<Title>Пепсі</Title>
+		<Price>35.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1CrEStqEQwtRX6knhIPXNodSIuL5mRz5c=h300</PhotoUrl>
+		<Description>Пепсі - це газований безалкогольний прохолоджувальний напій.</Description>
+	</product>
+
+	<product>
+		<Id>43</Id>
+		<Title>Лате</Title>
+		<Price>45.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1gkd6w8JVv29YVfSEDJ9OjvGFKk8Nw6Ln=h300</PhotoUrl>
+		<Description>Це дуже смачний та ароматний напій, який вживають у гарячому вигляді.</Description>
+	</product>
+
+	<product>
+		<Id>44</Id>
+		<Title>Капучіно</Title>
+		<Price>55.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1tbBbVRKvmg41Tiar_OM3IFWPq_juEAoP=h300</PhotoUrl>
+		<Description>Це дуже смачний та ароматний напій, який вживають у гарячому вигляді.</Description>
+	</product>
+
+	<product>
+		<Id>45</Id>
+		<Title>Чай</Title>
+		<Price>35.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1bNYsbCR0Ino21PVlP6STjYujADZf2lyO=h300</PhotoUrl>
+		<Description>Це дуже смачний та ароматний напій, який вживають у гарячому вигляді.</Description>
+	</product>
+
+	<product>
+		<Id>46</Id>
+		<Title>Молочний коктейль</Title>
+		<Price>65.00</Price>
+		<PhotoUrl>https://lh3.googleusercontent.com/d/1fAovd6lx4bFVGfQusXSLRyIMMiO_PoZK=h300</PhotoUrl>
+		<Description>Молочний коктейль - це напій, який готується з молока та різних інгредієнтів, таких як фрукти, ягоди, морозиво, цукор тощо.</Description>
+	</product>
 </products>

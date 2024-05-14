@@ -1,14 +1,19 @@
 function createCartItemElement(item) {
     const itemElement = document.createElement('div');
+    itemElement.setAttribute('id', 'cart-item-full');
     itemElement.innerHTML = `
-        <img style="width: 70px" src="${item.photoUrl}">
-        <button class="remove-button btn btn-close"></button>
-        <div>Product Title: ${item.title}</div>
-        <div>Price: ${item.price}</div>
-        <div>Quantity: ${item.quantity}</div>
-        <button class="increment-button btn btn-primary">+</button>
-        <button class="decrement-button btn btn-primary">-</button>
-        <hr>
+        <img src="${item.photoUrl}" id="cart-item-img">
+        <div id="cart-item-text">
+            <div id="cart-text-bold">${item.title}</div>
+            <div id="cart-text-small">${item.description}</div>
+        </div>
+        <div id="cart-item-price">${item.price} грн</div>
+        <div id="cart-item-buttons">
+            <button class="increment-button" id="cart-button-change">+</button>
+            <div id="cart-item-quantity">${item.quantity}</div>
+            <button class="decrement-button" id="cart-button-change">-</button>
+        </div>
+        <button class="remove-button btn btn-close mb-3" id="cart-remove-button"></button>
     `;
 
     const incrementButton = itemElement.querySelector('.increment-button');
@@ -70,6 +75,15 @@ function removeItemFromCart(product) {
     renderCart();
 }
 
+function calculateTotalSum() {
+    let totalSum = 0;
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    cartItems.forEach(item => {
+        totalSum += item.price * item.quantity;
+    });
+    return totalSum;
+}
+
 function renderCart() {
     const offcanvasBody = document.querySelector('#offcanvasBottom .offcanvas-body');
     offcanvasBody.innerHTML = '';
@@ -85,11 +99,22 @@ function renderCart() {
         offcanvasBody.appendChild(emptyCart);
     }
 
-    const checkoutButton = document.createElement('button');
-    checkoutButton.textContent = 'Оформити замовлення';
-    checkoutButton.classList.add('btn', 'btn-success', 'fixed-bottom', 'mx-auto', 'd-block');
+    const totalSumElements = document.querySelectorAll('.cart-numb');
+    totalSumElements.forEach(element => {
+        const totalSum = calculateTotalSum();
+        element.textContent = `${totalSum} грн`;
+    });
+
+    const clearCartButton = document.getElementById('cart-clear-button');
+    clearCartButton.addEventListener('click', function(event) {
+        localStorage.removeItem('cartItems');
+        renderCart();
+    });
+
+    const checkoutButton = document.getElementById('cart-button-order');
     checkoutButton.addEventListener('click', function(event) {
-        if (cartItems.length === 0) {
+        const items = JSON.parse(localStorage.getItem('cartItems')) || [];
+         if (cartItems.length === 0) {
             window.location.href = 'error.html';
         } else {
             const sendRequest = {
@@ -113,9 +138,10 @@ function renderCart() {
             });
         }
     });
-
-    offcanvasBody.appendChild(checkoutButton);
 }
+
+
+
 
 function displayAlert(type, item, message) {
     let alert = `

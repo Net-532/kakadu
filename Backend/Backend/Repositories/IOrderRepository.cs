@@ -9,7 +9,9 @@ namespace Kakadu.Backend.Repositories
 
         Order GetById(int id);
 
-        void Save(Order order);
+        Order GetByNumber(int number);
+
+        Order Save(Order order);
 
         void ChangeStatus(int id, string status);
     }

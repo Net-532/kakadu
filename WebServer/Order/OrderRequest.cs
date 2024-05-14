@@ -10,7 +10,17 @@ namespace Kakadu.WebServer.Order
         {
             public int ProductId { get; set; }
             public int Quantity { get; set; }
-            
+
+            public OrderItemRequest()
+            {
+                
+            }
+
+            public OrderItemRequest(int productId, int quantity)
+            {
+                ProductId = productId;
+                Quantity = quantity;
+            }
         }
 
     }
