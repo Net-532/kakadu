@@ -91,6 +91,11 @@ namespace Kakadu.Backend.Repositories
             orderDateElement.InnerText = order.OrderDate.ToString("s", CultureInfo.InvariantCulture);
             orderElement.AppendChild(orderDateElement);
 
+            XmlNode UpdateAtElemant = doc.CreateElement("UpdatedAt");
+            UpdateAtElemant.InnerText = order.UpdatedAt.ToString("s", CultureInfo.InvariantCulture);
+            orderElement.AppendChild(orderDateElement);
+
+
             XmlNode statusElement = doc.CreateElement("Status");
             statusElement.InnerText = order.Status;
             orderElement.AppendChild(statusElement);
