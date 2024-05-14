@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace Kakadu.Backoffice.Views
@@ -14,6 +15,7 @@ namespace Kakadu.Backoffice.Views
 
         private ProductManager productManager;
         private OrderManager orderManager;
+        private bool filter = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -45,9 +47,15 @@ namespace Kakadu.Backoffice.Views
             if (selectedItem != null)
             {
                 orderManager.ChangeStatus(selectedItem.Id, "Done");
+                if (filter == true)
+                {
+                    SearchOrder(sender,e);
+                }
+                else
+                {
+                    LoadOrders();
+                }
             }
-            LoadOrders();
-
         }
 
         private void DeleteProduct(object sender, RoutedEventArgs e)
@@ -76,7 +84,6 @@ namespace Kakadu.Backoffice.Views
                     MessageBox.Show("Please select a product to edit.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
-
             LoadProducts();
         }
 
@@ -109,12 +116,13 @@ namespace Kakadu.Backoffice.Views
                     orders.Add(numOrder);
                     dataGrid.ItemsSource = null;
                     dataGrid.ItemsSource = orders;
+                    filter = true;
                 }
                 else
                 {
                     MessageBox.Show("Замовлення з таким номером не існує", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
-
+                
             }
 
 
