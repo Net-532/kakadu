@@ -112,7 +112,7 @@ namespace Kakadu.Backoffice.Views
                 }
                 else
                 {
-                    MessageBox.Show("Замовлення з таким номером не існує", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Замовлення з таким номером не існує", "Помилка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
 
             }
