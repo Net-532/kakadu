@@ -114,25 +114,29 @@ function renderCart() {
     const checkoutButton = document.getElementById('cart-button-order');
     checkoutButton.addEventListener('click', function(event) {
         const items = JSON.parse(localStorage.getItem('cartItems')) || [];
-        const sendRequest = {
-            items: items.map(item => ({
-                productId: item.id,
-                quantity: item.quantity
-            }))
-        };
-        fetch(ordersEndpoint, {
-            method: 'POST',
-            body: JSON.stringify(sendRequest)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Замовлення виконано');
-            localStorage.removeItem('cartItems');
-            renderCart();
-        })
-        .catch(error => {
-            console.error('Помилка: ', error);
-        });
+         if (cartItems.length === 0) {
+            window.location.href = 'error.html';
+        } else {
+            const sendRequest = {
+                items: cartItems.map(item => ({
+                    productId: item.id,
+                    quantity: item.quantity
+                }))
+            };
+            fetch(ordersEndpoint, {
+                method: 'POST',
+                body: JSON.stringify(sendRequest)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Замовлення виконано');
+                localStorage.removeItem('cartItems');
+                renderCart();
+            })
+            .catch(error => {
+                console.error('Помилка: ', error);
+            });
+        }
     });
 }
 

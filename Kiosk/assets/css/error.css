@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ffffff;
+    font-family: 'Inter', sans-serif;
+}
+
+.row {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    width: 100%;
+}
+
+.col {
+
+    text-align: center; 
+}
+
+img {
+    max-width: 100%; 
+    display: block; 
+    margin: 0 auto; 
+}
+h1 {
+    margin-right: 160px; 
+}
+.col:first-child {
+    margin-right: 20px; 
+}
+.col h1 {
+    text-align: left; 
+} 
