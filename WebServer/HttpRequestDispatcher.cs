@@ -1,5 +1,6 @@
 ﻿using Kakadu.Backend.Repositories;
 using Kakadu.Backend.Services;
+using Kakadu.WebServer.Order;
 using Kakadu.WebServer.ProductAPI;
 
 namespace Kakadu.WebServer
@@ -50,13 +51,8 @@ namespace Kakadu.WebServer
 
         private HttpResponse ProcessOrdersRequest(HttpRequest request)
         {
-
-            var order = new Backend.Entities.Order();
-            orderRepository.Save(order);
-
-            var response = new HttpResponse();
-            response.Body = "{}";
-            return response;
+            var orderRequestProcessor = new OrderRequestProcessor(orderRepository, productService);
+            return orderRequestProcessor.ProcessOrdersRequest(request);
         }
 
     }
