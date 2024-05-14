@@ -24,28 +24,21 @@ namespace Kakadu.WebServer.Order
                 Items = orderRequest.Items.Select((item, index) =>
                 {
                     var product = _productService.GetById(item.ProductId);
-                    var amount = product.Price * item.Quantity;
                     return new OrderItem
                     {
                         Id = index + 1,
                         ProductId = item.ProductId,
                         Quantity = item.Quantity,
-                        Price = product_price,
-                        Amount = amount
+                        Price = product.Price,
+                        Amount = product.Price * item.Quantity
                     };
-                }).ToList(),
+                }
+                ).ToList(),
                 OrderDate = DateTime.Now
             };
-            var totalPrice = orderItems.Sum(item => item.Amount);
 
-            var order = new Backend.Entities.Order
-            {
-                Items = orderItems,
-                OrderDate = DateTime.Now,
-                TotalPrice = totalPrice
-            };
-
-            order.Status = OrderStatus.Processing;
+            order.TotalPrice = order.Items.Sum(item => item.Amount);
+            order.Status = "Processing";
             _orderRepository.Save(order);
 
             var response = new HttpResponse
@@ -55,5 +48,5 @@ namespace Kakadu.WebServer.Order
             return response;
         }
     }
-    }
+}
 
