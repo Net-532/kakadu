@@ -49,7 +49,110 @@
         .card.product img {
             width: 100px;
             height: 100px;
+        }      
+        
+        .element {
+            background-color: #fff;
+            width: 380px;
+            height: 520px;
+            padding: 40px;
+            text-align: left;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
-                
-                
+
+        .element2 {
+            background-color: #e5e2e2;
+            width: 320px;
+            height: 290px;
+            padding: 40px;
+            text-align: left;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 34%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .image {
+            width: 350px;
+            height: 350px;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            margin: 0 auto;
+            display: block;
+            margin-top: -90px;
+            margin-left: -55px;
+        }
+
+        .title {
+            font-weight: bold;
+            font-size: 28px;
+            margin-left: -30px;
+        }
+
+        .description {
+            font-size: 15px;
+            margin-left: -30px;
+        }
+
+        .price {
+            margin-top: 60px;
+            margin-left: -30px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .cart-button {
+            position: absolute;
+            margin-top: -30px;
+            margin-left: 50px;
+            padding: 10px 35px;
+            background-color: #292828;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            margin-top: -45px;
+            margin-left: 200px;
+        }
+        
+        .quantity-controls button.quantity-button {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #000;
+            background-color: #fff;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        
+        .quantity-controls button.quantity-button:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .quantity-controls input {
+            width: 30px;
+            text-align: center;
+            margin: 0 5px;
+            border: none;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
         
