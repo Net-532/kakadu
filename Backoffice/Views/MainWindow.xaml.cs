@@ -73,7 +73,7 @@ namespace Kakadu.Backoffice.Views
                 }
                 else
                 {
-                    MessageBox.Show("Please select a product to edit.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Виберіть продукт для редагування.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
 
@@ -124,9 +124,8 @@ namespace Kakadu.Backoffice.Views
         {
 
             var dialog = new ProductDialog(productManager.AddItem);
-            if (dialog.ShowDialog() != true)
-            {
-                MessageBox.Show("Can't add new product.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            if (dialog.ShowDialog() != true) {
+                MessageBox.Show("Неможливо додати новий товар.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
             LoadProducts();
