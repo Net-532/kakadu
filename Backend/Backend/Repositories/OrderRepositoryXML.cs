@@ -208,10 +208,10 @@ namespace Kakadu.Backend.Repositories
 
             foreach (XmlNode node in doc.SelectNodes("/orders/order"))
             {
-                Order order = ConvertToOrder(node);
-
-                if (order.UpdatedAt >= from && order.UpdatedAt <= to)
+                var updatedAt = DateTime.Parse(node.SelectSingleNode("UpdatedAt").InnerText);
+                if (updatedAt>= from && updatedAt <= to)
                 {
+                    Order order = ConvertToOrder(node);
                     orders.Add(order);
                 }
             }

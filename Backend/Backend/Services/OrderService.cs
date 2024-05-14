@@ -50,10 +50,10 @@ namespace Kakadu.Backend.Services
 
             orderRepository.ChangeStatus(id, status);
         }
+
         public List<Order> GetAllByUpdatedAt(DateTime from, DateTime to)
         {
             return orderRepository.GetAllByUpdatedAt(from, to);
         }
-
     }
 }
