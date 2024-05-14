@@ -150,7 +150,7 @@ namespace Kakadu.Backend.Repositories
             if (node != null)
             {
                 node.SelectSingleNode("Status").InnerText = status;
-                node.SelectSingleNode("UpdateAT").InnerText = DateTime.Now.ToString("s", CultureInfo.InvariantCulture); ;
+                node.SelectSingleNode("UpdatedAt").InnerText = DateTime.Now.ToString("s", CultureInfo.InvariantCulture);
                 doc.Save(filePath);
             }
         }
@@ -162,6 +162,7 @@ namespace Kakadu.Backend.Repositories
             order.Id = int.Parse(node.SelectSingleNode("Id").InnerText);
             order.TotalPrice = decimal.Parse(node.SelectSingleNode("TotalPrice").InnerText, CultureInfo.InvariantCulture);
             order.OrderDate = DateTime.Parse(node.SelectSingleNode("OrderDate").InnerText);
+            order.UpdatedAt = DateTime.Parse(node.SelectSingleNode("UpdatedAt").InnerText);
             order.Status = node.SelectSingleNode("Status").InnerText;
 
 
