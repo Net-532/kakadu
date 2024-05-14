@@ -199,6 +199,28 @@ namespace Kakadu.Backend.Repositories
             return MaxNumber + 1;
         }
 
+        public List<Order> GetAllByUpdatedAt(DateTime from, DateTime to)
+        {
+            List<Order> orders = new List<Order>();
+
+            XmlDocument doc = new XmlDocument();
+            doc.Load(filePath);
+
+            foreach (XmlNode node in doc.SelectNodes("/orders/order"))
+            {
+                Order order = ConvertToOrder(node);
+
+                if (order.UpdatedAt >= from && order.UpdatedAt <= to)
+                {
+                    orders.Add(order);
+                }
+            }
+
+            return orders;
+        }
+
+
+
     }
 }
 
