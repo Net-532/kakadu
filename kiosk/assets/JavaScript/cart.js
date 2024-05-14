@@ -1,3 +1,6 @@
+let checkTab = true;
+let order = null;
+
 function createCartItemElement(item) {
     const itemElement = document.createElement('div');
     itemElement.setAttribute('id', 'cart-item-full');
@@ -93,7 +96,7 @@ function renderCart() {
         offcanvasBody.appendChild(itemElement);
     });
 
-    if (cartItems.length === 0) {
+    if (cartItems.length === 0 && checkTab == true) {
         const emptyCart = document.createElement('div');
         emptyCart.textContent = 'Кошик порожній';
         offcanvasBody.appendChild(emptyCart);
@@ -109,6 +112,26 @@ function renderCart() {
     clearCartButton.addEventListener('click', function(event) {
         localStorage.removeItem('cartItems');
         renderCart();
+    });
+
+    const printCheck = document.getElementById('cart-button-check');
+    printCheck.addEventListener('click', function(event) {
+        fetch(`${ordersEndpoint}?orderId=${order.id}`, {
+            method: 'PUT',
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Чек надруковано!');
+            const cartBottom = document.getElementById('cart-bottom');
+            cartBottom.style.display = 'none';
+            const cartCheck = document.getElementById('cart-button-check');
+            cartCheck.style.display = 'block';
+            checkTab = true;
+            renderCart();
+        })
+        .catch(error => {
+            console.error('Помилка: ', error);
+        });
     });
 
     const checkoutButton = document.getElementById('cart-button-order');
@@ -128,6 +151,12 @@ function renderCart() {
         .then(data => {
             console.log('Замовлення виконано');
             localStorage.removeItem('cartItems');
+            const cartBottom = document.getElementById('cart-bottom');
+            cartBottom.style.display = 'none';
+            const cartCheck = document.getElementById('cart-button-check');
+            cartCheck.style.display = 'block';
+            checkTab = false;
+            order = data;
             renderCart();
         })
         .catch(error => {
