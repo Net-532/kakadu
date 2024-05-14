@@ -91,9 +91,9 @@ namespace Kakadu.Backend.Repositories
             orderDateElement.InnerText = order.OrderDate.ToString("s", CultureInfo.InvariantCulture);
             orderElement.AppendChild(orderDateElement);
 
-            XmlNode UpdateAtElemant = doc.CreateElement("UpdatedAt");
-            UpdateAtElemant.InnerText = order.UpdatedAt.ToString("s", CultureInfo.InvariantCulture);
-            orderElement.AppendChild(orderDateElement);
+            XmlNode UpdateAtElement = doc.CreateElement("UpdatedAt");
+            UpdateAtElement.InnerText = order.UpdatedAt.ToString("s", CultureInfo.InvariantCulture);
+            orderElement.AppendChild(UpdateAtElement);
 
 
             XmlNode statusElement = doc.CreateElement("Status");
@@ -150,6 +150,7 @@ namespace Kakadu.Backend.Repositories
             if (node != null)
             {
                 node.SelectSingleNode("Status").InnerText = status;
+                node.SelectSingleNode("UpdateAT").InnerText = DateTime.Now.ToString("s", CultureInfo.InvariantCulture); ;
                 doc.Save(filePath);
             }
         }
