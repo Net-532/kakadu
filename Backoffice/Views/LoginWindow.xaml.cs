@@ -32,7 +32,7 @@ namespace Kakadu.Backoffice.Views
             }
             catch (AuthenticationException ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
 
