@@ -1,10 +1,14 @@
-﻿namespace Kakadu.WebServer
+﻿using WebServer;
+
+namespace Kakadu.WebServer
 {
     public enum HttpMethod
     {
         GET,
         POST,
-        PUT
+        PUT,
+        DELETE,
+        OPTIONS
     }
 
     public class HttpMessageConverter
@@ -28,8 +32,14 @@
                 case "PUT":
                     request.Method = HttpMethod.PUT;
                     break;
+                case "DELETE":
+                    request.Method = HttpMethod.DELETE;
+                    break;
+                case "OPTIONS":
+                    request.Method = HttpMethod.OPTIONS;
+                    break;
                 default:
-                    throw new ArgumentException("Невідомий метод запиту");
+                    throw new NotSupportedHttpMethodException(requestLine[0]);
             }
 
             request.RootPath = requestLine[1];
