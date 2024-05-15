@@ -116,7 +116,7 @@ function renderCart() {
 
     const printCheck = document.getElementById('cart-button-check');
     printCheck.addEventListener('click', function(event) {
-        fetch(`${ordersEndpoint}?orderId=${order.id}`, {
+        fetch(`${printReceiptEndpoint}?orderId=${order.id}`, {
             method: 'PUT',
         })
         .then(response => response.json())
