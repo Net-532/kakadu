@@ -52,7 +52,7 @@ namespace Kakadu.WebServer
 
         private HttpResponse ProcessOrdersRequest(HttpRequest request)
         {
-            return orderRequestProcessor.ProcessOrdersRequest(request);
+            return orderRequestProcessor.Process(request);
         }
     }
 }
