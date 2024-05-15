@@ -1,6 +1,4 @@
-﻿using WebServer;
-
-namespace Kakadu.WebServer
+﻿namespace Kakadu.WebServer
 {
     public enum HttpMethod
     {

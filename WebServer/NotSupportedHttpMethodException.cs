@@ -1,4 +1,4 @@
-﻿namespace WebServer
+﻿namespace Kakadu.WebServer
 {
     public class NotSupportedHttpMethodException : ApplicationException
     {
