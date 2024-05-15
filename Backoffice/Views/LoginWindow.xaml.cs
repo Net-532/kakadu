@@ -43,10 +43,7 @@ namespace Kakadu.Backoffice.Views
             Application.Current.Shutdown();
         }
 
-        private void UsernameTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-
-        }
+      
     }
 
 
