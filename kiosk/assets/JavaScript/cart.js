@@ -136,9 +136,6 @@ function renderCart() {
     });
 }
 
-
-
-
 function displayAlert(type, item, message) {
     let alert = `
         <div class="alert alert-${type} alert-dismissible" id="add-alert" role="alert">
