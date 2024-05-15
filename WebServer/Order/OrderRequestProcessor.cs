@@ -19,15 +19,8 @@ namespace Kakadu.WebServer.Order
             _orderToJsonConverter = new OrderToJsonConverter();
         }
 
-        public HttpResponse ProcessOrdersRequest(HttpRequest httpRequest)
-        {
-            if (httpRequest == null)
-                throw new ArgumentNullException(nameof(httpRequest));
-
-            if (httpRequest.Body == null)
-                throw new ArgumentException("HTTP request body is empty");
-
-            
+        public HttpResponse Process(HttpRequest httpRequest)
+        {          
             var orderRequest = _jsonToOrderRequestConverter.Convert(httpRequest.Body);
 
             var order = new Backend.Entities.Order
@@ -49,10 +42,11 @@ namespace Kakadu.WebServer.Order
 
             order.TotalPrice = order.Items.Sum(item => item.Amount);
             order.Status = "Processing";
-            _orderRepository.Save(order);
 
-            
-            var jsonResponse = _orderToJsonConverter.Convert(order);
+            var savedOrder = _orderRepository.Save(order);
+
+            var jsonResponse = _orderToJsonConverter.Convert(savedOrder);
+
 
             var response = new HttpResponse
             {

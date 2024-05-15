@@ -19,6 +19,7 @@ namespace Kakadu.WebServer
         private static IProductService productService = new ProductService(productRepository);
         private static IOrderRepository orderRepository = new OrderRepositoryXML();
         private static ProductRequestProcessor productRequestProcessor = new ProductRequestProcessor(productService, new ProductToJsonConverter());
+        private static OrderRequestProcessor orderRequestProcessor = new OrderRequestProcessor(orderRepository, productService);
 
         public HttpResponse Dispatch(HttpRequest httpRequest)
         {
@@ -51,9 +52,7 @@ namespace Kakadu.WebServer
 
         private HttpResponse ProcessOrdersRequest(HttpRequest request)
         {
-            var orderRequestProcessor = new OrderRequestProcessor(orderRepository, productService);
             return orderRequestProcessor.ProcessOrdersRequest(request);
         }
-
     }
 }
