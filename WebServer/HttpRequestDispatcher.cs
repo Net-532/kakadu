@@ -1,6 +1,7 @@
 ﻿using Kakadu.Backend.Repositories;
 using Kakadu.Backend.Services;
 using Kakadu.WebServer.ProductAPI;
+using System;
 
 namespace Kakadu.WebServer
 {
@@ -31,6 +32,9 @@ namespace Kakadu.WebServer
                 case "/orders":
                     response = ProcessOrdersRequest(httpRequest);
                     break;
+                case "/orderStatuses":
+                    response = ProcessOrderStatusesRequest(httpRequest);
+                    break;
                 default:
                     response.Status = HttpStatus.NotFound;
                     response.Body = $"No endpoint found for the {httpRequest.RootPath}";
@@ -50,7 +54,6 @@ namespace Kakadu.WebServer
 
         private HttpResponse ProcessOrdersRequest(HttpRequest request)
         {
-
             var order = new Backend.Entities.Order();
             orderRepository.Save(order);
 
@@ -59,5 +62,11 @@ namespace Kakadu.WebServer
             return response;
         }
 
+        private HttpResponse ProcessOrderStatusesRequest(HttpRequest request)
+        {
+            var response = new HttpResponse();
+            response.Body = "Processing order statuses request";
+            return response;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Text;
 using System.Globalization;
 using Kakadu.Backend.Services;
 using Kakadu.Backend.Repositories;
@@ -8,14 +9,15 @@ namespace Kakadu.WebServer
     public class OrderToJsonConverter
     {
         private static IProductService productService = new ProductService(new ProductRepositoryXML());
+
         public string Convert(Kakadu.Backend.Entities.Order order)
         {
             StringBuilder jsonBuilder = new StringBuilder();
             jsonBuilder.Append("{").Append($"\"orderNumber\": {order.OrderNumber},")
-            .Append($"\"orderDate\": \"{order.OrderDate.ToString("dd.MM.yyyy")}\",")
-            .Append($"\"orderTime\": \"{order.OrderDate.ToString("HH:mm:ss")}\",")
-            .Append($"\"totalPrice\": {order.TotalPrice.ToString(CultureInfo.InvariantCulture)},")
-            .Append("\"items\": [");
+                .Append($"\"orderDate\": \"{order.OrderDate.ToString("dd.MM.yyyy")}\",")
+                .Append($"\"orderTime\": \"{order.OrderDate.ToString("HH:mm:ss")}\",")
+                .Append($"\"totalPrice\": {order.TotalPrice.ToString(CultureInfo.InvariantCulture)},")
+                .Append("\"items\": [");
 
             foreach (var item in order.Items)
             {
@@ -33,6 +35,27 @@ namespace Kakadu.WebServer
             }
 
             jsonBuilder.Append("]}");
+
+            return jsonBuilder.ToString();
+        }
+
+        public string ConvertList(List<Kakadu.Backend.Entities.Order> orders)
+        {
+            StringBuilder jsonBuilder = new StringBuilder();
+            jsonBuilder.Append("[");
+
+            foreach (var order in orders)
+            {
+                jsonBuilder.Append(Convert(order));
+                jsonBuilder.Append(",");
+            }
+
+            if (orders.Count > 0)
+            {
+                jsonBuilder.Length--;
+            }
+
+            jsonBuilder.Append("]");
 
             return jsonBuilder.ToString();
         }
