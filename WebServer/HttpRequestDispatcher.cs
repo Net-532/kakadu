@@ -2,6 +2,7 @@
 using Kakadu.Backend.Services;
 using Kakadu.WebServer.OrderAPI;
 using Kakadu.WebServer.ProductAPI;
+using System.Net.Http.Headers;
 
 namespace Kakadu.WebServer
 {
@@ -19,7 +20,9 @@ namespace Kakadu.WebServer
         private static IProductService productService = new ProductService(productRepository);
         private static IOrderRepository orderRepository = new OrderRepositoryXML();
         private static ProductRequestProcessor productRequestProcessor = new ProductRequestProcessor(productService, new ProductToJsonConverter());
-        private static PrintOrderRequestProcessor printOrderRequestProcessor = new PrintOrderRequestProcessor();
+        private static IOrderService orderService = new OrderService(orderRepository);
+        private static OrderToPlainTextConverter converter = new OrderToPlainTextConverter(productService);
+        private static PrintOrderRequestProcessor printOrderRequestProcessor = new PrintOrderRequestProcessor(orderService, converter);
 
         public HttpResponse Dispatch(HttpRequest httpRequest)
         {

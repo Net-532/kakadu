@@ -8,11 +8,13 @@ namespace Kakadu.WebServer.OrderAPI
         private IOrderService orderService;
         private OrderToPlainTextConverter converter;
         private static PrintService printService = new PrintService();
+
         public PrintOrderRequestProcessor(IOrderService orderService, OrderToPlainTextConverter converter)
         {
             orderService = orderService;
             converter = converter;
         }
+
         public HttpResponse Process(HttpRequest httpRequest)
         {
             HttpResponse response = new HttpResponse();
