@@ -3,17 +3,22 @@ function createCartItemElement(item) {
     itemElement.setAttribute('id', 'cart-item-full');
     itemElement.innerHTML = `
         <img src="${item.photoUrl}" id="cart-item-img">
+        <div id="top">
         <div id="cart-item-text">
             <div id="cart-text-bold">${item.title}</div>
             <div id="cart-text-small">${item.description}</div>
         </div>
+        <button class="remove-button btn btn-close mb-3" id="cart-remove-button"></button>
+        </div>
+        <div id="bottom">
         <div id="cart-item-price">${item.price} грн</div>
         <div id="cart-item-buttons">
-            <button class="increment-button" id="cart-button-change">+</button>
+            <button class="increment-button" id="cart-button-change">-</button>
             <div id="cart-item-quantity">${item.quantity}</div>
-            <button class="decrement-button" id="cart-button-change">-</button>
+            <button class="decrement-button" id="cart-button-change">+</button>
         </div>
-        <button class="remove-button btn btn-close mb-3" id="cart-remove-button"></button>
+        </div>
+       
     `;
 
     const incrementButton = itemElement.querySelector('.increment-button');
