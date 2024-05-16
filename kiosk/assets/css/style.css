@@ -11,33 +11,69 @@
         }
 
         header {
-            background-image: url("../images/header.png");
-            background-size: cover;
+            background-image: url("../images/burger-header.jpeg");
+            background-size: 950px;
             background-position: center;
-            background-repeat: no-repeat;
-            height: 110px;
+            height: 150px;
+
         }
 
         .card.product {
-            width: 150px;
-            height: 150px;
+            width: 100%;
+            height: auto;
+            padding-top: 100%;
             cursor: pointer;
             transition: transform 0.3s ease;
         }
-        
+
         .card.product:hover {
             transform: scale(1.10);
         }
-        
-        
+
+
         .card.product img {
-            width: 100px;
-            height: 100px;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
         }
-        
+
         .product-price {
             font-size: 1rem;
           }
-               
-                
-        
+
+@media (min-width: 768px) {
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+
+    }
+
+    .col-md-6 {
+        flex: 0 0 70%;
+        max-width: 100%;
+        margin: 20px;
+        box-sizing: border-box;
+    }
+    header {
+        background-image: url("../images/burger-header.jpeg"); /* Замінюємо зображення для малих екранів */
+
+    }
+}
+
+@media(min-width: 1080px) {
+    .card.product {
+
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+    .card.product img {
+
+    }
+    header {
+        background-image: url("../images/burger-header.jpeg");
+        background-position: center;
+        height: 250px;
+        background-size: cover;
+    }
+
+}
