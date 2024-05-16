@@ -2,7 +2,7 @@
 using Kakadu.Backend.Repositories;
 using Kakadu.Backend.Services;
 
-namespace Kakadu.WebServer.Order
+namespace Kakadu.WebServer.OrderAPI
 {
     public class OrderRequestProcessor
     {

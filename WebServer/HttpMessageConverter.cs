@@ -19,6 +19,8 @@
 
             string[] requestLine = lines[0].Split(' ');
 
+            string[] requestPathAndValues = requestLine[1].Split('?');
+            request.RootPath = requestPathAndValues[0];
             switch (requestLine[0])
             {
                 case "GET":
@@ -40,8 +42,13 @@
                     throw new NotSupportedHttpMethodException(requestLine[0]);
             }
 
-            request.RootPath = requestLine[1];
+            if (requestPathAndValues.Length > 1)
+            {
+                string[] valueSplit = requestPathAndValues[1].Split('=');
+                string value = valueSplit[1];
 
+                request.Parameters[$"{valueSplit[0]}"] = value;
+            }
 
             int emptyLineIndex = Array.IndexOf(lines, "");
 
