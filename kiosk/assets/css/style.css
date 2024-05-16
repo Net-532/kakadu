@@ -54,10 +54,7 @@
         margin: 20px;
         box-sizing: border-box;
     }
-    header {
-        background-image: url("../images/burger-header.jpeg"); /* Замінюємо зображення для малих екранів */
-
-    }
+    
 }
 
 @media(min-width: 1080px) {
