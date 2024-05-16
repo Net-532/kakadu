@@ -1,5 +1,6 @@
 ﻿using Kakadu.Backend.Entities;
 using Kakadu.Backend.Repositories;
+using System;
 using System.Collections.Generic;
 
 namespace Kakadu.Backend.Services
@@ -28,6 +29,12 @@ namespace Kakadu.Backend.Services
             return order;
         }
 
+        public Order GetByNumber(int number)
+        {
+            var order = orderRepository.GetByNumber(number);
+            return order;
+        }
+
         public Order Save(Order order)
         {
             return orderRepository.Save(order); 
@@ -42,6 +49,11 @@ namespace Kakadu.Backend.Services
             }
 
             orderRepository.ChangeStatus(id, status);
+        }
+
+        public List<Order> GetAllByUpdatedAt(DateTime from, DateTime to)
+        {
+            return orderRepository.GetAllByUpdatedAt(from, to);
         }
     }
 }
