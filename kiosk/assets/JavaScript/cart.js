@@ -9,9 +9,9 @@ function createCartItemElement(item) {
         </div>
         <div id="cart-item-price">${item.price} грн</div>
         <div id="cart-item-buttons">
-            <button class="increment-button" id="cart-button-change">+</button>
-            <div id="cart-item-quantity">${item.quantity}</div>
             <button class="decrement-button" id="cart-button-change">-</button>
+            <div id="cart-item-quantity">${item.quantity}</div>
+            <button class="increment-button" id="cart-button-change">+</button>
         </div>
         <button class="remove-button btn btn-close mb-3" id="cart-remove-button"></button>
     `;
