@@ -42,6 +42,7 @@ namespace Kakadu.WebServer.Order
 
             order.TotalPrice = order.Items.Sum(item => item.Amount);
             order.Status = "Processing";
+            order.UpdatedAt = order.OrderDate;
 
             var savedOrder = _orderRepository.Save(order);
 
