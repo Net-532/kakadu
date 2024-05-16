@@ -1,41 +1,35 @@
-﻿using Kakadu.Backend.Services;
-using Kakadu.Backend.Repositories;
-using Kakadu.Backend.Entities;
+﻿using Kakadu.Backend.Entities;
+using Kakadu.Backend.Services;
 
 namespace Kakadu.WebServer.OrderAPI
 {
     public class PrintOrderRequestProcessor
     {
-        private static IProductService productService = new ProductService(new ProductRepositoryXML());
-        private static IOrderService orderService = new OrderService(new OrderRepositoryXML());
-        private static OrderToPlainTextConverter converter = new OrderToPlainTextConverter(productService);
+        private IOrderService _orderService;
+        private OrderToPlainTextConverter _converter;
         private static PrintService printService = new PrintService();
 
-        public PrintOrderRequestProcessor() { }
+        public PrintOrderRequestProcessor(IOrderService orderService, OrderToPlainTextConverter converter)
+        {
+            _orderService = orderService;
+            _converter = converter;
+        }
+
         public HttpResponse Process(HttpRequest httpRequest)
         {
             HttpResponse response = new HttpResponse();
-            try
-            {
-                int orderId = Convert.ToInt32(httpRequest.Parameters["orderId"]);
-                Order order = orderService.GetById(orderId);
+            int orderId = Convert.ToInt32(httpRequest.Parameters["orderId"]);
+            Order order = _orderService.GetById(orderId);
 
-                string orderStr = converter.Convert(order);
+            string orderStr = _converter.Convert(order);
 
-                printService.Print(orderStr);
+            printService.Print(orderStr);
 
-                response.Status = HttpStatus.OK;
+            response.Status = HttpStatus.OK;
 
-                response.Body = "{}";
+            response.Body = "{}";
 
-                return response;
-            }
-            catch(Exception ex)
-            {
-                response.Status =HttpStatus.NotFound;
-                response.Body = ex.Message;
-                return response;
-            }
+            return response;
         }
     }
 }

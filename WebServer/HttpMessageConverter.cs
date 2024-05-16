@@ -4,7 +4,9 @@
     {
         GET,
         POST,
-        PUT
+        PUT,
+        DELETE,
+        OPTIONS
     }
 
     public class HttpMessageConverter
@@ -17,6 +19,8 @@
 
             string[] requestLine = lines[0].Split(' ');
 
+            string[] requestPathAndValues = requestLine[1].Split('?');
+            request.RootPath = requestPathAndValues[0];
             switch (requestLine[0])
             {
                 case "GET":
@@ -28,17 +32,23 @@
                 case "PUT":
                     request.Method = HttpMethod.PUT;
                     break;
+                case "DELETE":
+                    request.Method = HttpMethod.DELETE;
+                    break;
+                case "OPTIONS":
+                    request.Method = HttpMethod.OPTIONS;
+                    break;
                 default:
-                    throw new ArgumentException("Невідомий метод запиту");
+                    throw new NotSupportedHttpMethodException(requestLine[0]);
             }
 
-            string[] requestPathAndValues = requestLine[1].Split('?');
-            request.RootPath = requestPathAndValues[0];
+            if (requestPathAndValues.Length > 1)
+            {
+                string[] valueSplit = requestPathAndValues[1].Split('=');
+                string value = valueSplit[1];
 
-            string[] valueSplit = requestPathAndValues[1].Split('=');
-            string value = valueSplit[1];
-
-            request.Parameters["orderId"] = value;
+                request.Parameters[$"{valueSplit[0]}"] = value;
+            }
 
             int emptyLineIndex = Array.IndexOf(lines, "");
 

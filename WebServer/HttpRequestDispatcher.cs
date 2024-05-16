@@ -19,7 +19,10 @@ namespace Kakadu.WebServer
         private static IProductService productService = new ProductService(productRepository);
         private static IOrderRepository orderRepository = new OrderRepositoryXML();
         private static ProductRequestProcessor productRequestProcessor = new ProductRequestProcessor(productService, new ProductToJsonConverter());
-        private static PrintOrderRequestProcessor printOrderRequestProcessor = new PrintOrderRequestProcessor();
+        private static IOrderService orderService = new OrderService(orderRepository);
+        private static OrderToPlainTextConverter converter = new OrderToPlainTextConverter(productService);
+        private static PrintOrderRequestProcessor printOrderRequestProcessor = new PrintOrderRequestProcessor(orderService, converter);
+        private static OrderRequestProcessor orderRequestProcessor = new OrderRequestProcessor(orderRepository, productService);
 
         public HttpResponse Dispatch(HttpRequest httpRequest)
         {
@@ -55,14 +58,7 @@ namespace Kakadu.WebServer
 
         private HttpResponse ProcessOrdersRequest(HttpRequest request)
         {
-
-            var order = new Backend.Entities.Order();
-            orderRepository.Save(order);
-
-            var response = new HttpResponse();
-            response.Body = "{}";
-            return response;
+            return orderRequestProcessor.Process(request);
         }
-
     }
 }
