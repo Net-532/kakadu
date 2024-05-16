@@ -12,6 +12,7 @@ namespace Kakadu.WebServer.OrderAPI
         {
             StringBuilder jsonBuilder = new StringBuilder();
             jsonBuilder.Append("{").Append($"\"orderNumber\": {order.OrderNumber},")
+            .Append($"\"id\": \"{order.Id}\",")
             .Append($"\"orderDate\": \"{order.OrderDate.ToString("dd.MM.yyyy")}\",")
             .Append($"\"orderTime\": \"{order.OrderDate.ToString("HH:mm:ss")}\",")
             .Append($"\"totalPrice\": {order.TotalPrice.ToString(CultureInfo.InvariantCulture)},")
