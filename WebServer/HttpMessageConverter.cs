@@ -19,30 +19,27 @@
 
             string[] requestPathAndValues = requestLine[1].Split('?');
             request.RootPath = requestPathAndValues[0];
+            switch (requestLine[0])
+            {
+                case "GET":
+                    request.Method = HttpMethod.GET;
+                    break;
+                case "POST":
+                    request.Method = HttpMethod.POST;
+                    break;
+                case "PUT":
+                    request.Method = HttpMethod.PUT;
+                    break;
+                default:
+                    throw new ArgumentException("Невідомий метод запиту");
+            }
 
             if (requestPathAndValues.Length > 1)
             {
-                switch (requestLine[0])
-                {
-                    case "GET":
-                        request.Method = HttpMethod.GET;
-                        break;
-                    case "POST":
-                        request.Method = HttpMethod.POST;
-                        break;
-                    case "PUT":
-                        request.Method = HttpMethod.PUT;
-                        break;
-                    default:
-                        throw new ArgumentException("Невідомий метод запиту");
-                }
-
                 string[] valueSplit = requestPathAndValues[1].Split('=');
                 string value = valueSplit[1];
 
                 request.Parameters[$"{valueSplit[0]}"] = value;
-
-                return request;
             }
 
             int emptyLineIndex = Array.IndexOf(lines, "");

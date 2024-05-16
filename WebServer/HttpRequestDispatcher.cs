@@ -2,7 +2,6 @@
 using Kakadu.Backend.Services;
 using Kakadu.WebServer.OrderAPI;
 using Kakadu.WebServer.ProductAPI;
-using System.Net.Http.Headers;
 
 namespace Kakadu.WebServer
 {

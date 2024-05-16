@@ -5,23 +5,23 @@ namespace Kakadu.WebServer.OrderAPI
 {
     public class PrintOrderRequestProcessor
     {
-        private IOrderService orderService;
-        private OrderToPlainTextConverter converter;
+        private IOrderService _orderService;
+        private OrderToPlainTextConverter _converter;
         private static PrintService printService = new PrintService();
 
         public PrintOrderRequestProcessor(IOrderService orderService, OrderToPlainTextConverter converter)
         {
-            orderService = orderService;
-            converter = converter;
+            _orderService = orderService;
+            _converter = converter;
         }
 
         public HttpResponse Process(HttpRequest httpRequest)
         {
             HttpResponse response = new HttpResponse();
             int orderId = Convert.ToInt32(httpRequest.Parameters["orderId"]);
-            Order order = orderService.GetById(orderId);
+            Order order = _orderService.GetById(orderId);
 
-            string orderStr = converter.Convert(order);
+            string orderStr = _converter.Convert(order);
 
             printService.Print(orderStr);
 
