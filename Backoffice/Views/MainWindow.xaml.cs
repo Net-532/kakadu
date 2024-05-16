@@ -71,10 +71,10 @@ namespace Kakadu.Backoffice.Views
                 {
                     productManager.EditItem(selectedItem.Id, selectedItem);
                 }
-                else
-                {
-                    MessageBox.Show("Виберіть продукт для редагування.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
+            }
+            else
+            {
+                MessageBox.Show("Виберіть продукт для редагування.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
             LoadProducts();
@@ -143,6 +143,10 @@ namespace Kakadu.Backoffice.Views
 
             ProductButtonsPanel.Visibility = Visibility.Visible;
             OrderButtonsPanel.Visibility = Visibility.Hidden;
+
+            DeleteButton.Click -= DeleteProduct;
+            EditButton.Click -= EditProduct;
+            AddButton.Click -= AddProduct;
 
             DeleteButton.Click += DeleteProduct;
             EditButton.Click += EditProduct;

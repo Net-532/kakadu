@@ -39,16 +39,32 @@ namespace Kakadu.WebServer
                     Socket clientSocket = server.AcceptSocket();
                     byte[] buffer = new byte[1024];
                     int bytesReceived = clientSocket.Receive(buffer);
+
+                    HttpRequest httpRequest;
+                    HttpResponse httpResponse;
+                    string response;
+
                     string request = Encoding.UTF8.GetString(buffer, 0, bytesReceived);
-                    HttpRequest httpRequest = httpMessageConverter.Convert(request);
-                    HttpResponse httpResponse = httpRequestDispatcher.Dispatch(httpRequest);
-                    var response = httpResponse.ToString();
+                    if (string.IsNullOrEmpty(request))
+                    {
+                        httpResponse = new HttpResponse();
+                        httpResponse.Status = HttpStatus.OK;
+                        response = httpResponse.ToString();
+                    }
+                    else
+                    {
+                        httpRequest = httpMessageConverter.Convert(request);
+                        httpResponse = httpRequestDispatcher.Dispatch(httpRequest);
+                        response = httpResponse.ToString();
+                    }
+
                     Log.Debug("Response is {0}", response);
                     byte[] responseData = Encoding.UTF8.GetBytes(response);
                     clientSocket.Send(responseData);
                     clientSocket.Shutdown(SocketShutdown.Send);
                     clientSocket.Close();
                     Log.Information("Response sent");
+
                 }
             }
             catch (SocketException e)
