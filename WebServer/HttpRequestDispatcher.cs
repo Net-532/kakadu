@@ -1,5 +1,6 @@
 ﻿using Kakadu.Backend.Repositories;
 using Kakadu.Backend.Services;
+using Kakadu.WebServer.Order;
 using Kakadu.WebServer.ProductAPI;
 using System;
 
@@ -19,6 +20,7 @@ namespace Kakadu.WebServer
         private static IProductService productService = new ProductService(productRepository);
         private static IOrderRepository orderRepository = new OrderRepositoryXML();
         private static ProductRequestProcessor productRequestProcessor = new ProductRequestProcessor(productService, new ProductToJsonConverter());
+        private static OrderRequestProcessor orderRequestProcessor = new OrderRequestProcessor(orderRepository, productService);
 
         public HttpResponse Dispatch(HttpRequest httpRequest)
         {
@@ -54,12 +56,7 @@ namespace Kakadu.WebServer
 
         private HttpResponse ProcessOrdersRequest(HttpRequest request)
         {
-            var order = new Backend.Entities.Order();
-            orderRepository.Save(order);
-
-            var response = new HttpResponse();
-            response.Body = "{}";
-            return response;
+            return orderRequestProcessor.Process(request);
         }
 
         private HttpResponse ProcessOrderStatusesRequest(HttpRequest request)
