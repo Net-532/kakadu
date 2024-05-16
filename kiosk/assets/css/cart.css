@@ -96,15 +96,7 @@
     box-shadow: 0px -1px 5.2px 0px #00000040 inset;
 }
 
-.cart-button-order {
-    position: fixed;
-    bottom: 10px;
-    padding: 5px 10px;
-    font-size: 14px;
-    font-weight: 700;
-    left: 50%;
-    transform: translateX(-50%);
-}
+
 
 #cart-bottom {
     height: 150px;
