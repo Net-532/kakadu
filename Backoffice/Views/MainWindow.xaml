@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kakadu.Backoffice.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Головна сторінка" Height="450" Width="800">
     <DockPanel>
         <!-- Панель навігації -->
         <StackPanel DockPanel.Dock="Left" Background="LightGray" Width="150">
@@ -20,9 +20,9 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" x:Name="ProductButtonsPanel" Grid.Row="0" Visibility="Hidden" HorizontalAlignment ="Right" Margin="5">
-                <Button x:Name="AddButton" Content="Add Product" Margin="5"/>
-                <Button x:Name="EditButton" Content="Edit Product" Margin="5"/>
-                <Button x:Name="DeleteButton" Content="Delete Product" Margin="5"/>
+                <Button x:Name="AddButton" Content="Додати" Margin="5"/>
+                <Button x:Name="EditButton" Content="Редагувати" Margin="5"/>
+                <Button x:Name="DeleteButton" Content="Видалити" Margin="5"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" x:Name="OrderButtonsPanel" Grid.Row="0" Visibility="Hidden" HorizontalAlignment="Right" Margin="5">
                 <Label HorizontalAlignment="Left" Margin ="0,5,10,0" Content ="Номер Замовлення:"/>
