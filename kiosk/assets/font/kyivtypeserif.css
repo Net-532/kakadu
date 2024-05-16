@@ -1,0 +1,48 @@
+@font-face {
+	font-family: 'Kyiv Type Serif';
+	src: url('Kyiv*TypeSerif.woff2') format('woff2') url('Kyiv*TypeSerif.woff') format('woff');
+	font-weight: 1;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Kyiv Type Serif';
+	src: url('KyivTypeSerif-Thin.woff2') format('woff2') url('KyivTypeSerif-Thin.woff') format('woff');
+	font-weight: 100;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Kyiv Type Serif';
+	src: url('KyivTypeSerif-Light.woff2') format('woff2') url('KyivTypeSerif-Light.woff') format('woff');
+	font-weight: 300;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Kyiv Type Serif';
+	src: url('KyivTypeSerif-Regular.woff2') format('woff2') url('KyivTypeSerif-Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Kyiv Type Serif';
+	src: url('KyivTypeSerif-Medium.woff2') format('woff2') url('KyivTypeSerif-Medium.woff') format('woff');
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Kyiv Type Serif';
+	src: url('KyivTypeSerif-Bold.woff2') format('woff2') url('KyivTypeSerif-Bold.woff') format('woff');
+	font-weight: 700;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Kyiv Type Serif';
+	src: url('KyivTypeSerif-Heavy.woff2') format('woff2') url('KyivTypeSerif-Heavy.woff') format('woff');
+	font-weight: 800;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Kyiv Type Serif';
+	src: url('KyivTypeSerif-Black.woff2') format('woff2') url('KyivTypeSerif-Black.woff') format('woff');
+	font-weight: 900;
+	font-style: normal;
+}

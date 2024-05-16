@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+.container {
+  overflow: hidden; 
+}
+
+.name {
+    float: left;
+}
+
+.price {
+    float: right;
+}
+
+        body{
+	font-family: 'Kyiv Type Serif';
+	src: url('/assets/font/KyivTypeSerif-Regular.woff2') format('woff2') url('/assets/font/KyivTypeSerif-Regular.woff') format('woff');
+	font-weight: 1;
+	font-style: normal;
+    font-size: 20px;
+}
+
+hr {
+  height: 10px;
+  border: none;
+  position: relative;
+  background: #ffffff;
+}
+
+hr::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -20px;
+  width: 100%;
+  height: 30px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' height='100%25' width='100%25'><path d='M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z'/></svg>");
+  background-repeat: repeat-x;
+}
+    </style>
+</head>
+<body>
+    <center>
+    <p>Kakadu</p>
+    <p>Адреса: вул. Павла Каспрука 2</p>
+    <p>Чек</p>
+        <hr>
+        
+    <p>Дата: 30.07.2006</p>
+    <p>Час: 14:56</p>
+    </div>
+    <hr>
+    <div class="container">
+    <p class="name">Чізбургер 120г.</p>
+    <p class="price">120 грн</p>
+    </div>
+    <hr>
+    <div class="container">
+    <p class="name">Сума</p>
+    <p class="price">966 грн</p>
+    </div>
+    <hr>
+    <p>Дякуємо за покупку!</p>
+    </center>
+</body>
+</html>
