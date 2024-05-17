@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Data;
 using System.Windows.Input;
 
 namespace Kakadu.Backoffice.Views
@@ -15,7 +14,6 @@ namespace Kakadu.Backoffice.Views
 
         private ProductManager productManager;
         private OrderManager orderManager;
-        private bool filter = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -49,7 +47,6 @@ namespace Kakadu.Backoffice.Views
                         orders.Add(numOrder);
                         dataGrid.ItemsSource = null;
                         dataGrid.ItemsSource = orders;
-                        filter = true;
                     }
                     else
                     {
