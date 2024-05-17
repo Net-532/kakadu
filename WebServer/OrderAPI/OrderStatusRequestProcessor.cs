@@ -1,8 +1,7 @@
 ﻿using Kakadu.Backend.Services;
 using Kakadu.WebServer;
-using System;
 
-namespace WebServer.Order
+namespace WebServer.OrderApi
 {
     public class OrderStatusRequestProcessor
     {

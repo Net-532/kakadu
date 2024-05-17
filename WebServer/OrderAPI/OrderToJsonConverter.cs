@@ -3,7 +3,7 @@ using System.Globalization;
 using Kakadu.Backend.Services;
 using Kakadu.Backend.Repositories;
 
-namespace Kakadu.WebServer
+namespace Kakadu.WebServer.OrderAPI
 {
     public class OrderToJsonConverter
     {
@@ -13,6 +13,7 @@ namespace Kakadu.WebServer
         {
             StringBuilder jsonBuilder = new StringBuilder();
             jsonBuilder.Append("{").Append($"\"orderNumber\": {order.OrderNumber},")
+            .Append($"\"id\": \"{order.Id}\",")
             .Append($"\"orderDate\": \"{order.OrderDate.ToString("dd.MM.yyyy")}\",")
             .Append($"\"orderTime\": \"{order.OrderDate.ToString("HH:mm:ss")}\",")
             .Append($"\"totalPrice\": {order.TotalPrice.ToString(CultureInfo.InvariantCulture)},")
