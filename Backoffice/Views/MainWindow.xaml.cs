@@ -14,11 +14,13 @@ namespace Kakadu.Backoffice.Views
 
         private ProductManager productManager;
         private OrderManager orderManager;
+        private UserManager userManager;
         public MainWindow()
         {
             InitializeComponent();
             productManager = new ProductManager();
             orderManager = new OrderManager();
+            userManager = new UserManager();
         }
 
         private void LoadProducts()
@@ -156,6 +158,68 @@ namespace Kakadu.Backoffice.Views
             ProductButtonsPanel.Visibility = Visibility.Hidden;
             OrderButtonsPanel.Visibility = Visibility.Visible;
             LoadOrders();
+        }
+        private void LoadUsers()
+        {
+            List<User> users = userManager.LoadItems();
+            if (users != null)
+            {
+                dataGrid.ItemsSource = users;
+            }
+        }
+
+        private void AddUser(object sender, RoutedEventArgs e)
+        {
+
+            var dialog = new UserDialog(userManager.AddItem);
+            if (dialog.ShowDialog() != true)
+            {
+                MessageBox.Show("Неможливо додати нового користувача.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
+            LoadUsers();
+        }
+        private void DeleteUser(object sender, RoutedEventArgs e)
+        {
+            var selectedItem = dataGrid.SelectedItem as User;
+            if (selectedItem != null)
+            {
+                userManager.DeleteItem(selectedItem.Id);
+            }
+
+            LoadUsers();
+        }
+        private void EditUser(object sender, RoutedEventArgs e)
+        {
+            var selectedItem = dataGrid.SelectedItem as User;
+            if (selectedItem != null)
+            {
+                var dialog = new UserDialog(selectedItem);
+                if (dialog.ShowDialog() == true)
+                {
+                    userManager.EditItem(selectedItem.Id, selectedItem);
+                }
+                else
+                {
+                    MessageBox.Show("Виберіть користувача якого хочете редагувати.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+
+            LoadUsers();
+        }
+
+        private void UserButton_Click(object sender, RoutedEventArgs e)
+        {
+            dataGrid.Visibility = Visibility.Visible;
+            LoadUsers();
+
+            UserButtonsPanel.Visibility = Visibility.Visible;
+            ProductButtonsPanel.Visibility = Visibility.Hidden;
+            OrderButtonsPanel.Visibility = Visibility.Hidden;
+
+            //DeleteUserButton.Click += DeleteProduct;
+            //EditUserButton.Click += EditProduct;
+            //AddUserButton.Click += AddProduct;
         }
     }
 }
