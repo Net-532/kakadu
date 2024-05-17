@@ -1,6 +1,6 @@
-﻿using System.Printing;
+﻿using System.Drawing;
 using System.Drawing.Printing;
-using Brushes = System.Drawing.Brushes;
+using System.Printing;
 
 
 namespace Kakadu.Backend.Services
