@@ -39,7 +39,7 @@ namespace Kakadu.WebServer
             return jsonBuilder.ToString();
         }
 
-        public string ConvertList(List<Kakadu.Backend.Entities.Order> orders)
+        public string Convert(List<Kakadu.Backend.Entities.Order> orders)
         {
             StringBuilder jsonBuilder = new StringBuilder();
             jsonBuilder.Append("[");
