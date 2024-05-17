@@ -27,7 +27,7 @@ namespace Kakadu.WebServer
             {
                 server = new TcpListener(address, port);
                 server.Start();
-                Log.Information("Web Server Running on {Address} on port {Port}...", address, port);
+                Log.Information("Web Server is running on {Address} on port {Port}...", address, port);
 
                 Socket clientSocket = null;
 
@@ -37,9 +37,11 @@ namespace Kakadu.WebServer
                     byte[] buffer = new byte[1024];
                     int bytesReceived = clientSocket.Receive(buffer);
                     string request = Encoding.UTF8.GetString(buffer, 0, bytesReceived);
+                    Log.Debug("Received request: {Request}", request);
 
                     if (string.IsNullOrEmpty(request))
                     {
+                        Log.Warning("Received an empty request");
                         HttpResponse  httpResponse = new HttpResponse();
                         httpResponse.Status = HttpStatus.OK;
                         httpResponse.Body = "{}";
@@ -59,7 +61,7 @@ namespace Kakadu.WebServer
                         response.Body = ex.Message;
                         response.Status = HttpStatus.BadRequest;
                         SendMessageByByte(clientSocket, response);
-                        Log.Information("BadRequest");
+                        Log.Error("Error. Reason: {0}", ex.Message);
                     }
                 }
             }
