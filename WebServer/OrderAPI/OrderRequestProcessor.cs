@@ -2,7 +2,7 @@
 using Kakadu.Backend.Repositories;
 using Kakadu.Backend.Services;
 
-namespace Kakadu.WebServer.Order
+namespace Kakadu.WebServer.OrderAPI
 {
     public class OrderRequestProcessor
     {
@@ -42,6 +42,7 @@ namespace Kakadu.WebServer.Order
 
             order.TotalPrice = order.Items.Sum(item => item.Amount);
             order.Status = "Processing";
+            order.UpdatedAt = order.OrderDate;
 
             var savedOrder = _orderRepository.Save(order);
 

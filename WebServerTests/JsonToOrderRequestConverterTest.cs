@@ -1,4 +1,4 @@
-using Kakadu.WebServer.Order;
+using Kakadu.WebServer.OrderAPI;
 
 namespace WebServerTests
 {
