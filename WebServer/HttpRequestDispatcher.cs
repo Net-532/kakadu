@@ -2,7 +2,6 @@
 using Kakadu.Backend.Services;
 using Kakadu.WebServer.Order;
 using Kakadu.WebServer.ProductAPI;
-using System;
 using WebServer.Order;
 
 namespace Kakadu.WebServer

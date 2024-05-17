@@ -1,5 +1,6 @@
 ﻿using Kakadu.Backend.Services;
 using Kakadu.WebServer;
+using System;
 
 namespace WebServer.Order
 {
@@ -16,10 +17,8 @@ namespace WebServer.Order
 
         public HttpResponse Process(HttpRequest httpRequest)
         {
-            var timestamp = DateTime.Parse(httpRequest.Parameters["timestamp"]);
-
-            var from = timestamp.AddSeconds(-1);
-            var to = timestamp.AddSeconds(1);
+            var from = DateTime.Parse(httpRequest.Parameters["from"]);
+            var to = DateTime.Parse(httpRequest.Parameters["to"]);
 
             var orders = _orderService.GetAllByUpdatedAt(from, to);
 
