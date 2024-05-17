@@ -32,10 +32,27 @@ namespace Kakadu.Backoffice.Views
 
         private void LoadOrders()
         {
-            List<Order> orders = orderManager.LoadItems();
-            if (orders != null)
-            {
-                dataGrid.ItemsSource = orders;
+            List<Order> orders = new List<Order>();
+                if (string.IsNullOrEmpty(SearchBox.Text))
+                {
+                    dataGrid.ItemsSource = orderManager.LoadItems();
+
+                }
+                else
+                {
+                    int number = Convert.ToInt32(SearchBox.Text);
+                    Order numOrder = orderManager.GetByNumber(number);
+                    if (numOrder != null)
+                    {
+                        orders.Add(numOrder);
+                        dataGrid.ItemsSource = null;
+                        dataGrid.ItemsSource = orders;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Замовлення з таким номером не існує", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+
             }
         }
 
@@ -45,9 +62,8 @@ namespace Kakadu.Backoffice.Views
             if (selectedItem != null)
             {
                 orderManager.ChangeStatus(selectedItem.Id, "Done");
+                LoadOrders();
             }
-            LoadOrders();
-
         }
 
         private void DeleteProduct(object sender, RoutedEventArgs e)
@@ -76,7 +92,6 @@ namespace Kakadu.Backoffice.Views
             {
                 MessageBox.Show("Виберіть продукт для редагування.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-
             LoadProducts();
         }
 
@@ -94,30 +109,7 @@ namespace Kakadu.Backoffice.Views
 
         private void SearchOrder(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(SearchBox.Text))
-            {
-                dataGrid.ItemsSource = orderManager.LoadItems();
-
-            }
-            else
-            {
-                int number = Convert.ToInt32(SearchBox.Text);
-                List<Order> orders = new List<Order>();
-                Order numOrder = orderManager.GetByNumber(number);
-                if (numOrder != null)
-                {
-                    orders.Add(numOrder);
-                    dataGrid.ItemsSource = null;
-                    dataGrid.ItemsSource = orders;
-                }
-                else
-                {
-                    MessageBox.Show("Замовлення з таким номером не існує", "Помилка", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-
-            }
-
-
+            LoadOrders();
         }
 
         private void AddProduct(object sender, RoutedEventArgs e)
