@@ -38,6 +38,15 @@ namespace Kakadu.WebServer
                     int bytesReceived = clientSocket.Receive(buffer);
                     string request = Encoding.UTF8.GetString(buffer, 0, bytesReceived);
 
+                    if (string.IsNullOrEmpty(request))
+                    {
+                        HttpResponse  httpResponse = new HttpResponse();
+                        httpResponse.Status = HttpStatus.OK;
+                        httpResponse.Body = "{}";
+                        SendMessageByByte(clientSocket, httpResponse);
+                        continue;
+                    }
+
                     try
                     {
                         HttpRequest httpRequest = httpMessageConverter.Convert(request);
