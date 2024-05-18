@@ -3,7 +3,7 @@ using Kakadu.Backend.Services;
 using Kakadu.WebServer.OrderAPI;
 using Kakadu.WebServer.ProductAPI;
 
-namespace Kakadu.WebServer
+namespace Kakadu.WebServer.Core
 {
     public enum HttpStatus
     {
