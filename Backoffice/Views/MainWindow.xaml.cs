@@ -6,15 +6,12 @@ using System.Windows.Input;
 
 namespace Kakadu.Backoffice.Views
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-
         private ProductManager productManager;
         private OrderManager orderManager;
         private UserManager userManager;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -49,7 +46,6 @@ namespace Kakadu.Backoffice.Views
                 orderManager.ChangeStatus(selectedItem.Id, "Done");
             }
             LoadOrders();
-
         }
 
         private void DeleteProduct(object sender, RoutedEventArgs e)
@@ -59,7 +55,6 @@ namespace Kakadu.Backoffice.Views
             {
                 productManager.DeleteItem(selectedItem.Id);
             }
-
             LoadProducts();
         }
 
@@ -78,7 +73,6 @@ namespace Kakadu.Backoffice.Views
                     MessageBox.Show("Please select a product to edit.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
-
             LoadProducts();
         }
 
@@ -99,7 +93,6 @@ namespace Kakadu.Backoffice.Views
             if (string.IsNullOrEmpty(SearchBox.Text))
             {
                 dataGrid.ItemsSource = orderManager.LoadItems();
-
             }
             else
             {
@@ -116,21 +109,16 @@ namespace Kakadu.Backoffice.Views
                 {
                     MessageBox.Show("Замовлення з таким номером не існує", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
-
             }
-
-
         }
 
         private void AddProduct(object sender, RoutedEventArgs e)
         {
-
             var dialog = new ProductDialog(productManager.AddItem);
             if (dialog.ShowDialog() != true)
             {
                 MessageBox.Show("Can't add new product.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-
             LoadProducts();
         }
 
@@ -146,6 +134,7 @@ namespace Kakadu.Backoffice.Views
 
             ProductButtonsPanel.Visibility = Visibility.Visible;
             OrderButtonsPanel.Visibility = Visibility.Hidden;
+            UserButtonsPanel.Visibility = Visibility.Hidden;
 
             DeleteButton.Click += DeleteProduct;
             EditButton.Click += EditProduct;
@@ -157,8 +146,10 @@ namespace Kakadu.Backoffice.Views
             dataGrid.Visibility = Visibility.Visible;
             ProductButtonsPanel.Visibility = Visibility.Hidden;
             OrderButtonsPanel.Visibility = Visibility.Visible;
+            UserButtonsPanel.Visibility = Visibility.Hidden;
             LoadOrders();
         }
+
         private void LoadUsers()
         {
             List<User> users = userManager.LoadItems();
@@ -170,15 +161,14 @@ namespace Kakadu.Backoffice.Views
 
         private void AddUser(object sender, RoutedEventArgs e)
         {
-
-            var dialog = new UserDialog(userManager.AddItem);
-            if (dialog.ShowDialog() != true)
+            var userDialog = new UserDialog(userManager.AddItem);
+            if (userDialog.ShowDialog() != true)
             {
                 MessageBox.Show("Неможливо додати нового користувача.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-
             LoadUsers();
         }
+
         private void DeleteUser(object sender, RoutedEventArgs e)
         {
             var selectedItem = dataGrid.SelectedItem as User;
@@ -186,16 +176,16 @@ namespace Kakadu.Backoffice.Views
             {
                 userManager.DeleteItem(selectedItem.Id);
             }
-
             LoadUsers();
         }
+
         private void EditUser(object sender, RoutedEventArgs e)
         {
             var selectedItem = dataGrid.SelectedItem as User;
             if (selectedItem != null)
             {
-                var dialog = new UserDialog(selectedItem);
-                if (dialog.ShowDialog() == true)
+                var userDialog = new UserDialog(user => userManager.EditItem(selectedItem.Id, user), selectedItem);
+                if (userDialog.ShowDialog() == true)
                 {
                     userManager.EditItem(selectedItem.Id, selectedItem);
                 }
@@ -204,7 +194,6 @@ namespace Kakadu.Backoffice.Views
                     MessageBox.Show("Виберіть користувача якого хочете редагувати.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
-
             LoadUsers();
         }
 
@@ -217,9 +206,9 @@ namespace Kakadu.Backoffice.Views
             ProductButtonsPanel.Visibility = Visibility.Hidden;
             OrderButtonsPanel.Visibility = Visibility.Hidden;
 
-            //DeleteUserButton.Click += DeleteProduct;
-            //EditUserButton.Click += EditProduct;
-            //AddUserButton.Click += AddProduct;
+            DeleteUserButton.Click += DeleteUser;
+            EditUserButton.Click += EditUser;
+            AddUserButton.Click += AddUser;
         }
     }
 }

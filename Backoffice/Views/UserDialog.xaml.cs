@@ -41,17 +41,18 @@ namespace Kakadu.Backoffice.Views
             IdTextBox.Text = "Автоматично";
 
             isNew = true;
-            
+
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             _selectedItem.Username = UsernameTextBox.Text;
             _selectedItem.FirstName = FirstNameTextBox.Text;
-            _selectedItem.LastName= LastNameTextBox.Text;
+            _selectedItem.LastName = LastNameTextBox.Text;
             _selectedItem.Password = PasswordTextBox.Text;
 
-            if (isNew) {
+            if (isNew)
+            {
                 _SaveItem(_selectedItem);
             }
 
