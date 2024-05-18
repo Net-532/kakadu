@@ -1,0 +1,24 @@
+services :
+  db:
+    image: mysql:8.0.37
+    container_name: kakadu_db
+    restart: always
+    env_file: .env
+    environment:
+    - MYSQL_DATABASE=kakadu
+    command: '--default-authentication-plugin=mysql_native_password'
+    volumes:
+    - ./kakadu_db:/var/lib/mysql
+    - ./init_db:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+
+  kiosk:
+    image: nginx:1.27.0-alpine
+    container_name: kakadu_ui
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./kiosk:/kiosk
+      - ./nginx-config:/etc/nginx/conf.d
