@@ -15,11 +15,13 @@ namespace Kakadu.WebServer.OrderAPI
 
         public HttpResponse Process(HttpRequest httpRequest)
         {
-            var from = DateTime.Parse(httpRequest.Parameters["from"]);
-            var to = DateTime.Parse(httpRequest.Parameters["to"]);
+            var fromUnixTimestamp = long.Parse(httpRequest.Parameters["from"]);
+            var toUnixTimestamp = long.Parse(httpRequest.Parameters["to"]);
+
+            var from = DateTimeOffset.FromUnixTimeSeconds(fromUnixTimestamp).DateTime;
+            var to = DateTimeOffset.FromUnixTimeSeconds(toUnixTimestamp).DateTime;
 
             var orders = _orderService.GetAllByUpdatedAt(from, to);
-
             var json = _orderToJsonConverter.Convert(orders);
 
             var response = new HttpResponse
