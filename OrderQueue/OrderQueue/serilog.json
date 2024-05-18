@@ -1,0 +1,17 @@
+{
+  "Serilog": {
+    "MinimumLevel": "Information",
+    "WriteTo": [
+      {
+        "Name": "Console"
+      },
+      {
+        "Name": "File",
+        "Args": {
+          "path": "logs/orderstatuses.log",
+          "rollingInterval": "Day"
+        }
+      }
+    ]
+  }
+}

@@ -1,4 +1,5 @@
 ﻿using Kakadu.Backend.Services;
+using Kakadu.WebServer.Core;
 
 namespace Kakadu.WebServer.OrderAPI
 {
@@ -16,10 +17,9 @@ namespace Kakadu.WebServer.OrderAPI
         public HttpResponse Process(HttpRequest httpRequest)
         {
             var fromUnixTimestamp = long.Parse(httpRequest.Parameters["from"]);
-            var toUnixTimestamp = long.Parse(httpRequest.Parameters["to"]);
-
             var from = DateTimeOffset.FromUnixTimeSeconds(fromUnixTimestamp).DateTime;
-            var to = DateTimeOffset.FromUnixTimeSeconds(toUnixTimestamp).DateTime;
+            var to = from.AddMinutes(30);
+
 
             var orders = _orderService.GetAllByUpdatedAt(from, to);
             var json = _orderToJsonConverter.Convert(orders);

@@ -2,6 +2,10 @@
 using Kakadu.Backend.Services;
 using Kakadu.WebServer.OrderAPI;
 using Kakadu.WebServer.ProductAPI;
+using System;
+using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
+using Serilog;
 
 namespace Kakadu.WebServer.Core
 {
@@ -18,10 +22,8 @@ namespace Kakadu.WebServer.Core
         private static IProductRepository productRepository = new ProductRepositoryXML();
         private static IProductService productService = new ProductService(productRepository);
         private static IOrderRepository orderRepository = new OrderRepositoryXML();
-        private static ProductRequestProcessor productRequestProcessor = new ProductRequestProcessor(productService, new ProductToJsonConverter());
         private static IOrderService orderService = new OrderService(orderRepository);
-        private static OrderToPlainTextConverter converter = new OrderToPlainTextConverter(productService);
-        private static PrintOrderRequestProcessor printOrderRequestProcessor = new PrintOrderRequestProcessor(orderService, converter);
+        private static ProductRequestProcessor productRequestProcessor = new ProductRequestProcessor(productService, new ProductToJsonConverter());
         private static OrderRequestProcessor orderRequestProcessor = new OrderRequestProcessor(orderRepository, productService);
         private static OrderStatusRequestProcessor orderStatusRequestProcessor = new OrderStatusRequestProcessor(orderService, new OrderToJsonConverter());
 
@@ -36,9 +38,6 @@ namespace Kakadu.WebServer.Core
                     break;
                 case "/orders":
                     response = ProcessOrdersRequest(httpRequest);
-                    break;
-                case "/print":
-                    response = printOrderRequestProcessor.Process(httpRequest);
                     break;
                 case "/orderStatuses":
                     response = ProcessOrderStatusesRequest(httpRequest);
