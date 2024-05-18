@@ -1,4 +1,4 @@
-﻿namespace Kakadu.WebServer
+﻿namespace Kakadu.WebServer.Core
 {
     public class HttpRequest
     {

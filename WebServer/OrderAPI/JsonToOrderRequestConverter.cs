@@ -1,4 +1,4 @@
-﻿namespace Kakadu.WebServer.Order
+﻿namespace Kakadu.WebServer.OrderAPI
 {
     public class JsonToOrderRequestConverter
     {
