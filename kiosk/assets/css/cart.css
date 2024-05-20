@@ -9,6 +9,7 @@
     display: flex;
     align-items: flex-start;
     position: relative;
+    height: 130px;
 }
 
 #cart-item-img {
@@ -24,16 +25,19 @@
     }
 }
 
-#cart-item-text {
+.card-body{
     flex-grow: 1;
     padding-top: 8px;
     padding-right: 10px;
-    width: 600px;
+    width: 800px;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    margin-left: 25px;
+    height: 100%;
 }
+
 
 #cart-text-bold {
     font-family: Inter, sans-serif;
@@ -50,9 +54,7 @@
 }
 
 #cart-item-price {
-    position: absolute;
-    bottom: 5px;
-    left: 118.5px; 
+    position: relative;
     font-family: Inter, sans-serif;
     font-size: 15px;
     font-weight: 700;
