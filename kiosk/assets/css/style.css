@@ -19,8 +19,8 @@
         }
 
         .card.product {
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             cursor: pointer;
             transition: transform 0.3s ease;
         }
@@ -31,13 +31,39 @@
         
         
         .card.product img {
-            width: 100px;
-            height: 100px;
+            width: 70px;
+            height: 70px;
         }
         
         .product-price {
-            font-size: 1rem;
-          }
+            font-size: 0.75rem;
+        }
                
-                
+          .buttoncart {
+            width: 500px;
+            height: auto;
+            position: fixed;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+
+          .cart-button-check {
+            display: none;
+          }
         
+        
+        .buttonimage {
+            width: 500px;
+            height: auto;
+            box-shadow: 0 0px 0px black;
+        }
+
+        .buttoncart:hover {
+            cursor: pointer;
+        }
+
+        footer{
+            height: 130px;
+        }
