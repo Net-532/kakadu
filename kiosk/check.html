@@ -57,15 +57,37 @@ hr::before {
         <hr>
         <div id="cartItemsContainer"></div>
         <hr>
-    <p class="price">120 грн</p>
-    </div>
-    <hr>
-    <p class="name">Сума</p>
-    <p class="price">966 грн</p>
-    </div>
-    <hr>
-    <p>Дякуємо за покупку!</p>
+        <div id="totalSum"></div>
+        <hr>
+        <p>Дякуємо за покупку!</p>
     </center>
+
+    <script>
+    let now = new Date();
+
+        document.addEventListener("DOMContentLoaded", function () {
+              const currentDateElement = document.getElementById("currentDate");
+            const currentTimeElement = document.getElementById("currentTime");
+
+            const currentDate = new Date();
+            const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+            const formattedDate = currentDate.toLocaleDateString('en-GB', options);
+            const formattedTime = currentDate.toLocaleTimeString();
+
+            currentDateElement.textContent = `Дата: ${formattedDate}`;
+            currentTimeElement.textContent = `Час: ${formattedTime}`;
+
+            const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+            const cartItemsContainer = document.getElementById("cartItemsContainer");
+            let totalSum = 0;
+
+            cartItems.forEach(item => {
+                const itemElement = document.createElement("div");
+                itemElement.classList.add("item");
+                itemElement.innerHTML = 
+                `
+                <div class="container">
+                    <div class="name">${item.title}</div>
                     <div class="price"> ${item.quantity}x${item.price}</div>
                     </div>
                 `;
