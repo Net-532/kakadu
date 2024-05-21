@@ -1,3 +1,6 @@
+let checkTab = true;
+let order = null;
+
 function createCartItemElement(item) {
     const itemElement = document.createElement('div');
     itemElement.setAttribute('id', 'cart-item-full');
@@ -93,7 +96,7 @@ function renderCart() {
         offcanvasBody.appendChild(itemElement);
     });
 
-    if (cartItems.length === 0) {
+    if (cartItems.length === 0 && checkTab == true) {
         const emptyCart = document.createElement('div');
         emptyCart.textContent = 'Кошик порожній';
         offcanvasBody.appendChild(emptyCart);
@@ -104,40 +107,72 @@ function renderCart() {
         const totalSum = calculateTotalSum();
         element.textContent = `${totalSum} грн`;
     });
+}
 
-    const clearCartButton = document.getElementById('cart-clear-button');
-    clearCartButton.addEventListener('click', function(event) {
-        localStorage.removeItem('cartItems');
-        renderCart();
-    });
+   
+function clearCart() {
+    localStorage.removeItem('cartItems');
+    renderCart();
+}
 
-    const checkoutButton = document.getElementById('cart-button-order');
-    checkoutButton.addEventListener('click', function(event) {
-        const items = JSON.parse(localStorage.getItem('cartItems')) || [];
-        const sendRequest = {
-            items: items.map(item => ({
-                productId: item.id,
-                quantity: item.quantity
-            }))
-        };
-        fetch(ordersEndpoint, {
-            method: 'POST',
-            body: JSON.stringify(sendRequest)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Замовлення виконано');
-            localStorage.removeItem('cartItems');
-            renderCart();
-        })
-        .catch(error => {
-            console.error('Помилка: ', error);
-        });
+function checkoutOrder() {
+    const items = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const sendRequest = {
+        items: items.map(item => ({
+            productId: item.id,
+            quantity: item.quantity
+        }))
+    };
+    fetch(ordersEndpoint, {
+        method: 'POST',
+        body: JSON.stringify(sendRequest)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Замовлення виконано');
+	 DisplayCheckTab();
+         order = data;
+         clearCart();
+    })
+    .catch(error => {
+        console.error('Помилка: ', error);
     });
 }
 
+const printCheck = document.getElementById('cart-button-check');
+printCheck.addEventListener('click', function(event) {
+    fetch(`${printReceiptEndpoint}?orderId=${order.id}`, {
+        method: 'PUT',
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Чек надруковано!');
+        localStorage.removeItem('cartItems');
+        DisplayOrderTab();
+        renderCart();
+    })
+    .catch(error => {
+        console.error('Помилка: ', error);
+    });
+});
 
+function DisplayCheckTab()
+{
+    const cartBottom = document.getElementById('cart-bottom');
+    cartBottom.style.display = 'none';
+    const cartCheck = document.getElementById('cart-button-check');
+    cartCheck.style.display = 'block';
+    checkTab = false;
+}
 
+function DisplayOrderTab()
+{
+    const cartBottom = document.getElementById('cart-bottom');
+    cartBottom.style.display = 'block';
+    const cartCheck = document.getElementById('cart-button-check');
+    cartCheck.style.display = 'none';
+    checkTab = true;
+}
 
 function displayAlert(type, item, message) {
     let alert = `
