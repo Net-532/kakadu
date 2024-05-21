@@ -29,16 +29,20 @@
     flex-grow: 1;
     padding-top: 8px;
     padding-right: 10px;
-    width: 800px;
+    width: 100%;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    margin-left: 25px;
+    text-overflow: ellipsis;
+    white-space: normal;
     height: 100%;
+  
 }
 
-
+#main{
+    margin-top: 15px;
+}
 #cart-text-bold {
     font-family: Inter, sans-serif;
     font-size: 15px;
@@ -51,6 +55,12 @@
     font-size: 12px;
     font-weight: 400;
     color: #959595;
+    display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
 }
 
 #cart-item-price {
