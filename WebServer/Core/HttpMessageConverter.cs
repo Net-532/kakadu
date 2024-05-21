@@ -42,7 +42,8 @@
                     throw new NotSupportedHttpMethodException(requestLine[0]);
             }
 
-            ParametrsParse(requestPathAndValues[1], request);
+            if (requestPathAndValues.Length > 1)
+                ParseParameters(requestPathAndValues[1], request);
 
             int emptyLineIndex = Array.IndexOf(lines, "");
 
@@ -60,13 +61,8 @@
             return request;
         }
 
-        private void ParametrsParse(string requestPathAndValues, HttpRequest request)
+        private void ParseParameters(string requestPathAndValues, HttpRequest request)
         {
-            if (requestPathAndValues.Length <= 1)
-            {
-                return;
-            }
-
             string[] parametrsSplit = requestPathAndValues.Split('&');
 
             foreach (string parametr in parametrsSplit)
