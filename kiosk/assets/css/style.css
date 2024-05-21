@@ -60,3 +60,10 @@
             cursor: pointer;
         }
         
+        .container {
+            padding-bottom: 130px;
+        }
+        
+        footer{
+            height: 130px;
+        }
