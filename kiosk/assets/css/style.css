@@ -39,5 +39,27 @@
             font-size: 0.75rem;
         }
                
-                
+          .buttoncart {
+            width: 500px;
+            height: auto;
+            position: fixed;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
         
+        
+        .buttonimage {
+            width: 500px;
+            height: auto;
+            box-shadow: 0 0px 0px black;
+        }
+
+        .buttoncart:hover {
+            cursor: pointer;
+        }
+
+        footer{
+            height: 130px;
+        }
