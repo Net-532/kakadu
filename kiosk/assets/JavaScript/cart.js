@@ -1,3 +1,6 @@
+let checkTab = true;
+let order = null;
+
 function createCartItemElement(item) {
     const itemElement = document.createElement('div');
     itemElement.setAttribute('id', 'cart-item-full');
@@ -93,7 +96,7 @@ function renderCart() {
         offcanvasBody.appendChild(itemElement);
     });
 
-    if (cartItems.length === 0) {
+    if (cartItems.length === 0 && checkTab == true) {
         const emptyCart = document.createElement('div');
         emptyCart.textContent = 'Кошик порожній';
         offcanvasBody.appendChild(emptyCart);
@@ -106,6 +109,7 @@ function renderCart() {
     });
 }
 
+   
 function clearCart() {
     localStorage.removeItem('cartItems');
     renderCart();
@@ -126,11 +130,48 @@ function checkoutOrder() {
     .then(response => response.json())
     .then(data => {
         console.log('Замовлення виконано');
-        clearCart();
+	 DisplayCheckTab();
+         order = data;
+         clearCart();
     })
     .catch(error => {
         console.error('Помилка: ', error);
     });
+}
+
+const printCheck = document.getElementById('cart-button-check');
+printCheck.addEventListener('click', function(event) {
+    fetch(`${printReceiptEndpoint}?orderId=${order.id}`, {
+        method: 'PUT',
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Чек надруковано!');
+        localStorage.removeItem('cartItems');
+        DisplayOrderTab();
+        renderCart();
+    })
+    .catch(error => {
+        console.error('Помилка: ', error);
+    });
+});
+
+function DisplayCheckTab()
+{
+    const cartBottom = document.getElementById('cart-bottom');
+    cartBottom.style.display = 'none';
+    const cartCheck = document.getElementById('cart-button-check');
+    cartCheck.style.display = 'block';
+    checkTab = false;
+}
+
+function DisplayOrderTab()
+{
+    const cartBottom = document.getElementById('cart-bottom');
+    cartBottom.style.display = 'block';
+    const cartCheck = document.getElementById('cart-button-check');
+    cartCheck.style.display = 'none';
+    checkTab = true;
 }
 
 function displayAlert(type, item, message) {
