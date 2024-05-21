@@ -104,40 +104,34 @@ function renderCart() {
         const totalSum = calculateTotalSum();
         element.textContent = `${totalSum} грн`;
     });
-
-    const clearCartButton = document.getElementById('cart-clear-button');
-    clearCartButton.addEventListener('click', function(event) {
-        localStorage.removeItem('cartItems');
-        renderCart();
-    });
-
-    const checkoutButton = document.getElementById('cart-button-order');
-    checkoutButton.addEventListener('click', function(event) {
-        const items = JSON.parse(localStorage.getItem('cartItems')) || [];
-        const sendRequest = {
-            items: items.map(item => ({
-                productId: item.id,
-                quantity: item.quantity
-            }))
-        };
-        fetch(ordersEndpoint, {
-            method: 'POST',
-            body: JSON.stringify(sendRequest)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Замовлення виконано');
-            localStorage.removeItem('cartItems');
-            renderCart();
-        })
-        .catch(error => {
-            console.error('Помилка: ', error);
-        });
-    });
 }
 
+function clearCart() {
+    localStorage.removeItem('cartItems');
+    renderCart();
+}
 
-
+function checkoutOrder() {
+    const items = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const sendRequest = {
+        items: items.map(item => ({
+            productId: item.id,
+            quantity: item.quantity
+        }))
+    };
+    fetch(ordersEndpoint, {
+        method: 'POST',
+        body: JSON.stringify(sendRequest)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Замовлення виконано');
+        clearCart();
+    })
+    .catch(error => {
+        console.error('Помилка: ', error);
+    });
+}
 
 function displayAlert(type, item, message) {
     let alert = `
