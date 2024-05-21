@@ -1,6 +1,7 @@
 ﻿using Kakadu.Backend.Entities;
 using Kakadu.Backend.Repositories;
 using Kakadu.Backend.Services;
+using Kakadu.WebServer.Core;
 
 namespace Kakadu.WebServer.OrderAPI
 {

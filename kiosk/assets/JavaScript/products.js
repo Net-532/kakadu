@@ -17,11 +17,11 @@ fetch(fetchlink)
       }
 
       const productCard = document.createElement("div");
-      productCard.classList.add("col", "col-md-6", "mb-3", "position-relative");
+      productCard.classList.add("col", "col-md-6", "mb-3", "d-flex", "justify-content-center");
 
       const cardContent = `
         <div class="card product shadow p-1 position-relative">
-        <span class="badge bg-dark position-absolute top-0 end-0 product-price p-2">${product.price}</span>
+          <span class="badge bg-dark position-absolute top-0 end-0 product-price p-2">${product.price}</span>
           <div class="card-pre-body d-flex align-items-center justify-content-center ">
             <img src="${product.photoUrl}" alt="${product.title}"> 
           </div>
@@ -33,7 +33,8 @@ fetch(fetchlink)
 
       productCard.innerHTML = cardContent;
 
-      productCard.addEventListener("click", function () {
+      const cardProduct = productCard.querySelector(".card.product");
+      cardProduct.addEventListener("click", function () {
         const myModal = new bootstrap.Modal(
           document.getElementById("full_description_modal")
         );
@@ -55,6 +56,8 @@ fetch(fetchlink)
 
       row.appendChild(productCard);
     });
+    document.getElementById('cart-clear-button').addEventListener('click', clearCart);
+    document.getElementById('cart-button-order').addEventListener('click', checkoutOrder);
     document.getElementById('cart-close-button').addEventListener('click', function () { DisplayOrderTab(); });
     const myOffcanvas = document.getElementById('offcanvasBottom');
     myOffcanvas.addEventListener('hidden.bs.offcanvas', function () { DisplayOrderTab(); });
@@ -69,3 +72,5 @@ fetch(fetchlink)
   .catch((error) => {
     console.error("Error loading products:", error);
   });
+
+
