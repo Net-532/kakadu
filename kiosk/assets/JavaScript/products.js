@@ -56,7 +56,8 @@ fetch(fetchlink)
 
       row.appendChild(productCard);
     });
-
+    document.getElementById('cart-clear-button').addEventListener('click', clearCart);
+    document.getElementById('cart-button-order').addEventListener('click', checkoutOrder);
     document.getElementById("open-cart").addEventListener("click", function () {
       renderCart();
       const bsOffcanvas = new bootstrap.Offcanvas(
