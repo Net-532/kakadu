@@ -126,8 +126,7 @@ function checkoutOrder() {
     .then(response => response.json())
     .then(data => {
         console.log('Замовлення виконано');
-        localStorage.removeItem('cartItems');
-        renderCart();
+        clearCart();
     })
     .catch(error => {
         console.error('Помилка: ', error);
