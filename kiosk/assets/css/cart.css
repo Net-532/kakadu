@@ -98,34 +98,15 @@
     box-shadow: 0px -1px 5.2px 0px #00000040 inset;
 }
 
-.cart-button-order {
-    position: fixed;
-    bottom: 10px;
-    padding: 5px 10px;
-    font-size: 14px;
-    font-weight: 700;
-    left: 50%;
-    transform: translateX(-50%);
-}
+
 
 #cart-bottom {
     height: 150px;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.252);
-    display: flex;
-    font-family: Inter, sans-serif;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 700;
     color: #000000;
 }
 
-#cart-total-text {
-    position: relative;
-    margin: 5px;
-}
 
-#cart-total-numb {
-    position: relative;
-    margin: 5px;
-    margin-left: auto;
-    padding-right: 10px;
-}
+
