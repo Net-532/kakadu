@@ -122,11 +122,8 @@ function renderCart() {
         .then(response => response.json())
         .then(data => {
             console.log('Чек надруковано!');
-            const cartBottom = document.getElementById('cart-bottom');
-            cartBottom.style.display = 'none';
-            const cartCheck = document.getElementById('cart-button-check');
-            cartCheck.style.display = 'block';
-            checkTab = true;
+            localStorage.removeItem('cartItems');
+            DisplayOrderTab();
             renderCart();
         })
         .catch(error => {
@@ -151,11 +148,7 @@ function renderCart() {
         .then(data => {
             console.log('Замовлення виконано');
             localStorage.removeItem('cartItems');
-            const cartBottom = document.getElementById('cart-bottom');
-            cartBottom.style.display = 'none';
-            const cartCheck = document.getElementById('cart-button-check');
-            cartCheck.style.display = 'block';
-            checkTab = false;
+            DisplayCheckTab();
             order = data;
             renderCart();
         })
@@ -165,8 +158,23 @@ function renderCart() {
     });
 }
 
+function DisplayCheckTab()
+{
+    const cartBottom = document.getElementById('cart-bottom');
+    cartBottom.style.display = 'none';
+    const cartCheck = document.getElementById('cart-button-check');
+    cartCheck.style.display = 'block';
+    checkTab = false;
+}
 
-
+function DisplayOrderTab()
+{
+    const cartBottom = document.getElementById('cart-bottom');
+    cartBottom.style.display = 'block';
+    const cartCheck = document.getElementById('cart-button-check');
+    cartCheck.style.display = 'none';
+    checkTab = true;
+}
 
 function displayAlert(type, item, message) {
     let alert = `
