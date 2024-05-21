@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Чек</title>
     <style>
 .container {
   overflow: hidden; 
@@ -26,7 +27,7 @@
 }
 
 hr {
-  height: 10px;
+  height: 20px;
   border: none;
   position: relative;
   background: #ffffff;
@@ -44,28 +45,38 @@ hr::before {
 }
     </style>
 </head>
+
 <body>
     <center>
-    <p>Kakadu</p>
-    <p>Адреса: вул. Павла Каспрука 2</p>
-    <p>Чек</p>
+        <p>Kakadu</p>
+        <p>Адреса: вул. Павла Каспрука 2</p>
+        <p>Чек</p>
         <hr>
-        
-    <p>Дата: 30.07.2006</p>
-    <p>Час: 14:56</p>
-    </div>
-    <hr>
-    <div class="container">
-    <p class="name">Чізбургер 120г.</p>
+    <p id="currentDate"></p>
+    <p id="currentTime"></p>
+        <hr>
+        <div id="cartItemsContainer"></div>
+        <hr>
     <p class="price">120 грн</p>
     </div>
     <hr>
-    <div class="container">
     <p class="name">Сума</p>
     <p class="price">966 грн</p>
     </div>
     <hr>
     <p>Дякуємо за покупку!</p>
     </center>
+                    <div class="price"> ${item.quantity}x${item.price}</div>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(itemElement);
+                totalSum += item.price * item.quantity;
+            });
+
+            const totalSumElement = document.getElementById("totalSum");
+            totalSumElement.textContent = `Cума: ${totalSum} грн`;
+        });
+    </script>
 </body>
+
 </html>
