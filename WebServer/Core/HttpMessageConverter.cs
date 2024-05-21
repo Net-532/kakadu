@@ -42,13 +42,7 @@
                     throw new NotSupportedHttpMethodException(requestLine[0]);
             }
 
-            if (requestPathAndValues.Length > 1)
-            {
-                string[] valueSplit = requestPathAndValues[1].Split('=');
-                string value = valueSplit[1];
-
-                request.Parameters[$"{valueSplit[0]}"] = value;
-            }
+            ParametrsParse(requestPathAndValues[1], request);
 
             int emptyLineIndex = Array.IndexOf(lines, "");
 
@@ -64,6 +58,23 @@
             }
 
             return request;
+        }
+
+        private void ParametrsParse(string requestPathAndValues, HttpRequest request)
+        {
+            if (requestPathAndValues.Length <= 1)
+            {
+                return;
+            }
+
+            string[] parametrsSplit = requestPathAndValues.Split('&');
+
+            foreach (string parametr in parametrsSplit)
+            {
+                string[] parametrSplit = parametr.Split("=");
+                string value = parametrSplit[1];
+                request.Parameters[$"{parametrSplit[0]}"] = value;
+            }
         }
     }
 }
