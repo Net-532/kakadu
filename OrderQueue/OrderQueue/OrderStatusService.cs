@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Serilog;
@@ -22,9 +24,9 @@ namespace OrderStatusClient
                 .CreateLogger();
         }
 
-        public async Task<string> GetStatus(long timestamp)
+        public async Task<List<Order>> GetStatus(long from, long to)
         {
-            string url = $"{_baseAddress}/orderStatuses?from={timestamp}";
+            string url = $"{_baseAddress}/orderStatuses?from={from}&to={to}";
 
             try
             {
@@ -32,9 +34,9 @@ namespace OrderStatusClient
 
                 if (response.IsSuccessStatusCode)
                 {
-                    string responseBody = await response.Content.ReadAsStringAsync();
-                    Log.Information("HTTP GET Response: {ResponseBody}", responseBody);
-                    return responseBody;
+                    var orders = await response.Content.ReadFromJsonAsync<List<Order>>();
+                    Log.Information("HTTP GET Response: {Orders}", orders);
+                    return orders;
                 }
                 else
                 {

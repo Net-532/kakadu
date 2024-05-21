@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
-using System.Threading.Tasks;
 using OrderStatusClient;
 
 namespace Kakadu.OrderQueue
@@ -9,27 +8,32 @@ namespace Kakadu.OrderQueue
     public partial class MainWindow : Window
     {
         private readonly OrderStatusService _orderStatusService;
-        private List<string> newOrders;
-        private List<string> completedOrders;
+        private List<Order> orders = new List<Order>();
 
         public MainWindow()
         {
             InitializeComponent();
             _orderStatusService = new OrderStatusService();
-            newOrders = new List<string>();
-            completedOrders = new List<string>();
         }
 
         private async void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                long timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-                string status = await _orderStatusService.GetStatus(timestamp);
-                if (!newOrders.Contains(status) && !completedOrders.Contains(status))
+                long from = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+                long to = from; // Для цього прикладу використовуємо поточний момент часу
+                var newOrders = await _orderStatusService.GetStatus(from, to);
+
+                if (newOrders != null)
                 {
-                    newOrders.Add(status);
-                    newOrdersListBox.Items.Add(status);
+                    foreach (var order in newOrders)
+                    {
+                        if (!orders.Exists(o => o.OrderNumber == order.OrderNumber && o.Status == order.Status))
+                        {
+                            orders.Add(order);
+                            ordersListBox.Items.Add($"Order Number: {order.OrderNumber}, Status: {order.Status}");
+                        }
+                    }
                 }
             }
             catch (Exception ex)
