@@ -1,6 +1,6 @@
 ﻿using Kakadu.Backend.Entities;
 using Kakadu.Backend.Services;
-using Kakadu.WebServer;
+using Kakadu.WebServer.Core;
 
 namespace Kakadu.WebServer.ProductAPI
 {
