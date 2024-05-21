@@ -19,8 +19,8 @@
         }
 
         .card.product {
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             cursor: pointer;
             transition: transform 0.3s ease;
         }
@@ -31,13 +31,13 @@
         
         
         .card.product img {
-            width: 100px;
-            height: 100px;
+            width: 70px;
+            height: 70px;
         }
         
         .product-price {
-            font-size: 1rem;
-          }
+            font-size: 0.75rem;
+        }
                
                 
         
