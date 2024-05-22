@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Text;
 
-namespace Kakadu.WebServer
+namespace Kakadu.WebServer.ProductAPI
 {
     public class ProductToJsonConverter
     {
