@@ -8,7 +8,9 @@ namespace Kakadu.OrderQueue
     public partial class MainWindow : Window
     {
         private readonly OrderStatusService _orderStatusService;
-        private List<Order> orders = new List<Order>();
+        private HashSet<Order> orders = new HashSet<Order>();
+        private long from = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        private long to = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 
         public MainWindow()
         {
@@ -20,25 +22,40 @@ namespace Kakadu.OrderQueue
         {
             try
             {
-                long from = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-                long to = from; // Для цього прикладу використовуємо поточний момент часу
                 var newOrders = await _orderStatusService.GetStatus(from, to);
 
-                if (newOrders != null)
+                foreach (var order in newOrders)
                 {
-                    foreach (var order in newOrders)
-                    {
-                        if (!orders.Exists(o => o.OrderNumber == order.OrderNumber && o.Status == order.Status))
-                        {
-                            orders.Add(order);
-                            ordersListBox.Items.Add($"Order Number: {order.OrderNumber}, Status: {order.Status}");
-                        }
-                    }
+                    orders.Add(order); 
                 }
+
+                UpdateUI();
+
+
+                from = to;
+                to = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void UpdateUI()
+        {
+            ordersNewListBox.Items.Clear();
+            ordersDoneListBox.Items.Clear();
+
+            foreach (var order in orders)
+            {
+                if (order.Status == "Processing")
+                {
+                    ordersNewListBox.Items.Add(order.OrderNumber);
+                }
+                else
+                {
+                    ordersDoneListBox.Items.Add(order.OrderNumber);
+                }
             }
         }
     }

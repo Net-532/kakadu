@@ -26,6 +26,9 @@ namespace Kakadu.WebServer.Core
         private static ProductRequestProcessor productRequestProcessor = new ProductRequestProcessor(productService, new ProductToJsonConverter());
         private static OrderRequestProcessor orderRequestProcessor = new OrderRequestProcessor(orderRepository, productService);
         private static OrderStatusRequestProcessor orderStatusRequestProcessor = new OrderStatusRequestProcessor(orderService, new OrderToJsonConverter());
+        private static PrintOrderRequestProcessor printOrderRequestProcessor = new PrintOrderRequestProcessor(orderService, converter);
+        private static OrderToPlainTextConverter converter = new OrderToPlainTextConverter(productService);
+
 
         public HttpResponse Dispatch(HttpRequest httpRequest)
         {
@@ -41,6 +44,9 @@ namespace Kakadu.WebServer.Core
                     break;
                 case "/orderStatuses":
                     response = ProcessOrderStatusesRequest(httpRequest);
+                    break;
+                case "/print":
+                    response = printOrderRequestProcessor.Process(httpRequest);
                     break;
                 default:
                     response.Status = HttpStatus.NotFound;
