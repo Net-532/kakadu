@@ -1,4 +1,4 @@
-.container {
+.container-receipt {
     overflow: hidden;
 }
 
@@ -12,14 +12,13 @@
 
 @font-face {
     font-family: 'Kyiv';
-    src: url('/assets/font/KyivTypeSerif-Medium.woff2') format('woff2') url('/assets/font/KyivTypeSerif-Medium.woff') format('woff');
+    src: url('/assets/font/KyivTypeSerif-Regular.woff') format('woff');
     font-weight: 1;
     font-style: normal;
-    font-size: 20px;
 }
 .receipt{
     font-family: "Kyiv", serif;
-    font-weight: bold;
+    font-size: 20px;
 }
 
 
