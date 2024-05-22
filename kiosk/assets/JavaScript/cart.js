@@ -116,120 +116,68 @@ function renderCart() {
     const totalSum = calculateTotalSum();
     element.textContent = `${totalSum} грн`;
   });
-
-  const clearCartButton = document.getElementById("cart-clear-button");
-  clearCartButton.addEventListener("click", function (event) {
-    localStorage.removeItem("cartItems");
-    renderCart();
-  });
-
-  const printCheck = document.getElementById("cart-button-check");
-  printCheck.addEventListener("click", function (event) {
-    fetch(`${printReceiptEndpoint}?orderId=${order.id}`, {
-      method: "PUT",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Чек надруковано!");
-        const cartBottom = document.getElementById("cart-bottom");
-        cartBottom.style.display = "none";
-        const cartCheck = document.getElementById("cart-button-check");
-        cartCheck.style.display = "block";
-        checkTab = true;
-        renderCart();
-      })
-      .catch((error) => {
-        console.error("Помилка: ", error);
-      });
-  });
-
-  const checkoutButton = document.getElementById("cart-button-order");
-  checkoutButton.addEventListener("click", function (event) {
-    const items = JSON.parse(localStorage.getItem("cartItems")) || [];
-    const sendRequest = {
-      items: items.map((item) => ({
-        productId: item.id,
-        quantity: item.quantity,
-      })),
-    };
-    fetch(ordersEndpoint, {
-      method: "POST",
-      body: JSON.stringify(sendRequest),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Замовлення виконано", data);
-        // data
-        //             {
-        //     "orderNumber": 8,
-        //     "id": "108",
-        //     "orderDate": "21.05.2024",
-        //     "orderTime": "14:13:35",
-        //     "totalPrice": 65.00,
-        //     "items": [
-        //         {
-        //             "title": "Молочний коктейль",
-        //             "quantity": 1,
-        //             "price": 65.00,
-        //             "amount": 65.00
-        //         }
-        //     ]
-        // }
-
-        localStorage.removeItem("cartItems");
-        const cartBottom = document.getElementById("cart-bottom");
-        cartBottom.style.display = "none";
-        const cartCheck = document.getElementById("cart-button-check");
-        cartCheck.style.display = "block";
-        checkTab = false;
-        order = data;
-        renderCart();
-        renderReceipt(data);
-      })
-      .catch((error) => {
-        console.error("Помилка: ", error);
-      });
-  });
 }
 
-function renderReceipt(order) {
-  const header = `
-        <center>
-        <p>Kakadu</p>
-        <p>Адреса: вул. Павла Каспрука 2</p>
-        <p>Чек # ${order.orderNumber}</p>
-        <hr>
-        <div class="container">
-        <div class="name"><p>Дата:${order.orderDate}</p>
-        <p>Час:${order.orderTime}</p></div>
-        </div>
-        <hr>
-        `;
-  let body = ``;
-  order.items.forEach((item) => {
-    body += `
-    <center>
-    <div class=".container-receipt">
-                      <div class="name">${item.title}</div>
-                     <div class="price"> ${item.quantity}x${item.price}</div>
-            </div>
-            `;
-  });
-  const footer = `
-  <center>
-        <hr>
-        <div class=".container-receipt">
-  <div class="name">Сума:</div> 
-  <div class="price">${order.totalPrice} грн</div>
-    </div>
-        <hr>
-        <p>Дякуємо за покупку!</p>
-    `;
-  let check = document.getElementById("cart-main-container");
-  const itemElement = document.createElement("div");
-  itemElement.classList.add("receipt");
-  itemElement.innerHTML = header + body + footer;
-  check.appendChild(itemElement);
+function clearCart() {
+  localStorage.removeItem("cartItems");
+  renderCart();
+}
+
+function checkoutOrder() {
+  const items = JSON.parse(localStorage.getItem("cartItems")) || [];
+  const sendRequest = {
+    items: items.map((item) => ({
+      productId: item.id,
+      quantity: item.quantity,
+    })),
+  };
+  fetch(ordersEndpoint, {
+    method: "POST",
+    body: JSON.stringify(sendRequest),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Замовлення виконано");
+      DisplayCheckTab();
+      order = data;
+      clearCart();
+    })
+    .catch((error) => {
+      console.error("Помилка: ", error);
+    });
+}
+
+const printCheck = document.getElementById("cart-button-check");
+printCheck.addEventListener("click", function (event) {
+  fetch(`${printReceiptEndpoint}?orderId=${order.id}`, {
+    method: "PUT",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Чек надруковано!");
+      localStorage.removeItem("cartItems");
+      DisplayOrderTab();
+      renderCart();
+    })
+    .catch((error) => {
+      console.error("Помилка: ", error);
+    });
+});
+
+function DisplayCheckTab() {
+  const cartBottom = document.getElementById("cart-bottom");
+  cartBottom.style.display = "none";
+  const cartCheck = document.getElementById("cart-button-check");
+  cartCheck.style.display = "block";
+  checkTab = false;
+}
+
+function DisplayOrderTab() {
+  const cartBottom = document.getElementById("cart-bottom");
+  cartBottom.style.display = "block";
+  const cartCheck = document.getElementById("cart-button-check");
+  cartCheck.style.display = "none";
+  checkTab = true;
 }
 
 function displayAlert(type, item, message) {
