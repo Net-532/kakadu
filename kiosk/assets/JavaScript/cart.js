@@ -141,6 +141,7 @@ function checkoutOrder() {
       DisplayCheckTab();
       order = data;
       clearCart();
+      renderReceipt(data);
     })
     .catch((error) => {
       console.error("Помилка: ", error);
@@ -178,6 +179,45 @@ function DisplayOrderTab() {
   const cartCheck = document.getElementById("cart-button-check");
   cartCheck.style.display = "none";
   checkTab = true;
+}
+function renderReceipt(order) {
+  const header = `
+        <center>
+        <p>Kakadu</p>
+        <p>Адреса: вул. Павла Каспрука 2</p>
+        <p>Чек # ${order.orderNumber}</p>
+        <hr>
+        <div class="container-receipt">
+        <div class="name"><p>Дата:${order.orderDate}</p>
+        <p>Час:${order.orderTime}</p></div>
+        </div>
+        <hr>
+        `;
+  let body = ``;
+  order.items.forEach((item) => {
+    body += `
+    <center>
+    <div class="container-receipt">
+                      <div class="name">${item.title}</div>
+                     <div class="price"> ${item.quantity}x${item.price}</div>
+            </div>
+            `;
+  });
+  const footer = `
+  <center>
+        <hr>
+        <div class="container-receipt">
+  <div class="name">Сума:</div> 
+  <div class="price">${order.totalPrice} грн</div>
+    </div>
+        <hr>
+        <p>Дякуємо за покупку!</p>
+    `;
+  let check = document.getElementById("cart-main-container");
+  const itemElement = document.createElement("div");
+  itemElement.classList.add("receipt");
+  itemElement.innerHTML = header + body + footer;
+  check.appendChild(itemElement);
 }
 
 function displayAlert(type, item, message) {
