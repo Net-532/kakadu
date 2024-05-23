@@ -5,56 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kakadu.OrderQueue"
         mc:Ignorable="d"
-       Title="Your Window Title" Height="450" Width="800"
-        WindowState="Maximized"
-        WindowStyle="None"
-        ResizeMode="NoResize">
+        Title="Order Queue" Height="450" Width="800">
     <Grid Margin="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" >
+        <StackPanel Grid.Column="0">
             <TextBlock Text="New Orders" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" FontFamily="Arial Black"/>
-            <StackPanel>
-                <WrapPanel>
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3">NOT DONE ORDER 1</TextBlock>
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3">NOT DONE ORDER 1</TextBlock>
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3">NOT DONE ORDER 1</TextBlock>
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3">NOT DONE ORDER 1</TextBlock>
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3">NOT DONE ORDER 1</TextBlock>
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3">NOT DONE ORDER 1</TextBlock>
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3">NOT DONE ORDER 1</TextBlock>
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3">NOT DONE ORDER 1</TextBlock>
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3">NOT DONE ORDER 1</TextBlock>
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3">NOT DONE ORDER 1</TextBlock>
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3">NOT DONE ORDER 1</TextBlock>
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3">NOT DONE ORDER 1</TextBlock>
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3">NOT DONE ORDER 1</TextBlock>
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3">NOT DONE ORDER 1</TextBlock>
-                </WrapPanel>
-            </StackPanel>
+            <ListBox Name="ordersNewListBox" HorizontalContentAlignment="Stretch"/>
         </StackPanel>
         <StackPanel Grid.Column="1">
-            <TextBlock Text="Completed Orders" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" FontFamily="Arial Black"/>
-            <StackPanel>
-                <WrapPanel>
-            <TextBlock Text="COMPLETED ORDER 1" Foreground="Green" FontWeight="Bold" Margin="3"/>
-            <TextBlock Text="COMPLETED ORDER 2" Foreground="Green" FontWeight="Bold" Margin="3"/>
-            <TextBlock Text="COMPLETED ORDER 3" Foreground="Green" FontWeight="Bold" Margin="3"/>
-            <TextBlock Text="COMPLETED ORDER 4" Foreground="Green" FontWeight="Bold" Margin="3"/>
-            <TextBlock Text="COMPLETED ORDER 1" Foreground="Green" FontWeight="Bold" Margin="3"/>
-            <TextBlock Text="COMPLETED ORDER 2" Foreground="Green" FontWeight="Bold" Margin="3"/>
-            <TextBlock Text="COMPLETED ORDER 3" Foreground="Green" FontWeight="Bold" Margin="3"/>
-            <TextBlock Text="COMPLETED ORDER 4" Foreground="Green" FontWeight="Bold" Margin="3"/>
-            <TextBlock Text="COMPLETED ORDER 1" Foreground="Green" FontWeight="Bold" Margin="3"/>
-            <TextBlock Text="COMPLETED ORDER 2" Foreground="Green" FontWeight="Bold" Margin="3"/>
-            <TextBlock Text="COMPLETED ORDER 3" Foreground="Green" FontWeight="Bold" Margin="3"/>
-            <TextBlock Text="COMPLETED ORDER 4" Foreground="Green" FontWeight="Bold" Margin="3"/>
-        </WrapPanel>
+            <TextBlock Text="Completed Orders" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" FontFamily="Arial Black"/>
+            <ListBox Name="ordersDoneListBox" HorizontalContentAlignment="Stretch"/>
         </StackPanel>
-
-
-        </StackPanel>
+        <Button Content="Update" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="30" Click="UpdateButton_Click"/>
     </Grid>
 </Window>
