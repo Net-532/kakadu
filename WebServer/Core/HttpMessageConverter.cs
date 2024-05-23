@@ -43,12 +43,7 @@
             }
 
             if (requestPathAndValues.Length > 1)
-            {
-                string[] valueSplit = requestPathAndValues[1].Split('=');
-                string value = valueSplit[1];
-
-                request.Parameters[$"{valueSplit[0]}"] = value;
-            }
+                ParseParameters(requestPathAndValues[1], request);
 
             int emptyLineIndex = Array.IndexOf(lines, "");
 
@@ -64,6 +59,18 @@
             }
 
             return request;
+        }
+
+        private void ParseParameters(string requestPathAndValues, HttpRequest request)
+        {
+            string[] parametrsSplit = requestPathAndValues.Split('&');
+
+            foreach (string parametr in parametrsSplit)
+            {
+                string[] parametrSplit = parametr.Split("=");
+                string value = parametrSplit[1];
+                request.Parameters[$"{parametrSplit[0]}"] = value;
+            }
         }
     }
 }
