@@ -1,43 +1,83 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link href="assets/css/style.css" rel="stylesheet">
-    <script src="assets/JavaScript/products.js"></script>
-    <script src="assets/JavaScript/cart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  </head>
- <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Какаду - Кіоск</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/cart.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/check.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+    </header>
+    <div class="container mt-5">
+        <div class="row row-cols-1 row-cols-md-2 g-3 justify-content-center" id="product-list">
+        </div>
+    </div>
 
     <div class="modal" tabindex="-1" id="full_description_modal">
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="full-card-text"></p>
+                </div>
             </div>
-              <div class="modal-body">
-                <p id="full-card-text"></p>
-              </div>
-          </div>
-        </div>
-      </div>
-
- <div class="container" id="product-list"></div>
- <div id="alert-container"></div>
- 
-  <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasBottomLabel">Cart</h5>
-        <div>
-          <button type="button" class="btn btn-primary" id="clear-cart">Очистити все</button>
-          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
     </div>
-    <div class="offcanvas-body small"></div>
-  </div>
-  <button id="open-cart" class="btn btn-primary">Відкрити кошик</button>
+</div>
 
- </body>
+
+<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasBottomLabel">Кошик</h5>
+      <div>
+        <button type="button" class="btn" id="cart-clear-button">Очистити</button>
+        <button type="button" id ="cart-close-button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+  </div>
+  <div class="offcanvas-body small" id="cart-main-container"></div>
+  <button id="cart-button-check" class="btn btn-dark cart-button-check">Друкувати чек</button>
+  <div id="cart-bottom" class="pt-3">
+    <div class="container">
+      <div class="row pb-4">
+        <div class="col-8">
+          <span>Всього до сплати:</span>
+        </div>
+        <div class="col text-end">
+          <span class="cart-numb" id="cart-total-numb">
+          </span>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-6 text-center">
+          <button id="cart-button-order" class="btn btn-dark">Оформити замовлення</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+
+
+<footer>
+    <div id="open-cart" class="buttoncart">
+        <img src="assets/images/buttoncart.png" class="buttonimage" alt="cart">
+    </div>
+</footer>
+
+
+<script src="assets/JavaScript/products.js"></script>
+<script src="assets/JavaScript/cart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

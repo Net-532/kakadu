@@ -22,13 +22,14 @@ namespace Kakadu.Backoffice.Views
 
         public void AddItem(Order item)
         {
-            OrderServ.Save(item);
+            //there's no add functionality 
         }
 
         public void ChangeStatus(int id,string status)
         {
             OrderServ.ChangeStatus(id,status);
         }
+
         public Order GetById(int id)
         {
             return OrderServ.GetById(id);
@@ -46,7 +47,7 @@ namespace Kakadu.Backoffice.Views
 
         public void EditItem(int itemId, Order newItem)
         {
-            //there's no eddit functionality
+            //there's no edit functionality
         }
 
 

@@ -22,6 +22,7 @@ namespace Kakadu.Backend.Repositories
             }
             return null;
         }
+
         public Order GetByNumber(int number) {
             XmlDocument doc = new XmlDocument();
             doc.Load(filePath);
@@ -90,6 +91,11 @@ namespace Kakadu.Backend.Repositories
             orderDateElement.InnerText = order.OrderDate.ToString("s", CultureInfo.InvariantCulture);
             orderElement.AppendChild(orderDateElement);
 
+            XmlNode updateAtElement = doc.CreateElement("UpdatedAt");
+            updateAtElement.InnerText = order.UpdatedAt.ToString("s", CultureInfo.InvariantCulture);
+            orderElement.AppendChild(updateAtElement);
+
+
             XmlNode statusElement = doc.CreateElement("Status");
             statusElement.InnerText = order.Status;
             orderElement.AppendChild(statusElement);
@@ -135,7 +141,6 @@ namespace Kakadu.Backend.Repositories
 
         }
 
-
         public void ChangeStatus(int id, string status)
         {
             XmlDocument doc = new XmlDocument();
@@ -145,6 +150,7 @@ namespace Kakadu.Backend.Repositories
             if (node != null)
             {
                 node.SelectSingleNode("Status").InnerText = status;
+                node.SelectSingleNode("UpdatedAt").InnerText = DateTime.Now.ToString("s", CultureInfo.InvariantCulture);
                 doc.Save(filePath);
             }
         }
@@ -156,6 +162,7 @@ namespace Kakadu.Backend.Repositories
             order.Id = int.Parse(node.SelectSingleNode("Id").InnerText);
             order.TotalPrice = decimal.Parse(node.SelectSingleNode("TotalPrice").InnerText, CultureInfo.InvariantCulture);
             order.OrderDate = DateTime.Parse(node.SelectSingleNode("OrderDate").InnerText);
+            order.UpdatedAt = DateTime.Parse(node.SelectSingleNode("UpdatedAt").InnerText);
             order.Status = node.SelectSingleNode("Status").InnerText;
 
 
@@ -191,6 +198,28 @@ namespace Kakadu.Backend.Repositories
 
             return MaxNumber + 1;
         }
+
+        public List<Order> GetAllByUpdatedAt(DateTime from, DateTime to)
+        {
+            List<Order> orders = new List<Order>();
+
+            XmlDocument doc = new XmlDocument();
+            doc.Load(filePath);
+
+            foreach (XmlNode node in doc.SelectNodes("/orders/order"))
+            {
+                var updatedAt = DateTime.Parse(node.SelectSingleNode("UpdatedAt").InnerText);
+                if (updatedAt>= from && updatedAt <= to)
+                {
+                    Order order = ConvertToOrder(node);
+                    orders.Add(order);
+                }
+            }
+
+            return orders;
+        }
+
+
 
     }
 }

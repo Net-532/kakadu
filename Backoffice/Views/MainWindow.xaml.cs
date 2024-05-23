@@ -21,7 +21,6 @@ namespace Kakadu.Backoffice.Views
             orderManager = new OrderManager();
         }
 
-
         private void LoadProducts()
         {
             List<Product> products = productManager.LoadItems();
@@ -33,10 +32,27 @@ namespace Kakadu.Backoffice.Views
 
         private void LoadOrders()
         {
-            List<Order> orders = orderManager.LoadItems();
-            if(orders != null)
-            {
-                dataGrid.ItemsSource = orders;
+            List<Order> orders = new List<Order>();
+                if (string.IsNullOrEmpty(SearchBox.Text))
+                {
+                    dataGrid.ItemsSource = orderManager.LoadItems();
+
+                }
+                else
+                {
+                    int number = Convert.ToInt32(SearchBox.Text);
+                    Order numOrder = orderManager.GetByNumber(number);
+                    if (numOrder != null)
+                    {
+                        orders.Add(numOrder);
+                        dataGrid.ItemsSource = null;
+                        dataGrid.ItemsSource = orders;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Замовлення з таким номером не існує", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+
             }
         }
 
@@ -46,15 +62,15 @@ namespace Kakadu.Backoffice.Views
             if (selectedItem != null)
             {
                 orderManager.ChangeStatus(selectedItem.Id, "Done");
+                LoadOrders();
             }
-            LoadOrders();
-
         }
 
         private void DeleteProduct(object sender, RoutedEventArgs e)
         {
             var selectedItem = dataGrid.SelectedItem as Product;
-            if (selectedItem != null) {
+            if (selectedItem != null)
+            {
                 productManager.DeleteItem(selectedItem.Id);
             }
 
@@ -71,14 +87,14 @@ namespace Kakadu.Backoffice.Views
                 {
                     productManager.EditItem(selectedItem.Id, selectedItem);
                 }
-                else
-                {
-                    MessageBox.Show("Please select a product to edit.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
             }
-
+            else
+            {
+                MessageBox.Show("Виберіть продукт для редагування.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
             LoadProducts();
         }
+
         private void SearchBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             foreach (char c in e.Text)
@@ -90,38 +106,18 @@ namespace Kakadu.Backoffice.Views
                 }
             }
         }
+
         private void SearchOrder(object sender, RoutedEventArgs e)
         {
-            if(string.IsNullOrEmpty(SearchBox.Text))
-            {
-                dataGrid.ItemsSource = orderManager.LoadItems();
-
-            }
-            else{
-                int number = Convert.ToInt32(SearchBox.Text);
-                List<Order> orders = new List<Order>();
-                Order numOrder = orderManager.GetByNumber(number);
-                if(numOrder != null)
-                {
-                    orders.Add(numOrder);
-                    dataGrid.ItemsSource = null;
-                    dataGrid.ItemsSource = orders;
-                }
-                else
-                {
-                    MessageBox.Show("Замовлення з таким номером не існує", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-                
-            }
-            
-            
+            LoadOrders();
         }
+
         private void AddProduct(object sender, RoutedEventArgs e)
         {
 
             var dialog = new ProductDialog(productManager.AddItem);
             if (dialog.ShowDialog() != true) {
-                MessageBox.Show("Can't add new product.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Неможливо додати новий товар.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
             LoadProducts();
@@ -140,17 +136,21 @@ namespace Kakadu.Backoffice.Views
             ProductButtonsPanel.Visibility = Visibility.Visible;
             OrderButtonsPanel.Visibility = Visibility.Hidden;
 
+            DeleteButton.Click -= DeleteProduct;
+            EditButton.Click -= EditProduct;
+            AddButton.Click -= AddProduct;
+
             DeleteButton.Click += DeleteProduct;
             EditButton.Click += EditProduct;
             AddButton.Click += AddProduct;
         }
-        private void OrderButton_Click(object sender,RoutedEventArgs e) {
+
+        private void OrderButton_Click(object sender, RoutedEventArgs e)
+        {
             dataGrid.Visibility = Visibility.Visible;
             ProductButtonsPanel.Visibility = Visibility.Hidden;
             OrderButtonsPanel.Visibility = Visibility.Visible;
             LoadOrders();
-            
-
         }
     }
 }
