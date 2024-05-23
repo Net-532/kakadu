@@ -8,9 +8,9 @@ namespace Kakadu.OrderQueue
     public partial class MainWindow : Window
     {
         private readonly OrderStatusService _orderStatusService;
-        private HashSet<Order> orders = new HashSet<Order>();
-        private long from = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-        private long to = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        private IDictionary<int, string> orders = new Dictionary<int, string>();
+        private long from = DateTimeOffset.Now.ToUnixTimeSeconds();
+        private long to = DateTimeOffset.Now.ToUnixTimeSeconds();
 
         public MainWindow()
         {
@@ -22,18 +22,17 @@ namespace Kakadu.OrderQueue
         {
             try
             {
+                to = DateTimeOffset.Now.ToUnixTimeSeconds(); 
                 var newOrders = await _orderStatusService.GetStatus(from, to);
 
                 foreach (var order in newOrders)
                 {
-                    orders.Add(order); 
+                    orders[order.OrderNumber] = order.Status; 
                 }
 
                 UpdateUI();
 
-
                 from = to;
-                to = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
             }
             catch (Exception ex)
             {
@@ -48,13 +47,13 @@ namespace Kakadu.OrderQueue
 
             foreach (var order in orders)
             {
-                if (order.Status == "Processing")
+                if (order.Value == "Processing")
                 {
-                    ordersNewListBox.Items.Add(order.OrderNumber);
+                    ordersNewListBox.Items.Add(order.Key);
                 }
                 else
                 {
-                    ordersDoneListBox.Items.Add(order.OrderNumber);
+                    ordersDoneListBox.Items.Add(order.Key);
                 }
             }
         }
