@@ -47,6 +47,25 @@ namespace Kakadu.Backend.Services
             return sb.ToString();
         }
 
+        public string ConvertToKitchenReceipt(Order order)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine($"            Чек №: {order.OrderNumber}");
+            sb.AppendLine("********************************");
+            sb.AppendLine($"Дата: {order.OrderDate:dd.MM.yyyy}");
+            sb.AppendLine($"Час: {order.OrderDate:HH:mm:ss}");
+            sb.AppendLine("********************************");
+
+            foreach (var item in order.Items)
+            {
+                Product product = _productService.GetById(item.ProductId);
+                sb.AppendLine($"{item.Quantity} x {product.Title}");
+            }
+
+            return sb.ToString();
+        }
+
     }
     
 }
