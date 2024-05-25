@@ -43,26 +43,23 @@ fetch(fetchlink)
 
         myModal.show();
         textinside.innerHTML = `
-        <div class="modal-window">
-        <div class="element">
-          <div class="image">
+        <div class="image">
             <img src="${product.photoUrl}" alt="${product.title}" style="max-width: 100%;">
-          </div>
         </div>
         <h3 class="title">${product.title}</h3>
         <div class="description">
-          <p>${product.description}</p>
+            <p>${product.description}</p>
         </div>
         <div class="price">
-          <p>${product.price} грн</p>
+            <p>${product.price} грн</p>
         </div>
         <button class="cart-button">В кошик</button>
         <div class="quantity-controls">
-          <button class="quantity-button" id="decrease">-</button>
-          <input type="text" id="quantity" value="1">
-          <button class="quantity-button" id="increase">+</button>
+            <button class="quantity-button" id="decrease">-</button>
+            <input type="text" id="quantity" value="1">
+            <button class="quantity-button" id="increase">+</button>
         </div>
-      </div>`;    
+    `;    
 
         const addToCartButton = document.querySelector(".add-to-cart-button");
         addToCartButton.addEventListener("click", () => addToCart(product));

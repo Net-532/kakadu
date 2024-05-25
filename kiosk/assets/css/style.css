@@ -63,10 +63,10 @@
         footer {
             height: 130px;
         }
-        
+
         .image {
             width: 95%; 
-            height: 38%; 
+            height: auto; 
             border-radius: 15px;
             margin: 0 auto;
             display: flex;
@@ -74,6 +74,8 @@
             justify-content: center;
             background-color: #e0e0e0;
             padding: 10px; 
+            overflow: auto; 
+            margin-bottom: 20px;
           }
           
           .image img {
@@ -84,27 +86,30 @@
           .title {
             font-weight: bold;
             font-size: 28px;
-            margin-top: 20px;
-            padding-left: 10px;
+            padding-left: 15px;
+            margin-top: 10px;
           }
           
           .description {
             font-size: 15px;
             margin-top: 10px;
-            padding-left: 10px;
+            padding-left: 15px;
             padding-right: 10px;
           }
           
           .price {
-            font-size: 20px;
             font-weight: bold;
-            padding-left: 10px;
+            font-size: 20px;
+            position: absolute;
+            bottom: 10px;
+            left: 30px; 
           }
           
           .cart-button {
-            position: absolute;
-            margin-top: -10px;
-            margin-left: 150px;
+            position: relative;
+            top: 50px; 
+            left: 50%;
+            transform: translateX(-50%); 
             padding: 15px 55px;
             background-color: #292828;
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
@@ -116,15 +121,14 @@
 
           @media (max-width: 576px) {
             .cart-button {
-              margin-left: 100px;
-              padding: 15px 45px;
+              padding: 15px 30px;
             }
           }
           
           .quantity-controls {
             position: absolute;
-            bottom: 30px;
-            right: 30px; 
+            bottom: 20px;
+            right: 20px; 
             display: flex;
             align-items: center;
             justify-content: center;
