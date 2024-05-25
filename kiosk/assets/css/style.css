@@ -50,74 +50,47 @@
             height: 100px;
         }      
 
-        .element {
-            background-color: #fff;
-            width: 498px;
-            height: 620px;
-            padding: 40px;
-            text-align: left;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 51%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .element2 {
-            background-color: #e5e2e2;
-            width: 440px;
-            height: 290px;
-            padding: 40px;
-            text-align: left;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            position: absolute;
-            top: 28%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
         .image {
-            width: 300px;
-            height: 300px;
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
+            width: 95%; 
+            height: 38%; 
+            border-radius: 15px;
             margin: 0 auto;
-            display: block;
-            position: absolute;
-            margin-top: -40px;
-            margin-left: 20px;
-        }
-
-        .title {
+            display: flex;
+            align-items: center; 
+            justify-content: center;
+            background-color: #e0e0e0;
+            padding: 10px; 
+          }
+          
+          .image img {
+            max-width: 100%; 
+            max-height: 100%; 
+          }
+        
+          .title {
             font-weight: bold;
             font-size: 28px;
-            position: absolute;
-            margin-top: 290px;
-            margin-left: -10px;
-        }
-
-        .description {
+            margin-top: 20px;
+            padding-left: 10px;
+          }
+          
+          .description {
             font-size: 15px;
-            position: absolute;
-            margin-top: 330px;
-            margin-left: -10px;
-            margin-right: 30px;
-        }
-
-        .price {
-            position: absolute;
-            margin-top: 530px;
-            margin-left: -12px;
+            margin-top: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+          }
+          
+          .price {
             font-size: 20px;
             font-weight: bold;
-        }
-
-        .cart-button {
+            padding-left: 10px;
+          }
+          
+          .cart-button {
             position: absolute;
-            margin-top: 550px;
-            margin-left: 120px;
+            margin-top: -10px;
+            margin-left: 150px;
             padding: 15px 55px;
             background-color: #292828;
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
@@ -125,39 +98,46 @@
             text-decoration: none;
             border-radius: 10px;
             cursor: pointer;
-        }
+          }
 
-        .quantity-controls {
+          @media (max-width: 576px) {
+            .cart-button {
+              margin-left: 100px;
+              padding: 15px 45px;
+            }
+          }
+          
+          .quantity-controls {
             position: absolute;
+            bottom: 30px;
+            right: 30px; 
             display: flex;
             align-items: center;
-            margin-top: 530px;
-            margin-left: 350px;
-        }
-
-        .quantity-controls button.quantity-button {
-            width: 20px;
-            height: 20px;
-            border: 1px solid #000;
+            justify-content: center;
+          }
+          
+          .quantity-controls button.quantity-button {
+            width: 30px;
+            height: 30px;
+            border: 2px solid #000;
             background-color: #fff;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: background-color 0.3s;
-        }
-
-        .quantity-controls button.quantity-button:hover {
+          }
+          
+          .quantity-controls button.quantity-button:hover {
             background-color: #e0e0e0;
-        }
-
-        .quantity-controls input {
-            width: 30px;
+          }
+          
+          .quantity-controls input {
+            width: 50px;
             text-align: center;
-            margin: 0 5px;
             border: none;
             font-size: 20px;
             font-weight: bold;
-        }    
+          }  
