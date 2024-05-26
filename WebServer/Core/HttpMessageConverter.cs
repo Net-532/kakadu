@@ -50,7 +50,7 @@
             if (emptyLineIndex != -1 && emptyLineIndex < lines.Length - 1)
             {
                 for (int i = 1; i < emptyLineIndex; i++)
-                {   
+                {
                     string[] header = lines[i].Split(new[] { ": " }, StringSplitOptions.None);
                     request.Headers.Add(header[0], header[1]);
                 }
