@@ -60,6 +60,10 @@
             box-shadow: 0 0px 0px black;
         }
 
+        .buttoncart:hover {
+          cursor: pointer;
+        }
+
         footer {
             height: 130px;
         }
@@ -159,5 +163,3 @@
             font-size: 20px;
             font-weight: bold;
           }  
-
-
