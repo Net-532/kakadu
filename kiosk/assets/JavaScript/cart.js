@@ -2,22 +2,27 @@ let checkTab = true;
 let order = null;
 
 function createCartItemElement(item) {
-  const itemElement = document.createElement("div");
-  itemElement.setAttribute("id", "cart-item-full");
-  itemElement.innerHTML = `
-        <img src="${item.photoUrl}" id="cart-item-img">
-        <div id="cart-item-text">
-            <div id="cart-text-bold">${item.title}</div>
-            <div id="cart-text-small">${item.description}</div>
-        </div>
-        <div id="cart-item-price">${item.price} грн</div>
-        <div id="cart-item-buttons">
-            <button class="increment-button" id="cart-button-change">+</button>
-            <div id="cart-item-quantity">${item.quantity}</div>
-            <button class="decrement-button" id="cart-button-change">-</button>
-        </div>
-        <button class="remove-button btn btn-close mb-3" id="cart-remove-button"></button>
-    `;
+    const itemElement = document.createElement('div');
+    itemElement.classList.add( 'card' , 'mb-3');
+itemElement.innerHTML =`
+<div class="row g-0 d-flex flex-nowrap p-2 "  >
+  <div class="col-auto me-2">
+    <img src="${item.photoUrl}" class="img-fluid rounded" id="cart-item-img" alt="${item.title}">
+  </div>
+  <div class="col">
+      <h6 class="card-title fw-bold">${item.title}</h6>
+      <p class="card-text" id="cart-text-small" >${item.description}</p>
+      <p class="card-text" id="cart-item-price">${item.price} грн</p>
+      <button class="remove-button btn btn-close mb-3" id="cart-remove-button"></button>
+      <div id="cart-item-buttons">
+         <button class="decrement-button" id="cart-button-change">-</button>
+         <div class="fw-bold" id="cart-item-quantity">${item.quantity}</div>
+         <button class="increment-button" id="cart-button-change">+</button>
+    </div>
+  </div>
+</div>
+
+`;
 
   const incrementButton = itemElement.querySelector(".increment-button");
   incrementButton.addEventListener("click", function (event) {
