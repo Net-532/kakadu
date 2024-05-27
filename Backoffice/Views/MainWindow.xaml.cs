@@ -185,15 +185,15 @@ namespace Kakadu.Backoffice.Views
             var selectedItem = dataGrid.SelectedItem as User;
             if (selectedItem != null)
             {
-                var userDialog = new UserDialog(user => userManager.EditItem(selectedItem.Id, user), selectedItem);
-                if (userDialog.ShowDialog() == true)
+                var dialog = new UserDialog(selectedItem);
+                if (dialog.ShowDialog() == true)
                 {
                     userManager.EditItem(selectedItem.Id, selectedItem);
                 }
-                else
-                {
-                    MessageBox.Show("Виберіть користувача якого хочете редагувати.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
+            }
+            else
+            {
+                MessageBox.Show("Виберіть користувача для редагування.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             LoadUsers();
         }

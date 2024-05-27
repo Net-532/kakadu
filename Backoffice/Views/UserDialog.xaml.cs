@@ -38,7 +38,7 @@ namespace Kakadu.Backoffice.Views
 
             _selectedItem = new User();
 
-            IdTextBox.Text = "Автоматично";
+            IdTextBox.Text = "Automated";
 
             isNew = true;
 
