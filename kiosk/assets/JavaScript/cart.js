@@ -88,15 +88,42 @@ function renderCart() {
     const offcanvasBody = document.querySelector('#offcanvasBottom .offcanvas-body');
     offcanvasBody.innerHTML = '';
     let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    cartItems.forEach(item => {
-        const itemElement = createCartItemElement(item);
-        offcanvasBody.appendChild(itemElement);
-    });
 
     if (cartItems.length === 0) {
+        const emptyCartContainer = document.createElement('div');
+        emptyCartContainer.classList.add('empty-cart-container');
+
         const emptyCart = document.createElement('div');
-        emptyCart.textContent = 'Кошик порожній';
-        offcanvasBody.appendChild(emptyCart);
+        emptyCart.classList.add('empty-cart');
+
+        const emptyCartImage = document.createElement('img');
+        emptyCartImage.src = 'assets/images/burger.png'; // Вставте правильний шлях до вашої картинки
+        emptyCartImage.alt = 'Empty Cart';
+        emptyCartImage.classList.add('empty-cart-image');
+
+        const emptyCartTextContainer = document.createElement('div');
+        emptyCartTextContainer.classList.add('empty-cart-text-container');
+
+        const emptyCartText = document.createElement('div');
+        emptyCartText.textContent = 'Ой, кошик порожній...';
+        emptyCartText.classList.add('empty-cart-text');
+
+        const emptyCartMessage = document.createElement('div');
+        emptyCartMessage.textContent = 'Схоже, ви нічого не замовили.';
+        emptyCartMessage.classList.add('empty-cart-message');
+
+        emptyCart.appendChild(emptyCartImage);
+        emptyCartTextContainer.appendChild(emptyCartText);
+        emptyCartTextContainer.appendChild(emptyCartMessage);
+        emptyCart.appendChild(emptyCartTextContainer);
+
+        emptyCartContainer.appendChild(emptyCart);
+        offcanvasBody.appendChild(emptyCartContainer);
+    } else {
+        cartItems.forEach(item => {
+            const itemElement = createCartItemElement(item);
+            offcanvasBody.appendChild(itemElement);
+        });
     }
 
     const totalSumElements = document.querySelectorAll('.cart-numb');
@@ -147,5 +174,5 @@ function displayAlert(type, item, message) {
     let alertContainer = document.getElementById('alert-container');
     if (alertContainer) {
         alertContainer.innerHTML = alert;
-    } 
+    }
 }

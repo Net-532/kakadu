@@ -3,67 +3,96 @@
     --bs-body-font-family: "Inter", sans-serif;
 }
 
-        #add-alert {
-            width: auto;
-            position: fixed;
-            right: 0;
-            bottom: 0;
-        }
+#add-alert {
+    width: auto;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}
 
-        header {
-            background-image: url("../images/header.png");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 110px;
-        }
+header {
+    background-image: url("../images/header.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 110px;
+}
 
-        .card.product {
-            width: 150px;
-            height: 150px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        
-        .card.product:hover {
-            transform: scale(1.10);
-        }
-        
-        
-        .card.product img {
-            width: 100px;
-            height: 100px;
-        }
-        
-        .product-price {
-            font-size: 1rem;
-          }
-               
-          .buttoncart {
-            width: 500px;
-            height: auto;
-            position: fixed;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-        }
-        
-        
-        .buttonimage {
-            width: 500px;
-            height: auto;
-            box-shadow: 0 0px 0px black;
-        }
+.card.product {
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
 
-        .buttoncart:hover {
-            cursor: pointer;
-        }
-        
-        .container {
-            padding-bottom: 130px;
-        }
-        
-        footer{
-            height: 130px;
-        }
+.card.product:hover {
+    transform: scale(1.10);
+}
+
+.card.product img {
+    width: 100px;
+    height: 100px;
+}
+
+.product-price {
+    font-size: 1rem;
+}
+
+.buttoncart {
+    width: 500px;
+    height: auto;
+    position: fixed;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.buttonimage {
+    width: 500px;
+    height: auto;
+    box-shadow: 0 0px 0px black;
+}
+
+.buttoncart:hover {
+    cursor: pointer;
+}
+
+.container {
+    padding-bottom: 130px;
+}
+
+footer {
+    height: 130px;
+}
+
+#offcanvasBottom .offcanvas-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Встановіть висоту, яка вам потрібна */
+}
+
+.empty-cart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Встановіть висоту, яка вам потрібна */
+}
+
+.empty-cart {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.empty-cart-text {
+    margin-left: 10px;
+    font-size: 20px; /* Встановіть розмір шрифту за вашим бажанням */
+    font-weight: bold; /* Додано жирний стиль */
+    color: 012B25;
+}
+
+.empty-cart-image {
+    max-width: 100px; /* Встановіть максимальну ширину картинки */
+    height: auto;
+}
