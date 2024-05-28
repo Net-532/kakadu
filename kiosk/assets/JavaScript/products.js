@@ -36,19 +36,19 @@ fetch(fetchlink)
       const cardProduct = productCard.querySelector(".card.product");
       cardProduct.addEventListener("click", function () {
         const myModal = new bootstrap.Modal(
-          document.getElementById("full_description_modal")
+          document.getElementById("product-description-modal-dialog")   
         );
-        const textinside = document.getElementById("full-card-text");
+        const content = document.getElementById("product-description");
         const id = product.id;
 
         myModal.show();
-        textinside.innerHTML = `
+        content.innerHTML = `
         <div class="image">
             <img class="image" src="${product.photoUrl}" alt="${product.title}"">
         </div>
         <h3 class="title">${product.title}</h3>
         <p class="description">${product.description}</p>
-        <p class="price">${product.price} грн</p>
+        <p class="product-description-price">${product.price} грн</p>
         <button data-id="${product.id}" class="cart-button">В кошик</button>
         <div class="quantity-controls">
             <button class="quantity-button" id="decrease">-</button>
@@ -77,6 +77,4 @@ fetch(fetchlink)
   })
   .catch((error) => {
     console.error("Error loading products:", error);
-  });
-
-
+  }); 
