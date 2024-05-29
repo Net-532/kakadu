@@ -5,20 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kakadu.OrderQueue"
         mc:Ignorable="d"
-        Title="Order Queue" Height="450" Width="800">
+        Title="Какаду - Електронна черга замовлень" Height="450" Width="800"
+        WindowState="Maximized"
+        WindowStyle="None"
+        ResizeMode="NoResize">
     <Grid Margin="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0">
-            <TextBlock Text="New Orders" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" FontFamily="Arial Black"/>
-            <ListBox Name="ordersNewListBox" HorizontalContentAlignment="Stretch"/>
+        <StackPanel Grid.Column="0" Background="#F0F0F0" Margin="0,0,20,0" HorizontalAlignment="Stretch">
+            <TextBlock Text="Очікуються" HorizontalAlignment="Center" FontSize="27" FontWeight="Bold" FontFamily="Arial Black" Background="#2150b9" Foreground="White" Margin="0,0,0,10" Width="360" Height="45" TextAlignment="Center" VerticalAlignment="Top" Padding="10"/>
+            <ListBox Name="ordersNewListBox" HorizontalContentAlignment="Center" FontSize="50" Background="#6b73d5" BorderBrush="#3B444B" BorderThickness="1" Margin="0,0,0,20">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" Foreground="White"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </StackPanel>
-        <StackPanel Grid.Column="1">
-            <TextBlock Text="Completed Orders" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" FontFamily="Arial Black"/>
-            <ListBox Name="ordersDoneListBox" HorizontalContentAlignment="Stretch"/>
+        <StackPanel Grid.Column="1" Background="#F0F0F0" Margin="20,0,0,0" HorizontalAlignment="Stretch">
+            <TextBlock Text="Готові" HorizontalAlignment="Center" FontSize="27" FontWeight="Bold" FontFamily="Arial Black" Background="#31af1f" Foreground="White" Margin="0,0,0,10" Width="360" Height="45" TextAlignment="Center" VerticalAlignment="Top" Padding="10"/>
+            <ListBox Name="ordersDoneListBox" HorizontalContentAlignment="Center" FontSize="50" Background="#00a65a" BorderBrush="#4B5320" BorderThickness="1" Margin="0,0,0,20">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" Foreground="White"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </StackPanel>
-        <Button Content="Update" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="30" Click="UpdateButton_Click"/>
     </Grid>
 </Window>
