@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
+using Kakadu.Backend.Services;
 
 namespace Kakadu.Backoffice.Views
 {
@@ -14,11 +15,14 @@ namespace Kakadu.Backoffice.Views
 
         private ProductManager productManager;
         private OrderManager orderManager;
+
+
         public MainWindow()
         {
             InitializeComponent();
             productManager = new ProductManager();
             orderManager = new OrderManager();
+            
         }
 
         private void LoadProducts()
@@ -151,6 +155,34 @@ namespace Kakadu.Backoffice.Views
             ProductButtonsPanel.Visibility = Visibility.Hidden;
             OrderButtonsPanel.Visibility = Visibility.Visible;
             LoadOrders();
+        }
+
+
+        private void PrintButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            var selectedItem = dataGrid.SelectedItem as Order;
+            if (selectedItem != null)
+            {
+
+                int orderId = selectedItem.Id;
+
+                try
+                {
+
+                    orderManager.Print(orderId);
+                    MessageBox.Show("Замовлення успішно роздруковано!");
+                }
+                catch (OrderNotFoundException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Будь ласка, виберіть замовлення для друку.");
+            }
+
         }
     }
 }

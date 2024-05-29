@@ -50,6 +50,7 @@
     <Compile Include="Services\IProductService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\OrderNotFoundException.cs" />
+    <Compile Include="Services\OrderPrintService.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\ProductNotFoundException.cs" />
