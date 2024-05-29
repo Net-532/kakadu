@@ -207,6 +207,10 @@ namespace Kakadu.Backoffice.Views
             ProductButtonsPanel.Visibility = Visibility.Hidden;
             OrderButtonsPanel.Visibility = Visibility.Hidden;
 
+            DeleteUserButton.Click -= DeleteUser;
+            EditUserButton.Click -= EditUser;
+            AddUserButton.Click -= AddUser;
+
             DeleteUserButton.Click += DeleteUser;
             EditUserButton.Click += EditUser;
             AddUserButton.Click += AddUser;
