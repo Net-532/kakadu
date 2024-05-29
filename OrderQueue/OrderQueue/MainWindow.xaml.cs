@@ -11,18 +11,16 @@ namespace Kakadu.OrderQueue
 {
     public partial class MainWindow : Window
     {
-        private readonly OrderStatusService _orderStatusService;
-        private IDictionary<int, string> orders = new Dictionary<int, string>();
+        private readonly OrderStatusService _orderStatusService = new OrderStatusService();
+        private readonly IDictionary<int, string> orders = new Dictionary<int, string>();
         private long from = DateTimeOffset.Now.ToUnixTimeSeconds();
         private long to = DateTimeOffset.Now.ToUnixTimeSeconds();
-        private PeriodicTimer _timer;
+        private readonly PeriodicTimer _timer = new PeriodicTimer(TimeSpan.FromSeconds(30));
 
         public MainWindow()
         {
             InitializeComponent();
             ConfigureLogging();
-            _orderStatusService = new OrderStatusService();
-            _timer = new PeriodicTimer(TimeSpan.FromSeconds(30));
             StartTimer();
         }
 
@@ -76,7 +74,6 @@ namespace Kakadu.OrderQueue
             catch (Exception ex)
             {
                 Log.Error("An error occurred while updating orders: {ExceptionMessage}", ex.Message);
-                Dispatcher.Invoke(() => MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error));
             }
         }
 
