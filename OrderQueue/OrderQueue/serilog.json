@@ -1,0 +1,17 @@
+{
+  "Serilog": {
+    "MinimumLevel": "Debug",
+    "WriteTo": [
+      {
+        "Name": "Console"
+      },
+      {
+        "Name": "File",
+        "Args": {
+          "path": "logs/ordersqueue.log",
+          "rollingInterval": "Day"
+        }
+      }
+    ]
+  }
+}
