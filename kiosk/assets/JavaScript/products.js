@@ -36,22 +36,23 @@ fetch(fetchlink)
       const cardProduct = productCard.querySelector(".card.product");
       cardProduct.addEventListener("click", function () {
         const myModal = new bootstrap.Modal(
-          document.getElementById("full_description_modal")
+          document.getElementById("product-description-modal-dialog")   
         );
-        const textinside = document.getElementById("full-card-text");
+        const content = document.getElementById("product-description");
         const id = product.id;
 
         myModal.show();
-        textinside.innerHTML = `
-                    <img src="${product.photoUrl}" alt="${product.title}" style="max-width: 100%;"> <br>
-                    Name: ${product.title} <br>
-                    Price: ${product.price} <br>
-                    Description: ${product.description} <br>
-                    Id: ${id} <br>
-                    <button data-id="${product.id}" type="button" class="add-to-cart-button btn btn-outline-primary">Add to cart</button> `;
+        content.innerHTML = `
+        <div class="image">
+            <img class="image" src="${product.photoUrl}" alt="${product.title}"">
+        </div>
+        <h3 class="title">${product.title}</h3>
+        <p class="description">${product.description}</p>
+        <p class="product-description-price">${product.price} грн</p>
+        <button data-id="${product.id}" class="cart-button">В кошик</button>`;    
 
-        const addToCartButton = document.querySelector(".add-to-cart-button");
-        addToCartButton.addEventListener("click", () => addToCart(product));
+        const addToCartButton = document.querySelector(".cart-button");
+        addToCartButton.addEventListener("click", () => { addToCart(product); myModal.hide(); });
       });
 
       row.appendChild(productCard);
@@ -71,6 +72,4 @@ fetch(fetchlink)
   })
   .catch((error) => {
     console.error("Error loading products:", error);
-  });
-
-
+  }); 
