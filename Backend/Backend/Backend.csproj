@@ -46,14 +46,12 @@
     <Compile Include="Entities\OrderItem.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Services\EntityNotFoundException.cs" />
     <Compile Include="Services\IOrderService.cs" />
     <Compile Include="Services\IProductService.cs" />
     <Compile Include="Services\IUserService.cs" />
-    <Compile Include="Services\OrderNotFoundException.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\ProductService.cs" />
-    <Compile Include="Services\ProductNotFoundException.cs" />
-    <Compile Include="Services\UserNotFoundException.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\PrintService.cs" />
     <Compile Include="Services\OrderToPlainTextConverter.cs" />
