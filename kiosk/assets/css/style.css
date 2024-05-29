@@ -67,3 +67,25 @@
         footer{
             height: 130px;
         }
+
+@media (min-width: 600px) {
+    .card.product {
+        width: 180px;
+        height: 180px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+    .card.product img {
+        width: 130px;
+        height: 130px;
+    }
+    .product-price {
+        font-size: 1rem;
+    }
+    .buttoncart {
+        width: 600px;
+    }
+    .buttonimage {
+        width: 600px;
+    }
+}
