@@ -50,7 +50,7 @@ namespace Kakadu.Backend.Services
             {
                 throw new UserNotFoundException($"Користувача з вказаним id {id} не знайдено");
             }
-            userRepository.Update(id, existingUser);
+            userRepository.Update(id, user);
         }
     }
 }
