@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kakadu.OrderQueue"
         mc:Ignorable="d"
-        Title="Your Window Title" Height="450" Width="800"
+        Title="Какаду - Електронна черга замовлень" Height="450" Width="800"
         WindowState="Maximized"
         WindowStyle="None"
         ResizeMode="NoResize">

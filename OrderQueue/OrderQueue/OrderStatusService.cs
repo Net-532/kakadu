@@ -15,6 +15,7 @@ namespace OrderStatusClient
         {
             _httpClient = new HttpClient { BaseAddress = new Uri(baseUrl) };
             _orderStatusEndpoint = orderStatusEndpoint;
+           
         }
 
         public async Task<List<Order>> GetStatus(long from, long to)
