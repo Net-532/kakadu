@@ -1,32 +1,8 @@
-.container-receipt {
-    overflow: hidden;
-}
-
-.name {
-    float: left;
-}
-
-.price {
-    float: right;
-}
-
-@font-face {
-    font-family: 'Kyiv';
-    src: url('/assets/font/KyivTypeSerif-Regular.woff') format('woff');
-    font-weight: 1;
-    font-style: normal;
-}
-.receipt{
-    font-family: "Kyiv", serif;
-    font-size: 20px;
-}
-
-
 hr {
     height: 20px;
     border: none;
     position: relative;
-    background: #ffffff;
+
 }
 
 hr::before {
@@ -41,4 +17,53 @@ hr::before {
 }
 .floop{
     float: left;
+}
+@font-face {
+    font-family: 'KyivTypeSerif-Regular';
+    src: url('../font/KyivTypeSerif-Regular.woff') format('woff');
+}
+
+.receipt {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    background-image: url('../images/backgroundcheck.jpg');
+    background-size: cover;
+    font-size: 16px;
+}
+
+.receipt-info {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'KyivTypeSerif-Regular';
+}
+
+.receipt-item {
+    margin-bottom: 10px;
+}
+
+.receipt-thanks {
+    margin-top: 20px;
+    font-family: 'KyivTypeSerif-Regular';
+}
+.container-receipt{
+    font-family: 'KyivTypeSerif-Regular';
+}
+
+
+.name {
+    text-align: left;
+}
+
+.price {
+    text-align: right;
+}
+
+.receipt-info p {
+    text-align: left;
 }
