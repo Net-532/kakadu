@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,16 +12,28 @@ namespace Kakadu.OrderQueue
 {
     public partial class MainWindow : Window
     {
-        private readonly OrderStatusService _orderStatusService = new OrderStatusService();
-        private readonly IDictionary<int, string> orders = new Dictionary<int, string>();
-        private long from = DateTimeOffset.Now.ToUnixTimeSeconds();
-        private long to = DateTimeOffset.Now.ToUnixTimeSeconds();
-        private readonly PeriodicTimer _timer = new PeriodicTimer(TimeSpan.FromSeconds(30));
+        private readonly OrderStatusService _orderStatusService;
+        private IDictionary<int, string> orders = new Dictionary<int, string>();
+        private long from;
+        private long to;
+        private PeriodicTimer _timer;
+        private readonly int _requestIntervalSeconds;
+        private readonly string _baseUrl;
+        private readonly string _orderStatusEndpoint;
 
         public MainWindow()
         {
             InitializeComponent();
             ConfigureLogging();
+
+            _baseUrl = System.Configuration.ConfigurationManager.AppSettings["BaseUrl"];
+            _requestIntervalSeconds = int.Parse(System.Configuration.ConfigurationManager.AppSettings["RequestIntervalSeconds"]);
+            _orderStatusEndpoint = System.Configuration.ConfigurationManager.AppSettings["OrderStatusEndpoint"];
+
+            _orderStatusService = new OrderStatusService(_baseUrl, _orderStatusEndpoint);
+            from = DateTimeOffset.Now.ToUnixTimeSeconds();
+            to = DateTimeOffset.Now.ToUnixTimeSeconds();
+            _timer = new PeriodicTimer(TimeSpan.FromSeconds(_requestIntervalSeconds));
             StartTimer();
         }
 
