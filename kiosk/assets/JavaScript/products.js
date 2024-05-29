@@ -48,10 +48,10 @@ fetch(fetchlink)
                     Price: ${product.price} <br>
                     Description: ${product.description} <br>
                     Id: ${id} <br>
-                    <button data-id="${product.id}" type="button" class="add-to-cart-button btn btn-outline-primary">Add to cart</button> `;                  
-                    
-        const addToCartButton = document.querySelector('.add-to-cart-button');
-        addToCartButton.addEventListener('click', () => addToCart(product));                   
+                    <button data-id="${product.id}" type="button" class="add-to-cart-button btn btn-outline-primary">Add to cart</button> `;
+
+        const addToCartButton = document.querySelector(".add-to-cart-button");
+        addToCartButton.addEventListener("click", () => addToCart(product));
       });
 
       row.appendChild(productCard);
