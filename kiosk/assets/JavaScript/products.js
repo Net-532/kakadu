@@ -49,15 +49,10 @@ fetch(fetchlink)
         <h3 class="title">${product.title}</h3>
         <p class="description">${product.description}</p>
         <p class="product-description-price">${product.price} грн</p>
-        <button data-id="${product.id}" class="cart-button">В кошик</button>
-        <div class="quantity-controls">
-            <button class="quantity-button" id="decrease">-</button>
-            <input type="text" id="quantity" value="1">
-            <button class="quantity-button" id="increase">+</button>
-        </div> `;    
+        <button data-id="${product.id}" class="cart-button">В кошик</button>`;    
 
         const addToCartButton = document.querySelector(".cart-button");
-        addToCartButton.addEventListener("click", () => addToCart(product));
+        addToCartButton.addEventListener("click", () => { addToCart(product); myModal.hide(); });
       });
 
       row.appendChild(productCard);
