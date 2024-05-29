@@ -15,13 +15,7 @@ namespace OrderStatusClient
 
         public OrderStatusService()
         {
-            var configuration = new ConfigurationBuilder()
-                .AddJsonFile("serilog.json")
-                .Build();
-
-            Log.Logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(configuration)
-                .CreateLogger();
+           
         }
 
         public async Task<List<Order>> GetStatus(long from, long to)
