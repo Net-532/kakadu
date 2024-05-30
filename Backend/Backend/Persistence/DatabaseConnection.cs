@@ -4,26 +4,26 @@ using MySql.Data.MySqlClient;
 
 public class DatabaseConnection
 {
-    private static DatabaseConnection instance = null;
+    private static DatabaseConnection _instance = null;
     private static readonly object _lock = new object();
     private static readonly object _connlock = new object();
-    private MySqlConnection DBConnection;
-    private string connectionString;
+    private MySqlConnection _DBConnection;
+    private static readonly string _connectionString = "Server=localhost;Database=kakadu;User ID=manager;Password=FN79GDgQ6PI6fgx;Pooling=true;";
 
     private DatabaseConnection()
     {
-        connectionString = $"Server=localhost;Database=kakadu;User ID=manager;Password=FN79GDgQ6PI6fgx;Pooling=true;";
+        _DBConnection = new MySqlConnection(_connectionString);
     }
 
     public static DatabaseConnection GetInstance()
     {
         lock (_lock)
         {
-            if (instance == null)
+            if (_instance == null)
             {
-                instance = new DatabaseConnection();
+                _instance = new DatabaseConnection();
             }
-            return instance;
+            return _instance;
         }
     }
 
@@ -31,24 +31,11 @@ public class DatabaseConnection
     {
         lock (_connlock)
         {
-            try
+            if (_DBConnection.State != ConnectionState.Open)
             {
-                if (DBConnection == null)
-                {
-                    DBConnection = new MySqlConnection(connectionString);
-                    DBConnection.Open();
-                }
-                else if (DBConnection.State != ConnectionState.Open)
-                {
-                    DBConnection.Open();
-                }
-                return DBConnection;
+                _DBConnection.Open();
             }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine("Oppsie something wrong with DBConnection ", ex.Message);
-                return null;
-            }
+            return _DBConnection;
         }
     }
 }
