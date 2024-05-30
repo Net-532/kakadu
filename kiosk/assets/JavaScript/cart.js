@@ -130,10 +130,14 @@ function clearCart() {
 
 function checkoutOrder() {
     const items = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const orderButton = document.getElementById("cart-button-order");
 
     if (items.length === 0) {
+        orderButton.disabled = false;
         return;
     }
+
+    orderButton.disabled = true;
 
     const sendRequest = {
         items: items.map((item) => ({
@@ -142,7 +146,6 @@ function checkoutOrder() {
         })),
     };
 
-    const orderButton = document.getElementById("cart-button-order");
     const orderSpinner = document.getElementById("cart-order-spinner");
     orderButton.disabled = true;
     orderSpinner.style.display = "inline-block";
