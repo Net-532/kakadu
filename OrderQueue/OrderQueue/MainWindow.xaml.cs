@@ -18,19 +18,14 @@ namespace Kakadu.OrderQueue
         private long to;
         private PeriodicTimer _timer;
         private readonly int _requestIntervalSeconds;
-        private readonly string _baseUrl;
-        private readonly string _orderStatusEndpoint;
 
         public MainWindow()
         {
             InitializeComponent();
             ConfigureLogging();
 
-            _baseUrl = System.Configuration.ConfigurationManager.AppSettings["BaseUrl"];
             _requestIntervalSeconds = int.Parse(System.Configuration.ConfigurationManager.AppSettings["RequestIntervalSeconds"]);
-            _orderStatusEndpoint = System.Configuration.ConfigurationManager.AppSettings["OrderStatusEndpoint"];
-
-            _orderStatusService = new OrderStatusService(_baseUrl, _orderStatusEndpoint);
+            _orderStatusService = new OrderStatusService();
             from = DateTimeOffset.Now.ToUnixTimeSeconds();
             to = DateTimeOffset.Now.ToUnixTimeSeconds();
             _timer = new PeriodicTimer(TimeSpan.FromSeconds(_requestIntervalSeconds));
@@ -39,13 +34,22 @@ namespace Kakadu.OrderQueue
 
         private void ConfigureLogging()
         {
-            var configuration = new ConfigurationBuilder()
-                .AddJsonFile("serilog.json")
-                .Build();
+            try
+            {
+                var configuration = new ConfigurationBuilder()
+                    .AddJsonFile("serilog.json")
+                    .Build();
 
-            Log.Logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(configuration)
-                .CreateLogger();
+                Log.Logger = new LoggerConfiguration()
+                    .ReadFrom.Configuration(configuration)
+                    .CreateLogger();
+
+                Log.Information("Logging is configured successfully.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to configure logging: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private async void StartTimer()
