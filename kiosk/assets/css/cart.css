@@ -99,3 +99,10 @@
     color: #000000;
 }
 
+#cart-order-spinner {
+    display: none;
+}
+
+#cart-check-spinner {
+    display: none;
+}

@@ -129,62 +129,104 @@ function clearCart() {
 }
 
 function checkoutOrder() {
-  const items = JSON.parse(localStorage.getItem("cartItems")) || [];
-  const sendRequest = {
-    items: items.map((item) => ({
-      productId: item.id,
-      quantity: item.quantity,
-    })),
-  };
-  fetch(ordersEndpoint, {
-    method: "POST",
-    body: JSON.stringify(sendRequest),
-  })
+    const items = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+    if (items.length === 0) {
+        return;
+    }
+
+    const sendRequest = {
+        items: items.map((item) => ({
+        productId: item.id,
+        quantity: item.quantity,
+        })),
+    };
+
+    const orderButton = document.getElementById("cart-button-order");
+    const orderSpinner = document.getElementById("cart-order-spinner");
+    orderButton.disabled = true;
+    orderSpinner.style.display = "inline-block";
+
+    fetch(ordersEndpoint, {
+        method: "POST",
+        body: JSON.stringify(sendRequest),
+    })
     .then((response) => response.json())
     .then((data) => {
-      console.log("Замовлення виконано");
-      DisplayCheckTab();
-      order = data;
-      clearCart();
-      renderReceipt(data);
+        console.log("Замовлення виконано");
+        SpinnerOrder();
+        DisplayCheckTab();
+        order = data;
+        clearCart();
+        renderReceipt(data);
     })
     .catch((error) => {
-      console.error("Помилка: ", error);
+        console.error("Помилка: ", error);
+    })
+    .finally(() => {
+        orderButton.disabled = false;
+        orderSpinner.style.display = "none";
     });
 }
 
 const printCheck = document.getElementById("cart-button-check");
 printCheck.addEventListener("click", function (event) {
-  fetch(`${printReceiptEndpoint}?orderId=${order.id}`, {
-    method: "PUT",
-  })
+    const checkButton = document.getElementById("cart-button-check");
+    const checkSpinner = document.getElementById("cart-check-spinner");
+    checkButton.disabled = true;
+    checkSpinner.style.display = "inline-block";
+
+    fetch(`${printReceiptEndpoint}?orderId=${order.id}`, {
+        method: "PUT",
+    })
     .then((response) => response.json())
     .then((data) => {
-      console.log("Чек надруковано!");
-      localStorage.removeItem("cartItems");
-      DisplayOrderTab();
-      renderCart();
+        console.log("Чек надруковано!");
+        localStorage.removeItem("cartItems");
+        SpinnerCheck();
+        DisplayOrderTab();
+        renderCart();
     })
     .catch((error) => {
-      console.error("Помилка: ", error);
+        console.error("Помилка: ", error);
+    })
+    .finally(() => {
+        checkButton.disabled = false;
+        checkSpinner.style.display = "none";
     });
 });
 
 function DisplayCheckTab() {
-  const cartBottom = document.getElementById("cart-bottom");
-  cartBottom.style.display = "none";
-  const cartCheck = document.getElementById("cart-button-check");
-  cartCheck.style.display = "block";
-  checkTab = false;
+    const cartBottom = document.getElementById("cart-bottom");
+    cartBottom.style.display = "none";
+    
+    const cartCheck = document.getElementById("cart-button-check");
+    cartCheck.style.display = "block";
+
+    checkTab = false;
 }
 
 function DisplayOrderTab() {
-  const cartBottom = document.getElementById("cart-bottom");
-  cartBottom.style.display = "block";
-  const cartCheck = document.getElementById("cart-button-check");
-  cartCheck.style.display = "none";
-  checkTab = true;
+    const cartBottom = document.getElementById("cart-bottom");
+    cartBottom.style.display = "block";
+
+    const cartCheck = document.getElementById("cart-button-check");
+    cartCheck.style.display = "none";
+
+    checkTab = true;
 }
+
+function SpinnerCheck() {
+    const spinner = document.getElementById("cart-check-spinner");
+    spinner.style.display = "inline-block"; 
+}
+
+function SpinnerOrder() {
+    const spinner = document.getElementById("cart-order-spinner");
+    spinner.style.display = "inline-block"; 
+}
+
+
 function renderReceipt(order) {
   const header = `
         <center>
