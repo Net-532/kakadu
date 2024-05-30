@@ -12,7 +12,7 @@ function createCartItemElement(item) {
             <div class="col">
                 <h6 class="card-title fw-bold">${item.title}</h6>
                 <p class="card-text" id="cart-text-small">${item.description}</p>
-                <p class="card-text" id="cart-item-price">${item.price} грн</p>
+                <p class="card-text" id="cart-item-price">${formatPrice(item.price)} грн</p>
                 <button class="remove-button btn btn-close mb-3" id="cart-remove-button"></button>
                 <div id="cart-item-buttons">
                     <button class="decrement-button" id="cart-button-change">-</button>
@@ -41,6 +41,10 @@ function createCartItemElement(item) {
     });
 
     return itemElement;
+}
+
+function formatPrice(price) {
+    return parseFloat(price).toFixed(2);
 }
 
 function addToCart(product) {
@@ -95,7 +99,7 @@ function calculateTotalSum() {
     cartItems.forEach((item) => {
         totalSum += item.price * item.quantity;
     });
-    return totalSum;
+    return totalSum.toFixed(2);
 }
 
 function renderCart() {
@@ -150,8 +154,7 @@ function checkoutOrder() {
         });
 }
 
-const printCheck = document.getElementById("cart-button-check");
-printCheck.addEventListener("click", function (event) {
+function printReceipt() {
     fetch(`${printReceiptEndpoint}?orderId=${order.id}`, {
         method: "PUT",
     })
@@ -165,7 +168,7 @@ printCheck.addEventListener("click", function (event) {
         .catch((error) => {
             console.error("Помилка: ", error);
         });
-});
+}
 
 function DisplayCheckTab() {
     const cartBottom = document.getElementById("cart-bottom");
@@ -187,13 +190,13 @@ function renderReceipt(order) {
     const header = `
       <center>
       <p class="receipt-info">Kakadu</p>
-      <p class="receipt-info">Адреса: вул. Павла Каспрука 2</p>
+      <p class="receipt-info">м. Чернівці, вул. Павла Каспрука 2</p>
       <p class="receipt-info">Чек # ${order.orderNumber}</p>
       <hr>
       <div class="container-receipt">
           <div class="name">
-              <p>Дата:${order.orderDate}</p>
-              <p>Час:${order.orderTime}</p>
+              <p>Дата: ${order.orderDate}</p>
+              <p>Час: ${order.orderTime}</p>
           </div>
       </div>
       <hr>
@@ -205,7 +208,7 @@ function renderReceipt(order) {
           <center>
           <div class="container-receipt">
               <div class="name">${item.title}</div>
-              <div class="price"> ${item.quantity}x${item.price}</div>
+              <div class="price"> ${item.quantity} x ${formatPrice(item.price)} грн</div>
           </div>
       `;
     });
@@ -215,7 +218,7 @@ function renderReceipt(order) {
       <hr>
       <div class="container-receipt">
           <div class="name">Сума:</div> 
-          <div class="price">${order.totalPrice} грн</div>
+          <div class="price">${formatPrice(order.totalPrice)} грн</div>
       </div>
       <hr>
       <p class="receipt-thanks">Дякуємо за покупку!</p>
@@ -241,3 +244,18 @@ function displayAlert(type, item, message) {
         alertContainer.innerHTML = alert;
     }
 }
+
+document.getElementById('cart-clear-button').addEventListener('click', clearCart);
+document.getElementById('cart-button-order').addEventListener('click', checkoutOrder);
+document.getElementById('cart-close-button').addEventListener('click', function () { DisplayOrderTab(); });
+const myOffcanvas = document.getElementById('offcanvasBottom');
+myOffcanvas.addEventListener('hidden.bs.offcanvas', function () { DisplayOrderTab(); });
+document.getElementById("open-cart").addEventListener("click", function () {
+    renderCart();
+    const bsOffcanvas = new bootstrap.Offcanvas(
+        document.getElementById("offcanvasBottom")
+    );
+    bsOffcanvas.show();
+});
+const printCheck = document.getElementById("cart-button-check");
+printCheck.addEventListener("click", printReceipt);
