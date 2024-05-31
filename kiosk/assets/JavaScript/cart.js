@@ -14,23 +14,23 @@ itemElement.innerHTML =`
       <p class="card-text" id="cart-text-small" >${item.description}</p>
       <p class="card-text" id="cart-item-price">${item.price} грн</p>
       <button class="remove-button btn btn-close mb-3" id="cart-remove-button"></button>
-      <div id="cart-item-buttons">
-         <button class="decrement-button" id="cart-button-change">-</button>
-         <div class="fw-bold" id="cart-item-quantity">${item.quantity}</div>
-         <button class="increment-button" id="cart-button-change">+</button>
-    </div>
+      <div class="quantity-controls">
+        <button class="quantity-button" id="decrease">-</button>
+        <input type="text" id="quantity" value="${item.quantity}" readonly>
+        <button class="quantity-button" id="increase">+</button>
+      </div>
   </div>
 </div>
 
 `;
 
-  const incrementButton = itemElement.querySelector(".increment-button");
+  const incrementButton = itemElement.querySelector("#increase");
   incrementButton.addEventListener("click", function (event) {
     addToCart(item);
     renderCart();
   });
 
-  const decrementButton = itemElement.querySelector(".decrement-button");
+  const decrementButton = itemElement.querySelector("#decrease");
   decrementButton.addEventListener("click", function (event) {
     removeFromCart(item);
     renderCart();
