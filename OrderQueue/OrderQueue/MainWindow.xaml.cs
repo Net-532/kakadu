@@ -69,15 +69,16 @@ namespace Kakadu.OrderQueue
                     }
 
                     Log.Information("Received {OrderCount} orders from the server", newOrders.Count);
-                }
+                    UpdateUI();
+                }   
                 else
                 {
                     Log.Information("Received no orders from the server");
                 }
 
-                UpdateUI();
+               
                 from = to;
-              UpdateTime();
+              UpdateTime(to);
             }
             catch (Exception ex)
             {
@@ -108,10 +109,11 @@ namespace Kakadu.OrderQueue
             }
         }
 
-        private void UpdateTime()
+        private void UpdateTime(long to)
         {
-            var currentTime = DateTime.Now.ToString("HH:mm:ss");
+            var currentTime = DateTimeOffset.FromUnixTimeSeconds(to).ToLocalTime().ToString("HH:mm:ss");
             updateTimeTextBlock.Text = $"Оновлено: {currentTime}";
         }
+
     }
 }
