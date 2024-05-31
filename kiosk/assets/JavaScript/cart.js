@@ -133,11 +133,9 @@ function checkoutOrder() {
     const orderButton = document.getElementById("cart-button-order");
 
     if (items.length === 0) {
-        orderButton.disabled = false;
+        orderButton.disabled = true;
         return;
     }
-
-    orderButton.disabled = true;
 
     const sendRequest = {
         items: items.map((item) => ({
@@ -146,9 +144,8 @@ function checkoutOrder() {
         })),
     };
 
-    const orderSpinner = document.getElementById("cart-order-spinner");
     orderButton.disabled = true;
-    orderSpinner.style.display = "inline-block";
+    ShowHideSpinner("cart-order-spinner" , 'inline-block');
 
     fetch(ordersEndpoint, {
         method: "POST",
@@ -157,8 +154,7 @@ function checkoutOrder() {
     .then((response) => response.json())
     .then((data) => {
         console.log("Замовлення виконано");
-        SpinnerOrder();
-        DisplayCheckTab();
+        DisplayOrder(false);
         order = data;
         clearCart();
         renderReceipt(data);
@@ -168,16 +164,14 @@ function checkoutOrder() {
     })
     .finally(() => {
         orderButton.disabled = false;
-        orderSpinner.style.display = "none";
+        ShowHideSpinner("cart-order-spinner" , 'none');
     });
 }
 
 const printCheck = document.getElementById("cart-button-check");
 printCheck.addEventListener("click", function (event) {
     const checkButton = document.getElementById("cart-button-check");
-    const checkSpinner = document.getElementById("cart-check-spinner");
-    checkButton.disabled = true;
-    checkSpinner.style.display = "inline-block";
+    ShowHideSpinner("cart-check-spinner" , "inline-block");
 
     fetch(`${printReceiptEndpoint}?orderId=${order.id}`, {
         method: "PUT",
@@ -186,8 +180,7 @@ printCheck.addEventListener("click", function (event) {
     .then((data) => {
         console.log("Чек надруковано!");
         localStorage.removeItem("cartItems");
-        SpinnerCheck();
-        DisplayOrderTab();
+        DisplayOrder(true);
         renderCart();
     })
     .catch((error) => {
@@ -195,38 +188,26 @@ printCheck.addEventListener("click", function (event) {
     })
     .finally(() => {
         checkButton.disabled = false;
-        checkSpinner.style.display = "none";
+        ShowHideSpinner("cart-check-spinner" , "none");
     });
 });
 
-function DisplayCheckTab() {
+function DisplayOrder(OrderTab) {
     const cartBottom = document.getElementById("cart-bottom");
-    cartBottom.style.display = "none";
-    
     const cartCheck = document.getElementById("cart-button-check");
-    cartCheck.style.display = "block";
+    const orderButton = document.getElementById("cart-button-order");
 
-    checkTab = false;
+    orderButton.disabled = false;
+    cartBottom.style.display = OrderTab ? "block" : "none";
+    cartCheck.style.display = OrderTab ? "none" : "block";
+
+    checkTab = !OrderTab;
 }
 
-function DisplayOrderTab() {
-    const cartBottom = document.getElementById("cart-bottom");
-    cartBottom.style.display = "block";
 
-    const cartCheck = document.getElementById("cart-button-check");
-    cartCheck.style.display = "none";
-
-    checkTab = true;
-}
-
-function SpinnerCheck() {
-    const spinner = document.getElementById("cart-check-spinner");
-    spinner.style.display = "inline-block"; 
-}
-
-function SpinnerOrder() {
-    const spinner = document.getElementById("cart-order-spinner");
-    spinner.style.display = "inline-block"; 
+function ShowHideSpinner(id, display) {
+    const spinner = document.getElementById(id);
+    spinner.style.display = display; 
 }
 
 

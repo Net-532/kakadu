@@ -59,9 +59,9 @@ fetch(fetchlink)
     });
     document.getElementById('cart-clear-button').addEventListener('click', clearCart);
     document.getElementById('cart-button-order').addEventListener('click', checkoutOrder);
-    document.getElementById('cart-close-button').addEventListener('click', function () { DisplayOrderTab(); });
+    document.getElementById('cart-close-button').addEventListener('click', function () { DisplayOrder(true); });
     const myOffcanvas = document.getElementById('offcanvasBottom');
-    myOffcanvas.addEventListener('hidden.bs.offcanvas', function () { DisplayOrderTab(); });
+    myOffcanvas.addEventListener('hidden.bs.offcanvas', function () { DisplayOrder(true); });
     document.getElementById("open-cart").addEventListener("click", function () {
       renderCart();
       const bsOffcanvas = new bootstrap.Offcanvas(
