@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using Microsoft.Extensions.Configuration;
 using OrderStatusClient;
@@ -12,34 +13,27 @@ namespace Kakadu.OrderQueue
 {
     public partial class MainWindow : Window
     {
-        private readonly OrderStatusService _orderStatusService;
-        private IDictionary<int, string> orders = new Dictionary<int, string>();
-        private long from;
-        private long to;
-        private PeriodicTimer _timer;
-        private readonly int _requestIntervalSeconds;
+        private readonly OrderStatusService _orderStatusService = new OrderStatusService();
+        private readonly IDictionary<int, string> orders = new Dictionary<int, string>();
+        private long from = DateTimeOffset.Now.ToUnixTimeSeconds();
+        private long to = DateTimeOffset.Now.ToUnixTimeSeconds();
+       
 
         public MainWindow()
         {
             InitializeComponent();
             ConfigureLogging();
-
-            _requestIntervalSeconds = int.Parse(System.Configuration.ConfigurationManager.AppSettings["RequestIntervalSeconds"]);
-            _orderStatusService = new OrderStatusService();
-            from = DateTimeOffset.Now.ToUnixTimeSeconds();
-            to = DateTimeOffset.Now.ToUnixTimeSeconds();
-            _timer = new PeriodicTimer(TimeSpan.FromSeconds(_requestIntervalSeconds));
             StartTimer();
         }
 
         private void ConfigureLogging()
         {
-            try
-            {
+            
                 var configuration = new ConfigurationBuilder()
                     .AddJsonFile("serilog.json")
                     .Build();
-
+            try
+            {
                 Log.Logger = new LoggerConfiguration()
                     .ReadFrom.Configuration(configuration)
                     .CreateLogger();
@@ -48,12 +42,16 @@ namespace Kakadu.OrderQueue
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to configure logging: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Log.Error($"Failed to configure logging: {ex.Message}", "Error");
             }
         }
 
         private async void StartTimer()
         {
+
+           var _requestIntervalSeconds = int.Parse(System.Configuration.ConfigurationManager.AppSettings["RequestIntervalSeconds"]);
+           var _timer = new PeriodicTimer(TimeSpan.FromSeconds(_requestIntervalSeconds));
+
             while (await _timer.WaitForNextTickAsync())
             {
                 await UpdateOrders();
