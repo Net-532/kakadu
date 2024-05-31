@@ -49,11 +49,13 @@ function addToCart(product) {
   let existingProductIndex = cartItems.findIndex(
     (item) => item.id === product.id
   );
+  
+  let quantity = parseInt(document.getElementById("quantity").value);
+
   if (existingProductIndex !== -1) {
-    cartItems[existingProductIndex].quantity =
-      (cartItems[existingProductIndex].quantity || 1) + 1;
+    cartItems[existingProductIndex].quantity += quantity;
   } else {
-    product.quantity = 1;
+    product.quantity = quantity;
     cartItems.push(product);
   }
 
