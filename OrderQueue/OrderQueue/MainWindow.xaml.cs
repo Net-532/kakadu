@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Timers;
 using System.Windows;
 using Microsoft.Extensions.Configuration;
-using OrderStatusClient;
 using Serilog;
 
 namespace Kakadu.OrderQueue
@@ -17,7 +14,6 @@ namespace Kakadu.OrderQueue
         private readonly IDictionary<int, string> orders = new Dictionary<int, string>();
         private long from = DateTimeOffset.Now.ToUnixTimeSeconds();
         private long to = DateTimeOffset.Now.ToUnixTimeSeconds();
-       
 
         public MainWindow()
         {
@@ -28,10 +24,9 @@ namespace Kakadu.OrderQueue
 
         private void ConfigureLogging()
         {
-            
-                var configuration = new ConfigurationBuilder()
-                    .AddJsonFile("serilog.json")
-                    .Build();
+            var configuration = new ConfigurationBuilder()
+                .AddJsonFile("serilog.json")
+                .Build();
             try
             {
                 Log.Logger = new LoggerConfiguration()
@@ -48,9 +43,8 @@ namespace Kakadu.OrderQueue
 
         private async void StartTimer()
         {
-
-           var _requestIntervalSeconds = int.Parse(System.Configuration.ConfigurationManager.AppSettings["RequestIntervalSeconds"]);
-           var _timer = new PeriodicTimer(TimeSpan.FromSeconds(_requestIntervalSeconds));
+            var _requestIntervalSeconds = int.Parse(System.Configuration.ConfigurationManager.AppSettings["RequestIntervalSeconds"]);
+            var _timer = new PeriodicTimer(TimeSpan.FromSeconds(_requestIntervalSeconds));
 
             while (await _timer.WaitForNextTickAsync())
             {
@@ -63,10 +57,8 @@ namespace Kakadu.OrderQueue
             try
             {
                 to = DateTimeOffset.Now.ToUnixTimeSeconds();
-                var fromDateTime = DateTimeOffset.FromUnixTimeSeconds(from).ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss");
-                var toDateTime = DateTimeOffset.FromUnixTimeSeconds(to).ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss");
+                Log.Information("Requesting order status updates from {From} to {To}", FormatDate(from), FormatDate(to));
 
-                Log.Information("Requesting order status updates from {From} to {To}", fromDateTime, toDateTime);
                 var newOrders = await _orderStatusService.GetStatus(from, to);
 
                 if (newOrders != null)
@@ -85,11 +77,17 @@ namespace Kakadu.OrderQueue
 
                 UpdateUI();
                 from = to;
+              UpdateTime();
             }
             catch (Exception ex)
             {
                 Log.Error("An error occurred while updating orders: {ExceptionMessage}", ex.Message);
             }
+        }
+
+        private static string FormatDate(long timestamp)
+        {
+            return DateTimeOffset.FromUnixTimeSeconds(timestamp).ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss");
         }
 
         private void UpdateUI()
@@ -108,6 +106,12 @@ namespace Kakadu.OrderQueue
                     ordersDoneListBox.Items.Add(order.Key);
                 }
             }
+        }
+
+        private void UpdateTime()
+        {
+            var currentTime = DateTime.Now.ToString("HH:mm:ss");
+            updateTimeTextBlock.Text = $"Оновлено: {currentTime}";
         }
     }
 }
