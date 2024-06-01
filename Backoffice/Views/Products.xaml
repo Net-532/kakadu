@@ -6,10 +6,9 @@
              xmlns:local="clr-namespace:Backoffice.Views"
              mc:Ignorable="d" 
              Height="auto" Width="Auto"
-             Loaded="UserControl_Loaded"
-             Background="LightGray">
+             Loaded="UserControl_Loaded">
 
-    <Grid Margin="10">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -21,6 +20,6 @@
             <Button x:Name="DeleteButton" Content="Видалити" Margin="5" Click="DeleteProduct"/>
         </StackPanel>
 
-        <DataGrid x:Name="dataGrid" Grid.Row="1" Margin="91,5,0,0" AutoGenerateColumns="True" IsReadOnly="True" Background="White"/>
+        <DataGrid x:Name="dataGrid" Grid.Row="1" Margin="5,0,0,0" AutoGenerateColumns="True" IsReadOnly="True" Background="White"/>
     </Grid>
 </UserControl>
