@@ -1,35 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using Serilog;
 
-namespace OrderStatusClient
+namespace Kakadu.OrderQueue
 {
     public class OrderStatusService
     {
-        private static readonly HttpClient httpClient = new HttpClient();
-        private readonly string _baseAddress = "http://127.0.0.1:8085";
+        private readonly HttpClient _httpClient;
+        private readonly string _baseUrl;
+        private readonly string _orderStatusEndpoint;
 
         public OrderStatusService()
         {
-           
+            _baseUrl = ConfigurationManager.AppSettings["BaseUrl"];
+            _orderStatusEndpoint = ConfigurationManager.AppSettings["OrderStatusEndpoint"];
+            _httpClient = new HttpClient { BaseAddress = new Uri(_baseUrl) };
         }
 
         public async Task<List<Order>> GetStatus(long from, long to)
         {
-            string url = $"{_baseAddress}/orderStatuses?from={from}&to={to}";
+            string url = $"{_orderStatusEndpoint}?from={from}&to={to}";
 
             try
             {
-                HttpResponseMessage response = await httpClient.GetAsync(url);
+                HttpResponseMessage response = await _httpClient.GetAsync(url);
 
                 if (response.IsSuccessStatusCode)
                 {
                     var orders = await response.Content.ReadFromJsonAsync<List<Order>>();
-                    Log.Information("HTTP GET Response: {Orders}", orders);
+                    Log.Information("HTTP GET Response: {Orders}", orders != null ? string.Join(", ", orders) : "No orders");
                     return orders;
                 }
                 else
