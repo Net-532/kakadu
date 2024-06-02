@@ -66,6 +66,7 @@
     <Content Include="data\products.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\schema.sql" />
     <Content Include="data\users.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
