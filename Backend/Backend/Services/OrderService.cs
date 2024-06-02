@@ -24,7 +24,7 @@ namespace Kakadu.Backend.Services
             var order = orderRepository.GetById(id);
             if (order == null)
             {
-                throw new OrderNotFoundException($"Замовлення з вказаним id {id} не знайдено");
+                throw new EntityNotFoundException($"Замовлення з вказаним id {id} не знайдено");
             }
             return order;
         }
@@ -45,7 +45,7 @@ namespace Kakadu.Backend.Services
             var order = orderRepository.GetById(id);
             if (order == null)
             {
-                throw new OrderNotFoundException($"Замовлення з вказаним id {id} не знайдено");
+                throw new EntityNotFoundException($"Замовлення з вказаним id {id} не знайдено");
             }
 
             orderRepository.ChangeStatus(id, status);

@@ -1,5 +1,6 @@
 const fetchlink = "http://localhost:8085/products";
 const ordersEndpoint = "http://localhost:8085/orders";
+const printReceiptEndpoint='http://localhost:8085/print';
 
 fetch(fetchlink)
   .then((res) => res.json())
@@ -16,11 +17,11 @@ fetch(fetchlink)
       }
 
       const productCard = document.createElement("div");
-      productCard.classList.add("col", "col-md-6", "mb-3", "position-relative");
+      productCard.classList.add("col", "col-md-6", "mb-3", "d-flex", "justify-content-center");
 
       const cardContent = `
         <div class="card product shadow p-1 position-relative">
-        <span class="badge bg-dark position-absolute top-0 end-0 product-price p-2">${product.price}</span>
+          <span class="badge bg-dark position-absolute top-0 end-0 product-price p-2">${product.price}</span>
           <div class="card-pre-body d-flex align-items-center justify-content-center ">
             <img src="${product.photoUrl}" alt="${product.title}"> 
           </div>
@@ -32,29 +33,35 @@ fetch(fetchlink)
 
       productCard.innerHTML = cardContent;
 
-      productCard.addEventListener("click", function () {
+      const cardProduct = productCard.querySelector(".card.product");
+      cardProduct.addEventListener("click", function () {
         const myModal = new bootstrap.Modal(
-          document.getElementById("full_description_modal")
+          document.getElementById("product-description-modal-dialog")   
         );
-        const textinside = document.getElementById("full-card-text");
+        const content = document.getElementById("product-description");
         const id = product.id;
 
         myModal.show();
-        textinside.innerHTML = `
-                    <img src="${product.photoUrl}" alt="${product.title}" style="max-width: 100%;"> <br>
-                    Name: ${product.title} <br>
-                    Price: ${product.price} <br>
-                    Description: ${product.description} <br>
-                    Id: ${id} <br>
-                    <button data-id="${product.id}" type="button" class="add-to-cart-button btn btn-outline-primary">Add to cart</button> `;                  
-                    
-        const addToCartButton = document.querySelector('.add-to-cart-button');
-        addToCartButton.addEventListener('click', () => addToCart(product));                   
+        content.innerHTML = `
+        <div class="image">
+            <img class="image" src="${product.photoUrl}" alt="${product.title}"">
+        </div>
+        <h3 class="title">${product.title}</h3>
+        <p class="description">${product.description}</p>
+        <p class="product-description-price">${product.price} грн</p>
+        <button data-id="${product.id}" class="cart-button">В кошик</button>`;    
+
+        const addToCartButton = document.querySelector(".cart-button");
+        addToCartButton.addEventListener("click", () => { addToCart(product); myModal.hide(); });
       });
 
       row.appendChild(productCard);
     });
-
+    document.getElementById('cart-clear-button').addEventListener('click', clearCart);
+    document.getElementById('cart-button-order').addEventListener('click', checkoutOrder);
+    document.getElementById('cart-close-button').addEventListener('click', function () { DisplayOrderTab(); });
+    const myOffcanvas = document.getElementById('offcanvasBottom');
+    myOffcanvas.addEventListener('hidden.bs.offcanvas', function () { DisplayOrderTab(); });
     document.getElementById("open-cart").addEventListener("click", function () {
       renderCart();
       const bsOffcanvas = new bootstrap.Offcanvas(
@@ -65,6 +72,4 @@ fetch(fetchlink)
   })
   .catch((error) => {
     console.error("Error loading products:", error);
-  });
-
-
+  }); 
