@@ -69,14 +69,14 @@ footer {
 #offcanvasBottom .offcanvas-body {
     display: flex;
     flex-direction: column;
-    height: 100%; /* Встановіть висоту, яка вам потрібна */
+    height: 100%; 
 }
 
 .empty-cart-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%; /* Встановіть висоту, яка вам потрібна */
+    height: 100%; 
 }
 
 .empty-cart {
@@ -87,12 +87,12 @@ footer {
 
 .empty-cart-text {
     margin-left: 10px;
-    font-size: 20px; /* Встановіть розмір шрифту за вашим бажанням */
-    font-weight: bold; /* Додано жирний стиль */
-    color: 012B25;
+    font-size: 20px; 
+    font-weight: bold; 
+    color: #012B25;
 }
 
 .empty-cart-image {
-    max-width: 100px; /* Встановіть максимальну ширину картинки */
+    max-width: 100px; 
     height: auto;
 }

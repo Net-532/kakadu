@@ -90,35 +90,20 @@ function renderCart() {
     let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
     if (cartItems.length === 0) {
-        const emptyCartContainer = document.createElement('div');
-        emptyCartContainer.classList.add('empty-cart-container');
+        const emptyCartContent = `
+        <div class="empty-cart-container">
+            <div class="empty-cart">
+                <img src="assets/images/burger.png" alt="Empty Cart" class="empty-cart-image">
+                <div class="empty-cart-text-container">
+                    <div class="empty-cart-text">Ой, кошик порожній...</div>
+                    <div class="empty-cart-message">Схоже, ви нічого не замовили.</div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    offcanvasBody.innerHTML = emptyCartContent;
 
-        const emptyCart = document.createElement('div');
-        emptyCart.classList.add('empty-cart');
-
-        const emptyCartImage = document.createElement('img');
-        emptyCartImage.src = 'assets/images/burger.png'; // Вставте правильний шлях до вашої картинки
-        emptyCartImage.alt = 'Empty Cart';
-        emptyCartImage.classList.add('empty-cart-image');
-
-        const emptyCartTextContainer = document.createElement('div');
-        emptyCartTextContainer.classList.add('empty-cart-text-container');
-
-        const emptyCartText = document.createElement('div');
-        emptyCartText.textContent = 'Ой, кошик порожній...';
-        emptyCartText.classList.add('empty-cart-text');
-
-        const emptyCartMessage = document.createElement('div');
-        emptyCartMessage.textContent = 'Схоже, ви нічого не замовили.';
-        emptyCartMessage.classList.add('empty-cart-message');
-
-        emptyCart.appendChild(emptyCartImage);
-        emptyCartTextContainer.appendChild(emptyCartText);
-        emptyCartTextContainer.appendChild(emptyCartMessage);
-        emptyCart.appendChild(emptyCartTextContainer);
-
-        emptyCartContainer.appendChild(emptyCart);
-        offcanvasBody.appendChild(emptyCartContainer);
     } else {
         cartItems.forEach(item => {
             const itemElement = createCartItemElement(item);
