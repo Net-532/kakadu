@@ -59,6 +59,7 @@
     <Compile Include="Services\OrderToPlainTextConverter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="data\data.sql" />
     <Content Include="data\orders.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
