@@ -82,3 +82,12 @@ hr::before {
 .container {
     height: 75px;
 }
+
+
+.name p {
+    margin: 0;
+}
+
+.price p {
+    margin: 0;
+}

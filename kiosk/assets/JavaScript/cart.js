@@ -99,7 +99,7 @@ function calculateTotalSum() {
     cartItems.forEach((item) => {
         totalSum += item.price * item.quantity;
     });
-    return totalSum.toFixed(2);
+    return formatPrice(totalSum);
 }
 
 function renderCart() {
@@ -208,7 +208,7 @@ function renderReceipt(order) {
           <center>
           <div class="container-receipt">
               <div class="name">${item.title}</div>
-              <div class="price"> ${item.quantity} x ${formatPrice(item.price)} грн</div>
+              <div class="price"> ${item.quantity} x ${formatPrice(item.price)}</div>
           </div>
       `;
     });
