@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Controls;
+using Backoffice.Views;
 
 namespace Kakadu.Backoffice.Views
 {
@@ -20,38 +22,34 @@ namespace Kakadu.Backoffice.Views
             userManager = new UserManager();
         }
 
-        private void LoadProducts()
+        private void ProductButton_Click(object sender, RoutedEventArgs e)
         {
-            List<Product> products = productManager.LoadItems();
-            if (products != null)
-            {
-                dataGrid.ItemsSource = products;
-            }
+            MainFrame.Content = new Products();
+            MainGrid.Visibility = Visibility.Hidden;
         }
+
 
         private void LoadOrders()
         {
             List<Order> orders = new List<Order>();
-                if (string.IsNullOrEmpty(SearchBox.Text))
+            if (string.IsNullOrEmpty(SearchBox.Text))
+            {
+                dataGrid.ItemsSource = orderManager.LoadItems();
+            }
+            else
+            {
+                int number = Convert.ToInt32(SearchBox.Text);
+                Order numOrder = orderManager.GetByNumber(number);
+                if (numOrder != null)
                 {
-                    dataGrid.ItemsSource = orderManager.LoadItems();
-
+                    orders.Add(numOrder);
+                    dataGrid.ItemsSource = null;
+                    dataGrid.ItemsSource = orders;
                 }
                 else
                 {
-                    int number = Convert.ToInt32(SearchBox.Text);
-                    Order numOrder = orderManager.GetByNumber(number);
-                    if (numOrder != null)
-                    {
-                        orders.Add(numOrder);
-                        dataGrid.ItemsSource = null;
-                        dataGrid.ItemsSource = orders;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Замовлення з таким номером не існує", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-
+                    MessageBox.Show("Замовлення з таким номером не існує", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
         }
 
@@ -63,34 +61,6 @@ namespace Kakadu.Backoffice.Views
                 orderManager.ChangeStatus(selectedItem.Id, "Done");
                 LoadOrders();
             }
-        }
-
-        private void DeleteProduct(object sender, RoutedEventArgs e)
-        {
-            var selectedItem = dataGrid.SelectedItem as Product;
-            if (selectedItem != null)
-            {
-                productManager.DeleteItem(selectedItem.Id);
-            }
-            LoadProducts();
-        }
-
-        private void EditProduct(object sender, RoutedEventArgs e)
-        {
-            var selectedItem = dataGrid.SelectedItem as Product;
-            if (selectedItem != null)
-            {
-                var dialog = new ProductDialog(selectedItem);
-                if (dialog.ShowDialog() == true)
-                {
-                    productManager.EditItem(selectedItem.Id, selectedItem);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Виберіть продукт для редагування.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-            LoadProducts();
         }
 
         private void SearchBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -110,42 +80,14 @@ namespace Kakadu.Backoffice.Views
             LoadOrders();
         }
 
-        private void AddProduct(object sender, RoutedEventArgs e)
-        {
-            var dialog = new ProductDialog(productManager.AddItem);
-            if (dialog.ShowDialog() != true) {
-                MessageBox.Show("Неможливо додати новий товар.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-            LoadProducts();
-        }
-
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
-        private void ProductButton_Click(object sender, RoutedEventArgs e)
-        {
-            dataGrid.Visibility = Visibility.Visible;
-            LoadProducts();
-
-            ProductButtonsPanel.Visibility = Visibility.Visible;
-            OrderButtonsPanel.Visibility = Visibility.Hidden;
-            UserButtonsPanel.Visibility = Visibility.Hidden;
-
-            DeleteButton.Click -= DeleteProduct;
-            EditButton.Click -= EditProduct;
-            AddButton.Click -= AddProduct;
-
-            DeleteButton.Click += DeleteProduct;
-            EditButton.Click += EditProduct;
-            AddButton.Click += AddProduct;
-        }
-
         private void OrderButton_Click(object sender, RoutedEventArgs e)
         {
             dataGrid.Visibility = Visibility.Visible;
-            ProductButtonsPanel.Visibility = Visibility.Hidden;
             OrderButtonsPanel.Visibility = Visibility.Visible;
             UserButtonsPanel.Visibility = Visibility.Hidden;
             LoadOrders();
@@ -200,11 +142,13 @@ namespace Kakadu.Backoffice.Views
 
         private void UserButton_Click(object sender, RoutedEventArgs e)
         {
+
+            MainFrame.Content = null;
+            MainGrid.Visibility = Visibility.Visible;
             dataGrid.Visibility = Visibility.Visible;
             LoadUsers();
 
             UserButtonsPanel.Visibility = Visibility.Visible;
-            ProductButtonsPanel.Visibility = Visibility.Hidden;
             OrderButtonsPanel.Visibility = Visibility.Hidden;
 
             DeleteUserButton.Click -= DeleteUser;
