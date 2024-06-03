@@ -2,9 +2,9 @@ let checkTab = true;
 let order = null;
 
 function createCartItemElement(item) {
-    const itemElement = document.createElement('div');
-    itemElement.classList.add( 'card' , 'mb-3');
-itemElement.innerHTML =`
+  const itemElement = document.createElement("div");
+  itemElement.classList.add("card", "mb-3");
+  itemElement.innerHTML = `
 <div class="row g-0 d-flex flex-nowrap p-2 "  >
   <div class="col-auto me-2">
     <img src="${item.photoUrl}" class="img-fluid rounded" id="cart-item-img" alt="${item.title}">
@@ -107,17 +107,26 @@ function renderCart() {
   );
   offcanvasBody.innerHTML = "";
   let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-  cartItems.forEach((item) => {
-    const itemElement = createCartItemElement(item);
-    offcanvasBody.appendChild(itemElement);
-  });
-
   if (cartItems.length === 0 && checkTab == true) {
-    const emptyCart = document.createElement("div");
-    emptyCart.textContent = "Кошик порожній";
-    offcanvasBody.appendChild(emptyCart);
-  }
+    const emptyCartContent = `
+        <div class="empty-cart-container">
+            <div class="empty-cart">
+                <img src="assets/images/burger.png" alt="Empty Cart" class="empty-cart-image">
+                <div class="empty-cart-text-container">
+                    <div class="empty-cart-text">Ой, кошик порожній...</div>
+                    <div class="empty-cart-message">Схоже, ви нічого не замовили.</div>
+                </div>
+            </div>
+        </div>
+    `;
 
+    offcanvasBody.innerHTML = emptyCartContent;
+  } else {
+    cartItems.forEach((item) => {
+      const itemElement = createCartItemElement(item);
+      offcanvasBody.appendChild(itemElement);
+    });
+  }
   const totalSumElements = document.querySelectorAll(".cart-numb");
   totalSumElements.forEach((element) => {
     const totalSum = calculateTotalSum();
