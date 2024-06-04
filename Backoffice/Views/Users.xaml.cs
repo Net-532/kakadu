@@ -27,6 +27,10 @@ namespace Backoffice.Views
             InitializeComponent();
             userManager = new UserManager();
         }
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadUsers();
+        }
 
         private void LoadUsers()
         {
