@@ -77,6 +77,7 @@ namespace Kakadu.Backoffice.Views
 
         private void SearchOrder(object sender, RoutedEventArgs e)
         {
+
             LoadOrders();
         }
 
