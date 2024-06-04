@@ -1,14 +1,17 @@
 <products>
     <product>
         <Id>1</Id>
-        <Title>Чікен бургер</Title>
+		<categoryId>1</categoryId>
+		<Title>Чікен бургер</Title>
         <Price>67.00</Price>
         <PhotoUrl>https://lh3.googleusercontent.com/d/1jA66msjb0I1BPS7OU-IAmxz23rz8872e=h300</PhotoUrl>
         <Description>Соковита котлета під сиром Hochland з листям салату та карамелізованю цибулею. Все це в ніжних булочках з смачною котлетою, приготована до золотистої скоринки, покрита ароматним сиром Hochland. Додаємо хрустку зелень салату та карамелізовану цибулю для неперевершеного смаку. Все це між двома пухкими булочками, посипаними кунжутом, із додаванням ніжного соусу Айолі.</Description>
-    </product>
+    
+	</product>
   
     <product>
         <Id>2</Id>
+		<categoryId>1</categoryId>
         <Title>Гриль бургер</Title>
         <Price>70.00</Price>
         <PhotoUrl>https://lh3.googleusercontent.com/d/1QX0pH43FqCB4HktppPCCUEu_8yx3SECq=h300</PhotoUrl>
@@ -17,6 +20,7 @@
 
  <product>
         <Id>3</Id>
+	 <categoryId>2</categoryId>
         <Title>Роял Делюкс</Title>
         <Price>115.00</Price>
         <PhotoUrl>https://lh3.googleusercontent.com/d/1hgIeis5se7bw1YHFkLt-f68D6IUZLMPb=h300</PhotoUrl>
@@ -25,6 +29,7 @@
 
  <product>
         <Id>4</Id>
+	 <categoryId>1</categoryId>
         <Title>Black бургер</Title>
         <Price>129.00</Price>
         <PhotoUrl>https://lh3.googleusercontent.com/d/1J7-5S620DpQRxRs8fwaueElDpy71CyiU=h300</PhotoUrl>
@@ -33,6 +38,7 @@
 
  <product>
         <Id>5</Id>
+	 <categoryId>1</categoryId>
         <Title>Black бургер з беконом</Title>
         <Price>150.00</Price>
         <PhotoUrl>https://lh3.googleusercontent.com/d/1ACtvaw85vvOi_lcAy0I2HVnS7S1DGYQJ=h300</PhotoUrl>
@@ -41,6 +47,7 @@
 
  <product>
         <Id>6</Id>
+	 <categoryId>1</categoryId>
         <Title>Чікен бургер з беконом</Title>
         <Price>97.00</Price>
         <PhotoUrl>https://lh3.googleusercontent.com/d/1YIzsVmBA8zbm6K1PGi_Ksu0lP-KENyxD=h300</PhotoUrl>
@@ -49,6 +56,7 @@
 
  <product>
         <Id>7</Id>
+	 <categoryId>1</categoryId>
         <Title>Воппер</Title>
         <Price>50.00</Price>
         <PhotoUrl>https://lh3.googleusercontent.com/d/1LlNzae2jcQOa2rTuUjMUW_T3ePuCzlWG=h300</PhotoUrl>
@@ -57,6 +65,7 @@
 
  <product>
         <Id>8</Id>
+	 <categoryId>1</categoryId>
         <Title>Біг бургер</Title>
         <Price>145.00</Price>
         <PhotoUrl>https://lh3.googleusercontent.com/d/1xGpLRcZaj1r7yCnR7iKjYdS1hxaSwMSx=h300</PhotoUrl>
@@ -65,6 +74,7 @@
 
  <product>
         <Id>9</Id>
+	 <categoryId>1</categoryId>
         <Title>Дабл чіз бургер</Title>
         <Price>200.00</Price>
         <PhotoUrl>https://lh3.googleusercontent.com/d/1t2HQ3GKgVgSVGI3iHgrjKULW9047GGkS=h300</PhotoUrl>
@@ -73,6 +83,7 @@
 
  <product>
         <Id>10</Id>
+	 <categoryId>1</categoryId>
         <Title>Бургер Філадельфія</Title>
         <Price>210.00</Price>
         <PhotoUrl>https://lh3.googleusercontent.com/d/1LlNzae2jcQOa2rTuUjMUW_T3ePuCzlWG=h300</PhotoUrl>
@@ -81,6 +92,7 @@
 
 	<product>
 		<Id>11</Id>
+		<categoryId>2</categoryId>
 		<Title>Чікен рол</Title>
 		<Price>90.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1SYR1iLraKgJ_TPIzIsYh9fiECy5DyTcT=h300</PhotoUrl>
@@ -89,6 +101,7 @@
 
 	<product>
 		<Id>12</Id>
+		<categoryId>2</categoryId>
 		<Title>Дабл чікен рол</Title>
 		<Price>100.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1HpInr5TCGsmSsvzeGcdZsxlpWamakLr3=h300</PhotoUrl>
@@ -97,6 +110,7 @@
 	
 	<product>
 		<Id>13</Id>
+		<categoryId>2</categoryId>
 		<Title>Рол з креветками</Title>
 		<Price>95.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1K4Fo8ZAk0O_6Tk822fwm5tqRk21lbIjk=h300</PhotoUrl>
@@ -105,6 +119,7 @@
 
 	<product>
 		<Id>14</Id>
+		<categoryId>2</categoryId>
 		<Title>Фіш рол</Title>
 		<Price>95.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1CPeHO0LIB0oMahiuws82gwkC2-vQJTZr=h300</PhotoUrl>
@@ -113,6 +128,7 @@
 
 	<product>
 		<Id>15</Id>
+		<categoryId>2</categoryId>
 		<Title>Рол Техас</Title>
 		<Price>100.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1fxThB-xhPuGiugP9B2PMcPNqK712dI7f=h300</PhotoUrl>
@@ -121,6 +137,7 @@
 
 	<product>
 		<Id>16</Id>
+		<categoryId>2</categoryId>
 		<Title>Рол Гурман</Title>
 		<Price>120.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/12Q0KnKI-C2LW9ESwAHbAQrhm8DdKvVgn=h300</PhotoUrl>
@@ -129,6 +146,7 @@
 
 	<product>
 		<Id>17</Id>
+		<categoryId>6</categoryId>
 		<Title>Нагетси</Title>
 		<Price>50.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/19iBeEpdhFaELm0VVoBI5C6rzMr5WAflT=h300</PhotoUrl>
@@ -137,6 +155,7 @@
 
 	<product>
 		<Id>18</Id>
+		<categoryId>6</categoryId>
 		<Title>Баффало</Title>
 		<Price>70.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1s6R1Bwohto7O3EoK_JuArXKfs6NF-GZc=h300</PhotoUrl>
@@ -153,6 +172,7 @@
 
 	<product>
 		<Id>20</Id>
+		<categoryId>6</categoryId>
 		<Title>Рибні палички</Title>
 		<Price>80.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1zY-XhT19NUbZaRYrD_Er-9hiN5yX7o3X=h300</PhotoUrl>
@@ -161,6 +181,7 @@
 
 	<product>
 		<Id>21</Id>
+		<categoryId>6</categoryId>
 		<Title>Сирні палички</Title>
 		<Price>87.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1jlx6GqmKH5fYIJeMjRFbZBzJvsDJjFeh=h300</PhotoUrl>
@@ -169,6 +190,7 @@
 
 	<product>
 		<Id>22</Id>
+		<categoryId>6</categoryId>
 		<Title>Крила Кріспі</Title>
 		<Price>90.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1bXekhRkDfPAIisqPqkjS9QaIZbdgL2Jz=h300</PhotoUrl>
@@ -177,6 +199,7 @@
 
 	<product>
 		<Id>23</Id>
+		<categoryId>6</categoryId>
 		<Title>Сонячний Бліс</Title>
 		<Price>60.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1JI3sh-mw6RBsQ1uR3O6BgkZrlV5QTzBV=h300</PhotoUrl>
@@ -185,6 +208,7 @@
 
 	<product>
 		<Id>24</Id>
+		<categoryId>3</categoryId>
 		<Title>Шоколадний Рай</Title>
 		<Price>75.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1kbq2zj3S3WgeztPMpA7jieLgtqy57GOL=h300</PhotoUrl>
@@ -193,6 +217,7 @@
 
 	<product>
 		<Id>25</Id>
+		<categoryId>3</categoryId>
 		<Title>Шоколадний торт</Title>
 		<Price>50.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1-D4j8OxyhKCd2s7IuSPeJxYuhA-aOXvu=h300</PhotoUrl>
@@ -201,6 +226,7 @@
 
 	<product>
 		<Id>26</Id>
+		<categoryId>3</categoryId>
 		<Title>Полуничний Сюрприз</Title>
 		<Price>90.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1yb8F-Io22aQ5kf4xB6Ljdf9OUb5yxK41=h300</PhotoUrl>
@@ -209,6 +235,7 @@
 
 	<product>
 		<Id>27</Id>
+		<categoryId>3</categoryId>
 		<Title>Ягідний Вінчестер</Title>
 		<Price>70.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1I8lq3jN967K4F6PuLpbm4hc3Yn24Gp7c=h300</PhotoUrl>
@@ -217,6 +244,7 @@
 
 	<product>
 		<Id>28</Id>
+		<categoryId>3</categoryId>
 		<Title>Шоколадний мафін</Title>
 		<Price>30.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/10w3kvKlYEyrlrsKm-9F1Ln9j4FPaLZGZ=h300</PhotoUrl>
@@ -225,6 +253,7 @@
 
 	<product>
 		<Id>29</Id>
+		<categoryId>3</categoryId>
 		<Title>Ванільний мафін</Title>
 		<Price>30.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1FrPGD68QpphsyxXz4w7h0wniIjaMqJI6=h300</PhotoUrl>
@@ -233,6 +262,7 @@
 
 	<product>
 		<Id>30</Id>
+		<categoryId>3</categoryId>
 		<Title>Ванільне морозиво</Title>
 		<Price>45.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1wpGOUN6izFKWEiTpBwWghhVzQIL-POAU=h300</PhotoUrl>
@@ -241,6 +271,7 @@
 
 	<product>
 		<Id>31</Id>
+		<categoryId>3</categoryId>
 		<Title>Шоколадне морозиво</Title>
 		<Price>45.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1H2vfwQkMqGyWqd2ICtFTFdWYxV3IU9lI=h300</PhotoUrl>
@@ -249,6 +280,7 @@
 
 	<product>
 		<Id>32</Id>
+		<categoryId>5</categoryId>
 		<Title>Соус Кетчуп</Title>
 		<Price>15.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1DaIA8-PXaUJJNdGNALm9L_9s11k9SGOg=h300</PhotoUrl>
@@ -257,6 +289,7 @@
 
 	<product>
 		<Id>33</Id>
+		<categoryId>5</categoryId>
 		<Title>Соус Майонез</Title>
 		<Price>15.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1MwkOR09mdWOUWwFflzkrfr0JGesnahvM=h300</PhotoUrl>
@@ -265,6 +298,7 @@
 
 	<product>
 		<Id>34</Id>
+		<categoryId>5</categoryId>
 		<Title>Соус Барбекю</Title>
 		<Price>15.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1jkhn86UYgZgUlPI_gDHXdZf3HOHMzUoZ=h300</PhotoUrl>
@@ -273,6 +307,7 @@
 
 	<product>
 		<Id>35</Id>
+		<categoryId>5</categoryId>
 		<Title>Соус Сирний</Title>
 		<Price>15.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1CSgAlZ6zXaEZ_m62_iTgedWNqLYauvLf=h300</PhotoUrl>
@@ -281,6 +316,7 @@
 
 	<product>
 		<Id>36</Id>
+		<categoryId>5</categoryId>
 		<Title>Соус Гірчиця</Title>
 		<Price>15.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1HbhtOdjrDseE7x_mn3lsCNgT-HqY4ajd=h300</PhotoUrl>
@@ -289,6 +325,7 @@
 
 	<product>
 		<Id>37</Id>
+		<categoryId>5</categoryId>
 		<Title>Соус Цезар</Title>
 		<Price>15.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1FqW76OS0pnXHmwHuMMQw4XxjKMTFzd1V=h300</PhotoUrl>
@@ -297,6 +334,7 @@
 
 	<product>
 		<Id>38</Id>
+		<categoryId>5</categoryId>
 		<Title>Соус Каррі</Title>
 		<Price>15.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1qDrOh9tplZdIHCAUiBkt-PpSJMaFGQDL=h300</PhotoUrl>
@@ -305,6 +343,7 @@
 
 	<product>
 		<Id>39</Id>
+		<categoryId>4</categoryId>
 		<Title>Кока-Кола</Title>
 		<Price>45.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1LyoTpfQr_2FDk0e_PskF-1qzDwMyOYX4=h300</PhotoUrl>
@@ -313,6 +352,7 @@
 
 	<product>
 		<Id>40</Id>
+		<categoryId>4</categoryId>
 		<Title>Фанта</Title>
 		<Price>45.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1Lsj7pfvHItnOHI7os1greQMbVJQGPFS3=h300</PhotoUrl>
@@ -321,6 +361,7 @@
 
 	<product>
 		<Id>41</Id>
+		<categoryId>4</categoryId>
 		<Title>Живчик</Title>
 		<Price>45.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1jNL0bMU1fLmGy84NF9b9kIJfyaw_198d=h300</PhotoUrl>
@@ -330,6 +371,7 @@
 
 	<product>
 		<Id>42</Id>
+		<categoryId>4</categoryId>
 		<Title>Пепсі</Title>
 		<Price>35.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1CrEStqEQwtRX6knhIPXNodSIuL5mRz5c=h300</PhotoUrl>
@@ -338,6 +380,7 @@
 
 	<product>
 		<Id>43</Id>
+		<categoryId>4</categoryId>
 		<Title>Лате</Title>
 		<Price>45.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1gkd6w8JVv29YVfSEDJ9OjvGFKk8Nw6Ln=h300</PhotoUrl>
@@ -346,6 +389,7 @@
 
 	<product>
 		<Id>44</Id>
+		<categoryId>4</categoryId>
 		<Title>Капучіно</Title>
 		<Price>55.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1tbBbVRKvmg41Tiar_OM3IFWPq_juEAoP=h300</PhotoUrl>
@@ -354,6 +398,7 @@
 
 	<product>
 		<Id>45</Id>
+		<categoryId>4</categoryId>
 		<Title>Чай</Title>
 		<Price>35.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1bNYsbCR0Ino21PVlP6STjYujADZf2lyO=h300</PhotoUrl>
@@ -362,6 +407,7 @@
 
 	<product>
 		<Id>46</Id>
+		<categoryId>4</categoryId>
 		<Title>Молочний коктейль</Title>
 		<Price>65.00</Price>
 		<PhotoUrl>https://lh3.googleusercontent.com/d/1fAovd6lx4bFVGfQusXSLRyIMMiO_PoZK=h300</PhotoUrl>
