@@ -100,5 +100,6 @@ namespace Kakadu.Backoffice.Views
             EditUserButton.Click += EditUser;
             AddUserButton.Click += AddUser;
         }
+
     }
 }

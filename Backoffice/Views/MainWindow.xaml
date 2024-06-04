@@ -13,6 +13,7 @@
             <Button Content="Користувачі" Margin="5" Click="UserButton_Click"/>
             <Button Content="Замовлення" Margin="5" Click="OrderButton_Click"/>
             <Button Content="Вийти" Margin="5" Click="ExitButton_Click"/>
+            
         </StackPanel>
         <ContentControl x:Name="MainFrame"/>
 
