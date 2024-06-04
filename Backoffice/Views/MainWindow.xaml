@@ -21,17 +21,11 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
+
             <StackPanel Orientation="Horizontal" x:Name="UserButtonsPanel" Grid.Row="0" Visibility="Hidden" HorizontalAlignment ="Right" Margin="5">
                 <Button x:Name="AddUserButton" Content="Додати Користувача" Margin="5" Click="AddUser"/>
                 <Button x:Name="EditUserButton" Content="Редагувати Користувача" Margin="5" Click="EditUser"/>
                 <Button x:Name="DeleteUserButton" Content="Видалити Користувача" Margin="5" Click="DeleteUser"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" x:Name="OrderButtonsPanel" Grid.Row="0" Visibility="Hidden" HorizontalAlignment="Right" Margin="5">
-                <Label HorizontalAlignment="Left" Margin ="0,5,10,0" Content ="Номер Замовлення:"/>
-                <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Margin="0,5,10,0" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Top" Width="200" Height="25" PreviewTextInput="SearchBox_PreviewTextInput"/>
-                <Button x:Name="SearchButton" Content="Пошук" Margin="0,5,50,0" HorizontalAlignment="Center" Width="50" Height="25" Click="SearchOrder"/>
-                <Button x:Name ="ChangeStatusButton" Content= "Відмітити замовлення як готове" Margin="0,5,0,0" Click="ChangeOrderStatus" Height="25"></Button>
             </StackPanel>
             <DataGrid x:Name="dataGrid" Visibility="Visible" Grid.Row="1" Margin="5" AutoGenerateColumns="True" IsReadOnly="True"/>
 
