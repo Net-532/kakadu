@@ -20,7 +20,7 @@ hr::before {
 }
 
 @font-face {
-    font-family: 'KyivTypeSerif-Regular';
+    font-family: 'Kyiv';
     src: url('../font/KyivTypeSerif-Regular.woff') format('woff');
 }
 
@@ -28,20 +28,17 @@ hr::before {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
     background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: left;
     background-image: url('../images/backgroundcheck.jpg');
     background-size: cover;
+    font-family: 'Kyiv';
     font-size: 16px;
 }
 
 .receipt-info {
     font-size: 18px;
     font-weight: bold;
-    font-family: 'KyivTypeSerif-Regular';
 }
 
 .receipt-item {
@@ -50,11 +47,9 @@ hr::before {
 
 .receipt-thanks {
     margin-top: 20px;
-    font-family: 'KyivTypeSerif-Regular';
 }
 
 .container-receipt {
-    font-family: 'KyivTypeSerif-Regular';
     overflow: hidden;
 }
 

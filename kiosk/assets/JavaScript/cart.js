@@ -208,7 +208,7 @@ function renderReceipt(order) {
           <center>
           <div class="container-receipt">
               <div class="name">${item.title}</div>
-              <div class="price"> ${item.quantity} x ${formatPrice(item.price)}</div>
+              <div class="price"> ${item.quantity} x  ${formatPrice(item.price)}</div>
           </div>
       `;
     });
