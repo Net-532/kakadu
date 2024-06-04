@@ -19,15 +19,8 @@ namespace Kakadu.Backend.Services
         public void Print(int orderId)
         {
             Order order = _orderService.GetById(orderId);
-            if (order != null)
-            {
                 string text = _orderToPlainTextConverter.Convert(order);
                 _printService.Print(text);
-            }
-            else
-            {
-                throw new OrderNotFoundException($"Замовлення з ідентифікатором {orderId} не знайдено");
-            }
         }
     }
 }

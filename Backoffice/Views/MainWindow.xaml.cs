@@ -173,7 +173,7 @@ namespace Kakadu.Backoffice.Views
                     orderManager.Print(orderId);
                     MessageBox.Show("Замовлення успішно роздруковано!");
                 }
-                catch (OrderNotFoundException ex)
+                catch (EntityNotFoundException ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
