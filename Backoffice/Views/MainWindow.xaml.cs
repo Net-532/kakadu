@@ -10,15 +10,11 @@ namespace Kakadu.Backoffice.Views
 {
     public partial class MainWindow : Window
     {
-        private ProductManager productManager;
-        private OrderManager orderManager;
         private UserManager userManager;
 
         public MainWindow()
         {
             InitializeComponent();
-            productManager = new ProductManager();
-            orderManager = new OrderManager();
             userManager = new UserManager();
         }
 
