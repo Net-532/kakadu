@@ -10,15 +10,11 @@ namespace Kakadu.Backoffice.Views
 {
     public partial class MainWindow : Window
     {
-        private ProductManager productManager;
-        private OrderManager orderManager;
         private UserManager userManager;
 
         public MainWindow()
         {
             InitializeComponent();
-            productManager = new ProductManager();
-            orderManager = new OrderManager();
             userManager = new UserManager();
         }
 
@@ -28,58 +24,6 @@ namespace Kakadu.Backoffice.Views
             MainGrid.Visibility = Visibility.Hidden;
         }
 
-
-        private void LoadOrders()
-        {
-            List<Order> orders = new List<Order>();
-            if (string.IsNullOrEmpty(SearchBox.Text))
-            {
-                dataGrid.ItemsSource = orderManager.LoadItems();
-            }
-            else
-            {
-                int number = Convert.ToInt32(SearchBox.Text);
-                Order numOrder = orderManager.GetByNumber(number);
-                if (numOrder != null)
-                {
-                    orders.Add(numOrder);
-                    dataGrid.ItemsSource = null;
-                    dataGrid.ItemsSource = orders;
-                }
-                else
-                {
-                    MessageBox.Show("Замовлення з таким номером не існує", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-            }
-        }
-
-        private void ChangeOrderStatus(object sender, RoutedEventArgs e)
-        {
-            var selectedItem = dataGrid.SelectedItem as Order;
-            if (selectedItem != null)
-            {
-                orderManager.ChangeStatus(selectedItem.Id, "Done");
-                LoadOrders();
-            }
-        }
-
-        private void SearchBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            foreach (char c in e.Text)
-            {
-                if (!char.IsDigit(c))
-                {
-                    e.Handled = true;
-                    return;
-                }
-            }
-        }
-
-        private void SearchOrder(object sender, RoutedEventArgs e)
-        {
-            LoadOrders();
-        }
-
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -87,10 +31,8 @@ namespace Kakadu.Backoffice.Views
 
         private void OrderButton_Click(object sender, RoutedEventArgs e)
         {
-            dataGrid.Visibility = Visibility.Visible;
-            OrderButtonsPanel.Visibility = Visibility.Visible;
-            UserButtonsPanel.Visibility = Visibility.Hidden;
-            LoadOrders();
+            MainFrame.Content = new Orders();
+            MainGrid.Visibility = Visibility.Hidden;
         }
 
         private void LoadUsers()
@@ -149,7 +91,6 @@ namespace Kakadu.Backoffice.Views
             LoadUsers();
 
             UserButtonsPanel.Visibility = Visibility.Visible;
-            OrderButtonsPanel.Visibility = Visibility.Hidden;
 
             DeleteUserButton.Click -= DeleteUser;
             EditUserButton.Click -= EditUser;
