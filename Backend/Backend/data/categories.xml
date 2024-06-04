@@ -1,0 +1,26 @@
+<categories>
+	<category>
+		<Id>1</Id>
+		<Name>Бургери</Name>
+	</category>
+	<category>
+		<Id>2</Id>
+		<Name>Роли</Name>
+	</category>
+		<category>
+		<Id>3</Id>
+		<Name>Десерти</Name>
+	</category>
+	<category>
+		<Id>4</Id>
+		<Name>Напої</Name>
+	</category>
+	<category>
+		<Id>5</Id>
+		<Name>Соуси</Name>
+	</category>
+	<category>
+		<Id>6</Id>
+		<Name>Закуски</Name>
+	</category>
+</categories>
