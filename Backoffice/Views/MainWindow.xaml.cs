@@ -101,32 +101,5 @@ namespace Kakadu.Backoffice.Views
             AddUserButton.Click += AddUser;
         }
 
-
-        private void PrintButton_Click(object sender, RoutedEventArgs e)
-        {
-
-            var selectedItem = dataGrid.SelectedItem as Order;
-            if (selectedItem != null)
-            {
-
-                int orderId = selectedItem.Id;
-
-                try
-                {
-
-                    orderManager.Print(orderId);
-                    MessageBox.Show("Замовлення успішно роздруковано!");
-                }
-                catch (EntityNotFoundException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Будь ласка, виберіть замовлення для друку.");
-            }
-
-        }
     }
 }
