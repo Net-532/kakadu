@@ -3,29 +3,34 @@ let order = null;
 
 function createCartItemElement(item) {
   const itemElement = document.createElement("div");
-  itemElement.setAttribute("id", "cart-item-full");
+  itemElement.classList.add("card", "mb-3");
   itemElement.innerHTML = `
-        <img src="${item.photoUrl}" id="cart-item-img">
-        <div id="cart-item-text">
-            <div id="cart-text-bold">${item.title}</div>
-            <div id="cart-text-small">${item.description}</div>
-        </div>
-        <div id="cart-item-price">${item.price} грн</div>
-        <div id="cart-item-buttons">
-            <button class="increment-button" id="cart-button-change">+</button>
-            <div id="cart-item-quantity">${item.quantity}</div>
-            <button class="decrement-button" id="cart-button-change">-</button>
-        </div>
-        <button class="remove-button btn btn-close mb-3" id="cart-remove-button"></button>
-    `;
+<div class="row g-0 d-flex flex-nowrap p-2 "  >
+  <div class="col-auto me-2">
+    <img src="${item.photoUrl}" class="img-fluid rounded" id="cart-item-img" alt="${item.title}">
+  </div>
+  <div class="col">
+      <h6 class="card-title fw-bold">${item.title}</h6>
+      <p class="card-text" id="cart-text-small" >${item.description}</p>
+      <p class="card-text" id="cart-item-price">${item.price} грн</p>
+      <button class="remove-button btn btn-close mb-3" id="cart-remove-button"></button>
+      <div class="quantity-controls">
+        <button class="quantity-button" id="decrease">-</button>
+        <input type="text" id="quantity" value="${item.quantity}" readonly>
+        <button class="quantity-button" id="increase">+</button>
+      </div>
+  </div>
+</div>
 
-  const incrementButton = itemElement.querySelector(".increment-button");
+`;
+
+  const incrementButton = itemElement.querySelector("#increase");
   incrementButton.addEventListener("click", function (event) {
     addToCart(item);
     renderCart();
   });
 
-  const decrementButton = itemElement.querySelector(".decrement-button");
+  const decrementButton = itemElement.querySelector("#decrease");
   decrementButton.addEventListener("click", function (event) {
     removeFromCart(item);
     renderCart();
@@ -44,11 +49,13 @@ function addToCart(product) {
   let existingProductIndex = cartItems.findIndex(
     (item) => item.id === product.id
   );
+  
+  let quantity = parseInt(document.getElementById("quantity").value);
+
   if (existingProductIndex !== -1) {
-    cartItems[existingProductIndex].quantity =
-      (cartItems[existingProductIndex].quantity || 1) + 1;
+    cartItems[existingProductIndex].quantity += quantity;
   } else {
-    product.quantity = 1;
+    product.quantity = quantity;
     cartItems.push(product);
   }
 
@@ -100,17 +107,26 @@ function renderCart() {
   );
   offcanvasBody.innerHTML = "";
   let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-  cartItems.forEach((item) => {
-    const itemElement = createCartItemElement(item);
-    offcanvasBody.appendChild(itemElement);
-  });
-
   if (cartItems.length === 0 && checkTab == true) {
-    const emptyCart = document.createElement("div");
-    emptyCart.textContent = "Кошик порожній";
-    offcanvasBody.appendChild(emptyCart);
-  }
+    const emptyCartContent = `
+        <div class="empty-cart-container">
+            <div class="empty-cart">
+                <img src="assets/images/burger.png" alt="Empty Cart" class="empty-cart-image">
+                <div class="empty-cart-text-container">
+                    <div class="empty-cart-text">Ой, кошик порожній...</div>
+                    <div class="empty-cart-message">Схоже, ви нічого не замовили.</div>
+                </div>
+            </div>
+        </div>
+    `;
 
+    offcanvasBody.innerHTML = emptyCartContent;
+  } else {
+    cartItems.forEach((item) => {
+      const itemElement = createCartItemElement(item);
+      offcanvasBody.appendChild(itemElement);
+    });
+  }
   const totalSumElements = document.querySelectorAll(".cart-numb");
   totalSumElements.forEach((element) => {
     const totalSum = calculateTotalSum();
