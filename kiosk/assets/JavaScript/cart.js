@@ -2,9 +2,9 @@ let checkTab = true;
 let order = null;
 
 function createCartItemElement(item) {
-  const itemElement = document.createElement("div");
-  itemElement.classList.add("card", "mb-3");
-  itemElement.innerHTML = `
+    const itemElement = document.createElement('div');
+    itemElement.classList.add( 'card' , 'mb-3');
+itemElement.innerHTML =`
 <div class="row g-0 d-flex flex-nowrap p-2 "  >
   <div class="col-auto me-2">
     <img src="${item.photoUrl}" class="img-fluid rounded" id="cart-item-img" alt="${item.title}">
@@ -106,9 +106,7 @@ function calculateTotalSum() {
 }
 
 function renderCart() {
-  const offcanvasBody = document.querySelector(
-    "#offcanvasBottom .offcanvas-body"
-  );
+  const offcanvasBody = document.querySelector("#offcanvasBottom .offcanvas-body");
   offcanvasBody.innerHTML = "";
   let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
   if (cartItems.length === 0 && checkTab == true) {
@@ -131,11 +129,15 @@ function renderCart() {
       offcanvasBody.appendChild(itemElement);
     });
   }
+
   const totalSumElements = document.querySelectorAll(".cart-numb");
   totalSumElements.forEach((element) => {
     const totalSum = calculateTotalSum();
     element.textContent = `${totalSum} грн`;
   });
+
+  const orderButton = document.getElementById("cart-button-order");
+  orderButton.disabled = cartItems.length === 0;
 }
 
 function clearCart() {
@@ -144,61 +146,80 @@ function clearCart() {
 }
 
 function checkoutOrder() {
-  const items = JSON.parse(localStorage.getItem("cartItems")) || [];
-  const sendRequest = {
-    items: items.map((item) => ({
-      productId: item.id,
-      quantity: item.quantity,
-    })),
-  };
-  fetch(ordersEndpoint, {
-    method: "POST",
-    body: JSON.stringify(sendRequest),
-  })
+    const items = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const orderButton = document.getElementById("cart-button-order");
+
+    const sendRequest = {
+        items: items.map((item) => ({
+        productId: item.id,
+        quantity: item.quantity,
+        })),
+    };
+
+    orderButton.disabled = true;
+    ShowHideSpinner("cart-order-spinner" , 'inline-block');
+
+    fetch(ordersEndpoint, {
+        method: "POST",
+        body: JSON.stringify(sendRequest),
+    })
     .then((response) => response.json())
     .then((data) => {
-      console.log("Замовлення виконано");
-      DisplayCheckTab();
-      order = data;
-      clearCart();
-      renderReceipt(data);
+        console.log("Замовлення виконано");
+        DisplayOrder(false);
+        order = data;
+        clearCart();
+        renderReceipt(data);
     })
     .catch((error) => {
-      console.error("Помилка: ", error);
+        console.error("Помилка: ", error);
+    })
+    .finally(() => {
+        orderButton.disabled = false;
+        ShowHideSpinner("cart-order-spinner" , 'none');
     });
 }
 
 const printCheck = document.getElementById("cart-button-check");
 printCheck.addEventListener("click", function (event) {
-  fetch(`${printReceiptEndpoint}?orderId=${order.id}`, {
-    method: "PUT",
-  })
+    const checkButton = document.getElementById("cart-button-check");
+    ShowHideSpinner("cart-check-spinner" , "inline-block");
+
+    fetch(`${printReceiptEndpoint}?orderId=${order.id}`, {
+        method: "PUT",
+    })
     .then((response) => response.json())
     .then((data) => {
-      console.log("Чек надруковано!");
-      localStorage.removeItem("cartItems");
-      DisplayOrderTab();
-      renderCart();
+        console.log("Чек надруковано!");
+        localStorage.removeItem("cartItems");
+        DisplayOrder(true);
+        renderCart();
     })
     .catch((error) => {
-      console.error("Помилка: ", error);
+        console.error("Помилка: ", error);
+    })
+    .finally(() => {
+        checkButton.disabled = false;
+        ShowHideSpinner("cart-check-spinner" , "none");
     });
 });
 
-function DisplayCheckTab() {
-  const cartBottom = document.getElementById("cart-bottom");
-  cartBottom.style.display = "none";
-  const cartCheck = document.getElementById("cart-button-check");
-  cartCheck.style.display = "block";
-  checkTab = false;
+function DisplayOrder(OrderTab) {
+    const cartBottom = document.getElementById("cart-bottom");
+    const cartCheck = document.getElementById("cart-button-check");
+    const orderButton = document.getElementById("cart-button-order");
+
+    orderButton.disabled = false;
+    cartBottom.style.display = OrderTab ? "block" : "none";
+    cartCheck.style.display = OrderTab ? "none" : "block";
+
+    checkTab = OrderTab;
 }
 
-function DisplayOrderTab() {
-  const cartBottom = document.getElementById("cart-bottom");
-  cartBottom.style.display = "block";
-  const cartCheck = document.getElementById("cart-button-check");
-  cartCheck.style.display = "none";
-  checkTab = true;
+
+function ShowHideSpinner(id, display) {
+    const spinner = document.getElementById(id);
+    spinner.style.display = display; 
 }
 
 function renderReceipt(order) {

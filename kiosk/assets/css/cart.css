@@ -91,3 +91,11 @@
     max-width: 100px; 
     height: auto;
 }
+
+#cart-order-spinner {
+    display: none;
+}
+
+#cart-check-spinner {
+    display: none;
+}
