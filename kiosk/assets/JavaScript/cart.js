@@ -100,9 +100,7 @@ function calculateTotalSum() {
 }
 
 function renderCart() {
-  const offcanvasBody = document.querySelector(
-    "#offcanvasBottom .offcanvas-body"
-  );
+  const offcanvasBody = document.querySelector("#offcanvasBottom .offcanvas-body");
   offcanvasBody.innerHTML = "";
   let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
   cartItems.forEach((item) => {
@@ -121,6 +119,9 @@ function renderCart() {
     const totalSum = calculateTotalSum();
     element.textContent = `${totalSum} грн`;
   });
+
+  const orderButton = document.getElementById("cart-button-order");
+  orderButton.disabled = cartItems.length === 0;
 }
 
 function clearCart() {
@@ -131,11 +132,6 @@ function clearCart() {
 function checkoutOrder() {
     const items = JSON.parse(localStorage.getItem("cartItems")) || [];
     const orderButton = document.getElementById("cart-button-order");
-
-    if (items.length === 0) {
-        orderButton.disabled = true;
-        return;
-    }
 
     const sendRequest = {
         items: items.map((item) => ({
@@ -201,7 +197,7 @@ function DisplayOrder(OrderTab) {
     cartBottom.style.display = OrderTab ? "block" : "none";
     cartCheck.style.display = OrderTab ? "none" : "block";
 
-    checkTab = !OrderTab;
+    checkTab = OrderTab;
 }
 
 
