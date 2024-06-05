@@ -16,7 +16,7 @@ namespace Kakadu.Backoffice.Views
 
         private void Username_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (UsernameTextBox.Text == "Ім'я")
+            if (UsernameTextBox.Text == "Логін")
             {
                 UsernameTextBox.Text = "";
             }
@@ -26,7 +26,7 @@ namespace Kakadu.Backoffice.Views
         {
             if (string.IsNullOrWhiteSpace(UsernameTextBox.Text))
             {
-                UsernameTextBox.Text = "Ім'я";
+                UsernameTextBox.Text = "Логін";
             }
         }
 
