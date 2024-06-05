@@ -11,6 +11,8 @@ namespace Kakadu.WebServer.OrderAPI
         private readonly IProductService _productService;
         private readonly JsonToOrderRequestConverter _jsonToOrderRequestConverter;
         private readonly OrderToJsonConverter _orderToJsonConverter;
+        private readonly PrintService _orderPrintService;
+        private readonly OrderToPlainTextConverter _orderToPlainTextConverter;
 
         public OrderRequestProcessor(IOrderRepository orderRepository, IProductService productService)
         {
@@ -18,6 +20,8 @@ namespace Kakadu.WebServer.OrderAPI
             _productService = productService;
             _jsonToOrderRequestConverter = new JsonToOrderRequestConverter();
             _orderToJsonConverter = new OrderToJsonConverter();
+            _orderPrintService = new PrintService();
+            _orderToPlainTextConverter = new OrderToPlainTextConverter(_productService);
         }
 
         public HttpResponse Process(HttpRequest httpRequest)
@@ -46,6 +50,9 @@ namespace Kakadu.WebServer.OrderAPI
             order.UpdatedAt = order.OrderDate;
 
             var savedOrder = _orderRepository.Save(order);
+
+            var kitchenReceipt = _orderToPlainTextConverter.ConvertToKitchenReceipt(savedOrder);
+            _orderPrintService.Print(kitchenReceipt);
 
             var jsonResponse = _orderToJsonConverter.Convert(savedOrder);
 

@@ -18,7 +18,7 @@ namespace Kakadu.Backend.Services
             var product = productRepository.GetById(id);
             if (product == null)
             {
-                throw new ProductNotFoundException($"Продукт з вказаним id {id} не знайдено");
+                throw new EntityNotFoundException($"Продукт з вказаним id {id} не знайдено");
             }
             productRepository.DeleteById(id);
         }
@@ -33,7 +33,7 @@ namespace Kakadu.Backend.Services
             var product = productRepository.GetById(id);
             if (product == null)
             {
-                throw new ProductNotFoundException($"Продукт з вказаним id {id} не знайдено");
+                throw new EntityNotFoundException($"Продукт з вказаним id {id} не знайдено");
             }
             return product;
         }
@@ -48,7 +48,7 @@ namespace Kakadu.Backend.Services
             var existingProduct = productRepository.GetById(id);
             if (existingProduct == null)
             {
-                throw new ProductNotFoundException($"Продукт з вказаним id {id} не знайдено");
+                throw new EntityNotFoundException($"Продукт з вказаним id {id} не знайдено");
             }
             productRepository.Update(id, product);
         }
