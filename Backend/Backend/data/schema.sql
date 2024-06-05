@@ -38,3 +38,20 @@ password VARCHAR(120) NOT NULL,
 CONSTRAINT unique_users_username UNIQUE (username)
 );
 
+
+DELIMITER //
+
+
+CREATE TRIGGER T_GENERATE_ORDER_NUMBER
+BEFORE INSERT ON orders
+FOR EACH ROW
+BEGIN
+    DECLARE maxOrderNumber INT;
+
+    SELECT IFNULL(MAX(orderNumber), 0) INTO maxOrderNumber FROM orders;
+
+    SET NEW.orderNumber = maxOrderNumber + 1;
+END;
+//
+
+DELIMITER ;
