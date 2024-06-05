@@ -11,7 +11,7 @@ namespace Kakadu.Backend.Services
 
             printDocument.PrintPage += (sender, e) =>
             {
-                e.Graphics.DrawString(text, new System.Drawing.Font("Arial", 28), Brushes.Black, 0, 0);
+                e.Graphics.DrawString(text, new System.Drawing.Font("Arial", 12), Brushes.Black, 0, 0);
             };
    
             printDocument.Print();
