@@ -188,7 +188,6 @@ function DisplayOrderTab() {
 
 function renderReceipt(order) {
     const header = `
-      <center>
       <p class="receipt-info">Kakadu</p>
       <p class="receipt-info">м. Чернівці, вул. Павла Каспрука 2</p>
       <p class="receipt-info">Чек # ${order.orderNumber}</p>
@@ -205,7 +204,6 @@ function renderReceipt(order) {
     let body = ``;
     order.items.forEach((item) => {
         body += `
-          <center>
           <div class="container-receipt">
               <div class="name">${item.title}</div>
               <div class="price"> ${item.quantity} x  ${formatPrice(item.price)}</div>
@@ -214,7 +212,6 @@ function renderReceipt(order) {
     });
 
     const footer = `
-      <center>
       <hr>
       <div class="container-receipt">
           <div class="name">Сума:</div> 

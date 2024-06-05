@@ -28,7 +28,6 @@ hr::before {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f9f9f9;
     text-align: left;
     background-image: url('../images/backgroundcheck.jpg');
     background-size: cover;
@@ -39,6 +38,7 @@ hr::before {
 .receipt-info {
     font-size: 18px;
     font-weight: bold;
+    text-align: center;
 }
 
 .receipt-item {
@@ -47,6 +47,7 @@ hr::before {
 
 .receipt-thanks {
     margin-top: 20px;
+    text-align: center;
 }
 
 .container-receipt {
@@ -74,15 +75,7 @@ hr::before {
     height: 50px;
 }
 
-.container {
-    height: 75px;
-}
-
-
-.name p {
-    margin: 0;
-}
-
+.name p,
 .price p {
     margin: 0;
 }
