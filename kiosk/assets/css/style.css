@@ -104,7 +104,7 @@
             font-weight: bold;
             font-size: 20px;
             position: absolute;
-            bottom: 10px;
+            bottom: 5px;
             left: 30px; 
           }
           
@@ -136,6 +136,15 @@
             align-items: center;
             justify-content: center;
           }
+
+          .row .quantity-controls {
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
           
           .quantity-controls button.quantity-button {
             width: 30px;
@@ -161,4 +170,4 @@
             border: none;
             font-size: 20px;
             font-weight: bold;
-          }  
+          }

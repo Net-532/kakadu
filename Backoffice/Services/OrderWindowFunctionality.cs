@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Controls;
+using System.Windows;
 using Kakadu.Backend.Entities;
 using Kakadu.Backend.Repositories;
 using Kakadu.Backend.Services;
@@ -9,10 +11,18 @@ namespace Kakadu.Backoffice.Views
     public class OrderManager : IManageable<Order>
     {
         private OrderService OrderServ;
+        private OrderPrintService OrderPrintServ;
 
         public OrderManager()
         {
             OrderServ = new OrderService(new OrderRepositoryXML());
+            OrderPrintServ = new OrderPrintService(OrderServ, new OrderToPlainTextConverter(new ProductService(new ProductRepositoryXML())), new PrintService());
+        }
+
+        public void Print(int OrderId)
+        {
+           OrderPrintServ.Print(OrderId);
+
         }
 
         public List<Order> LoadItems()

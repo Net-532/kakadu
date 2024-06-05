@@ -18,7 +18,7 @@ namespace Kakadu.Backend.Services
             var user = userRepository.GetById(id);
             if (user == null)
             {
-                throw new UserNotFoundException($"Користувача з вказаним id {id} не знайдено");
+                throw new EntityNotFoundException($"Користувача з вказаним id {id} не знайдено");
             }
             userRepository.DeleteById(id);
         }
@@ -33,7 +33,7 @@ namespace Kakadu.Backend.Services
             var user = userRepository.GetById(id);
             if (user == null)
             {
-                throw new UserNotFoundException($"Користувача з вказаним id {id} не знайдено");
+                throw new EntityNotFoundException($"Користувача з вказаним id {id} не знайдено");
             }
             return user;
         }
@@ -48,7 +48,7 @@ namespace Kakadu.Backend.Services
             var existingUser = userRepository.GetById(id);
             if (existingUser == null)
             {
-                throw new UserNotFoundException($"Користувача з вказаним id {id} не знайдено");
+                throw new EntityNotFoundException($"Користувача з вказаним id {id} не знайдено");
             }
             userRepository.Update(id, user);
         }
