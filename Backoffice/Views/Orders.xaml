@@ -21,6 +21,39 @@
             <Button x:Name="PrintButton" Content="Друк" Margin="0,5,50,0" HorizontalAlignment="Center" Width="50" Height="25" Click="PrintButton_Click"/>
             <Button x:Name ="ChangeStatusButton" Content= "Відмітити замовлення як готове" Margin="0,5,0,0" Click="ChangeOrderStatus" Height="25"></Button>
         </StackPanel>
-        <DataGrid x:Name="dataGrid" Grid.Row="1" Margin="5,0,0,0" AutoGenerateColumns="True" IsReadOnly="True" Background="White"/>
+        <DataGrid x:Name="dataGrid" Grid.Row="1" Margin="5,0,0,0" AutoGenerateColumns="False" IsReadOnly="True" Background="White">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="100">
+                    <DataGridTextColumn.Header>Номер</DataGridTextColumn.Header>
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="OrderNumber"></Binding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="100">
+                    <DataGridTextColumn.Header>Сума</DataGridTextColumn.Header>
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="TotalPrice"></Binding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="200">
+                    <DataGridTextColumn.Header>Дата оформлення</DataGridTextColumn.Header>
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="OrderDate"></Binding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="200">
+                    <DataGridTextColumn.Header>Дата оновлення</DataGridTextColumn.Header>
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="UpdatedAt"></Binding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="150">
+                    <DataGridTextColumn.Header>Статус</DataGridTextColumn.Header>
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="Status"></Binding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>
