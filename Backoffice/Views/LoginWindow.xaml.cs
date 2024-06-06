@@ -14,6 +14,37 @@ namespace Kakadu.Backoffice.Views
             InitializeComponent();
         }
 
+        private void Username_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (UsernameTextBox.Text == "Логін")
+            {
+                UsernameTextBox.Text = "";
+            }
+        }
+
+        private void Username_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(UsernameTextBox.Text))
+            {
+                UsernameTextBox.Text = "Логін";
+            }
+        }
+
+        private void Password_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (PasswordBox.Password == "00000")
+            {
+                PasswordBox.Password = "";
+            }
+        }
+
+        private void Password_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(PasswordBox.Password))
+            {
+                PasswordBox.Password = "00000";
+            }
+        }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
@@ -36,15 +67,6 @@ namespace Kakadu.Backoffice.Views
             }
 
 
-        }
-
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-      
+        }  
     }
-
-
 }

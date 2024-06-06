@@ -36,31 +36,44 @@ fetch(fetchlink)
       const cardProduct = productCard.querySelector(".card.product");
       cardProduct.addEventListener("click", function () {
         const myModal = new bootstrap.Modal(
-          document.getElementById("full_description_modal")
+          document.getElementById("product-description-modal-dialog")   
         );
-        const textinside = document.getElementById("full-card-text");
+        const content = document.getElementById("product-description");
         const id = product.id;
 
         myModal.show();
-        textinside.innerHTML = `
-                    <img src="${product.photoUrl}" alt="${product.title}" style="max-width: 100%;"> <br>
-                    Name: ${product.title} <br>
-                    Price: ${product.price} <br>
-                    Description: ${product.description} <br>
-                    Id: ${id} <br>
-                    <button data-id="${product.id}" type="button" class="add-to-cart-button btn btn-outline-primary">Add to cart</button> `;
+        content.innerHTML = `
+        <div class="image">
+            <img class="image" src="${product.photoUrl}" alt="${product.title}"">
+        </div>
+        <h3 class="title">${product.title}</h3>
+        <p class="description">${product.description}</p>
+        <p class="product-description-price">${product.price} грн</p>
+        <button data-id="${product.id}" class="cart-button">В кошик</button>
+          <div class="quantity-controls">
+            <button class="quantity-button" id="decrease">-</button>
+            <input type="text" id="quantity" value="1" readonly>
+            <button class="quantity-button" id="increase">+</button>
+          </div>
+        `;
+      
+        document.getElementById("increase").addEventListener("click", increment);
+        document.getElementById("decrease").addEventListener("click", decrement);
+        
+        const addToCartButton = document.querySelector(".cart-button");
+        addToCartButton.addEventListener("click", () => { addToCart(product); myModal.hide(); });
 
-        const addToCartButton = document.querySelector(".add-to-cart-button");
-        addToCartButton.addEventListener("click", () => addToCart(product));
+        document.getElementById("product-description-modal-dialog").addEventListener("hidden.bs.modal", resetQuantity);
       });
-
+      
       row.appendChild(productCard);
     });
+
     document.getElementById('cart-clear-button').addEventListener('click', clearCart);
     document.getElementById('cart-button-order').addEventListener('click', checkoutOrder);
-    document.getElementById('cart-close-button').addEventListener('click', function () { DisplayOrderTab(); });
+    document.getElementById('cart-close-button').addEventListener('click', function () { DisplayOrder(true); });
     const myOffcanvas = document.getElementById('offcanvasBottom');
-    myOffcanvas.addEventListener('hidden.bs.offcanvas', function () { DisplayOrderTab(); });
+    myOffcanvas.addEventListener('hidden.bs.offcanvas', function () { DisplayOrder(true); });
     document.getElementById("open-cart").addEventListener("click", function () {
       renderCart();
       const bsOffcanvas = new bootstrap.Offcanvas(
@@ -71,6 +84,22 @@ fetch(fetchlink)
   })
   .catch((error) => {
     console.error("Error loading products:", error);
-  });
+  }); 
 
+  let quantity = 1;
+  function increment() {
+    quantity++;
+    document.getElementById("quantity").value = quantity;
+  }
+  
+  function decrement() {
+    if (quantity > 1) {
+      quantity--;
+      document.getElementById("quantity").value = quantity;
+    }
+  }
 
+  function resetQuantity() {
+    quantity = 1;
+    document.getElementById("quantity").value = quantity;
+  }
