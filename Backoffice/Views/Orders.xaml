@@ -47,7 +47,7 @@
                         <Binding Path="UpdatedAt"></Binding>
                     </DataGridTextColumn.Binding>
                 </DataGridTextColumn>
-                <DataGridTextColumn Width="150">
+                <DataGridTextColumn Width="*">
                     <DataGridTextColumn.Header>Статус</DataGridTextColumn.Header>
                     <DataGridTextColumn.Binding>
                         <Binding Path="Status"></Binding>
