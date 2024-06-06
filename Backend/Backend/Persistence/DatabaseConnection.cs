@@ -33,7 +33,7 @@ public class DatabaseConnection
         {
             if (_DBConnection.State != ConnectionState.Open)
             {
-                _DBConnection.Open();
+                    _DBConnection.Open();
             }
             return _DBConnection;
         }
