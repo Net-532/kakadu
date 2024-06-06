@@ -13,7 +13,7 @@ namespace Kakadu.Backoffice.Views
 
         public UserManager()
         {
-            UserServ = new UserService(new UserRepositoryXML());
+            UserServ = new UserService(new UserRepositoryDB());
         }
 
         public List<User> LoadItems()
