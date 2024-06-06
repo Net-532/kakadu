@@ -8,6 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="burger.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="burger.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Backend\Backend\Backend.csproj" />
   </ItemGroup>
 

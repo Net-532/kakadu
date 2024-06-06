@@ -21,15 +21,13 @@
         </div>
     </div>
 
-    <div class="modal" tabindex="-1" id="full_description_modal">
+    <div class="modal" tabindex="-1" id="product-description-modal-dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <p id="full-card-text"></p>
-                </div>
+                <div class="modal-body" id="product-description"></div>
             </div>
         </div>
      </div>
@@ -49,7 +47,14 @@
       </div>
   </div>
   <div class="offcanvas-body small" id="cart-main-container"></div>
-  <button id="cart-button-check" class="btn btn-dark cart-button-check">Друкувати чек</button>
+  <div class="container p-4">
+    <div class="row justify-content-center">
+        <button id="cart-button-check" class="btn btn-dark btn-lg cart-button-check">
+          <span class="spinner-border spinner-border-sm" id="cart-check-spinner" role="status" aria-hidden="true"></span>
+          Друкувати чек
+        </button>  
+    </div>
+  </div>
   <div id="cart-bottom" class="pt-3">
     <div class="container">
       <div class="row pb-4">
@@ -57,22 +62,23 @@
           <span>Всього до сплати:</span>
         </div>
         <div class="col text-end">
-          <span class="cart-numb" id="cart-total-numb">
-          </span>
+          <span class="cart-numb" id="cart-total-numb"></span>
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col-6 text-center">
-          <button id="cart-button-order" class="btn btn-dark">Оформити замовлення</button>
+          <button id="cart-button-order" class="btn btn-dark">
+            <span class="spinner-border spinner-border-sm" id="cart-order-spinner" role="status" aria-hidden="true"></span>
+            Оформити замовлення
+          </button>
         </div>
       </div>
     </div>
   </div>
-  
 </div>
 
 
-
+<div id="alert-container"></div>
 <footer>
     <div id="open-cart" class="buttoncart">
         <img src="assets/images/buttoncart.png" class="buttonimage" alt="cart">
