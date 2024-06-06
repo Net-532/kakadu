@@ -1,22 +1,40 @@
-﻿using System.Windows;
+﻿using Kakadu.Backend.Entities;
+using System;
+using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Input;
 using System.Windows.Controls;
+using Backoffice.Views;
 
 namespace Kakadu.Backoffice.Views
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
-            TestLabel.Content = null;
+        }
+
+        private void ProductButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new Products();
+        }
+
+        private void OrderButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new Orders();
+        }
+
+        private void UserButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new Users();
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
+
     }
 }

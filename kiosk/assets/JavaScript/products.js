@@ -1,81 +1,105 @@
 const fetchlink = "http://localhost:8085/products";
+const ordersEndpoint = "http://localhost:8085/orders";
+const printReceiptEndpoint='http://localhost:8085/print';
 
 fetch(fetchlink)
-    .then(res => res.json())
-    .then(products => {
-        const productList = document.getElementById('product-list');
-        let row; 
-        var column = 3;
+  .then((res) => res.json())
+  .then((products) => {
+    const productList = document.getElementById("product-list");
+    let row;
+    const column = 2;
 
-        products.forEach((product, index) => {
-         
-            if (index % column === 0) {
-                row = document.createElement('div');
-                row.classList.add('row');
-                productList.appendChild(row);
-            }
+    products.forEach((product, index) => {
+      if (index % column === 0) {
+        row = document.createElement("div");
+        row.classList.add("row");
+        productList.appendChild(row);
+      }
 
+      const productCard = document.createElement("div");
+      productCard.classList.add("col", "col-md-6", "mb-3", "d-flex", "justify-content-center");
+
+      const cardContent = `
+        <div class="card product shadow p-1 position-relative">
+          <span class="badge bg-dark position-absolute top-0 end-0 product-price p-2">${product.price}</span>
+          <div class="card-pre-body d-flex align-items-center justify-content-center ">
+            <img src="${product.photoUrl}" alt="${product.title}"> 
+          </div>
+          <div class="d-flex flex-grow-1 align-items-center justify-content-center">
+            <span class="card-title fw-bold text-center">${product.title}</span>
+          </div>
+        </div>
+      `;
+
+      productCard.innerHTML = cardContent;
+
+      const cardProduct = productCard.querySelector(".card.product");
+      cardProduct.addEventListener("click", function () {
+        const myModal = new bootstrap.Modal(
+          document.getElementById("product-description-modal-dialog")   
+        );
+        const content = document.getElementById("product-description");
+        const id = product.id;
+
+        myModal.show();
+        content.innerHTML = `
+        <div class="image">
+            <img class="image" src="${product.photoUrl}" alt="${product.title}"">
+        </div>
+        <h3 class="title">${product.title}</h3>
+        <p class="description">${product.description}</p>
+        <p class="product-description-price">${product.price} грн</p>
+        <button data-id="${product.id}" class="cart-button">В кошик</button>
+          <div class="quantity-controls">
+            <button class="quantity-button" id="decrease">-</button>
+            <input type="text" id="quantity" value="1" readonly>
+            <button class="quantity-button" id="increase">+</button>
+          </div>
+        `;
+      
+        document.getElementById("increase").addEventListener("click", increment);
+        document.getElementById("decrease").addEventListener("click", decrement);
         
-            const productCard = document.createElement('div');
-            productCard.classList.add('col');
-            productCard.innerHTML = `
-                <div class="card product" style="width: 18rem;" data-id="${product.id}">
-                    <div class="card-pre-body">
-                        <img src="${product.photoUrl}" class="card-img-top" alt="${product.title}">
-                        <div class="card-body">
-                            <h5 class="card-title">${product.title}</h5>
-                            <p class="card-text">${product.description}</p>
-                            <p class="card-text">$${product.price}</p>
-                        </div>
-                    </div>
-                    <button data-id="${product.id}" type="button" class="add-to-cart-button btn btn-outline-primary">Add to cart</button>
-                </div>
-            `;
+        const addToCartButton = document.querySelector(".cart-button");
+        addToCartButton.addEventListener("click", () => { addToCart(product); myModal.hide(); });
 
-            const cardPreBody = productCard.querySelector('.card-pre-body');
-            cardPreBody.addEventListener('click', function(event) {
-                var id = product.id;
-                cardPreBody.disabled = true;
-                var myModal = new bootstrap.Modal(document.getElementById('full_description_modal'));
-                
-                myModal.show();
-                var textinside = document.getElementById('full-card-text');
-                textinside.innerHTML = `
-                <img src="${product.photoUrl}" alt="${product.title}" style="max-width: 100%;">
-                Name: ${product.title} <br>
-                Price: ${product.price} <br>
-                Description: ${product.description} <br>
-                Id: ${id} `;
-            });
-            const addToCartButton = productCard.querySelector('.add-to-cart-button');
-            addToCartButton.addEventListener('click', function(event) {
-                var idButton = this.parentNode.getAttribute("data-id");
-                console.log('button clicked', idButton);
-                const product = {
-                  id: idButton,
-                  name: `Product ${idButton}`,
-                };
-        
-                let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-                
-                let existingProductIndex = cartItems.findIndex(item => item.id === idButton);
-                
-                if (existingProductIndex !== -1) {
-                    cartItems[existingProductIndex].quantity = (cartItems[existingProductIndex].quantity || 1) + 1;
-                } else {
-                    product.quantity = 1;
-                    cartItems.push(product);
-                }
-                
-                localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        
-                console.log('Product added to cart!');
-                
-            });
-
-            row.appendChild(productCard);
-        });
-    })
-    .catch(error => {
-        console.error('Помилка завантаження продуктів:', error);
+        document.getElementById("product-description-modal-dialog").addEventListener("hidden.bs.modal", resetQuantity);
+      });
+      
+      row.appendChild(productCard);
     });
+
+    document.getElementById('cart-clear-button').addEventListener('click', clearCart);
+    document.getElementById('cart-button-order').addEventListener('click', checkoutOrder);
+    document.getElementById('cart-close-button').addEventListener('click', function () { DisplayOrder(true); });
+    const myOffcanvas = document.getElementById('offcanvasBottom');
+    myOffcanvas.addEventListener('hidden.bs.offcanvas', function () { DisplayOrder(true); });
+    document.getElementById("open-cart").addEventListener("click", function () {
+      renderCart();
+      const bsOffcanvas = new bootstrap.Offcanvas(
+        document.getElementById("offcanvasBottom")
+      );
+      bsOffcanvas.show();
+    });
+  })
+  .catch((error) => {
+    console.error("Error loading products:", error);
+  }); 
+
+  let quantity = 1;
+  function increment() {
+    quantity++;
+    document.getElementById("quantity").value = quantity;
+  }
+  
+  function decrement() {
+    if (quantity > 1) {
+      quantity--;
+      document.getElementById("quantity").value = quantity;
+    }
+  }
+
+  function resetQuantity() {
+    quantity = 1;
+    document.getElementById("quantity").value = quantity;
+  }
