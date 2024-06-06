@@ -20,6 +20,35 @@
             <Button x:Name="DeleteButton" Content="Видалити" Margin="5" Click="DeleteProduct"/>
         </StackPanel>
 
-        <DataGrid x:Name="dataGrid" Grid.Row="1" Margin="5,0,0,0" AutoGenerateColumns="True" IsReadOnly="True" Background="White"/>
+        <DataGrid x:Name="dataGrid" Grid.Row="1" Margin="5,0,0,0" AutoGenerateColumns="False" IsReadOnly="True" Background="White">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="200">
+                    <DataGridTextColumn.Header>Назва</DataGridTextColumn.Header>
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="Title"></Binding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="200">
+                    <DataGridTextColumn.Header>Ціна</DataGridTextColumn.Header>
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="Price"></Binding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                <DataGridTemplateColumn Header="Фото" Width="100" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding PhotoUrl}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Width="*">
+                    <DataGridTextColumn.Header>Опис</DataGridTextColumn.Header>
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="Description"></Binding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+            </DataGrid>
+
     </Grid>
 </UserControl>
