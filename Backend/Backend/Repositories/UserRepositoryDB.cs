@@ -1,14 +1,6 @@
 ﻿using Kakadu.Backend.Entities;
 using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI.Common;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kakadu.Backend.Repositories
 {
@@ -60,7 +52,7 @@ namespace Kakadu.Backend.Repositories
         public void Save(User user)
         {
             MySqlConnection connection = DatabaseConnection.GetInstance().GetConnection();
-            MySqlCommand command = new MySqlCommand("insert into users (username, first_name, last_name, password) VALUES (@username, @password, @firstname, @lastname)", connection);
+            MySqlCommand command = new MySqlCommand("insert into kakadu.users (username, first_name, last_name, password) VALUES (@username, @password, @firstname, @lastname)", connection);
             command.Parameters.AddWithValue("@username", user.Username);
             command.Parameters.AddWithValue("@password", user.Password);
             command.Parameters.AddWithValue("@firstname", user.FirstName);
