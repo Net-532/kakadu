@@ -38,12 +38,14 @@
    
 
 
-<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasBottomLabel">Кошик</h5>
-      <div>
-        <button type="button" class="btn" id="cart-clear-button">Очистити</button>
-        <button type="button" id ="cart-close-button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" >
+    <button type="button" id="cart-close-button" data-bs-dismiss="offcanvas" aria-label="Close" class="btn">
+      <img src="assets/images/buttoncartchange.png" id="idk" alt="Close">
+    </button>
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasBottomLabel">Кошик</h5>
+          <div>
+            <button type="button" class="btn" id="cart-clear-button">Очистити</button>
       </div>
   </div>
   <div class="offcanvas-body small" id="cart-main-container"></div>
