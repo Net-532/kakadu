@@ -31,6 +31,14 @@ namespace Kakadu.Backoffice.Views
             MainFrame.Content = new Users();
         }
 
+        private void InfoButton_Click(object sender, RoutedEventArgs e)
+        {
+            infoWindow infoWindow = new infoWindow();
+            infoWindow.Show();
+            this.Close();
+        }
+
+
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
