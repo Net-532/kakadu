@@ -5,6 +5,7 @@ using Kakadu.Backend.Entities;
 using Kakadu.Backend.Repositories;
 using Kakadu.Backend.Services;
 using Kakadu.Backoffice.Services;
+using Kakadu.Backoffice.Models;
 using Backoffice.Views;
 
 namespace Kakadu.Backoffice.Views
