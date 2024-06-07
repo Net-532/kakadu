@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Backoffice.Views
+namespace Backoffice.Models
 {
     class OrderItemModel : OrderItem
     {
-
         public string ProductTitle { get; set; }
     }
 }
