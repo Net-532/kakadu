@@ -10,7 +10,7 @@ namespace Kakadu.Backend.Repositories
         {
             MySqlConnection connection = DatabaseConnection.GetInstance().GetConnection();
             MySqlCommand command = new MySqlCommand("DELETE FROM kakadu.products WHERE id = @id", connection);
-            command.Parameters.AddWithValue("@id", id);
+            command.Parameters.AddWithValue("id", id);
             command.ExecuteNonQuery();
         }
 
@@ -35,7 +35,7 @@ namespace Kakadu.Backend.Repositories
         {
             MySqlConnection connection = DatabaseConnection.GetInstance().GetConnection();
             MySqlCommand command = new MySqlCommand("SELECT id, title, price, photoUrl, description FROM kakadu.products WHERE id = @id", connection);
-            command.Parameters.AddWithValue("@id", id);
+            command.Parameters.AddWithValue("id", id);
             MySqlDataReader reader = command.ExecuteReader();
 
             Product product = null;
