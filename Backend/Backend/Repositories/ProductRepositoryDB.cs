@@ -52,10 +52,10 @@ namespace Kakadu.Backend.Repositories
         {
             MySqlConnection connection = DatabaseConnection.GetInstance().GetConnection();
             MySqlCommand command = new MySqlCommand("INSERT INTO kakadu.products (title, description, price, photoUrl) VALUES (@title, @description, @price, @photoUrl)", connection);
-            command.Parameters.AddWithValue("@title", product.Title);
-            command.Parameters.AddWithValue("@description", product.Description);
-            command.Parameters.AddWithValue("@price", product.Price);
-            command.Parameters.AddWithValue("@photoUrl", product.PhotoUrl);
+            command.Parameters.AddWithValue("title", product.Title);
+            command.Parameters.AddWithValue("description", product.Description);
+            command.Parameters.AddWithValue("price", product.Price);
+            command.Parameters.AddWithValue("photoUrl", product.PhotoUrl);
             command.ExecuteNonQuery();
         }
 
@@ -63,11 +63,11 @@ namespace Kakadu.Backend.Repositories
         {
             MySqlConnection connection = DatabaseConnection.GetInstance().GetConnection();
             MySqlCommand command = new MySqlCommand("UPDATE kakadu.products SET title = @title, description = @description, price = @price, photoUrl = @photoUrl WHERE id = @id", connection);
-            command.Parameters.AddWithValue("@id", id);
-            command.Parameters.AddWithValue("@title", product.Title);
-            command.Parameters.AddWithValue("@description", product.Description);
-            command.Parameters.AddWithValue("@price", product.Price);
-            command.Parameters.AddWithValue("@photoUrl", product.PhotoUrl);
+            command.Parameters.AddWithValue("id", id);
+            command.Parameters.AddWithValue("title", product.Title);
+            command.Parameters.AddWithValue("description", product.Description);
+            command.Parameters.AddWithValue("price", product.Price);
+            command.Parameters.AddWithValue("photoUrl", product.PhotoUrl);
             command.ExecuteNonQuery();
         }
 
