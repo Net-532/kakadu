@@ -12,8 +12,8 @@
             <Button Content="Продукти" Margin="5" Click="ProductButton_Click"/>
             <Button Content="Користувачі" Margin="5" Click="UserButton_Click"/>
             <Button Content="Замовлення" Margin="5" Click="OrderButton_Click"/>
+            <Button Content="Про програму" Margin="5" Click="InfoButton_Click"/>
             <Button Content="Вийти" Margin="5" Click="ExitButton_Click"/>
-            
         </StackPanel>
         <ContentControl x:Name="MainFrame"/>
     </DockPanel>
