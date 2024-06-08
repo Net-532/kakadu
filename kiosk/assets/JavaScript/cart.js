@@ -2,9 +2,9 @@ let checkTab = true;
 let order = null;
 
 function createCartItemElement(item) {
-  const itemElement = document.createElement("div");
-  itemElement.classList.add("card", "mb-3");
-  itemElement.innerHTML = `
+    const itemElement = document.createElement('div');
+    itemElement.classList.add( 'card' , 'mb-3');
+itemElement.innerHTML =`
 <div class="row g-0 d-flex flex-nowrap p-2 "  >
   <div class="col-auto me-2">
     <img src="${item.photoUrl}" class="img-fluid rounded" id="cart-item-img" alt="${item.title}">
@@ -14,23 +14,23 @@ function createCartItemElement(item) {
       <p class="card-text" id="cart-text-small" >${item.description}</p>
       <p class="card-text" id="cart-item-price">${item.price} грн</p>
       <button class="remove-button btn btn-close mb-3" id="cart-remove-button"></button>
-      <div id="cart-item-buttons">
-         <button class="decrement-button" id="cart-button-change">-</button>
-         <div class="fw-bold" id="cart-item-quantity">${item.quantity}</div>
-         <button class="increment-button" id="cart-button-change">+</button>
-    </div>
+      <div class="quantity-controls">
+        <button class="quantity-button" id="decrease">-</button>
+        <input type="text" id="quantity" value="${item.quantity}" readonly>
+        <button class="quantity-button" id="increase">+</button>
+      </div>
   </div>
 </div>
 
 `;
 
-  const incrementButton = itemElement.querySelector(".increment-button");
+  const incrementButton = itemElement.querySelector("#increase");
   incrementButton.addEventListener("click", function (event) {
     addToCart(item);
     renderCart();
   });
 
-  const decrementButton = itemElement.querySelector(".decrement-button");
+  const decrementButton = itemElement.querySelector("#decrease");
   decrementButton.addEventListener("click", function (event) {
     removeFromCart(item);
     renderCart();
@@ -44,16 +44,22 @@ function createCartItemElement(item) {
   return itemElement;
 }
 
+function formatPrice(price) {
+    return parseFloat(price).toFixed(2);
+}
+
 function addToCart(product) {
   let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
   let existingProductIndex = cartItems.findIndex(
     (item) => item.id === product.id
   );
+  
+  let quantity = parseInt(document.getElementById("quantity").value);
+
   if (existingProductIndex !== -1) {
-    cartItems[existingProductIndex].quantity =
-      (cartItems[existingProductIndex].quantity || 1) + 1;
+    cartItems[existingProductIndex].quantity += quantity;
   } else {
-    product.quantity = 1;
+    product.quantity = quantity;
     cartItems.push(product);
   }
 
@@ -96,13 +102,11 @@ function calculateTotalSum() {
   cartItems.forEach((item) => {
     totalSum += item.price * item.quantity;
   });
-  return totalSum;
+  return formatPrice(totalSum)
 }
 
 function renderCart() {
-  const offcanvasBody = document.querySelector(
-    "#offcanvasBottom .offcanvas-body"
-  );
+  const offcanvasBody = document.querySelector("#offcanvasBottom .offcanvas-body");
   offcanvasBody.innerHTML = "";
   let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
   if (cartItems.length === 0 && checkTab == true) {
@@ -125,11 +129,15 @@ function renderCart() {
       offcanvasBody.appendChild(itemElement);
     });
   }
+
   const totalSumElements = document.querySelectorAll(".cart-numb");
   totalSumElements.forEach((element) => {
     const totalSum = calculateTotalSum();
     element.textContent = `${totalSum} грн`;
   });
+
+  const orderButton = document.getElementById("cart-button-order");
+  orderButton.disabled = cartItems.length === 0;
 }
 
 function clearCart() {
@@ -138,100 +146,122 @@ function clearCart() {
 }
 
 function checkoutOrder() {
-  const items = JSON.parse(localStorage.getItem("cartItems")) || [];
-  const sendRequest = {
-    items: items.map((item) => ({
-      productId: item.id,
-      quantity: item.quantity,
-    })),
-  };
-  fetch(ordersEndpoint, {
-    method: "POST",
-    body: JSON.stringify(sendRequest),
-  })
+    const items = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const orderButton = document.getElementById("cart-button-order");
+
+    const sendRequest = {
+        items: items.map((item) => ({
+        productId: item.id,
+        quantity: item.quantity,
+        })),
+    };
+
+    orderButton.disabled = true;
+    ShowHideSpinner("cart-order-spinner" , 'inline-block');
+
+    fetch(ordersEndpoint, {
+        method: "POST",
+        body: JSON.stringify(sendRequest),
+    })
     .then((response) => response.json())
     .then((data) => {
-      console.log("Замовлення виконано");
-      DisplayCheckTab();
-      order = data;
-      clearCart();
-      renderReceipt(data);
+        console.log("Замовлення виконано");
+        DisplayOrder(false);
+        order = data;
+        clearCart();
+        renderReceipt(data);
     })
     .catch((error) => {
-      console.error("Помилка: ", error);
+        console.error("Помилка: ", error);
+    })
+    .finally(() => {
+        orderButton.disabled = false;
+        ShowHideSpinner("cart-order-spinner" , 'none');
     });
 }
 
 const printCheck = document.getElementById("cart-button-check");
 printCheck.addEventListener("click", function (event) {
-  fetch(`${printReceiptEndpoint}?orderId=${order.id}`, {
-    method: "PUT",
-  })
+    const checkButton = document.getElementById("cart-button-check");
+    ShowHideSpinner("cart-check-spinner" , "inline-block");
+
+    fetch(`${printReceiptEndpoint}?orderId=${order.id}`, {
+        method: "PUT",
+    })
     .then((response) => response.json())
     .then((data) => {
-      console.log("Чек надруковано!");
-      localStorage.removeItem("cartItems");
-      DisplayOrderTab();
-      renderCart();
+        console.log("Чек надруковано!");
+        localStorage.removeItem("cartItems");
+        DisplayOrder(true);
+        renderCart();
     })
     .catch((error) => {
-      console.error("Помилка: ", error);
+        console.error("Помилка: ", error);
+    })
+    .finally(() => {
+        checkButton.disabled = false;
+        ShowHideSpinner("cart-check-spinner" , "none");
     });
 });
 
-function DisplayCheckTab() {
-  const cartBottom = document.getElementById("cart-bottom");
-  cartBottom.style.display = "none";
-  const cartCheck = document.getElementById("cart-button-check");
-  cartCheck.style.display = "block";
-  checkTab = false;
+function DisplayOrder(OrderTab) {
+    const cartBottom = document.getElementById("cart-bottom");
+    const cartCheck = document.getElementById("cart-button-check");
+    const orderButton = document.getElementById("cart-button-order");
+
+    orderButton.disabled = false;
+    cartBottom.style.display = OrderTab ? "block" : "none";
+    cartCheck.style.display = OrderTab ? "none" : "block";
+
+    checkTab = OrderTab;
 }
 
-function DisplayOrderTab() {
-  const cartBottom = document.getElementById("cart-bottom");
-  cartBottom.style.display = "block";
-  const cartCheck = document.getElementById("cart-button-check");
-  cartCheck.style.display = "none";
-  checkTab = true;
+
+function ShowHideSpinner(id, display) {
+    const spinner = document.getElementById(id);
+    spinner.style.display = display; 
 }
+
 function renderReceipt(order) {
-  const header = `
-        <center>
-        <p>Kakadu</p>
-        <p>Адреса: вул. Павла Каспрука 2</p>
-        <p>Чек # ${order.orderNumber}</p>
-        <hr>
-        <div class="container-receipt">
-        <div class="name"><p>Дата:${order.orderDate}</p>
-        <p>Час:${order.orderTime}</p></div>
-        </div>
-        <hr>
-        `;
-  let body = ``;
-  order.items.forEach((item) => {
-    body += `
-    <center>
-    <div class="container-receipt">
-                      <div class="name">${item.title}</div>
-                     <div class="price"> ${item.quantity}x${item.price}</div>
-            </div>
-            `;
-  });
-  const footer = `
-  <center>
-        <hr>
-        <div class="container-receipt">
-  <div class="name">Сума:</div> 
-  <div class="price">${order.totalPrice} грн</div>
-    </div>
-        <hr>
-        <p>Дякуємо за покупку!</p>
-    `;
-  let check = document.getElementById("cart-main-container");
-  const itemElement = document.createElement("div");
-  itemElement.classList.add("receipt");
-  itemElement.innerHTML = header + body + footer;
-  check.appendChild(itemElement);
+    const header = `
+      <p class="receipt-info">Kakadu</p>
+      <p class="receipt-info">м. Чернівці, вул. Павла Каспрука 2</p>
+      <p class="receipt-info">Чек # ${order.orderNumber}</p>
+      <hr>
+      <div class="container-receipt">
+          <div class="name">
+              <p>Дата: ${order.orderDate}</p>
+              <p>Час: ${order.orderTime}</p>
+          </div>
+      </div>
+      <hr>
+  `;
+
+    let body = ``;
+    order.items.forEach((item) => {
+        body += `
+          <div class="container-receipt">
+              <div class="name">${item.title}</div>
+              <div class="price"> ${item.quantity} x  ${formatPrice(item.price)}</div>
+          </div>
+      `;
+    });
+
+    const footer = `
+      <hr>
+      <div class="container-receipt">
+          <div class="name">Сума:</div> 
+          <div class="price">${formatPrice(order.totalPrice)} грн</div>
+      </div>
+      <hr>
+      <p class="receipt-thanks">Дякуємо за покупку!</p>
+  `;
+
+    let check = document.getElementById("cart-main-container");
+    const itemElement = document.createElement("div");
+    itemElement.classList.add("receipt");
+    itemElement.innerHTML = header + body + footer;
+    check.appendChild(itemElement);
 }
 
 function displayAlert(type, item, message) {
