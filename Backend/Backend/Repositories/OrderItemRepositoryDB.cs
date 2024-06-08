@@ -25,7 +25,7 @@ namespace Kakadu.Backend.Repositories
         public List<OrderItem> GetByOrderId(int orderId)
         {
             MySqlCommand cmd = new MySqlCommand("SELECT id, productId, orderId, quantity, price, amount FROM order_items WHERE orderId = @orderId", DatabaseConnection.GetInstance().GetConnection());
-            cmd.Parameters.AddWithValue("@orderId", orderId);
+            cmd.Parameters.AddWithValue("orderId", orderId);
             MySqlDataReader reader = cmd.ExecuteReader();
             List<OrderItem> orderItems = new List<OrderItem>();
             while (reader.Read())
@@ -40,7 +40,7 @@ namespace Kakadu.Backend.Repositories
         public OrderItem GetById(int id)
         {
             MySqlCommand cmd = new MySqlCommand("SELECT id, productId, orderId, quantity, price, amount FROM order_items WHERE id = @id", DatabaseConnection.GetInstance().GetConnection());
-            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("id", id);
             MySqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
@@ -55,30 +55,30 @@ namespace Kakadu.Backend.Repositories
         public void Save(OrderItem orderItem)
         {
             MySqlCommand cmd = new MySqlCommand("INSERT INTO order_items (productId, orderId, quantity, price, amount) VALUES (@productId, @orderId, @quantity, @price, @amount)", DatabaseConnection.GetInstance().GetConnection());
-            cmd.Parameters.AddWithValue("@productId", orderItem.ProductId);
-            cmd.Parameters.AddWithValue("@orderId", orderItem.OrderId);
-            cmd.Parameters.AddWithValue("@quantity", orderItem.Quantity);
-            cmd.Parameters.AddWithValue("@price", orderItem.Price);
-            cmd.Parameters.AddWithValue("@amount", orderItem.Amount);
+            cmd.Parameters.AddWithValue("productId", orderItem.ProductId);
+            cmd.Parameters.AddWithValue("orderId", orderItem.OrderId);
+            cmd.Parameters.AddWithValue("quantity", orderItem.Quantity);
+            cmd.Parameters.AddWithValue("price", orderItem.Price);
+            cmd.Parameters.AddWithValue("amount", orderItem.Amount);
             cmd.ExecuteNonQuery();
         }
 
         public void Update(OrderItem orderItem)
         {
             MySqlCommand cmd = new MySqlCommand("UPDATE order_items SET productId = @productId, orderId = @orderId, quantity = @quantity, price = @price, amount = @amount WHERE id = @id", DatabaseConnection.GetInstance().GetConnection());
-            cmd.Parameters.AddWithValue("@productId", orderItem.ProductId);
-            cmd.Parameters.AddWithValue("@orderId", orderItem.OrderId);
-            cmd.Parameters.AddWithValue("@quantity", orderItem.Quantity);
-            cmd.Parameters.AddWithValue("@price", orderItem.Price);
-            cmd.Parameters.AddWithValue("@amount", orderItem.Amount);
-            cmd.Parameters.AddWithValue("@id", orderItem.Id);
+            cmd.Parameters.AddWithValue("productId", orderItem.ProductId);
+            cmd.Parameters.AddWithValue("orderId", orderItem.OrderId);
+            cmd.Parameters.AddWithValue("quantity", orderItem.Quantity);
+            cmd.Parameters.AddWithValue("price", orderItem.Price);
+            cmd.Parameters.AddWithValue("amount", orderItem.Amount);
+            cmd.Parameters.AddWithValue("id", orderItem.Id);
             cmd.ExecuteNonQuery();
         }
 
         public void Delete(int id)
         {
             MySqlCommand cmd = new MySqlCommand("DELETE FROM order_items WHERE id = @id", DatabaseConnection.GetInstance().GetConnection());
-            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("id", id);
             cmd.ExecuteNonQuery();
         }
 
