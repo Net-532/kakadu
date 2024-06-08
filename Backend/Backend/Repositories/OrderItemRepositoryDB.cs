@@ -21,6 +21,22 @@ namespace Kakadu.Backend.Repositories
             return orderItems;
         }
 
+
+        public List<OrderItem> GetByOrderId(int orderId)
+        {
+            MySqlCommand cmd = new MySqlCommand("SELECT id, productId, orderId, quantity, price, amount FROM order_items WHERE orderId = @orderId", DatabaseConnection.GetInstance().GetConnection());
+            cmd.Parameters.AddWithValue("@orderId", orderId);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            List<OrderItem> orderItems = new List<OrderItem>();
+            while (reader.Read())
+            {
+                var orderItem = ConvertOrderItem(reader);
+                orderItems.Add(orderItem);
+            }
+            reader.Close();
+            return orderItems;
+        }
+
         public OrderItem GetById(int id)
         {
             MySqlCommand cmd = new MySqlCommand("SELECT id, productId, orderId, quantity, price, amount FROM order_items WHERE id = @id", DatabaseConnection.GetInstance().GetConnection());
