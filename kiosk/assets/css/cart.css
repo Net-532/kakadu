@@ -121,3 +121,24 @@
     display: none;
 }
 
+@media (min-width: 600px) {
+
+    #cart-item-img {
+        height: 150px;
+        width: 150px;
+
+    }
+    #cart-text-bold {
+        font-size: 18px;
+    }
+    #cart-text-small {
+        font-size: 15px;
+    }
+    #cart-item-price {
+        top: 40px;
+    }
+    #cart-button-order{
+        padding: 9px;
+        margin-bottom: 1rem;
+    }
+}
