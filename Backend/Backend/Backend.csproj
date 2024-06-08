@@ -41,6 +41,7 @@
     <Compile Include="Repositories\IOrderRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\OrderRepositoryXML.cs" />
+    <Compile Include="Repositories\ProductRepositoryDB.cs" />
     <Compile Include="Repositories\ProductRepositoryXML.cs" />
     <Compile Include="Repositories\IProductRepository.cs" />
     <Compile Include="Repositories\UserRepositoryDB.cs" />
