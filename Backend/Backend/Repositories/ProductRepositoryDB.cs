@@ -9,8 +9,8 @@ namespace Kakadu.Backend.Repositories
         public void DeleteById(int id)
         {
             MySqlConnection connection = DatabaseConnection.GetInstance().GetConnection();
-            MySqlCommand command = new MySqlCommand("DELETE FROM kakadu.products WHERE id = id", connection);
-            command.Parameters.AddWithValue("id", id);
+            MySqlCommand command = new MySqlCommand("DELETE FROM kakadu.products WHERE id = @id", connection);
+            command.Parameters.AddWithValue("@id", id);
             command.ExecuteNonQuery();
         }
 
@@ -34,8 +34,8 @@ namespace Kakadu.Backend.Repositories
         public Product GetById(int id)
         {
             MySqlConnection connection = DatabaseConnection.GetInstance().GetConnection();
-            MySqlCommand command = new MySqlCommand("SELECT id, title, price, photoUrl, description FROM kakadu.products WHERE id = id", connection);
-            command.Parameters.AddWithValue("id", id);
+            MySqlCommand command = new MySqlCommand("SELECT id, title, price, photoUrl, description FROM kakadu.products WHERE id = @id", connection);
+            command.Parameters.AddWithValue("@id", id);
             MySqlDataReader reader = command.ExecuteReader();
 
             Product product = null;
@@ -51,26 +51,26 @@ namespace Kakadu.Backend.Repositories
         public void Save(Product product)
         {
             MySqlConnection connection = DatabaseConnection.GetInstance().GetConnection();
-            MySqlCommand command = new MySqlCommand("INSERT INTO kakadu.products (title, description, price, photoUrl) VALUES (title, description, price, photoUrl)", connection);
-            command.Parameters.AddWithValue("title", product.Title);
-            command.Parameters.AddWithValue("description", product.Description);
-            command.Parameters.AddWithValue("price", product.Price);
-            command.Parameters.AddWithValue("photoUrl", product.PhotoUrl);
+            MySqlCommand command = new MySqlCommand("INSERT INTO kakadu.products (title, description, price, photoUrl) VALUES (@title, @description, @price, @photoUrl)", connection);
+            command.Parameters.AddWithValue("@title", product.Title);
+            command.Parameters.AddWithValue("@description", product.Description);
+            command.Parameters.AddWithValue("@price", product.Price);
+            command.Parameters.AddWithValue("@photoUrl", product.PhotoUrl);
             command.ExecuteNonQuery();
         }
 
         public void Update(int id, Product product)
         {
             MySqlConnection connection = DatabaseConnection.GetInstance().GetConnection();
-            MySqlCommand command = new MySqlCommand("UPDATE kakadu.products SET title = title, description = description, price = price, photoUrl = photoUrl WHERE id = id", connection);
-            command.Parameters.AddWithValue("id", id);
-            command.Parameters.AddWithValue("title", product.Title);
-            command.Parameters.AddWithValue("description", product.Description);
-            command.Parameters.AddWithValue("price", product.Price);
-            command.Parameters.AddWithValue("photoUrl", product.PhotoUrl);
+            MySqlCommand command = new MySqlCommand("UPDATE kakadu.products SET title = @title, description = @description, price = @price, photoUrl = @photoUrl WHERE id = @id", connection);
+            command.Parameters.AddWithValue("@id", id);
+            command.Parameters.AddWithValue("@title", product.Title);
+            command.Parameters.AddWithValue("@description", product.Description);
+            command.Parameters.AddWithValue("@price", product.Price);
+            command.Parameters.AddWithValue("@photoUrl", product.PhotoUrl);
             command.ExecuteNonQuery();
         }
-            
+
         private Product ConvertToProduct(MySqlDataReader reader)
         {
             Product product = new Product

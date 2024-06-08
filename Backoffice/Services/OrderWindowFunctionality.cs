@@ -16,7 +16,7 @@ namespace Kakadu.Backoffice.Views
         public OrderManager()
         {
             OrderServ = new OrderService(new OrderRepositoryXML());
-            OrderPrintServ = new OrderPrintService(OrderServ, new OrderToPlainTextConverter(new ProductService(new ProductRepositoryXML())), new PrintService());
+            OrderPrintServ = new OrderPrintService(OrderServ, new OrderToPlainTextConverter(new ProductService(new ProductRepositoryDB())), new PrintService());
         }
 
         public void Print(int OrderId)
