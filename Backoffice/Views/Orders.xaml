@@ -36,10 +36,10 @@
                 <DataGridTextColumn Width="*" Header="Статус" Binding="{Binding Status, Converter={StaticResource OrderStatusConverter}}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="{x:Type TextBlock}">
-                            <Setter Property="Background" Value="#31AF1F"/>
+                            <Setter Property="Foreground" Value="#31AF1F"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Status}" Value="Processing">
-                                    <Setter Property="Background" Value="#F2994A"/>
+                                    <Setter Property="Foreground" Value="#F2994A"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
