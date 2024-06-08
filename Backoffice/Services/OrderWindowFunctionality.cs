@@ -5,6 +5,8 @@ using Kakadu.Backend.Entities;
 using Kakadu.Backend.Repositories;
 using Kakadu.Backend.Services;
 using Kakadu.Backoffice.Services;
+using Kakadu.Backoffice.Models;
+using Backoffice.Views;
 
 namespace Kakadu.Backoffice.Views
 {
@@ -12,11 +14,13 @@ namespace Kakadu.Backoffice.Views
     {
         private OrderService OrderServ;
         private OrderPrintService OrderPrintServ;
+        private ProductService ProductService;
 
         public OrderManager()
         {
             OrderServ = new OrderService(new OrderRepositoryXML());
             OrderPrintServ = new OrderPrintService(OrderServ, new OrderToPlainTextConverter(new ProductService(new ProductRepositoryDB())), new PrintService());
+            ProductService= new ProductService(new ProductRepositoryDB());
         }
 
         public void Print(int OrderId)
@@ -27,7 +31,27 @@ namespace Kakadu.Backoffice.Views
 
         public List<Order> LoadItems()
         {
-            return OrderServ.GetAll();
+            List<Order> orders = OrderServ.GetAll();
+
+            foreach(Order order in orders)
+            {
+                List<OrderItem> items = new List<OrderItem>();
+                foreach(OrderItem orderItem in order.Items)
+                {
+                    OrderItemModel model = new OrderItemModel();
+                    model.Id = orderItem.Id;
+                    model.ProductId = orderItem.ProductId;
+                    model.Price = orderItem.Price;
+                    model.Quantity = orderItem.Quantity;
+                    model.Amount= orderItem.Amount;
+                    model.OrderId= orderItem.OrderId;
+                    model.ProductTitle = ProductService.GetById(model.ProductId).Title;
+                    items.Add(model);
+                }
+                order.Items = items;
+            }
+
+            return orders;
         }
 
         public void AddItem(Order item)
