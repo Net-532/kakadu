@@ -33,7 +33,7 @@
                 <DataGridTextColumn Width="100" Header="Сума" Binding="{Binding TotalPrice}"/>
                 <DataGridTextColumn Width="200" Header="Дата оформлення" Binding="{Binding OrderDate}"/>
                 <DataGridTextColumn Width="200" Header="Дата оновлення" Binding="{Binding UpdatedAt}"/>
-                <DataGridTextColumn Width="*" Header="Статус" Binding="{Binding Status, Converter={StaticResource OrderStatusConverter}}">
+                <DataGridTextColumn Width="*" Header="Статус" FontWeight="Bold" Binding="{Binding Status, Converter={StaticResource OrderStatusConverter}}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="{x:Type TextBlock}">
                             <Setter Property="Foreground" Value="#31AF1F"/>
