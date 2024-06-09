@@ -6,29 +6,25 @@
         xmlns:local="clr-namespace:Kakadu.Backoffice.Views"
         mc:Ignorable="d"
         Title="Про програму" Height="450" Width="800">
-	<DockPanel>
+    <DockPanel>
 
 
-		<ScrollViewer VerticalScrollBarVisibility="Auto">
-			<StackPanel x:Name="ContentPanel" Orientation="Vertical">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="ContentPanel" Orientation="Vertical">
+                <Image Source="/burger.png" Grid.Row="0"/>
+                <TextBlock Text="Какаду - Backoffice" FontSize="48" HorizontalAlignment="Center" Margin="0,30,0,5" FontFamily="Bahnschrift Condensed"/>
 
-				<TextBlock Text="Какаду - Backoffice" FontSize="48" HorizontalAlignment="Center" Margin="0,30,0,5" FontFamily="Bahnschrift Condensed"/>
+                <Image Source="/logo.png" Grid.Row="0" Height="170" Width="277"/>
 
-				<Image Source="C:\Users\Medved\Desktop\kakadu-main\kiosk\assets\images\burger.png" Margin="10" Width="200" Height="150">
-					<Image.OpacityMask>
-						<ImageBrush Stretch="None" TileMode="FlipY" ImageSource="/header.png"/>
-					</Image.OpacityMask>
-				</Image>
+                <TextBlock Text="v0.3.0" Margin="10,0,10,0" FontSize="24" HorizontalAlignment="Center" FontFamily="Bahnschrift Light"/>
+                <TextBlock Text="Developers :" Margin="10,20,10,0" FontSize="36" HorizontalAlignment="Center" FontFamily="Bahnschrift Condensed" FontWeight="Bold"/>
 
-				<TextBlock Text="v0.3.0" Margin="10,0,10,0" FontSize="24" HorizontalAlignment="Center" FontFamily="Bahnschrift Light"/>
-				<TextBlock Text="Developers :" Margin="10,20,10,0" FontSize="36" HorizontalAlignment="Center" FontFamily="Bahnschrift Condensed" FontWeight="Bold"/>
-				
-				<Button Content="Повернутись назад" Height="20" Width="799" HorizontalAlignment="Left" Margin="0,60,0,0" Click="BackButton_Click"/>
+                <Button Content="Повернутись назад" Height="20" Width="799" HorizontalAlignment="Left" Margin="0,60,0,0" Click="BackButton_Click"/>
 
 
 
 
-			</StackPanel>
-		</ScrollViewer>
-	</DockPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
 </Window>

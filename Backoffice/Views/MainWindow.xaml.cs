@@ -35,7 +35,7 @@ namespace Kakadu.Backoffice.Views
         {
             infoWindow infoWindow = new infoWindow();
             infoWindow.Show();
-            this.Close();
+            
         }
 
 
