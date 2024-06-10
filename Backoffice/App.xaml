@@ -30,7 +30,7 @@
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Padding" Value="5"/>
         </Style>
-        <Style TargetType="Border">
+        <Style x:Key="BoxShadow"  TargetType="Border">
             <Setter Property="BorderBrush" Value="White"/>
             <Setter Property="Background" Value="White"/>
             <Setter Property="BorderThickness" Value="1"/>

@@ -9,7 +9,7 @@
              Loaded="UserControl_Loaded">
 
     <Grid>
-        <Border>
+        <Border Style="{StaticResource BoxShadow}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
