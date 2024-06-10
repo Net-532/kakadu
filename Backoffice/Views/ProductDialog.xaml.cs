@@ -16,7 +16,7 @@ namespace Kakadu.Backoffice.Views
 
             if (_selectedItem != null)
             {
-                IdTextBox.Text = _selectedItem.Id.ToString();
+               
                 TitleTextBox.Text = _selectedItem.Title;
                 PriceTextBox.Text = _selectedItem.Price.ToString();
                 PhotoUrlTextBox.Text = _selectedItem.PhotoUrl;
@@ -38,7 +38,7 @@ namespace Kakadu.Backoffice.Views
 
             _selectedItem = new Product();
 
-            IdTextBox.Text = "Automated";
+            
 
             isNew = true;
             
