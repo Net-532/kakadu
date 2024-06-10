@@ -56,6 +56,11 @@
             <Setter Property="BorderBrush" Value="#CDD1DE"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Padding" Value="5,0"/>
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="4"/>
+                </Style>
+            </Style.Resources>
         </Style>
     </Application.Resources>
 </Application>
