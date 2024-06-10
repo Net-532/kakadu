@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:Backoffice"
              StartupUri="Views/LoginWindow.xaml">
     <Application.Resources>
+        <!-- Стиль для кнопки PrimaryButton -->
         <Style x:Key="PrimaryButton" TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
@@ -56,6 +57,5 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Padding" Value="5,0"/>
         </Style>
-
     </Application.Resources>
 </Application>
