@@ -5,16 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kakadu.Backoffice.Views"
         mc:Ignorable="d"
-        Title="Головна сторінка" Height="450" Width="800">
-    <DockPanel>
+        Title="Backoffice"
+        Height="450"
+        Width="800"
+        WindowState="Maximized">
+
+    <DockPanel Background="#FFFCF8">
         <!-- Панель навігації -->
         <StackPanel DockPanel.Dock="Left" Background="LightGray" Width="150">
             <Button Content="Продукти" Margin="5" Click="ProductButton_Click"/>
             <Button Content="Користувачі" Margin="5" Click="UserButton_Click"/>
             <Button Content="Замовлення" Margin="5" Click="OrderButton_Click"/>
             <Button Content="Вийти" Margin="5" Click="ExitButton_Click"/>
-            
         </StackPanel>
-        <ContentControl x:Name="MainFrame"/>
+
+        <ContentControl x:Name="MainFrame" Margin="20,20,20,10"/>
     </DockPanel>
 </Window>

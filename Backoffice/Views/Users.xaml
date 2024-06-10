@@ -7,44 +7,44 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Loaded="UserControl_Loaded">
-    
+
     <Grid>
-        
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        
-        <StackPanel Orientation="Horizontal" x:Name="UserButtonsPanel" Grid.Row="0" HorizontalAlignment ="Right" Margin="5">
-            <Button x:Name="AddUserButton" Content="Додати Користувача" Margin="5" Click="AddUser"/>
-            <Button x:Name="EditUserButton" Content="Редагувати Користувача" Margin="5" Click="EditUser"/>
-            <Button x:Name="DeleteUserButton" Content="Видалити Користувача" Margin="5" Click="DeleteUser"/>
-           
-        </StackPanel>
+        <Border>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
+                <StackPanel Orientation="Horizontal" x:Name="UserButtonsPanel" Grid.Row="0" HorizontalAlignment ="Right" Margin="5">
+                    <Button x:Name="AddUserButton" Content="Додати Користувача" Margin="5" Click="AddUser"/>
+                    <Button x:Name="EditUserButton" Content="Редагувати Користувача" Margin="5" Click="EditUser"/>
+                    <Button x:Name="DeleteUserButton" Content="Видалити Користувача" Margin="5" Click="DeleteUser"/>
+                </StackPanel>
 
-        <DataGrid x:Name="dataGrid" Grid.Row="1" Margin="5,0,0,0" AutoGenerateColumns="False" IsReadOnly="True" Background="White">
-            <DataGrid.Columns>
-                <DataGridTextColumn Width="200">
-                    <DataGridTextColumn.Header>Логін</DataGridTextColumn.Header>
-                    <DataGridTextColumn.Binding>
-                        <Binding Path="Username"></Binding>
-                    </DataGridTextColumn.Binding>
-                </DataGridTextColumn>
-                <DataGridTextColumn Width="200">
-                    <DataGridTextColumn.Header>Ім'я</DataGridTextColumn.Header>
-                    <DataGridTextColumn.Binding>
-                        <Binding Path="FirstName"></Binding>
-                    </DataGridTextColumn.Binding>
-                </DataGridTextColumn>
-                <DataGridTextColumn Width="*">
-                    <DataGridTextColumn.Header>Прізвище</DataGridTextColumn.Header>
-                    <DataGridTextColumn.Binding>
-                        <Binding Path="LastName"></Binding>
-                    </DataGridTextColumn.Binding>
-                </DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+                <DataGrid x:Name="dataGrid" Grid.Row="1" Margin="5,0,0,0" AutoGenerateColumns="False" IsReadOnly="True" Background="White">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="200">
+                            <DataGridTextColumn.Header>Логін</DataGridTextColumn.Header>
+                            <DataGridTextColumn.Binding>
+                                <Binding Path="Username"></Binding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="200">
+                            <DataGridTextColumn.Header>Ім'я</DataGridTextColumn.Header>
+                            <DataGridTextColumn.Binding>
+                                <Binding Path="FirstName"></Binding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="*">
+                            <DataGridTextColumn.Header>Прізвище</DataGridTextColumn.Header>
+                            <DataGridTextColumn.Binding>
+                                <Binding Path="LastName"></Binding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
     </Grid>
-    
 </UserControl>
