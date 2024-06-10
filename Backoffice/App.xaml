@@ -41,5 +41,59 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="Grid" TargetType="DataGrid">
+            <Setter Property="AlternatingRowBackground" Value="#F5F5F5"/>
+            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="ColumnHeaderHeight" Value="64"/>
+            <Setter Property="RowHeight" Value="64"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#CDD1DE"/>
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Foreground" Value="#1C2A53"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#E9EAF3"/>
+            <Setter Property="VerticalGridLinesBrush" Value="#E0E0E0"/>
+            <Setter Property="RowHeaderWidth" Value="0"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="CanUserDeleteRows" Value="False"/>
+            <Setter Property="CanUserResizeColumns" Value="True"/>
+            <Setter Property="CanUserResizeRows" Value="False"/>
+            <Setter Property="CanUserSortColumns" Value="True"/>
+            <Setter Property="Margin" Value="5,0,0,0"/>
+            <!-- Додавання стилю для тексту заголовку -->
+            <Setter Property="TextElement.FontWeight" Value="Semibold"/>
+            <Setter Property="TextElement.FontSize" Value="14"/>
+            <!-- Додавання стилю для тексту рядка -->
+            <Setter Property="TextElement.FontSize" Value="14"/>
+            <Setter Property="TextElement.Foreground" Value="#555F7E"/>
+            <!-- Тригер для зміни курсора на Hand -->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFFCF8"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="DataGridCell">
+            <Style.Resources>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                </Style>
+            </Style.Resources>
+            <!-- Додавання стилю для тексту рядка -->
+            <Setter Property="TextElement.FontSize" Value="14"/>
+            <Setter Property="TextElement.Foreground" Value="#555F7E"/>
+        </Style>
+
+        <!-- Стиль для стилю заголовка -->
+        <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+            <Setter Property="Background" Value="#8E95A9"/>
+            <Setter Property="Foreground" Value="#F8F8F8"/>
+        </Style>
     </Application.Resources>
 </Application>
