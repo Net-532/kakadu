@@ -52,6 +52,7 @@ namespace Kakadu.Backend.Services
             }
             userRepository.Update(id, user);
         }
+
         public User GetByUsernameAndPassword(string username, string password)
         {
             var user = userRepository.GetByUsernameAndPassword(username, password);

@@ -6,10 +6,7 @@ using Kakadu.Backoffice.Services;
 
 namespace Kakadu.Backoffice.Views
 {
-    /// <summary>
-    /// Interaction logic for LoginWindow.xaml
-    /// </summary>
-    /// 
+
     public partial class LoginWindow : Window
     {
         private static readonly IUserService _userService = new UserService(new UserRepositoryXML());
@@ -19,7 +16,6 @@ namespace Kakadu.Backoffice.Views
             InitializeComponent();
         }
     
-
         private void Username_GotFocus(object sender, RoutedEventArgs e)
         {
             if (UsernameTextBox.Text == "Логін")

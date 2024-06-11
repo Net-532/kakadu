@@ -123,6 +123,7 @@ namespace Kakadu.Backend.Repositories
 
             return 1;
         }
+
         public User GetByUsernameAndPassword(string username, string password)
         {
             XmlDocument xmlDoc = new XmlDocument();
