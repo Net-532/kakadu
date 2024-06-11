@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Backoffice.Converters
+namespace Kakadu.Backoffice.Converters
 {
     [ValueConversion(typeof(string), typeof(string))]
     public class OrderStatusConverter : IValueConverter
