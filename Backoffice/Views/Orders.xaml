@@ -10,7 +10,7 @@
              Loaded="UserControl_Loaded">
 
     <UserControl.Resources>
-        <converters:OrderStatusConverter x:Key="OrderStatusConverter" />
+        <converters:OrderStatusConverter x:Key="OrderStatusConverter"/>
     </UserControl.Resources>
 
     <Grid>

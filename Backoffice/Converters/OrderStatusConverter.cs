@@ -1,31 +1,50 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Windows;
 using System.Windows.Data;
 
 namespace Backoffice.Converters
-{        public class OrderStatusConverter : IValueConverter
+{
+    [ValueConversion(typeof(string), typeof(string))]
+    public class OrderStatusConverter : IValueConverter
+    {
+        private static readonly IDictionary<string, string> _valueToRepresentation = new Dictionary<string, string>()
         {
-            public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-            {
-                string status = value as string;
-                if (status != null)
-                {
-                    switch (status)
-                    {
-                        case "Done":
-                            return "Готове";
-                        case "Processing":
-                            return "Виконується";
-                        default:
-                            return status;
-                    }
-                }
-                return null;
-            }
+            { "Done", "Готове" },
+            { "Processing", "Виконується" }
+        };
 
-            public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        private static readonly IDictionary<string, string> _representationToValue = new Dictionary<string, string>()
+        {
+            { "Готове", "Done" },
+            { "Виконується", "Processing" }
+        };
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is string status)
             {
-                return null;
+                if (_valueToRepresentation.TryGetValue(status, out string representation))
+                {
+                    return representation;
+                }
+                return DependencyProperty.UnsetValue;
             }
+            return DependencyProperty.UnsetValue;
         }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is string representation)
+            {
+                if (_representationToValue.TryGetValue(representation, out string status))
+                {
+                    return status;
+                }
+                return DependencyProperty.UnsetValue;
+            }
+            return DependencyProperty.UnsetValue;
+        }
+    }
 }
