@@ -15,12 +15,6 @@ namespace Backoffice.Converters
             { "Processing", "Виконується" }
         };
 
-        private static readonly IDictionary<string, string> _representationToValue = new Dictionary<string, string>()
-        {
-            { "Готове", "Done" },
-            { "Виконується", "Processing" }
-        };
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is string status)
@@ -38,9 +32,12 @@ namespace Backoffice.Converters
         {
             if (value is string representation)
             {
-                if (_representationToValue.TryGetValue(representation, out string status))
+                foreach (var pair in _valueToRepresentation)
                 {
-                    return status;
+                    if (pair.Value == representation)
+                    {
+                        return pair.Key;
+                    }
                 }
                 return DependencyProperty.UnsetValue;
             }
