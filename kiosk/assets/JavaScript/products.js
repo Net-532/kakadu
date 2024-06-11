@@ -49,19 +49,31 @@ fetch(fetchlink)
         <h3 class="title">${product.title}</h3>
         <p class="description">${product.description}</p>
         <p class="product-description-price">${product.price} грн</p>
-        <button data-id="${product.id}" class="cart-button">В кошик</button>`;    
-
+        <button data-id="${product.id}" class="cart-button">В кошик</button>
+          <div class="quantity-controls">
+            <button class="quantity-button" id="decrease">-</button>
+            <input type="text" id="quantity" value="1" readonly>
+            <button class="quantity-button" id="increase">+</button>
+          </div>
+        `;
+      
+        document.getElementById("increase").addEventListener("click", increment);
+        document.getElementById("decrease").addEventListener("click", decrement);
+        
         const addToCartButton = document.querySelector(".cart-button");
         addToCartButton.addEventListener("click", () => { addToCart(product); myModal.hide(); });
-      });
 
+        document.getElementById("product-description-modal-dialog").addEventListener("hidden.bs.modal", resetQuantity);
+      });
+      
       row.appendChild(productCard);
     });
+
     document.getElementById('cart-clear-button').addEventListener('click', clearCart);
     document.getElementById('cart-button-order').addEventListener('click', checkoutOrder);
-    document.getElementById('cart-close-button').addEventListener('click', function () { DisplayOrderTab(); });
+    document.getElementById('cart-close-button').addEventListener('click', function () { DisplayOrder(true); });
     const myOffcanvas = document.getElementById('offcanvasBottom');
-    myOffcanvas.addEventListener('hidden.bs.offcanvas', function () { DisplayOrderTab(); });
+    myOffcanvas.addEventListener('hidden.bs.offcanvas', function () { DisplayOrder(true); });
     document.getElementById("open-cart").addEventListener("click", function () {
       renderCart();
       const bsOffcanvas = new bootstrap.Offcanvas(
@@ -73,3 +85,21 @@ fetch(fetchlink)
   .catch((error) => {
     console.error("Error loading products:", error);
   }); 
+
+  let quantity = 1;
+  function increment() {
+    quantity++;
+    document.getElementById("quantity").value = quantity;
+  }
+  
+  function decrement() {
+    if (quantity > 1) {
+      quantity--;
+      document.getElementById("quantity").value = quantity;
+    }
+  }
+
+  function resetQuantity() {
+    quantity = 1;
+    document.getElementById("quantity").value = quantity;
+  }

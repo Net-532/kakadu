@@ -13,7 +13,7 @@ namespace Kakadu.Backoffice.Views
 
         public ProductManager()
         {
-            ProductServ = new ProductService(new ProductRepositoryXML());
+            ProductServ = new ProductService(new ProductRepositoryDB());
         }
 
         public List<Product> LoadItems()

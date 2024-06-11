@@ -36,16 +36,25 @@
    
 
 
-<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasBottomLabel">Кошик</h5>
-      <div>
-        <button type="button" class="btn" id="cart-clear-button">Очистити</button>
-        <button type="button" id ="cart-close-button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" >
+    <button type="button" id="cart-close-button" data-bs-dismiss="offcanvas" aria-label="Close" class="btn">
+      <img src="assets/images/buttoncartchange.png" alt="Close">
+    </button>
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasBottomLabel">Кошик</h5>
+          <div>
+            <button type="button" class="btn" id="cart-clear-button">Очистити</button>
       </div>
   </div>
   <div class="offcanvas-body small" id="cart-main-container"></div>
-  <button id="cart-button-check" class="btn btn-dark cart-button-check">Друкувати чек</button>
+  <div class="container p-4">
+    <div class="row justify-content-center">
+        <button id="cart-button-check" class="btn btn-dark btn-lg cart-button-check">
+          <span class="spinner-border spinner-border-sm" id="cart-check-spinner" role="status" aria-hidden="true"></span>
+          Друкувати чек
+        </button>  
+    </div>
+  </div>
   <div id="cart-bottom" class="pt-3">
     <div class="container">
       <div class="row pb-4">
@@ -53,18 +62,19 @@
           <span>Всього до сплати:</span>
         </div>
         <div class="col text-end">
-          <span class="cart-numb" id="cart-total-numb">
-          </span>
+          <span class="cart-numb" id="cart-total-numb"></span>
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col-6 text-center">
-          <button id="cart-button-order" class="btn btn-dark">Оформити замовлення</button>
+          <button id="cart-button-order" class="btn btn-dark">
+            <span class="spinner-border spinner-border-sm" id="cart-order-spinner" role="status" aria-hidden="true"></span>
+            Оформити замовлення
+          </button>
         </div>
       </div>
     </div>
   </div>
-  
 </div>
 
 
