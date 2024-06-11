@@ -10,12 +10,12 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}"
-                          BorderBrush="{TemplateBinding BorderBrush}"
-                          BorderThickness="1"
-                          CornerRadius="16">
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="16">
                             <ContentPresenter HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        RecognizesAccessKey="True"/>
+                                              VerticalAlignment="Center"
+                                              RecognizesAccessKey="True"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -30,7 +30,8 @@
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Padding" Value="5"/>
         </Style>
-        <Style x:Key="BoxShadow"  TargetType="Border">
+
+        <Style x:Key="BoxShadow" TargetType="Border">
             <Setter Property="BorderBrush" Value="White"/>
             <Setter Property="Background" Value="White"/>
             <Setter Property="BorderThickness" Value="1"/>
@@ -41,6 +42,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
         <Style x:Key="Grid" TargetType="DataGrid">
             <Setter Property="AlternatingRowBackground" Value="#F5F5F5"/>
             <Setter Property="GridLinesVisibility" Value="Horizontal"/>
@@ -49,7 +51,7 @@
             <Setter Property="RowHeight" Value="64"/>
             <Setter Property="Background" Value="White"/>
             <Setter Property="BorderBrush" Value="#CDD1DE"/>
-            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Foreground" Value="#1C2A53"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="HorizontalGridLinesBrush" Value="#E9EAF3"/>
@@ -63,13 +65,10 @@
             <Setter Property="CanUserResizeRows" Value="False"/>
             <Setter Property="CanUserSortColumns" Value="True"/>
             <Setter Property="Margin" Value="5,0,0,0"/>
-            <!-- Додавання стилю для тексту заголовку -->
             <Setter Property="TextElement.FontWeight" Value="Semibold"/>
             <Setter Property="TextElement.FontSize" Value="14"/>
-            <!-- Додавання стилю для тексту рядка -->
-            <Setter Property="TextElement.FontSize" Value="14"/>
             <Setter Property="TextElement.Foreground" Value="#555F7E"/>
-            <!-- Тригер для зміни курсора на Hand -->
+
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Cursor" Value="Hand"/>
@@ -79,21 +78,20 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
         <Style TargetType="DataGridCell">
             <Style.Resources>
                 <Style TargetType="ContentPresenter">
                     <Setter Property="VerticalAlignment" Value="Center" />
                 </Style>
             </Style.Resources>
-            <!-- Додавання стилю для тексту рядка -->
             <Setter Property="TextElement.FontSize" Value="14"/>
             <Setter Property="TextElement.Foreground" Value="#555F7E"/>
         </Style>
 
-        <!-- Стиль для стилю заголовка -->
         <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
-            <Setter Property="Background" Value="#8E95A9"/>
-            <Setter Property="Foreground" Value="#F8F8F8"/>
+            <Setter Property="Background" Value="#F8F8F8"/>
+            <Setter Property="Foreground" Value="DarkGray"/>
         </Style>
     </Application.Resources>
 </Application>
