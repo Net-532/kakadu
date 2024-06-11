@@ -52,5 +52,15 @@ namespace Kakadu.Backend.Services
             }
             userRepository.Update(id, user);
         }
+        public User GetByUsernameAndPassword(string username, string password)
+        {
+            var user = userRepository.GetByUsernameAndPassword(username, password);
+            if (user == null)
+            {
+                throw new EntityNotFoundException($"Користувача з вказаним ім'ям користувача '{username}' та паролем не знайдено");
+            }
+            return user;
+        }
+
     }
 }
