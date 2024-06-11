@@ -2,15 +2,21 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Kakadu.Backend.Repositories
 {
     public class OrderRepositoryDB : IOrderRepository
     {
+        private readonly IOrderItemRepository _orderItemRepository;
+
+        public OrderRepositoryDB(IOrderItemRepository orderItemRepository)
+        {
+            _orderItemRepository = orderItemRepository;
+        }
+
         public void ChangeStatus(int id, string status)
         {
-            MySqlCommand cmd = new MySqlCommand("UPDATE orders SET status = @status, updatedAt = CURRENT_TIMESTAMP WHERE id = @id", DatabaseConnection.GetInstance().GetConnection());
+            MySqlCommand cmd = new MySqlCommand("UPDATE orders SET status = @status WHERE id = @id", DatabaseConnection.GetInstance().GetConnection());
             cmd.Parameters.AddWithValue("status", status);
             cmd.Parameters.AddWithValue("id", id);
             cmd.ExecuteNonQuery();
@@ -18,13 +24,14 @@ namespace Kakadu.Backend.Repositories
 
         public List<Order> GetAll()
         {
-            MySqlCommand cmd = new MySqlCommand("SELECT id, orderNumber, totalPrice, createdAt, updatedAt, status FROM orders", DatabaseConnection.GetInstance().GetConnection());
+            MySqlCommand cmd = new MySqlCommand("SELECT id, orderNumber, totalPrice, status FROM orders", DatabaseConnection.GetInstance().GetConnection());
             MySqlDataReader reader = cmd.ExecuteReader();
             List<Order> orders = new List<Order>();
             while (reader.Read())
             {
-                var convertOrder = ConvertOrder(reader);
-                orders.Add(convertOrder);
+                var convertedOrder = ConvertOrder(reader);
+                convertedOrder.Items = _orderItemRepository.GetByOrderId(convertedOrder.Id);
+                orders.Add(convertedOrder);
             }
             reader.Close();
             return orders;
@@ -47,15 +54,16 @@ namespace Kakadu.Backend.Repositories
 
         public List<Order> GetAllByUpdatedAt(DateTime from, DateTime to)
         {
-            MySqlCommand cmd = new MySqlCommand("SELECT id, orderNumber, totalPrice, createdAt, updatedAt, status FROM orders WHERE updatedAt BETWEEN @from AND @to", DatabaseConnection.GetInstance().GetConnection());
+            MySqlCommand cmd = new MySqlCommand("SELECT id, orderNumber, totalPrice, status FROM orders WHERE updatedAt BETWEEN @from AND @to", DatabaseConnection.GetInstance().GetConnection());
             cmd.Parameters.AddWithValue("from", from);
             cmd.Parameters.AddWithValue("to", to);
             MySqlDataReader reader = cmd.ExecuteReader();
             List<Order> orders = new List<Order>();
             while (reader.Read())
             {
-                var convertOrder = ConvertOrder(reader);
-                orders.Add(convertOrder);
+                var convertedOrder = ConvertOrder(reader);
+                convertedOrder.Items = _orderItemRepository.GetByOrderId(convertedOrder.Id);
+                orders.Add(convertedOrder);
             }
             reader.Close();
             return orders;
@@ -69,6 +77,7 @@ namespace Kakadu.Backend.Repositories
             if (reader.Read())
             {
                 var order = ConvertOrder(reader);
+                order.Items = _orderItemRepository.GetByOrderId(order.Id);
                 reader.Close();
                 return order;
             }
@@ -84,6 +93,7 @@ namespace Kakadu.Backend.Repositories
             if (reader.Read())
             {
                 var order = ConvertOrder(reader);
+                order.Items = _orderItemRepository.GetByOrderId(order.Id);
                 reader.Close();
                 return order;
             }
@@ -93,26 +103,19 @@ namespace Kakadu.Backend.Repositories
 
         public Order Save(Order order)
         {
-            if (order.Id == 0)
-            {
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO orders (totalPrice, createdAt, updatedAt, status) VALUES (@totalPrice, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, @status); SELECT LAST_INSERT_ID();", DatabaseConnection.GetInstance().GetConnection());
-                cmd.Parameters.AddWithValue("totalPrice", order.TotalPrice);
-                cmd.Parameters.AddWithValue("status", order.Status);
-                order.Id = Convert.ToInt32(cmd.ExecuteScalar());
+            MySqlCommand cmd = new MySqlCommand("INSERT INTO orders (totalPrice, status) VALUES (@totalPrice, @status); SELECT LAST_INSERT_ID();", DatabaseConnection.GetInstance().GetConnection());
+            cmd.Parameters.AddWithValue("totalPrice", order.TotalPrice);
+            cmd.Parameters.AddWithValue("status", order.Status);
+            order.Id = Convert.ToInt32(cmd.ExecuteScalar());
 
-                
-                MySqlCommand getOrderNumberCmd = new MySqlCommand("SELECT orderNumber FROM orders WHERE id = @id", DatabaseConnection.GetInstance().GetConnection());
-                getOrderNumberCmd.Parameters.AddWithValue("id", order.Id);
-                order.OrderNumber = Convert.ToInt32(getOrderNumberCmd.ExecuteScalar());
-            }
-            else
+            order = GetById(order.Id);
+
+            foreach (var item in order.Items)
             {
-                MySqlCommand cmd = new MySqlCommand("UPDATE orders SET totalPrice = @totalPrice, status = @status, updatedAt = CURRENT_TIMESTAMP WHERE id = @id", DatabaseConnection.GetInstance().GetConnection());
-                cmd.Parameters.AddWithValue("totalPrice", order.TotalPrice);
-                cmd.Parameters.AddWithValue("status", order.Status);
-                cmd.Parameters.AddWithValue("id", order.Id);
-                cmd.ExecuteNonQuery();
+                item.OrderId = order.Id;  
+                _orderItemRepository.Save(item);
             }
+
             return order;
         }
     }
