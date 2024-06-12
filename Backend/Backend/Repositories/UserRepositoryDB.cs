@@ -49,6 +49,25 @@ namespace Kakadu.Backend.Repositories
             return user;
         }
 
+        public User GetByUsernameAndPassword(string username, string password)
+        {
+            MySqlConnection connection = DatabaseConnection.GetInstance().GetConnection();
+            MySqlCommand command = new MySqlCommand("select  id, username, password, first_name, last_name from kakadu.users where username = @username and password = @password", connection);
+            command.Parameters.AddWithValue("username", username);
+            command.Parameters.AddWithValue("password", password);
+            MySqlDataReader reader = command.ExecuteReader();
+
+            User user = null;
+
+            if (reader.Read())
+            {
+                user = ConvertToUser(reader);
+
+            }
+            reader.Close();
+            return user;
+        }
+
         public void Save(User user)
         {
             MySqlConnection connection = DatabaseConnection.GetInstance().GetConnection();
