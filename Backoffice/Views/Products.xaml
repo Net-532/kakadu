@@ -22,7 +22,7 @@
                     <Button x:Name="DeleteButton" Content="Видалити" Margin="5" Click="DeleteProduct"/>
                 </StackPanel>
 
-                <DataGrid x:Name="dataGrid" Grid.Row="1" Margin="5,0,0,0" AutoGenerateColumns="False" IsReadOnly="True" Background="White" SelectionChanged="dataGrid_SelectionChanged">
+                <DataGrid x:Name="dataGrid" Grid.Row="1" Style="{StaticResource Grid}" SelectionChanged="dataGrid_SelectionChanged">
                     <DataGrid.Columns>
                         <DataGridTemplateColumn Header="Назва" Width="300">
                             <DataGridTemplateColumn.CellTemplate>
