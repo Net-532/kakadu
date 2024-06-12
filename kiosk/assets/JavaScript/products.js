@@ -103,3 +103,5 @@ fetch(fetchlink)
     quantity = 1;
     document.getElementById("quantity").value = quantity;
   }
+
+

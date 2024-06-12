@@ -170,6 +170,7 @@ function checkoutOrder() {
         order = data;
         clearCart();
         renderReceipt(data);
+        sendEmail(data);
     })
     .catch((error) => {
         console.error("Помилка: ", error);
@@ -276,4 +277,24 @@ function displayAlert(type, item, message) {
   if (alertContainer) {
     alertContainer.innerHTML = alert;
   }
+}
+
+
+function sendEmail(order) {
+  const sendRequest = {
+    recipient: 'kageyamato15@gmail.com', //ще немає поля куди це вписати
+    orderId: order.id
+  };
+
+  fetch("http://localhost:8085/send", {
+      method: "POST",
+      body: JSON.stringify(sendRequest),
+  })
+  .then((response) => response.json())
+  .then((data) => {
+    console.log("виконано");
+  })
+  .catch((error) => {
+      console.error("Помилка: ", error);
+  });
 }
