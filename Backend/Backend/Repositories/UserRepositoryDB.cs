@@ -54,7 +54,7 @@ namespace Kakadu.Backend.Repositories
             MySqlConnection connection = DatabaseConnection.GetInstance().GetConnection();
             MySqlCommand command = new MySqlCommand("select  username, password where username = @username and password = @password", connection);
             command.Parameters.AddWithValue("username", username);
-            command.Parameters.AddWithValue("@password", password);
+            command.Parameters.AddWithValue("password", password);
             MySqlDataReader reader = command.ExecuteReader();
 
             User user = null;
