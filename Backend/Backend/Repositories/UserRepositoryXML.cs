@@ -123,5 +123,18 @@ namespace Kakadu.Backend.Repositories
 
             return 1;
         }
+
+        public User GetByUsernameAndPassword(string username, string password)
+        {
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(filePath);
+            XmlNode node = xmlDoc.SelectSingleNode($"/users/user[Username = '{username}' and Password = '{password}']");
+            if (node != null)
+            {
+                return ConvertToUser(node);
+            }
+            return null;
+        }
+       
     }
 }

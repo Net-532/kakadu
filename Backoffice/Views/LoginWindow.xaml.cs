@@ -1,19 +1,21 @@
 ﻿using System.Windows;
 using Kakadu.Backend.Entities;
+using Kakadu.Backend.Repositories;
+using Kakadu.Backend.Services;
 using Kakadu.Backoffice.Services;
 
 namespace Kakadu.Backoffice.Views
 {
-    /// <summary>
-    /// Interaction logic for LoginWindow.xaml
-    /// </summary>
+
     public partial class LoginWindow : Window
     {
+        private static readonly IUserService _userService = new UserService(new UserRepositoryXML());
+
         public LoginWindow()
         {
             InitializeComponent();
         }
-
+    
         private void Username_GotFocus(object sender, RoutedEventArgs e)
         {
             if (UsernameTextBox.Text == "Логін")
@@ -53,7 +55,7 @@ namespace Kakadu.Backoffice.Views
 
             try
             {
-                AuthenticationService AuthService = new AuthenticationService();
+                AuthenticationService AuthService = new AuthenticationService(_userService);
                 User user = AuthService.Authenticate(username, password);
 
                 MainWindow Main = new MainWindow();

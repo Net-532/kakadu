@@ -4,44 +4,64 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Backoffice.Views"
+             xmlns:converters="clr-namespace:Kakadu.Backoffice.Converters"
              mc:Ignorable="d" 
              Height="auto" Width="Auto"
              Loaded="UserControl_Loaded">
 
+    <UserControl.Resources>
+        <converters:OrderStatusConverter x:Key="OrderStatusConverter"/>
+    </UserControl.Resources>
+
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <Border Style="{StaticResource BoxShadow}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" x:Name="OrderButtonsPanel" Grid.Row="0" Visibility="Visible" HorizontalAlignment="Right" Margin="5">
-            <Label HorizontalAlignment="Left" Margin ="0,5,10,0" Content ="Номер Замовлення:"/>
-            <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Margin="0,5,10,0" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Top" Width="200" Height="25" PreviewTextInput="SearchBox_PreviewTextInput"/>
-            <Button x:Name="SearchButton" Content="Пошук" Margin="0,5,50,0" HorizontalAlignment="Center" Width="50" Height="25" Click="SearchOrder"/>
-            <Button x:Name="PrintButton" Content="Друк" Margin="0,5,50,0" HorizontalAlignment="Center" Width="50" Height="25" Click="PrintButton_Click"/>
-            <Button x:Name ="ChangeStatusButton" Content= "Відмітити замовлення як готове" Margin="0,5,0,0" Click="ChangeOrderStatus" Height="25"></Button>
-        </StackPanel>
+                <StackPanel Orientation="Horizontal" x:Name="OrderButtonsPanel" Grid.Row="0" Visibility="Visible" HorizontalAlignment="Right" Margin="5">
+                    <Label HorizontalAlignment="Left" Margin ="0,5,10,0" Content ="Номер Замовлення:"/>
+                    <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Margin="0,5,10,0" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Top" Width="200" Height="25" PreviewTextInput="SearchBox_PreviewTextInput"/>
+                    <Button x:Name="SearchButton" Content="Пошук" Margin="0,5,50,0" HorizontalAlignment="Center" Width="50" Height="25" Click="SearchOrder"/>
+                    <Button x:Name="PrintButton" Content="Друк" Margin="0,5,50,0" HorizontalAlignment="Center" Width="50" Height="25" Click="PrintButton_Click"/>
+                    <Button x:Name ="ChangeStatusButton" Content= "Відмітити замовлення як готове" Margin="0,5,0,0" Click="ChangeOrderStatus" Height="25"></Button>
+                </StackPanel>
 
-        <DataGrid x:Name="dataGrid" Grid.Row="1" Margin="5,0,0,0" AutoGenerateColumns="False" IsReadOnly="True" Background="White" ItemsSource="{Binding Orders}">
-            <DataGrid.Columns>
-                <DataGridTextColumn Width="100" Header="Номер" Binding="{Binding OrderNumber}"/>
-                <DataGridTextColumn Width="100" Header="Сума" Binding="{Binding TotalPrice}"/>
-                <DataGridTextColumn Width="200" Header="Дата оформлення" Binding="{Binding OrderDate}"/>
-                <DataGridTextColumn Width="200" Header="Дата оновлення" Binding="{Binding UpdatedAt}"/>
-                <DataGridTextColumn Width="*" Header="Статус" Binding="{Binding Status}"/>
-            </DataGrid.Columns>
-            <DataGrid.RowDetailsTemplate>
-                <DataTemplate>
-                    <DataGrid x:Name="detailGrid" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding Items}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Width="200" Header="Продукт" Binding="{Binding ProductTitle}"/>
-                            <DataGridTextColumn Width="100" Header="Кількість" Binding="{Binding Quantity}"/>
-                            <DataGridTextColumn Width="100" Header="Ціна" Binding="{Binding Price}"/>
-                            <DataGridTextColumn Width="100" Header="Сума" Binding="{Binding Amount}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </DataTemplate>
-            </DataGrid.RowDetailsTemplate>
-        </DataGrid>
+                <DataGrid x:Name="dataGrid" Grid.Row="1" Margin="5,0,0,0" AutoGenerateColumns="False" IsReadOnly="True" Background="White" ItemsSource="{Binding Orders}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="100" Header="Номер" Binding="{Binding OrderNumber}"/>
+                        <DataGridTextColumn Width="100" Header="Сума" Binding="{Binding TotalPrice}"/>
+                        <DataGridTextColumn Width="200" Header="Дата оформлення" Binding="{Binding OrderDate}"/>
+                        <DataGridTextColumn Width="200" Header="Дата оновлення" Binding="{Binding UpdatedAt}"/>
+                        <DataGridTextColumn Width="*" Header="Статус" FontWeight="Bold" Binding="{Binding Status, Converter={StaticResource OrderStatusConverter}}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Foreground" Value="#31AF1F"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Status}" Value="Processing">
+                                            <Setter Property="Foreground" Value="#F2994A"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                    <DataGrid.RowDetailsTemplate>
+                        <DataTemplate>
+                            <DataGrid x:Name="detailGrid" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding Items}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Width="200" Header="Продукт" Binding="{Binding ProductTitle}"/>
+                                    <DataGridTextColumn Width="100" Header="Кількість" Binding="{Binding Quantity}"/>
+                                    <DataGridTextColumn Width="100" Header="Ціна" Binding="{Binding Price}"/>
+                                    <DataGridTextColumn Width="100" Header="Сума" Binding="{Binding Amount}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </DataTemplate>
+                    </DataGrid.RowDetailsTemplate>
+                </DataGrid>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

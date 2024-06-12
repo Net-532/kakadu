@@ -48,6 +48,7 @@
     <Compile Include="Repositories\ProductRepositoryXML.cs" />
     <Compile Include="Repositories\IProductRepository.cs" />
     <Compile Include="Repositories\UserRepositoryXML.cs" />
+    <Compile Include="Repositories\UserRepositoryDB.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\OrderItem.cs" />
     <Compile Include="Entities\Product.cs" />

@@ -14,5 +14,7 @@ namespace Kakadu.Backend.Repositories
         void DeleteById(int id);
 
         void Update(int id, User user);
+
+        User GetByUsernameAndPassword(string username, string password);
     }
 }
