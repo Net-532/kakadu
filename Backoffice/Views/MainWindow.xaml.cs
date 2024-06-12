@@ -16,12 +16,12 @@ namespace Kakadu.Backoffice.Views
             MainFrame.Content = new Products();
         }
 
-        private void OrderButton_Click(object sender, RoutedEventArgs e)
+        private void OrderIcon_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new Orders();
         }
 
-        private void UserButton_Click(object sender, RoutedEventArgs e)
+        private void UserIcon_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new Users();
         }
