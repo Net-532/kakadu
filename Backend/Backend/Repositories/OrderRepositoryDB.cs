@@ -60,7 +60,7 @@ namespace Kakadu.Backend.Repositories
 
         public List<Order> GetAllByUpdatedAt(DateTime from, DateTime to)
         {
-            MySqlCommand cmd = new MySqlCommand("SELECT id, orderNumber, totalPrice, status FROM kakadu.orders WHERE updatedAt BETWEEN @from AND @to", DatabaseConnection.GetInstance().GetConnection());
+            MySqlCommand cmd = new MySqlCommand("SELECT id, orderNumber, totalPrice, createdAt, updatedAt, status FROM kakadu.orders WHERE updatedAt BETWEEN @from AND @to", DatabaseConnection.GetInstance().GetConnection());
             cmd.Parameters.AddWithValue("from", from);
             cmd.Parameters.AddWithValue("to", to);
             MySqlDataReader reader = cmd.ExecuteReader();
