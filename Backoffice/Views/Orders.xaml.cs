@@ -19,6 +19,8 @@ namespace Backoffice.Views
         {
             InitializeComponent();
             orderManager = new OrderManager();
+            ChangeStatusButton.IsEnabled = false;
+            PrintButton.IsEnabled = false;
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -86,22 +88,21 @@ namespace Backoffice.Views
 
                 int orderId = selectedItem.Id;
 
-                try
+
                 {
 
                     orderManager.Print(orderId);
                     MessageBox.Show("Замовлення успішно роздруковано!");
                 }
-                catch (EntityNotFoundException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
             }
-            else
-            {
-                MessageBox.Show("Будь ласка, виберіть замовлення для друку.");
-            }
-
+        }
+               
+        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedOrder = dataGrid.SelectedItem as Order;
+            bool isOrderSelected = selectedOrder != null;
+            ChangeStatusButton.IsEnabled = isOrderSelected;
+            PrintButton.IsEnabled = isOrderSelected;
         }
     }
 }
