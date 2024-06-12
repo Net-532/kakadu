@@ -20,14 +20,20 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+                <DockPanel Grid.Row="0">
+                    <StackPanel DockPanel.Dock="Left">
+                        <Label Content="Номер Замовлення:" FontSize="15" Foreground="#8E95A9"/>
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" x:Name="OrderButtonsPanel" Grid.Row="0" HorizontalAlignment="Right" Margin="5 20">
-                    <Label Style="{StaticResource FormLabel}" Margin ="0,5,10,0" Content ="Номер Замовлення:"/>
-                    <TextBox x:Name="SearchBox" Margin="0,0,10,0" TextWrapping="Wrap" TextAlignment="Left" Width="200" Style="{StaticResource FormInput}" PreviewTextInput="SearchBox_PreviewTextInput"/>
-                    <Button x:Name="SearchButton" Content="Пошук" Margin="0,5,50,0" HorizontalAlignment="Center" Width="50" Height="25" Click="SearchOrder"/>
-                    <Button x:Name="PrintButton" Content="Друк" Margin="0,5,50,0" HorizontalAlignment="Center" Width="50" Height="25" Click="PrintButton_Click"/>
-                    <Button x:Name ="ChangeStatusButton" Content= "Відмітити замовлення як готове" Margin="0,5,0,0" Click="ChangeOrderStatus" Height="25"></Button>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" x:Name="OrderButtonsPanel" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="5,20">
+                        <Label Style="{StaticResource FormLabel}" Margin="0,5,10,0" Content="Номер Замовлення:"/>
+                        <TextBox x:Name="SearchBox" Margin="0,0,10,0" TextWrapping="Wrap" TextAlignment="Left" Width="200" Style="{StaticResource FormInput}" PreviewTextInput="SearchBox_PreviewTextInput"/>
+                        <Button x:Name="SearchButton" Content="Пошук" Margin="0,5,50,0" HorizontalAlignment="Center" Width="50" Height="25" Click="SearchOrder"/>
+                        <Button x:Name="PrintButton" Content="Друк" Margin="0,5,50,0" HorizontalAlignment="Center" Width="50" Height="25" Click="PrintButton_Click"/>
+                        <Button x:Name="ChangeStatusButton" Content="Відмітити замовлення як готове" Margin="0,5,0,0" Click="ChangeOrderStatus" Height="25"/>
+                    </StackPanel>
+                </DockPanel>
+
 
                 <DataGrid x:Name="dataGrid" Grid.Row="1" Style="{StaticResource Grid}" ItemsSource="{Binding Orders}">
                     <DataGrid.Columns>
