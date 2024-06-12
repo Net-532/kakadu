@@ -9,7 +9,7 @@ namespace Kakadu.Backoffice.Views
 
     public partial class LoginWindow : Window
     {
-        private static readonly IUserService _userService = new UserService(new UserRepositoryXML());
+        private static readonly IUserService _userService = new UserService(new UserRepositoryDB());
 
         public LoginWindow()
         {
