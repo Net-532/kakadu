@@ -1,19 +1,52 @@
 ﻿using System.Windows;
 using Kakadu.Backend.Entities;
+using Kakadu.Backend.Repositories;
+using Kakadu.Backend.Services;
 using Kakadu.Backoffice.Services;
 
 namespace Kakadu.Backoffice.Views
 {
-    /// <summary>
-    /// Interaction logic for LoginWindow.xaml
-    /// </summary>
+
     public partial class LoginWindow : Window
     {
+        private static readonly IUserService _userService = new UserService(new UserRepositoryXML());
+
         public LoginWindow()
         {
             InitializeComponent();
         }
+    
+        private void Username_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (UsernameTextBox.Text == "Логін")
+            {
+                UsernameTextBox.Text = "";
+            }
+        }
 
+        private void Username_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(UsernameTextBox.Text))
+            {
+                UsernameTextBox.Text = "Логін";
+            }
+        }
+
+        private void Password_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (PasswordBox.Password == "00000")
+            {
+                PasswordBox.Password = "";
+            }
+        }
+
+        private void Password_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(PasswordBox.Password))
+            {
+                PasswordBox.Password = "00000";
+            }
+        }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
@@ -22,7 +55,7 @@ namespace Kakadu.Backoffice.Views
 
             try
             {
-                AuthenticationService AuthService = new AuthenticationService();
+                AuthenticationService AuthService = new AuthenticationService(_userService);
                 User user = AuthService.Authenticate(username, password);
 
                 MainWindow Main = new MainWindow();
@@ -36,15 +69,6 @@ namespace Kakadu.Backoffice.Views
             }
 
 
-        }
-
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-      
+        }  
     }
-
-
 }

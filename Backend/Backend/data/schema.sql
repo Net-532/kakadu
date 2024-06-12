@@ -3,7 +3,7 @@ CREATE DATABASE IF NOT EXISTS kakadu;
 CREATE TABLE IF NOT EXISTS products (
 id INT AUTO_INCREMENT PRIMARY KEY,
 title VARCHAR(120) NOT NULL,
-price DECIMAL(3, 2) NOT NULL,
+price DECIMAL(10, 2) NOT NULL,
 photoUrl VARCHAR(512),
 description TEXT
 );
@@ -23,7 +23,7 @@ id INT AUTO_INCREMENT PRIMARY KEY,
 productId INT NOT NULL,
 orderId INT NOT NULL,
 quantity INT NOT NULL,
-price DECIMAL(3, 2) NOT NULL,
+price DECIMAL(10, 2) NOT NULL,
 amount  DECIMAL(10, 2) NOT NULL,
 FOREIGN KEY (productId) REFERENCES products(id),
 FOREIGN KEY (orderId) REFERENCES orders(id)
@@ -38,3 +38,20 @@ password VARCHAR(120) NOT NULL,
 CONSTRAINT unique_users_username UNIQUE (username)
 );
 
+
+DELIMITER //
+
+
+CREATE TRIGGER T_GENERATE_ORDER_NUMBER
+BEFORE INSERT ON orders
+FOR EACH ROW
+BEGIN
+    DECLARE maxOrderNumber INT;
+
+    SELECT IFNULL(MAX(orderNumber), 0) INTO maxOrderNumber FROM orders;
+
+    SET NEW.orderNumber = maxOrderNumber + 1;
+END;
+//
+
+DELIMITER ;

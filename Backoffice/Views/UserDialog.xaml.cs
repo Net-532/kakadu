@@ -16,7 +16,7 @@ namespace Kakadu.Backoffice.Views
 
             if (_selectedItem != null)
             {
-                IdTextBox.Text = _selectedItem.Id.ToString();
+             
                 UsernameTextBox.Text = _selectedItem.Username;
                 FirstNameTextBox.Text = _selectedItem.FirstName;
                 LastNameTextBox.Text = _selectedItem.LastName;
@@ -38,7 +38,7 @@ namespace Kakadu.Backoffice.Views
 
             _selectedItem = new User();
 
-            IdTextBox.Text = "Automated";
+            
 
             isNew = true;
 
