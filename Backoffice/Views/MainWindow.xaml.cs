@@ -22,7 +22,7 @@ namespace Kakadu.Backoffice.Views
             userManager = new UserManager();
         }
 
-        private void ProductButton_Click(object sender, RoutedEventArgs e)
+        private void ProductIcon_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new Products();
             MainGrid.Visibility = Visibility.Hidden;
@@ -80,12 +80,12 @@ namespace Kakadu.Backoffice.Views
             LoadOrders();
         }
 
-        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        private void ExitIcon_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
-        private void OrderButton_Click(object sender, RoutedEventArgs e)
+        private void OrderIcon_Click(object sender, RoutedEventArgs e)
         {
             dataGrid.Visibility = Visibility.Visible;
             OrderButtonsPanel.Visibility = Visibility.Visible;
@@ -140,7 +140,7 @@ namespace Kakadu.Backoffice.Views
             LoadUsers();
         }
 
-        private void UserButton_Click(object sender, RoutedEventArgs e)
+        private void UserIcon_Click(object sender, RoutedEventArgs e)
         {
 
             MainFrame.Content = null;
