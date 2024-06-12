@@ -21,12 +21,12 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <DockPanel Grid.Row="0">
-                    <StackPanel>
-                        <Label Content="Замовлення" VerticalAlignment="Center" Foreground="#555F7E" FontSize="20" Margin="5,40"/>
+                    <StackPanel Margin="5,20" VerticalAlignment="Center" DockPanel.Dock="Left">
+                        <Label Content="Замовлення" Foreground="#555F7E" FontSize="20"/>
                     </StackPanel>
-                    
-                    <StackPanel Orientation="Horizontal" x:Name="OrderButtonsPanel" HorizontalAlignment="Right" Margin="5,20">
-                        <Label Style="{StaticResource FormLabel}" Margin="0,25,10,0" Content="Номер Замовлення:"/>
+
+                    <StackPanel Orientation="Horizontal" x:Name="OrderButtonsPanel" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,20" DockPanel.Dock="Right">
+                        <Label Style="{StaticResource FormLabel}" Margin="5,0" Content="Номер Замовлення:"/>
                         <TextBox x:Name="SearchBox" Margin="0,0,10,0" TextWrapping="Wrap" TextAlignment="Left" Width="200" Style="{StaticResource FormInput}" PreviewTextInput="SearchBox_PreviewTextInput"/>
                         <Button x:Name="SearchButton" Content="Пошук" Margin="0,5,50,0" HorizontalAlignment="Center" Width="50" Height="25" Click="SearchOrder"/>
                         <Button x:Name="PrintButton" Content="Друк" Margin="0,5,50,0" HorizontalAlignment="Center" Width="50" Height="25" Click="PrintButton_Click"/>
