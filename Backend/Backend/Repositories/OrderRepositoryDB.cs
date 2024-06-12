@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Kakadu.Backend.Repositories
 {
@@ -16,7 +17,7 @@ namespace Kakadu.Backend.Repositories
 
         public void ChangeStatus(int id, string status)
         {
-            MySqlCommand cmd = new MySqlCommand("UPDATE orders SET status = @status WHERE id = @id", DatabaseConnection.GetInstance().GetConnection());
+            MySqlCommand cmd = new MySqlCommand("UPDATE kakadu.orders SET status = @status WHERE id = @id", DatabaseConnection.GetInstance().GetConnection());
             cmd.Parameters.AddWithValue("status", status);
             cmd.Parameters.AddWithValue("id", id);
             cmd.ExecuteNonQuery();
@@ -24,16 +25,21 @@ namespace Kakadu.Backend.Repositories
 
         public List<Order> GetAll()
         {
-            MySqlCommand cmd = new MySqlCommand("SELECT id, orderNumber, totalPrice, status FROM orders", DatabaseConnection.GetInstance().GetConnection());
+            MySqlCommand cmd = new MySqlCommand("SELECT id, orderNumber, totalPrice, createdAt, updatedAt, status FROM kakadu.orders", DatabaseConnection.GetInstance().GetConnection());
             MySqlDataReader reader = cmd.ExecuteReader();
             List<Order> orders = new List<Order>();
             while (reader.Read())
             {
                 var convertedOrder = ConvertOrder(reader);
-                convertedOrder.Items = _orderItemRepository.GetByOrderId(convertedOrder.Id);
                 orders.Add(convertedOrder);
             }
             reader.Close();
+
+            foreach (var order in orders)
+            {
+                order.Items = _orderItemRepository.GetByOrderId(order.Id);
+            }
+
             return orders;
         }
 
@@ -54,61 +60,73 @@ namespace Kakadu.Backend.Repositories
 
         public List<Order> GetAllByUpdatedAt(DateTime from, DateTime to)
         {
-            MySqlCommand cmd = new MySqlCommand("SELECT id, orderNumber, totalPrice, status FROM orders WHERE updatedAt BETWEEN @from AND @to", DatabaseConnection.GetInstance().GetConnection());
+            MySqlCommand cmd = new MySqlCommand("SELECT id, orderNumber, totalPrice, status FROM kakadu.orders WHERE updatedAt BETWEEN @from AND @to", DatabaseConnection.GetInstance().GetConnection());
             cmd.Parameters.AddWithValue("from", from);
             cmd.Parameters.AddWithValue("to", to);
             MySqlDataReader reader = cmd.ExecuteReader();
             List<Order> orders = new List<Order>();
             while (reader.Read())
             {
-                var convertedOrder = ConvertOrder(reader);
-                convertedOrder.Items = _orderItemRepository.GetByOrderId(convertedOrder.Id);
-                orders.Add(convertedOrder);
+                 orders.Add(ConvertOrder(reader));
             }
             reader.Close();
+
+            foreach (var order in orders)
+            {
+                order.Items = _orderItemRepository.GetByOrderId(order.Id);
+            }
+
             return orders;
         }
 
         public Order GetById(int id)
         {
-            MySqlCommand cmd = new MySqlCommand("SELECT id, orderNumber, totalPrice, createdAt, updatedAt, status FROM orders WHERE id = @id", DatabaseConnection.GetInstance().GetConnection());
+            MySqlCommand cmd = new MySqlCommand("SELECT id, orderNumber, totalPrice, createdAt, updatedAt, status FROM kakadu.orders WHERE id = @id", DatabaseConnection.GetInstance().GetConnection());
             cmd.Parameters.AddWithValue("id", id);
             MySqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
+            List<Order> orders = new List<Order>();
+
+            while (reader.Read())
             {
-                var order = ConvertOrder(reader);
-                order.Items = _orderItemRepository.GetByOrderId(order.Id);
-                reader.Close();
-                return order;
+                orders.Add(ConvertOrder(reader));
             }
             reader.Close();
-            return null;
+
+            foreach (var order in orders)
+            {
+                order.Items = _orderItemRepository.GetByOrderId(order.Id);
+            }
+
+            return orders.FirstOrDefault();
         }
 
         public Order GetByNumber(int number)
         {
-            MySqlCommand cmd = new MySqlCommand("SELECT id, orderNumber, totalPrice, createdAt, updatedAt, status FROM orders WHERE orderNumber = @orderNumber", DatabaseConnection.GetInstance().GetConnection());
+            MySqlCommand cmd = new MySqlCommand("SELECT id, orderNumber, totalPrice, createdAt, updatedAt, status FROM kakadu.orders WHERE orderNumber = @orderNumber", DatabaseConnection.GetInstance().GetConnection());
             cmd.Parameters.AddWithValue("orderNumber", number);
             MySqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
+            List<Order> orders = new List<Order>();
+
+            while (reader.Read())
             {
-                var order = ConvertOrder(reader);
-                order.Items = _orderItemRepository.GetByOrderId(order.Id);
-                reader.Close();
-                return order;
+                orders.Add(ConvertOrder(reader));
             }
             reader.Close();
-            return null;
+
+            foreach (var order in orders)
+            {
+                order.Items = _orderItemRepository.GetByOrderId(order.Id);
+            }
+
+            return orders.FirstOrDefault();
         }
 
         public Order Save(Order order)
         {
-            MySqlCommand cmd = new MySqlCommand("INSERT INTO orders (totalPrice, status) VALUES (@totalPrice, @status); SELECT LAST_INSERT_ID();", DatabaseConnection.GetInstance().GetConnection());
+            MySqlCommand cmd = new MySqlCommand("INSERT INTO kakadu.orders (totalPrice, status) VALUES (@totalPrice, @status); SELECT LAST_INSERT_ID();", DatabaseConnection.GetInstance().GetConnection());
             cmd.Parameters.AddWithValue("totalPrice", order.TotalPrice);
             cmd.Parameters.AddWithValue("status", order.Status);
             order.Id = Convert.ToInt32(cmd.ExecuteScalar());
-
-            order = GetById(order.Id);
 
             foreach (var item in order.Items)
             {
@@ -116,7 +134,8 @@ namespace Kakadu.Backend.Repositories
                 _orderItemRepository.Save(item);
             }
 
-            return order;
+            return GetById(order.Id);
         }
+
     }
 }
