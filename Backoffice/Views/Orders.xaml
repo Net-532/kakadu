@@ -20,14 +20,19 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+                <DockPanel Grid.Row="0">
+                    <StackPanel Margin="5,20" VerticalAlignment="Center" DockPanel.Dock="Left">
+                        <Label Content="Замовлення" Foreground="#555F7E" FontSize="20"/>
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" x:Name="OrderButtonsPanel" Grid.Row="0" Visibility="Visible" HorizontalAlignment="Right" Margin="5">
-                    <Label HorizontalAlignment="Left" Margin ="0,5,10,0" Content ="Номер Замовлення:"/>
-                    <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Margin="0,5,10,0" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Top" Width="200" Height="25" PreviewTextInput="SearchBox_PreviewTextInput"/>
-                    <Button x:Name="SearchButton" Content="Пошук" Style="{StaticResource SecondaryButton}" Click="SearchOrder"/>
-                    <Button x:Name="PrintButton" Content="Друк" Style="{StaticResource SecondaryButton}" Click="PrintButton_Click"/>
-                    <Button x:Name ="ChangeStatusButton" Content= "Відмітити замовлення як готове" Style="{StaticResource SecondaryButton}"></Button>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" x:Name="OrderButtonsPanel" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,20" DockPanel.Dock="Right">
+                        <Label Style="{StaticResource FormLabel}" Margin="5,0" Content="Номер Замовлення:"/>
+                        <TextBox x:Name="SearchBox" Margin="0,0,10,0" TextWrapping="Wrap" TextAlignment="Left" Width="200" Style="{StaticResource FormInput}" PreviewTextInput="SearchBox_PreviewTextInput"/>
+                        <Button x:Name="SearchButton" Content="Пошук"  Style="{StaticResource SecondaryButton}" Click="SearchOrder"/>
+                        <Button x:Name="PrintButton" Content="Друк"  Style="{StaticResource SecondaryButton}" Click="PrintButton_Click"/>
+                        <Button x:Name="ChangeStatusButton" Content="Відмітити замовлення як готове"  Style="{StaticResource SecondaryButton}" Click="ChangeOrderStatus"/>
+                    </StackPanel>
+                </DockPanel>
 
                 <DataGrid x:Name="dataGrid" Grid.Row="1" Style="{StaticResource Grid}" ItemsSource="{Binding Orders}">
                     <DataGrid.Columns>
@@ -35,7 +40,7 @@
                         <DataGridTextColumn Width="100" Header="Сума" Binding="{Binding TotalPrice}"/>
                         <DataGridTextColumn Width="200" Header="Дата оформлення" Binding="{Binding OrderDate}"/>
                         <DataGridTextColumn Width="200" Header="Дата оновлення" Binding="{Binding UpdatedAt}"/>
-                        <DataGridTextColumn Width="*" Header="Статус" FontWeight="Bold" Binding="{Binding Status, Converter={StaticResource OrderStatusConverter}}">
+                        <DataGridTextColumn Width="*" Header="Статус" Binding="{Binding Status, Converter={StaticResource OrderStatusConverter}}">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="{x:Type TextBlock}">
                                     <Setter Property="Foreground" Value="#31AF1F"/>
@@ -50,7 +55,7 @@
                     </DataGrid.Columns>
                     <DataGrid.RowDetailsTemplate>
                         <DataTemplate>
-                            <DataGrid x:Name="detailGrid" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding Items}">
+                            <DataGrid x:Name="detailGrid" Style="{StaticResource Grid}" ItemsSource="{Binding Items}">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Width="200" Header="Продукт" Binding="{Binding ProductTitle}"/>
                                     <DataGridTextColumn Width="100" Header="Кількість" Binding="{Binding Quantity}"/>
