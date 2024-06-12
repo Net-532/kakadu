@@ -67,14 +67,13 @@
         <!-- Стиль для DataGrid -->
         <Style x:Key="Grid" TargetType="DataGrid">
             <Setter Property="AlternatingRowBackground" Value="#F5F5F5"/>
-            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+            <Setter Property="GridLinesVisibility" Value="None"/>
             <Setter Property="HeadersVisibility" Value="Column"/>
             <Setter Property="ColumnHeaderHeight" Value="64"/>
             <Setter Property="RowHeight" Value="64"/>
             <Setter Property="Background" Value="White"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="FontSize" Value="14"/>
-            <Setter Property="HorizontalGridLinesBrush" Value="Transparent"/>
             <Setter Property="RowHeaderWidth" Value="0"/>
             <Setter Property="SelectionMode" Value="Single"/>
             <Setter Property="AutoGenerateColumns" Value="False"/>
@@ -85,17 +84,14 @@
             <Setter Property="CanUserResizeRows" Value="False"/>
             <Setter Property="CanUserSortColumns" Value="True"/>
             <Setter Property="Margin" Value="5,0,0,0"/>
-           
-            <Setter Property="VerticalGridLinesBrush" Value="Transparent"/>
         </Style>
 
         <Style TargetType="DataGridRow">
+            <Setter Property="Foreground" Value="#555F7E"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#FFFCF8"/>
                     <Setter Property="Cursor" Value="Hand"/>
-                    <Setter Property="FontSize" Value="14"/>
-                    <Setter Property="Foreground" Value="#8E95A9"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -108,9 +104,9 @@
         </Style>
 
         <Style TargetType="DataGridColumnHeader">
-            <Setter Property="Background" Value="#8E95A9"/>
+            <Setter Property="Background" Value="#F8F8F8"/>
             <Setter Property="TextElement.FontSize" Value="14"/>
-            <Setter Property="Foreground" Value="#555F7E"/>
+            <Setter Property="Foreground" Value="#8E95A9"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="BorderThickness" Value="0,1,0,1"/>
             <Setter Property="BorderBrush" Value="#E9EAF3"/>
