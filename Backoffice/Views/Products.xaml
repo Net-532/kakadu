@@ -24,25 +24,22 @@
 
                 <DataGrid x:Name="dataGrid" Grid.Row="1" Margin="5,0,0,0" AutoGenerateColumns="False" IsReadOnly="True" Background="White" SelectionChanged="dataGrid_SelectionChanged">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Width="200">
-                            <DataGridTextColumn.Header>Назва</DataGridTextColumn.Header>
-                            <DataGridTextColumn.Binding>
-                                <Binding Path="Title"></Binding>
-                            </DataGridTextColumn.Binding>
-                        </DataGridTextColumn>
+                        <DataGridTemplateColumn Header="Назва" Width="300">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding PhotoUrl}" Width="50" Height="50" Margin="5"/>
+                                        <TextBlock Text="{Binding Title}" VerticalAlignment="Center" Margin="5"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                         <DataGridTextColumn Width="200">
                             <DataGridTextColumn.Header>Ціна</DataGridTextColumn.Header>
                             <DataGridTextColumn.Binding>
                                 <Binding Path="Price"></Binding>
                             </DataGridTextColumn.Binding>
                         </DataGridTextColumn>
-                        <DataGridTemplateColumn Header="Фото" Width="100" IsReadOnly="True">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Image Source="{Binding PhotoUrl}" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
                         <DataGridTextColumn Width="*">
                             <DataGridTextColumn.Header>Опис</DataGridTextColumn.Header>
                             <DataGridTextColumn.Binding>

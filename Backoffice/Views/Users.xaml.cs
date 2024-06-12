@@ -45,9 +45,13 @@ namespace Backoffice.Views
             var selectedItem = dataGrid.SelectedItem as User;
             if (selectedItem != null)
             {
-                userManager.DeleteItem(selectedItem.Id);
+                MessageBoxResult result = MessageBox.Show("Ви впевнені, що хочете видалити цього користувача?", "Підтвердження видалення", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    userManager.DeleteItem(selectedItem.Id);
+                    LoadUsers();
+                }
             }
-            LoadUsers();
         }
 
         private void EditUser(object sender, RoutedEventArgs e)

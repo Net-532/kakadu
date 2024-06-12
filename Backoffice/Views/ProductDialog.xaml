@@ -12,14 +12,20 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0">
+
             <Label Content="Назва" Style="{StaticResource FormLabel}"/>
             <TextBox x:Name="TitleTextBox" Style="{StaticResource FormInput}"/>
 
             <Label Content="Ціна" Style="{StaticResource FormLabel}"/>
             <TextBox x:Name="PriceTextBox" Style="{StaticResource FormInput}"/>
+            <Label x:Name="PriceErrorLabel" Foreground="Red" Visibility="Collapsed" Margin="5"/>
 
             <Label Content="Фото URL" Style="{StaticResource FormLabel}"/>
-            <TextBox x:Name="PhotoUrlTextBox" Style="{StaticResource FormInput}"/>
+            <TextBox x:Name="PhotoUrlTextBox" Style="{StaticResource FormInput}" TextChanged="PhotoUrlTextBox_TextChanged"/>
+
+            <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5">
+                <Image x:Name="PhotoPreview" Width="80" Height="80" Source="/burger_logo.png"/>
+            </Border>
 
             <Label Content="Опис" Style="{StaticResource FormLabel}"/>
             <TextBox x:Name="DescriptionTextBox" Style="{StaticResource FormInput}" Height="120" TextWrapping="Wrap" AcceptsReturn="True"/>

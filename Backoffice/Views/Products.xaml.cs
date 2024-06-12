@@ -45,9 +45,15 @@ namespace Backoffice.Views
             var selectedItem = dataGrid.SelectedItem as Product;
             if (selectedItem != null)
             {
-                productManager.DeleteItem(selectedItem.Id);
+                MessageBoxResult result = MessageBox.Show("Ви впевнені, що хочете видалити цей продукт  ?", "Підтвердження видалення", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    productManager.DeleteItem(selectedItem.Id);
+                    LoadProducts(); ;
+                }
+                
             }
-            LoadProducts();
+           
         }
 
         private void EditProduct(object sender, RoutedEventArgs e)
