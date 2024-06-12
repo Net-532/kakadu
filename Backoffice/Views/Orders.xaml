@@ -21,8 +21,8 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <StackPanel Orientation="Horizontal" x:Name="OrderButtonsPanel" Grid.Row="0" Visibility="Visible" HorizontalAlignment="Right" Margin="5">
-                    <Label HorizontalAlignment="Left" Margin ="0,5,10,0" Content ="Номер Замовлення:"/>
+                <StackPanel Orientation="Horizontal" x:Name="OrderButtonsPanel" Grid.Row="0" HorizontalAlignment="Right" Margin="5 20">
+                    <Label Style="{StaticResource FormLabel}" Margin ="0,5,10,0" Content ="Номер Замовлення:"/>
                     <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Margin="0,5,10,0" TextWrapping="Wrap" TextAlignment="Left" VerticalAlignment="Top" Width="200" Height="25" PreviewTextInput="SearchBox_PreviewTextInput"/>
                     <Button x:Name="SearchButton" Content="Пошук" Margin="0,5,50,0" HorizontalAlignment="Center" Width="50" Height="25" Click="SearchOrder"/>
                     <Button x:Name="PrintButton" Content="Друк" Margin="0,5,50,0" HorizontalAlignment="Center" Width="50" Height="25" Click="PrintButton_Click"/>
@@ -50,7 +50,7 @@
                     </DataGrid.Columns>
                     <DataGrid.RowDetailsTemplate>
                         <DataTemplate>
-                            <DataGrid x:Name="detailGrid" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding Items}">
+                            <DataGrid x:Name="detailGrid" Style="{StaticResource Grid}" ItemsSource="{Binding Items}">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Width="200" Header="Продукт" Binding="{Binding ProductTitle}"/>
                                     <DataGridTextColumn Width="100" Header="Кількість" Binding="{Binding Quantity}"/>
