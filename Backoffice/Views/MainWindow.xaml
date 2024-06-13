@@ -17,19 +17,19 @@
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="8" Opacity="0.2" Color="#E8E7E7" BlurRadius="10"/>
             </Border.Effect>
-            
-            <ListView DockPanel.Dock="Left" Style="{StaticResource NavigationBar}">
-                <ListViewItem>
-                    <fa:ImageAwesome Icon="Cutlery" Style="{StaticResource IconStyle}" MouseLeftButtonDown="ProductIcon_Click"/>
+
+            <ListView Padding="0, 20, 0, 0"  DockPanel.Dock="Left" Style="{StaticResource NavigationBar}">
+                <ListViewItem Selected="ProductIcon_Click">
+                    <fa:ImageAwesome Icon="Cutlery" Style="{StaticResource IconStyle}"/>
                 </ListViewItem>
-                <ListViewItem>
-                    <fa:ImageAwesome Icon="Users" Style="{StaticResource IconStyle}" MouseLeftButtonDown="UserIcon_Click"/>
+                <ListViewItem Selected="UserIcon_Click">
+                    <fa:ImageAwesome Icon="Users" Style="{StaticResource IconStyle}"/>
                 </ListViewItem>
-                <ListViewItem>
-                     <fa:ImageAwesome Icon="PencilSquareOutline" Style="{StaticResource IconStyle}" MouseLeftButtonDown="OrderIcon_Click"/>
+                <ListViewItem Selected="OrderIcon_Click">
+                     <fa:ImageAwesome Icon="PencilSquareOutline" Style="{StaticResource IconStyle}"/>
                 </ListViewItem>
-                <ListViewItem>
-                     <fa:ImageAwesome Icon="SignOut" Style="{StaticResource IconStyle}" MouseLeftButtonDown="ExitIcon_Click"/>
+                <ListViewItem Selected="ExitIcon_Click">
+                     <fa:ImageAwesome Icon="SignOut" Style="{StaticResource IconStyle}"/>
                 </ListViewItem>
             </ListView>
         
