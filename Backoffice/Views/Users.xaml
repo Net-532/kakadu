@@ -15,12 +15,17 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+                <DockPanel>
+                    <StackPanel>
+                        <Label Content="Користувачі" VerticalAlignment="Center" Foreground="#555F7E" FontSize="20" Margin="5,40"/>
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" x:Name="UserButtonsPanel" Grid.Row="0" HorizontalAlignment ="Right" Margin="5">
-                    <Button x:Name="AddUserButton" Content="Додати Користувача" Margin="5" Click="AddUser"/>
-                    <Button x:Name="EditUserButton" Content="Редагувати Користувача" Margin="5" Click="EditUser"/>
-                    <Button x:Name="DeleteUserButton" Content="Видалити Користувача" Margin="5" Click="DeleteUser"/>
-                </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" x:Name="UserButtonsPanel" Grid.Row="0"  Margin="5,40" Width="515">
+                        <Button x:Name="AddUserButton" Content="Додати Користувача" Click="AddUser" Width="122" Height="25" Margin="0,0,50,0"/>
+                        <Button x:Name="EditUserButton" Content="Редагувати Користувача" Click="EditUser" Width="145" Height="25" Margin="0,0,50,0"/>
+                        <Button x:Name="DeleteUserButton" Content="Видалити Користувача" Click="DeleteUser" Width="142" Height="25" Margin="0,0,50,0"/>
+                    </StackPanel>
+                </DockPanel>
 
                 <DataGrid x:Name="dataGrid" Grid.Row="1" Style="{StaticResource Grid}">
                     <DataGrid.Columns>
