@@ -19,8 +19,8 @@ namespace Kakadu.Backend.Services
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine("           Kakadu");
-            sb.AppendLine("Адреса: вул. Павла Каспрука 2");
+            sb.AppendLine("             Kakadu");
+            sb.AppendLine("      вул. Павла Каспрука 2");
             sb.AppendLine();
             sb.AppendLine($"            Чек №: {order.OrderNumber}");
             sb.AppendLine("********************************");
