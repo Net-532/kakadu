@@ -34,7 +34,7 @@
                     </StackPanel>
                 </DockPanel>
 
-                <DataGrid x:Name="dataGrid" Grid.Row="1" Style="{StaticResource Grid}" ItemsSource="{Binding Orders}">
+                <DataGrid x:Name="dataGrid" Grid.Row="1" Style="{StaticResource Grid}" ItemsSource="{Binding Orders}" SelectionChanged="dataGrid_SelectionChanged">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="100" Header="Номер" Binding="{Binding OrderNumber}"/>
                         <DataGridTextColumn Width="100" Header="Сума" Binding="{Binding TotalPrice}"/>
