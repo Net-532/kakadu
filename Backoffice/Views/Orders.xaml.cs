@@ -91,10 +91,6 @@ namespace Backoffice.Views
                     orderManager.Print(orderId);
                     MessageBox.Show("Замовлення успішно роздруковано!");
                 }
-                else
-                {
-                    MessageBox.Show("Будь ласка, виберіть замовлення для друку.");
-                }
             }
             catch (Exception ex)
             {
