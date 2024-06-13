@@ -72,7 +72,29 @@ namespace Kakadu.Backoffice.Views
 
         public Order GetByNumber(int number)
         {
-            return OrderServ.GetByNumber(number);
+            Order order = OrderServ.GetByNumber(number);
+
+            if (order != null)
+            {
+                List<OrderItem> items = new List<OrderItem>();
+                foreach (OrderItem orderItem in order.Items)
+                {
+                    OrderItemModel model = new OrderItemModel
+                    {
+                        Id = orderItem.Id,
+                        ProductId = orderItem.ProductId,
+                        Price = orderItem.Price,
+                        Quantity = orderItem.Quantity,
+                        Amount = orderItem.Amount,
+                        OrderId = orderItem.OrderId,
+                        ProductTitle = ProductService.GetById(orderItem.ProductId)?.Title
+                    };
+                    items.Add(model);
+                }
+                order.Items = items;
+            }
+
+            return order;
         }
 
         public void DeleteItem(int Id)

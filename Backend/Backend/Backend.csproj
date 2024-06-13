@@ -65,6 +65,9 @@
     <Compile Include="Services\OrderToPlainTextConverter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="data\burger_logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\data.sql" />
     <Content Include="data\orders.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
