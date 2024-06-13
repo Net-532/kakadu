@@ -131,5 +131,71 @@
             <Setter Property="BorderThickness" Value="0,1,0,1"/>
             <Setter Property="BorderBrush" Value="#E9EAF3"/>
         </Style>
+<<<<<<< Updated upstream
+=======
+
+        <!-- Стиль для NavigationBar -->
+        <Style x:Key="NavigationBar" TargetType="ListView">
+            <Setter Property="Width" Value="120" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Padding" Value="15" />
+                        <Setter Property="Margin" Value="0,0,0,30" />
+                        <Setter Property="FontSize" Value="14"></Setter>
+                        <Setter Property="Cursor" Value="Hand"></Setter>
+                        <Setter Property="BorderBrush" Value="#E8E7E7"></Setter>
+                        <Setter Property="Opacity" Value="0.7"></Setter>
+                        <Setter Property="Width" Value="60"/>
+                        <Setter Property="Height" Value="60"/>
+                        
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListViewItem">
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="12">
+                                        <ContentPresenter
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            RecognizesAccessKey="True"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="BorderBrush" Value="#D08726"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True">
+                                <Setter Property="BorderBrush" Value="#D08726"/>
+                                <Setter Property="Background" Value="#FFE4C4"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                        
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="IconStyle" TargetType="fa:ImageAwesome">
+            <Setter Property="Width" Value="24"></Setter>
+            <Setter Property="Height" Value="24"></Setter>
+            
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListViewItem}}" Value="True">
+                    <Setter Property="Foreground" Value="#D08726"/>
+                </DataTrigger>
+            </Style.Triggers>
+            
+        </Style>
+>>>>>>> Stashed changes
     </Application.Resources>
 </Application>
