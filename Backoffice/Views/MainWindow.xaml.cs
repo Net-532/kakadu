@@ -28,7 +28,18 @@ namespace Kakadu.Backoffice.Views
 
         private void ExitIcon_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            MessageBoxResult result =MessageBox.Show("Ви дійсно бажаєте вийти?", "Вихід", MessageBoxButton.YesNo,MessageBoxImage.Question);
+
+            switch (result)
+            {
+                case MessageBoxResult.Cancel:
+                    break;
+                case MessageBoxResult.Yes:
+                    Close();
+                    break;
+                case MessageBoxResult.No:
+                    break;
+            }
         }
 
     }
