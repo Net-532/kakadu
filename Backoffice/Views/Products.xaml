@@ -15,12 +15,12 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <DockPanel>
+                <DockPanel Grid.Row="0">
                     <StackPanel>
-                        <Label Content="Продукти" VerticalAlignment="Center" Foreground="#555F7E" FontSize="20" Margin="5,40"/>
+                        <Label Content="Продукти" VerticalAlignment="Center" Foreground="#555F7E" FontSize="20" Margin="5,20"/>
                     </StackPanel>
                     
-                    <StackPanel Orientation="Horizontal" x:Name="ProductButtonsPanel" Grid.Row="0" HorizontalAlignment="Right" Margin="5,40" Width="325">
+                    <StackPanel Orientation="Horizontal" x:Name="ProductButtonsPanel"  HorizontalAlignment="Right" Margin="5,20">
                         <Button x:Name="AddButton" Content="Додати" Click="AddProduct" Width="65" Height="25" Margin="0,0,50,0"/>
                         <Button x:Name="EditButton" Content="Редагувати" Click="EditProduct" Width="75" Height="25" Margin="0,0,50,0"/>
                         <Button x:Name="DeleteButton" Content="Видалити" Click="DeleteProduct" Width="70" Height="25" Margin="0,0,50,0"/>
