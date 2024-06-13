@@ -3,22 +3,39 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Kakadu.Backoffice.Views"
+        xmlns:local="clr-namespace:Kakadu.Backoffice.Views" 
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
-        Title="Backoffice"
+        Title="Какаду - Backoffice"
         Height="450"
         Width="800"
         WindowState="Maximized">
 
     <DockPanel Background="#FFFCF8">
-        <!-- Панель навігації -->
-        <StackPanel DockPanel.Dock="Left" Background="LightGray" Width="150">
-            <Button Content="Продукти" Margin="5" Click="ProductButton_Click"/>
-            <Button Content="Користувачі" Margin="5" Click="UserButton_Click"/>
-            <Button Content="Замовлення" Margin="5" Click="OrderButton_Click"/>
-            <Button Content="Вийти" Margin="5" Click="ExitButton_Click"/>
-        </StackPanel>
 
+        <Border BorderThickness="1">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="8" Opacity="0.2" Color="#E8E7E7" BlurRadius="10"/>
+            </Border.Effect>
+
+            <ListView Padding="0, 20, 0, 0"  DockPanel.Dock="Left" Style="{StaticResource NavigationBar}">
+                <ListViewItem Selected="ProductIcon_Click">
+                    <fa:ImageAwesome Icon="Cutlery" Style="{StaticResource IconStyle}"/>
+                </ListViewItem>
+                <ListViewItem Selected="UserIcon_Click">
+                    <fa:ImageAwesome Icon="Users" Style="{StaticResource IconStyle}"/>
+                </ListViewItem>
+                <ListViewItem Selected="OrderIcon_Click">
+                     <fa:ImageAwesome Icon="PencilSquareOutline" Style="{StaticResource IconStyle}"/>
+                </ListViewItem>
+                <ListViewItem Selected="ExitIcon_Click">
+                     <fa:ImageAwesome Icon="SignOut" Style="{StaticResource IconStyle}"/>
+                </ListViewItem>
+            </ListView>
+        
+        </Border>
         <ContentControl x:Name="MainFrame" Margin="20,20,20,10"/>
+        
+
     </DockPanel>
 </Window>
