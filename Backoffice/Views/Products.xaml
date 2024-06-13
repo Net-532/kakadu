@@ -34,7 +34,7 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Width="200">
+                        <DataGridTextColumn Width="100">
                             <DataGridTextColumn.Header>Ціна</DataGridTextColumn.Header>
                             <DataGridTextColumn.Binding>
                                 <Binding Path="Price"></Binding>

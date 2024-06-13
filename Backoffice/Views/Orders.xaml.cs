@@ -81,22 +81,30 @@ namespace Backoffice.Views
 
         private void PrintButton_Click(object sender, RoutedEventArgs e)
         {
-
-            var selectedItem = dataGrid.SelectedItem as Order;
-            if (selectedItem != null)
+            try
             {
-
-                int orderId = selectedItem.Id;
-
-
+                var selectedItem = dataGrid.SelectedItem as Order;
+                if (selectedItem != null)
                 {
+                    int orderId = selectedItem.Id;
 
                     orderManager.Print(orderId);
                     MessageBox.Show("Замовлення успішно роздруковано!");
                 }
+                else
+                {
+                    MessageBox.Show("Будь ласка, виберіть замовлення для друку.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+                MessageBox.Show("Виникла помилка під час друку замовлення. Будь ласка, спробуйте ще раз.");
             }
         }
-               
+
+
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selectedOrder = dataGrid.SelectedItem as Order;
