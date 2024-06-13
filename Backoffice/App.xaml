@@ -64,9 +64,6 @@
             </Style.Resources>
         </Style>
 
-        <Style x:Key="PhotoPreview" TargetType="Image">
-        </Style>
-
         <!-- Стиль для DataGrid -->
         <Style x:Key="Grid" TargetType="DataGrid">
             <Setter Property="AlternatingRowBackground" Value="#F5F5F5"/>
