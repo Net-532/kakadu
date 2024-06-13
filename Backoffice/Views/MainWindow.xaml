@@ -37,10 +37,10 @@
         </Border>
 
         <!-- Відображення привітання -->
-        <StackPanel x:Name="GreetingPanel" DockPanel.Dock="Top" Margin="10">
+        <StackPanel x:Name="GreetingPanel" DockPanel.Dock="Top" Margin="0,20">
             <StackPanel HorizontalAlignment="Center">
-                <Image Source="/burgerkios.png" Width="200" Height="200"/>
-                <TextBlock x:Name="GreetingTextBlock" FontSize="50" FontWeight="SemiBold" Foreground="Black" HorizontalAlignment="Center"/>
+                <Image Source="/burger_logo.png" Width="150" Height="150"/>
+                <TextBlock x:Name="GreetingTextBlock" FontSize="50" FontFamily="Segoe UI" FontWeight="SemiBold" Foreground="Black" HorizontalAlignment="Center"/>
             </StackPanel>
         </StackPanel>
 

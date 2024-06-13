@@ -58,7 +58,7 @@ namespace Kakadu.Backoffice.Views
                 AuthenticationService AuthService = new AuthenticationService(_userService);
                 User user = AuthService.Authenticate(username, password);
 
-                MainWindow Main = new MainWindow(username, password);
+                MainWindow Main = new MainWindow(username);
                 Main.Show();
 
                 this.Close();

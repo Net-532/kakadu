@@ -11,12 +11,10 @@
     <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
     <None Remove="burger.png" />
     <None Remove="burger_logo.png" />
-    <None Remove="burgerkios.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="burger.png" />
-    <Resource Include="burgerkios.png" />
     <Resource Include="burger_logo.png" />
   </ItemGroup>
 
