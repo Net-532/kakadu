@@ -60,7 +60,7 @@ namespace Kakadu.Backoffice.Views
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = false;
+            this.DialogResult = true;
         }
     }
 }
