@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using MySql.Data.MySqlClient;
+using System.Configuration;
 
 public class DatabaseConnection
 {
@@ -8,11 +9,17 @@ public class DatabaseConnection
     private static readonly object _lock = new object();
     private static readonly object _connlock = new object();
     private MySqlConnection _DBConnection;
-    private static readonly string _connectionString = "Server=localhost;Database=kakadu;User ID=manager;Password=FN79GDgQ6PI6fgx;Pooling=true;";
 
     private DatabaseConnection()
     {
-        _DBConnection = new MySqlConnection(_connectionString);
+        string host = ConfigurationManager.AppSettings["DBHost"];
+        string database = ConfigurationManager.AppSettings["DBName"];
+        string port = ConfigurationManager.AppSettings["DBPort"];
+        string user = ConfigurationManager.AppSettings["DBUser"];
+        string password = ConfigurationManager.AppSettings["DBPassword"];
+        string connectionString = $"Server={host};Database={database};Port={port};User ID={user};Password={password};Pooling=true;";
+
+        _DBConnection = new MySqlConnection(connectionString);
     }
 
     public static DatabaseConnection GetInstance()
@@ -33,7 +40,7 @@ public class DatabaseConnection
         {
             if (_DBConnection.State != ConnectionState.Open)
             {
-                    _DBConnection.Open();
+                _DBConnection.Open();
             }
             return _DBConnection;
         }
