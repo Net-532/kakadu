@@ -7,7 +7,7 @@ namespace Kakadu.Backend.Services
     {
         public void Print(string text)
         {
-            string imagePath = "../../../kiosk/assets/images/burger.png";
+            string imagePath = "../../../../kiosk/assets/images/burger.png";
             PrintDocument printDocument = new PrintDocument();
             printDocument.OriginAtMargins = true;
             printDocument.DefaultPageSettings.Margins = new Margins(35, 35, 50, 35);
