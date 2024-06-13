@@ -15,12 +15,17 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-
-                <StackPanel Orientation="Horizontal" x:Name="ProductButtonsPanel" Grid.Row="0" HorizontalAlignment="Right" Margin="5">
-                    <Button x:Name="AddButton" Margin="0,0,10,0" Content="Додати" Style="{StaticResource PrimaryButton}" Click="AddProduct"/>
-                    <Button x:Name="EditButton" Margin="0,0,10,0" Content="Редагувати" Style="{StaticResource SecondaryButton}" Click="EditProduct"/>
-                    <Button x:Name="DeleteButton" Margin="0,0,10,0" Content="Видалити" Style="{StaticResource SecondaryButton}" Click="DeleteProduct"/>
-                </StackPanel>
+                <DockPanel Grid.Row="0">
+                    <StackPanel>
+                        <Label Content="Продукти" VerticalAlignment="Center" Foreground="#555F7E" FontSize="20" Margin="5,20"/>
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Horizontal" x:Name="ProductButtonsPanel"  HorizontalAlignment="Right" Margin="5,20">
+                        <Button x:Name="AddButton" Margin="0,0,10,0" Content="Додати" Style="{StaticResource PrimaryButton}" Click="AddProduct"/>
+                        <Button x:Name="EditButton" Margin="0,0,10,0" Content="Редагувати" Style="{StaticResource SecondaryButton}" Click="EditProduct"/>
+                        <Button x:Name="DeleteButton" Margin="0,0,10,0" Content="Видалити" Style="{StaticResource SecondaryButton}" Click="DeleteProduct"/>
+                    </StackPanel>
+                </DockPanel>
 
                 <DataGrid x:Name="dataGrid" Grid.Row="1" Style="{StaticResource Grid}">
                     <DataGrid.Columns>
