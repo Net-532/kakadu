@@ -64,6 +64,32 @@
             </Style.Resources>
         </Style>
 
+        <Style x:Key="PasswordInput" TargetType="PasswordBox">
+            <Setter Property="Margin" Value="0,0,0,10"/>
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="#1C2A53"/>
+            <Setter Property="BorderBrush" Value="#CDD1DE"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="5,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Border 
+                    CornerRadius="4"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="1">
+                            <ScrollViewer x:Name="PART_ContentHost" 
+                                  Margin="0" 
+                                  VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
         <!-- Стиль для DataGrid -->
         <Style x:Key="Grid" TargetType="DataGrid">
             <Setter Property="AlternatingRowBackground" Value="#F5F5F5"/>
