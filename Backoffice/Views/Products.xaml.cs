@@ -15,6 +15,8 @@ namespace Backoffice.Views
         {
             InitializeComponent();
             productManager = new ProductManager();
+            EditButton.IsEnabled = false;
+            DeleteButton.IsEnabled = false;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -34,10 +36,7 @@ namespace Backoffice.Views
         private void AddProduct(object sender, RoutedEventArgs e)
         {
             var dialog = new ProductDialog(productManager.AddItem);
-            if (dialog.ShowDialog() != true)
-            {
-                MessageBox.Show("Неможливо додати новий товар.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
+            dialog.ShowDialog();
             LoadProducts();
         }
 
@@ -46,9 +45,15 @@ namespace Backoffice.Views
             var selectedItem = dataGrid.SelectedItem as Product;
             if (selectedItem != null)
             {
-                productManager.DeleteItem(selectedItem.Id);
+                MessageBoxResult result = MessageBox.Show("Ви впевнені, що хочете видалити цей продукт  ?", "Підтвердження видалення", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    productManager.DeleteItem(selectedItem.Id);
+                    LoadProducts(); ;
+                }
+                
             }
-            LoadProducts();
+           
         }
 
         private void EditProduct(object sender, RoutedEventArgs e)
@@ -62,11 +67,15 @@ namespace Backoffice.Views
                     productManager.EditItem(selectedItem.Id, selectedItem);
                 }
             }
-            else
-            {
-                MessageBox.Show("Виберіть продукт для редагування.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
             LoadProducts();
+
+        }
+        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedProduct = dataGrid.SelectedItem as Product;
+            bool isProductSelected = selectedProduct != null;
+            EditButton.IsEnabled = isProductSelected;
+            DeleteButton.IsEnabled = isProductSelected;
         }
     }
 }
