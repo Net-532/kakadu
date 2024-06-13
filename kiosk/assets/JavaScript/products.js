@@ -1,6 +1,6 @@
-const fetchlink = "http://localhost:8085/products";
-const ordersEndpoint = "http://localhost:8085/orders";
-const printReceiptEndpoint='http://localhost:8085/print';
+const fetchlink = "http://192.168.1.143:8085/products";
+const ordersEndpoint = "http://192.168.1.143:8085/orders";
+const printReceiptEndpoint='http://192.168.1.143:8085/print';
 
 fetch(fetchlink)
   .then((res) => res.json())
