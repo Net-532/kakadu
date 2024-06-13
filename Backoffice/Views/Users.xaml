@@ -17,9 +17,9 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Orientation="Horizontal" x:Name="UserButtonsPanel" Grid.Row="0" HorizontalAlignment ="Right" Margin="5">
-                    <Button x:Name="AddUserButton" Content="Додати Користувача" Style="{StaticResource PrimaryButton}" Click="AddUser"/>
-                    <Button x:Name="EditUserButton" Content="Редагувати Користувача" Style="{StaticResource SecondaryButton}" Click="EditUser"/>
-                    <Button x:Name="DeleteUserButton" Content="Видалити Користувача" Style="{StaticResource SecondaryButton}" Click="DeleteUser"/>
+                    <Button x:Name="AddUserButton" Margin="5,0" Content="Додати Користувача" Style="{StaticResource PrimaryButton}" Click="AddUser"/>
+                    <Button x:Name="EditUserButton" Margin="5,0" Content="Редагувати Користувача" Style="{StaticResource SecondaryButton}" Click="EditUser"/>
+                    <Button x:Name="DeleteUserButton" Margin="5,0" Content="Видалити Користувача" Style="{StaticResource SecondaryButton}" Click="DeleteUser"/>
                 </StackPanel>
 
                 <DataGrid x:Name="dataGrid" Grid.Row="1" Style="{StaticResource Grid}">

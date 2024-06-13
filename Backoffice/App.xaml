@@ -15,7 +15,8 @@
                                 CornerRadius="16">
                             <ContentPresenter HorizontalAlignment="Center"
                                               VerticalAlignment="Center"
-                                              RecognizesAccessKey="True"/>
+                                              RecognizesAccessKey="True"
+                                              Margin="{TemplateBinding Padding}"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
