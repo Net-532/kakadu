@@ -1,9 +1,4 @@
-﻿using Kakadu.Backend.Entities;
-using System;
-using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Input;
-using System.Windows.Controls;
+﻿using System.Windows;
 using Backoffice.Views;
 
 namespace Kakadu.Backoffice.Views
@@ -16,22 +11,22 @@ namespace Kakadu.Backoffice.Views
             InitializeComponent();
         }
 
-        private void ProductButton_Click(object sender, RoutedEventArgs e)
+        private void ProductIcon_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new Products();
         }
 
-        private void OrderButton_Click(object sender, RoutedEventArgs e)
+        private void OrderIcon_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new Orders();
         }
 
-        private void UserButton_Click(object sender, RoutedEventArgs e)
+        private void UserIcon_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new Users();
         }
 
-        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        private void ExitIcon_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }

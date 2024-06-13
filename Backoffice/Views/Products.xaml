@@ -21,10 +21,10 @@
                     </StackPanel>
                     
                     <StackPanel Orientation="Horizontal" x:Name="ProductButtonsPanel"  HorizontalAlignment="Right" Margin="5,20">
-                        <Button x:Name="AddButton" Content="Додати" Click="AddProduct" Width="65" Height="25" Margin="0,0,50,0"/>
-                        <Button x:Name="EditButton" Content="Редагувати" Click="EditProduct" Width="75" Height="25" Margin="0,0,50,0"/>
-                        <Button x:Name="DeleteButton" Content="Видалити" Click="DeleteProduct" Width="70" Height="25" Margin="0,0,50,0"/>
-                </StackPanel>
+                        <Button x:Name="AddButton" Margin="0,0,10,0" Content="Додати" Style="{StaticResource PrimaryButton}" Click="AddProduct"/>
+                        <Button x:Name="EditButton" Margin="0,0,10,0" Content="Редагувати" Style="{StaticResource SecondaryButton}" Click="EditProduct"/>
+                        <Button x:Name="DeleteButton" Margin="0,0,10,0" Content="Видалити" Style="{StaticResource SecondaryButton}" Click="DeleteProduct"/>
+                    </StackPanel>
                 </DockPanel>
 
                 <DataGrid x:Name="dataGrid" Grid.Row="1" Style="{StaticResource Grid}">
