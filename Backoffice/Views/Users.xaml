@@ -21,9 +21,9 @@
                     </StackPanel>
 
                     <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Orientation="Horizontal" x:Name="UserButtonsPanel"   Margin="5,20">
-                        <Button x:Name="AddUserButton" Content="Додати Користувача" Click="AddUser" Width="122" Height="25" Margin="0,0,50,0"/>
-                        <Button x:Name="EditUserButton" Content="Редагувати Користувача" Click="EditUser" Width="145" Height="25" Margin="0,0,50,0"/>
-                        <Button x:Name="DeleteUserButton" Content="Видалити Користувача" Click="DeleteUser" Width="142" Height="25" Margin="0,0,50,0"/>
+                        <Button x:Name="AddUserButton" Content="Додати" Click="AddUser" Width="122" Height="25" Margin="0,0,50,0"/>
+                        <Button x:Name="EditUserButton" Content="Редагувати" Click="EditUser" Width="145" Height="25" Margin="0,0,50,0"/>
+                        <Button x:Name="DeleteUserButton" Content="Видалити" Click="DeleteUser" Width="142" Height="25" Margin="0,0,50,0"/>
                     </StackPanel>
                 </DockPanel>
 
