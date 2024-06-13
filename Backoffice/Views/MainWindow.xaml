@@ -11,12 +11,21 @@
         WindowState="Maximized">
 
     <DockPanel Background="#FFFCF8">
+        
         <!-- Панель навігації -->
         <StackPanel DockPanel.Dock="Left" Background="LightGray" Width="150">
             <Button Content="Продукти" Margin="5" Click="ProductButton_Click"/>
             <Button Content="Користувачі" Margin="5" Click="UserButton_Click"/>
             <Button Content="Замовлення" Margin="5" Click="OrderButton_Click"/>
             <Button Content="Вийти" Margin="5" Click="ExitButton_Click"/>
+        </StackPanel>
+
+        <!-- Відображення привітання -->
+        <StackPanel x:Name="GreetingPanel" DockPanel.Dock="Top" Margin="10">
+            <StackPanel HorizontalAlignment="Center">
+                <Image Source="/burgerkios.png" Width="200" Height="200"/>
+                <TextBlock x:Name="GreetingTextBlock" FontSize="50" FontWeight="SemiBold" Foreground="Black" HorizontalAlignment="Center"/>
+            </StackPanel>
         </StackPanel>
 
         <ContentControl x:Name="MainFrame" Margin="20,20,20,10"/>

@@ -9,10 +9,12 @@
 
   <ItemGroup>
     <None Remove="burger.png" />
+    <None Remove="burgerkios.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="burger.png" />
+    <Resource Include="burgerkios.png" />
   </ItemGroup>
 
   <ItemGroup>
