@@ -286,7 +286,7 @@ function sendEmail(order) {
     orderId: order.id
   };
 
-  fetch("http://localhost:8085/send", {
+  fetch(emailEndpoint, {
       method: "POST",
       body: JSON.stringify(sendRequest),
   })

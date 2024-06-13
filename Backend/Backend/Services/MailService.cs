@@ -33,13 +33,21 @@ namespace Kakadu.Backend.Services
         {
             using (var stream = new FileStream("credential.json", FileMode.Open, FileAccess.Read))
             {
-                string credPath = "GoogleToken";
-                return GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.FromStream(stream).Secrets,
-                    new[] { GmailService.Scope.GmailSend, GmailService.Scope.GmailCompose },
-                    "user",
-                    CancellationToken.None,
-                    new FileDataStore(credPath, true)).Result;
+                try
+                {
+                    string credPath = "GoogleToken";
+                    return GoogleWebAuthorizationBroker.AuthorizeAsync(
+                        GoogleClientSecrets.FromStream(stream).Secrets,
+                        new[] { GmailService.Scope.GmailSend, GmailService.Scope.GmailCompose },
+                        "user",
+                        CancellationToken.None,
+                        new FileDataStore(credPath, true)).Result;
+                }
+                catch (Exception ex) 
+                { 
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
             }
         }
 

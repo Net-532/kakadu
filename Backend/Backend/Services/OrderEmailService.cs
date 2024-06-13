@@ -50,7 +50,7 @@ namespace Kakadu.Backend.Services
 
             string fullMessage = bodyBuilder.ToString();
 
-            _emailService.SendEmail(recipient, fullMessage, "Order Details");
+            _emailService.SendEmail(recipient, fullMessage, "Ваше замовлення " + order.OrderNumber + " було оформлено");
         }
     }
 }

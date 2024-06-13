@@ -1,6 +1,7 @@
 const fetchlink = "http://localhost:8085/products";
 const ordersEndpoint = "http://localhost:8085/orders";
 const printReceiptEndpoint='http://localhost:8085/print';
+const emailEndpoint = "http://localhost:8085/send";
 
 fetch(fetchlink)
   .then((res) => res.json())
