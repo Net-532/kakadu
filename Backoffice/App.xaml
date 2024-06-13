@@ -183,6 +183,7 @@
             <Style.Resources>
                 <Style TargetType="ContentPresenter">
                     <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Margin" Value="10 0 0 0"/>
                 </Style>
             </Style.Resources>
         </Style>
@@ -194,6 +195,7 @@
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="BorderThickness" Value="0,1,0,1"/>
             <Setter Property="BorderBrush" Value="#E9EAF3"/>
+            <Setter Property="Padding" Value="10,0,0,0"/>
         </Style>
 
         <!-- Стиль для NavigationBar -->

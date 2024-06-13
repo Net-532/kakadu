@@ -26,7 +26,7 @@
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" x:Name="OrderButtonsPanel" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,20" DockPanel.Dock="Right">
-                        <Label Style="{StaticResource FormLabel}" Margin="5,0" Content="Номер Замовлення:"/>
+                        <Label Style="{StaticResource FormLabel}" Margin="5,0" Content="Номер замовлення:"/>
                         <TextBox x:Name="SearchBox" Margin="0,0,10,0" TextWrapping="Wrap" TextAlignment="Left" Width="200" Style="{StaticResource FormInput}" PreviewTextInput="SearchBox_PreviewTextInput"/>
                         <Button x:Name="SearchButton" Content="Пошук" Margin="5,0" Style="{StaticResource SecondaryButton}" Click="SearchOrder"/>
                         <Button x:Name="PrintButton" Content="Друк" Margin="5,0" Style="{StaticResource SecondaryButton}" Click="PrintButton_Click"/>
