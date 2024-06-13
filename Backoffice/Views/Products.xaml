@@ -17,9 +17,9 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Orientation="Horizontal" x:Name="ProductButtonsPanel" Grid.Row="0" HorizontalAlignment="Right" Margin="5">
-                    <Button x:Name="AddButton" Content="Додати" Style="{StaticResource PrimaryButton}" Click="AddProduct"/>
-                    <Button x:Name="EditButton" Content="Редагувати" Style="{StaticResource SecondaryButton}" Click="EditProduct"/>
-                    <Button x:Name="DeleteButton" Content="Видалити" Style="{StaticResource SecondaryButton}" Click="DeleteProduct"/>
+                    <Button x:Name="AddButton" Margin="0,0,10,0" Content="Додати" Style="{StaticResource PrimaryButton}" Click="AddProduct"/>
+                    <Button x:Name="EditButton" Margin="0,0,10,0" Content="Редагувати" Style="{StaticResource SecondaryButton}" Click="EditProduct"/>
+                    <Button x:Name="DeleteButton" Margin="0,0,10,0" Content="Видалити" Style="{StaticResource SecondaryButton}" Click="DeleteProduct"/>
                 </StackPanel>
 
                 <DataGrid x:Name="dataGrid" Grid.Row="1" Margin="5,0,0,0" AutoGenerateColumns="False" IsReadOnly="True" Background="White">
