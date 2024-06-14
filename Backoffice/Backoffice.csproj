@@ -12,7 +12,6 @@
     <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
     <None Remove="burger.png" />
     <None Remove="burger_logo.png" />
-    <None Remove="Views\windowaplication.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,7 +21,6 @@
   <ItemGroup>
     <Resource Include="burger.png" />
     <Resource Include="burger_logo.png" />
-    <Resource Include="Views\windowaplication.ico" />
   </ItemGroup>
 
   <ItemGroup>
