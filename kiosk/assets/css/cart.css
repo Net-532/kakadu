@@ -121,3 +121,23 @@
     display: none;
 }
 
+#email-box {
+    display: none;
+    margin-bottom: 15px;
+    width: 450px;
+}
+
+#check-email-div {
+    display: flex;
+    justify-content: center;
+}
+
+#email-text-box {
+    display: flex;
+    justify-content: center;
+}
+
+#cart-button-email {
+    display: none;
+    margin-left: 10px;
+}

@@ -74,6 +74,7 @@ fetch(fetchlink)
     document.getElementById('cart-button-order').addEventListener('click', checkoutOrder);
     document.getElementById('cart-close-button').addEventListener('click', function () { DisplayOrder(true); });
     const myOffcanvas = document.getElementById('offcanvasBottom');
+    EmailButtonDisable();
     myOffcanvas.addEventListener('hidden.bs.offcanvas', function () { DisplayOrder(true); });
     document.getElementById("open-cart").addEventListener("click", function () {
       renderCart();

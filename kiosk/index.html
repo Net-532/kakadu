@@ -48,10 +48,20 @@
   </div>
   <div class="offcanvas-body small" id="cart-main-container"></div>
   <div class="container p-4">
-    <div class="row justify-content-center">
+    <div id="email-text-box">
+      <form>
+        <input type="email" class="form-control" id="email-box" placeholder="Введіть пошту">
+      </form>
+    </div>
+    <div id="check-email-div">
         <button id="cart-button-check" class="btn btn-dark btn-lg cart-button-check">
           <span class="spinner-border spinner-border-sm" id="cart-check-spinner" role="status" aria-hidden="true"></span>
           Друкувати чек
+        </button>
+        
+        <button id="cart-button-email" class="btn btn-dark btn-lg cart-button-email">
+          <span class="spinner-border spinner-border-sm" id="cart-check-spinner" role="status" aria-hidden="true"></span>
+          Відправити на пошту
         </button>  
     </div>
   </div>
