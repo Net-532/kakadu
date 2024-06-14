@@ -105,8 +105,9 @@ namespace Backoffice.Views
         {
             var selectedOrder = dataGrid.SelectedItem as Order;
             bool isOrderSelected = selectedOrder != null;
-            ChangeStatusButton.IsEnabled = isOrderSelected;
+            ChangeStatusButton.IsEnabled = isOrderSelected && selectedOrder.Status == "Processing";
             PrintButton.IsEnabled = isOrderSelected;
+            
         }
     }
 }
