@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="Backoffice.Views.Products"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Backoffice.Views"
+             mc:Ignorable="d" 
+             Height="auto" Width="Auto"
+             Loaded="UserControl_Loaded">
+
+    <Grid>
+        <Border Style="{StaticResource BoxShadow}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="0">
+                    <StackPanel>
+                        <Label Content="Продукти" VerticalAlignment="Center" Foreground="#555F7E" FontSize="20" Margin="5,20"/>
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Horizontal" x:Name="ProductButtonsPanel"  HorizontalAlignment="Right" Margin="5,20">
+                        <Button x:Name="AddButton" Margin="0,0,10,0" Content="Додати" Style="{StaticResource PrimaryButton}" Click="AddProduct"/>
+                        <Button x:Name="EditButton" Margin="0,0,10,0" Content="Редагувати" Style="{StaticResource SecondaryButton}" Click="EditProduct"/>
+                        <Button x:Name="DeleteButton" Margin="0,0,10,0" Content="Видалити" Style="{StaticResource SecondaryButton}" Click="DeleteProduct"/>
+                    </StackPanel>
+                </DockPanel>
+
+                <DataGrid x:Name="dataGrid" Grid.Row="1" Style="{StaticResource Grid}" SelectionChanged="dataGrid_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="Назва" Width="300">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding PhotoUrl}" Width="50" Height="50" Margin="0,0,10,0"/>
+                                        <TextBlock Text="{Binding Title}" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Width="100">
+                            <DataGridTextColumn.Header>Ціна</DataGridTextColumn.Header>
+                            <DataGridTextColumn.Binding>
+                                <Binding Path="Price"></Binding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="*">
+                            <DataGridTextColumn.Header>Опис</DataGridTextColumn.Header>
+                            <DataGridTextColumn.Binding>
+                                <Binding Path="Description"></Binding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

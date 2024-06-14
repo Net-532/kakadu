@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="Backoffice.Views.Orders"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Backoffice.Views"
+             xmlns:converters="clr-namespace:Kakadu.Backoffice.Converters"
+             mc:Ignorable="d" 
+             Height="auto" Width="Auto"
+             Loaded="UserControl_Loaded">
+
+    <UserControl.Resources>
+        <converters:OrderStatusConverter x:Key="OrderStatusConverter"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Border Style="{StaticResource BoxShadow}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="0">
+                    <StackPanel Margin="5,20" VerticalAlignment="Center" DockPanel.Dock="Left">
+                        <Label Content="Замовлення" Foreground="#555F7E" FontSize="20"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" x:Name="OrderButtonsPanel" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,20" DockPanel.Dock="Right">
+                        <Label Style="{StaticResource FormLabel}" Margin="5,0" Content="Номер замовлення"/>
+                        <TextBox x:Name="SearchBox" Margin="0,0,10,0" TextWrapping="Wrap" TextAlignment="Left" Width="200" Style="{StaticResource FormInput}" PreviewTextInput="SearchBox_PreviewTextInput"/>
+                        <Button x:Name="SearchButton" Content="Пошук" Margin="5,0" Style="{StaticResource SecondaryButton}" Click="SearchOrder"/>
+                        <Button x:Name="PrintButton" Content="Друк" Margin="5,0" Style="{StaticResource SecondaryButton}" Click="PrintButton_Click"/>
+                        <Button x:Name="ChangeStatusButton" Margin="5,0" Content="Відмітити замовлення як готове"  Style="{StaticResource SecondaryButton}" Click="ChangeOrderStatus"/>
+                    </StackPanel>
+                </DockPanel>
+
+                <DataGrid x:Name="dataGrid" Grid.Row="1" Style="{StaticResource Grid}" ItemsSource="{Binding Orders}" SelectionChanged="dataGrid_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="100" Header="Номер" Binding="{Binding OrderNumber}"/>
+                        <DataGridTextColumn Width="100" Header="Сума" Binding="{Binding TotalPrice}"/>
+                        <DataGridTextColumn Width="200" Header="Дата оформлення" Binding="{Binding OrderDate}"/>
+                        <DataGridTextColumn Width="200" Header="Дата оновлення" Binding="{Binding UpdatedAt}"/>
+                        <DataGridTextColumn Width="*" Header="Статус" Binding="{Binding Status, Converter={StaticResource OrderStatusConverter}}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Foreground" Value="#31AF1F"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Status}" Value="Processing">
+                                            <Setter Property="Foreground" Value="#F2994A"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                    <DataGrid.RowDetailsTemplate>
+                        <DataTemplate>
+                            <DataGrid x:Name="detailGrid" Style="{StaticResource Grid}" ItemsSource="{Binding Items}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Width="200" Header="Продукт" Binding="{Binding ProductTitle}"/>
+                                    <DataGridTextColumn Width="100" Header="Кількість" Binding="{Binding Quantity}"/>
+                                    <DataGridTextColumn Width="100" Header="Ціна" Binding="{Binding Price}"/>
+                                    <DataGridTextColumn Width="100" Header="Сума" Binding="{Binding Amount}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </DataTemplate>
+                    </DataGrid.RowDetailsTemplate>
+                </DataGrid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

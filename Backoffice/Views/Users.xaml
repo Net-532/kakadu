@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="Backoffice.Views.Users"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Backoffice.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Loaded="UserControl_Loaded">
+
+    <Grid>
+        <Border Style="{StaticResource BoxShadow}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="0">
+                    <StackPanel DockPanel.Dock="Left">
+                        <Label Content="Користувачі" VerticalAlignment="Center" Foreground="#555F7E" FontSize="20" Margin="5,20"/>
+                    </StackPanel>
+
+                    <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Orientation="Horizontal" x:Name="UserButtonsPanel"   Margin="5,20">
+                        <Button x:Name="AddUserButton" Margin="5,0" Content="Додати" Style="{StaticResource PrimaryButton}" Click="AddUser"/>
+                        <Button x:Name="EditUserButton" Margin="5,0" Content="Редагувати" Style="{StaticResource SecondaryButton}" Click="EditUser"/>
+                        <Button x:Name="DeleteUserButton" Margin="5,0" Content="Видалити" Style="{StaticResource SecondaryButton}" Click="DeleteUser"/>
+                    </StackPanel>
+                </DockPanel>
+
+                <DataGrid x:Name="dataGrid" Grid.Row="1" Style="{StaticResource Grid}" SelectionChanged="dataGrid_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="200">
+                            <DataGridTextColumn.Header>Логін</DataGridTextColumn.Header>
+                            <DataGridTextColumn.Binding>
+                                <Binding Path="Username"></Binding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="200">
+                            <DataGridTextColumn.Header>Ім'я</DataGridTextColumn.Header>
+                            <DataGridTextColumn.Binding>
+                                <Binding Path="FirstName"></Binding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="*">
+                            <DataGridTextColumn.Header>Прізвище</DataGridTextColumn.Header>
+                            <DataGridTextColumn.Binding>
+                                <Binding Path="LastName"></Binding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

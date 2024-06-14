@@ -1,5 +1,6 @@
 ﻿using Kakadu.Backend.Entities;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 
 namespace Kakadu.Backend.Repositories
@@ -67,6 +68,8 @@ namespace Kakadu.Backend.Repositories
 
             XmlNode UserElement = doc.CreateElement("user");
 
+            User.Id = getNextUserId();
+
             XmlNode idElement = doc.CreateElement("Id");
             idElement.InnerText = User.Id.ToString();
             UserElement.AppendChild(idElement);
@@ -108,5 +111,30 @@ namespace Kakadu.Backend.Repositories
                 doc.Save(filePath);
             }
         }
+        private int getNextUserId()
+        {
+            List<User> Users = GetAll();
+
+            if (Users != null && Users.Count > 0)
+            {
+                int MaxNumber = Users.Max(o => o.Id);
+                return MaxNumber + 1;
+            }
+
+            return 1;
+        }
+
+        public User GetByUsernameAndPassword(string username, string password)
+        {
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(filePath);
+            XmlNode node = xmlDoc.SelectSingleNode($"/users/user[Username = '{username}' and Password = '{password}']");
+            if (node != null)
+            {
+                return ConvertToUser(node);
+            }
+            return null;
+        }
+       
     }
 }

@@ -1,28 +1,24 @@
 ﻿<Window x:Class="Kakadu.Backoffice.Views.LoginWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Backoffice Вхід" Height="225" Width="400"
-        WindowStartupLocation="CenterScreen">
-    <Grid Margin="10">
+        Title="Какаду - Backoffice" Height="420" Width="500"
+        WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" ResizeMode="NoResize">
+    <Grid>
+        
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Вхід" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+        <Image Source="/burger.png" Grid.Row="0"/>
+        
 
-        <Label Grid.Row="1" Grid.Column="0" Content="Ім'я користувача:" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="1" Grid.Column="1" x:Name="UsernameTextBox" Margin="5" VerticalAlignment="Center" />
-
-        <Label Grid.Row="2" Grid.Column="0" Content="Пароль:" VerticalAlignment="Center"/>
-        <PasswordBox Grid.Row="2" Grid.Column="1" x:Name="PasswordBox" Margin="5" VerticalAlignment="Center"/>
-        <Button Grid.Column="1" Content="Увійти" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="100" Height="34" Click="LoginButton_Click"/>
-        <Button Grid.Column="1" Content="Вихід" HorizontalAlignment="Left" Margin="157,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="100" Height="34" Click="CancelButton_Click"/>
+        <StackPanel Grid.Row="1" Margin="0,10,0,0">
+            <Label Content="Вхід" HorizontalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="24" Margin="0,10"/>
+            <TextBox x:Name="UsernameTextBox"  Style="{StaticResource FormInput}" GotFocus="Username_GotFocus" LostFocus="Username_LostFocus" Width="154" Text="Логін" Opacity="0.6"/>
+            <PasswordBox x:Name="PasswordBox" Style="{StaticResource PasswordInput}" GotFocus="Password_GotFocus" LostFocus="Password_LostFocus" Width="154" Password="00000" Opacity="0.6" Margin="0, 10, 0, 20"/>
+            <Button Style="{StaticResource PrimaryButton}" Content="Увійти" Width="108" Click="LoginButton_Click"/>
+        </StackPanel>
+        
     </Grid>
 </Window>
