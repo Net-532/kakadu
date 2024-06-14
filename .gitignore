@@ -398,3 +398,4 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 /.vs/slnx.sqlite
+Backend/Backend/Config/credential.json
