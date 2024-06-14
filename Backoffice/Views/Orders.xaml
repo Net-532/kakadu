@@ -11,6 +11,14 @@
 
     <UserControl.Resources>
         <converters:OrderStatusConverter x:Key="OrderStatusConverter"/>
+
+        <Style TargetType="DataGridRow">
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
 
     <Grid>
@@ -47,6 +55,9 @@
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding Status}" Value="Processing">
                                             <Setter Property="Foreground" Value="#F2994A"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=DataGridRow}}" Value="True">
+                                            <Setter Property="Foreground" Value="White"/>
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
