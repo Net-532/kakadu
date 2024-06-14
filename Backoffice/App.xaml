@@ -42,17 +42,22 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}"
-                 BorderBrush="{TemplateBinding BorderBrush}"
-                 BorderThickness="1"
-                 CornerRadius="16">
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="16">
                             <ContentPresenter HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               RecognizesAccessKey="True"
-                               Margin="{TemplateBinding Padding}"/>
+                                      VerticalAlignment="Center"
+                                      RecognizesAccessKey="True"
+                                      Margin="{TemplateBinding Padding}"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Background" Value="Gray"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="LightGray"/>
+                                <Setter Property="Foreground" Value="DarkGray"/>
+                                <Setter Property="Opacity" Value="0.5"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -183,6 +188,7 @@
             <Style.Resources>
                 <Style TargetType="ContentPresenter">
                     <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Margin" Value="10 0 0 0"/>
                 </Style>
             </Style.Resources>
         </Style>
@@ -194,6 +200,7 @@
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="BorderThickness" Value="0,1,0,1"/>
             <Setter Property="BorderBrush" Value="#E9EAF3"/>
+            <Setter Property="Padding" Value="10,0,0,0"/>
         </Style>
 
         <!-- Стиль для NavigationBar -->
