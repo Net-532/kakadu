@@ -5,12 +5,17 @@
     <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>windowaplication.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
     <None Remove="burger.png" />
     <None Remove="burger_logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="windowaplication.ico" />
   </ItemGroup>
 
   <ItemGroup>
