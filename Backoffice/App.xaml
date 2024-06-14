@@ -173,7 +173,7 @@
                                     BorderBrush="{TemplateBinding BorderBrush}" 
                                     BorderThickness="{TemplateBinding BorderThickness}" 
                                     Background="{TemplateBinding Background}">
-                                 <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
+                                    <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
                                 </Border>
                             </ControlTemplate>
                         </Setter.Value>
@@ -203,7 +203,23 @@
                 </Style>
             </Style.Resources>
         </Style>
-    
+
+        <!-- Стиль для DataGridDetails -->
+        <Style x:Key="GridDetails" TargetType="DataGrid" BasedOn="{StaticResource Grid}">
+            <Setter Property="ColumnHeaderHeight" Value="48"/>
+            <Setter Property="RowHeight" Value="48"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#F3B767"/>
+            <Setter Property="Margin" Value="0"/>
+            <Style.Resources>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Foreground" Value="#555F7E"/>
+                    <Setter Property="IsHitTestVisible" Value="False"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+
         <!-- Стиль для NavigationBar -->
         <Style x:Key="NavigationBar" TargetType="ListView">
             <Setter Property="Width" Value="120" />
