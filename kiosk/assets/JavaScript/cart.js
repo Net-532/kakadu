@@ -318,6 +318,7 @@ function EmailButtonDisable() {
 
 document.getElementById('cart-button-email').addEventListener('click', function() {
   const recipientEmail = document.getElementById('email-box').value.trim();
-
+  const emailbox = document.getElementById("email-box");
+  emailbox.value = '';
   sendEmail(order.id, recipientEmail);
 });
