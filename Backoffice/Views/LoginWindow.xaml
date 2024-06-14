@@ -11,12 +11,14 @@
         </Grid.RowDefinitions>
 
         <Image Source="/burger.png" Grid.Row="0"/>
+        
 
         <StackPanel Grid.Row="1" Margin="0,10,0,0">
             <Label Content="Вхід" HorizontalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="24" Margin="0,10"/>
-            <TextBox x:Name="UsernameTextBox" GotFocus="Username_GotFocus" LostFocus="Username_LostFocus" Width="154" Height="32" FontSize="16" FontFamily="Segoe UI Semibold" Text="Логін" Opacity="0.6"/>
-            <PasswordBox x:Name="PasswordBox" GotFocus="Password_GotFocus" LostFocus="Password_LostFocus" Width="154" Height="32" FontSize="16" Password="00000" Opacity="0.6" Margin="0,10"/>
-            <Button Style="{StaticResource PrimaryButton}" Content="Увійти" Width="108" Click="LoginButton_Click" FontFamily="Segoe UI Semibold" Height="38" FontSize="16" Opacity="0.7" Margin="0,10"/>
+            <TextBox x:Name="UsernameTextBox"  Style="{StaticResource FormInput}" GotFocus="Username_GotFocus" LostFocus="Username_LostFocus" Width="154" Text="Логін" Opacity="0.6"/>
+            <PasswordBox x:Name="PasswordBox" Style="{StaticResource PasswordInput}" GotFocus="Password_GotFocus" LostFocus="Password_LostFocus" Width="154" Password="00000" Opacity="0.6" Margin="0, 10, 0, 20"/>
+            <Button Style="{StaticResource PrimaryButton}" Content="Увійти" Width="108" Click="LoginButton_Click"/>
         </StackPanel>
+        
     </Grid>
 </Window>
