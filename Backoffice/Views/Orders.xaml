@@ -11,14 +11,6 @@
 
     <UserControl.Resources>
         <converters:OrderStatusConverter x:Key="OrderStatusConverter"/>
-
-        <Style TargetType="DataGridRow">
-            <Style.Triggers>
-                <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Foreground" Value="White"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
     </UserControl.Resources>
 
     <Grid>
