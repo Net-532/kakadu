@@ -15,6 +15,8 @@ namespace Kakadu.OrderQueue
         private long from = DateTimeOffset.Now.ToUnixTimeSeconds();
         private long to = DateTimeOffset.Now.ToUnixTimeSeconds();
 
+        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -70,15 +72,15 @@ namespace Kakadu.OrderQueue
 
                     Log.Information("Received {OrderCount} orders from the server", newOrders.Count);
                     UpdateUI();
-                }   
+                }
                 else
                 {
                     Log.Information("Received no orders from the server");
                 }
 
-               
+
                 from = to;
-              UpdateTime(to);
+                UpdateTime(to);
             }
             catch (Exception ex)
             {
@@ -116,4 +118,5 @@ namespace Kakadu.OrderQueue
         }
 
     }
+
 }
