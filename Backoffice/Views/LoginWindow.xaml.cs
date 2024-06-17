@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using System.Windows.Media.Imaging;
 using Kakadu.Backend.Entities;
 using Kakadu.Backend.Repositories;
 using Kakadu.Backend.Services;
@@ -58,7 +60,7 @@ namespace Kakadu.Backoffice.Views
                 AuthenticationService AuthService = new AuthenticationService(_userService);
                 User user = AuthService.Authenticate(username, password);
 
-                MainWindow Main = new MainWindow();
+                MainWindow Main = new MainWindow(username);
                 Main.Show();
 
                 this.Close();
@@ -68,7 +70,6 @@ namespace Kakadu.Backoffice.Views
                 MessageBox.Show(ex.Message, "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-
-        }  
+        }
     }
 }

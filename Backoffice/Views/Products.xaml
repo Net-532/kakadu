@@ -19,7 +19,7 @@
                     <StackPanel>
                         <Label Content="Продукти" VerticalAlignment="Center" Foreground="#555F7E" FontSize="20" Margin="5,20"/>
                     </StackPanel>
-                    
+
                     <StackPanel Orientation="Horizontal" x:Name="ProductButtonsPanel"  HorizontalAlignment="Right" Margin="5,20">
                         <Button x:Name="AddButton" Margin="0,0,10,0" Content="Додати" Style="{StaticResource PrimaryButton}" Click="AddProduct"/>
                         <Button x:Name="EditButton" Margin="0,0,10,0" Content="Редагувати" Style="{StaticResource SecondaryButton}" Click="EditProduct"/>
@@ -32,9 +32,9 @@
                         <DataGridTemplateColumn Header="Назва" Width="300">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="{Binding PhotoUrl}" Width="50" Height="50" Margin="5"/>
-                                        <TextBlock Text="{Binding Title}" VerticalAlignment="Center" Margin="5"/>
+                                    <StackPanel Orientation="Horizontal" Margin="-15,0,0,0">
+                                        <Image Source="{Binding PhotoUrl}" Width="50" Height="50" Margin="0,0,10,0"/>
+                                        <TextBlock Text="{Binding Title}" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

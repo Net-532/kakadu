@@ -5,24 +5,29 @@ namespace Kakadu.Backoffice.Views
 {
     public partial class MainWindow : Window
     {
+      
 
-        public MainWindow()
+        public MainWindow(string username)
         {
             InitializeComponent();
+            GreetingTextBlock.Text = $"Привіт, {username}";
         }
 
         private void ProductIcon_Click(object sender, RoutedEventArgs e)
         {
+           
             MainFrame.Content = new Products();
         }
 
         private void OrderIcon_Click(object sender, RoutedEventArgs e)
         {
+          
             MainFrame.Content = new Orders();
         }
 
         private void UserIcon_Click(object sender, RoutedEventArgs e)
         {
+         
             MainFrame.Content = new Users();
         }
 
