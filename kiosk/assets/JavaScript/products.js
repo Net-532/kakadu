@@ -1,6 +1,7 @@
 const fetchlink = "http://localhost:8085/products";
 const ordersEndpoint = "http://localhost:8085/orders";
 const printReceiptEndpoint='http://localhost:8085/print';
+const emailEndpoint = "http://localhost:8085/send";
 
 fetch(fetchlink)
   .then((res) => res.json())
@@ -73,6 +74,7 @@ fetch(fetchlink)
     document.getElementById('cart-button-order').addEventListener('click', checkoutOrder);
     document.getElementById('cart-close-button').addEventListener('click', function () { DisplayOrder(true); });
     const myOffcanvas = document.getElementById('offcanvasBottom');
+    EmailButtonDisable();
     myOffcanvas.addEventListener('hidden.bs.offcanvas', function () { DisplayOrder(true); });
     document.getElementById("open-cart").addEventListener("click", function () {
       renderCart();
@@ -103,3 +105,5 @@ fetch(fetchlink)
     quantity = 1;
     document.getElementById("quantity").value = quantity;
   }
+
+

@@ -50,10 +50,22 @@
   <div class="offcanvas-body small" id="cart-main-container"></div>
 
     <div class="row justify-content-center">
-        <button id="cart-button-check" class="btn btn-dark btn-lg cart-button-check">
-          <span class="spinner-border spinner-border-sm" id="cart-check-spinner" role="status" aria-hidden="true"></span>
-          Друкувати чек
-        </button>
+      <div id="email-text-box">
+        <form>
+          <input type="email" class="form-control" id="email-box" placeholder="Введіть пошту">
+        </form>
+      </div>
+      <div id="check-email-div">
+          <button id="cart-button-check" class="btn btn-dark btn-lg cart-button-check">
+            <span class="spinner-border spinner-border-sm" id="cart-check-spinner" role="status" aria-hidden="true"></span>
+            Друкувати чек
+          </button>
+  
+          <button id="cart-button-email" class="btn btn-dark btn-lg cart-button-email">
+            <span class="spinner-border spinner-border-sm" id="cart-check-spinner" role="status" aria-hidden="true"></span>
+            Відправити на пошту
+          </button> 
+      </div>
   </div>
   <div id="cart-bottom" class="pt-3">
     <div class="container">
