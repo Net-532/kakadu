@@ -24,13 +24,15 @@ namespace Kakadu.WebServer.Core
         private static IOrderItemRepository orderItemRepository = new OrderItemRepositoryDB();
         private static IOrderRepository orderRepository = new OrderRepositoryDB(orderItemRepository);
         private static IOrderService orderService = new OrderService(orderRepository);
-
+        private static EmailService emailService = new EmailService();
+        private static OrderEmailService orderEmailService = new OrderEmailService(orderService, emailService, productService);
         private static ProductRequestProcessor productRequestProcessor = new ProductRequestProcessor(productService, new ProductToJsonConverter());
         private static OrderRequestProcessor orderRequestProcessor = new OrderRequestProcessor(orderRepository, productService);
         private static OrderStatusRequestProcessor orderStatusRequestProcessor = new OrderStatusRequestProcessor(orderService, new OrderToJsonConverter());
         private static OrderToPlainTextConverter converter = new OrderToPlainTextConverter(productService);
         private static PrintOrderRequestProcessor printOrderRequestProcessor = new PrintOrderRequestProcessor(orderService, converter);
- 
+        private static SendMailRequestProcessor sendMailRequestProcessor = new SendMailRequestProcessor(orderEmailService);
+
 
         public HttpResponse Dispatch(HttpRequest httpRequest)
         {
@@ -49,6 +51,9 @@ namespace Kakadu.WebServer.Core
                     break;
                 case "/print":
                     response = printOrderRequestProcessor.Process(httpRequest);
+                    break;
+                case "/send":
+                    response = sendMailRequestProcessor.Process(httpRequest);
                     break;
                 default:
                     response.Status = HttpStatus.NotFound;

@@ -208,9 +208,14 @@ function DisplayOrder(OrderTab) {
     const cartBottom = document.getElementById("cart-bottom");
     const cartCheck = document.getElementById("cart-button-check");
     const orderButton = document.getElementById("cart-button-order");
+    const EmailButton = document.getElementById("cart-button-email");
+    const EmailBox = document.getElementById("email-box");
 
     orderButton.disabled = false;
+    EmailButton.disabled = true;
     cartBottom.style.display = OrderTab ? "block" : "none";
+    EmailBox.style.display = OrderTab ? "none" : "block";
+    EmailButton.style.display = OrderTab ? "none" : "block";
     cartCheck.style.display = OrderTab ? "none" : "block";
 
     checkTab = OrderTab;
@@ -277,3 +282,43 @@ function displayAlert(type, item, message) {
     alertContainer.innerHTML = alert;
   }
 }
+
+function sendEmail(orderId, recipientEmail) {
+  const sendRequest = {
+    recipient: recipientEmail,
+    orderId: orderId
+  };
+
+  fetch(emailEndpoint, {
+      method: "POST",
+      body: JSON.stringify(sendRequest),
+  })
+  .then((response) => response.json())
+  .then((data) => {
+    console.log("виконано");
+  })
+  .catch((error) => {
+      console.error("Помилка: ", error);
+  });
+}
+
+function EmailButtonDisable() {
+  const emailbox = document.getElementById("email-box");
+  const emailBtn = document.getElementById("cart-button-email");
+  const correctEmail = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+
+  emailbox.addEventListener("input", function() {
+    if (emailbox.value.trim() === "" || !correctEmail.test(emailbox.value.trim())) {
+        emailBtn.disabled = true;
+    } else {
+        emailBtn.disabled = false;
+    }
+  });
+};
+
+document.getElementById('cart-button-email').addEventListener('click', function() {
+  const recipientEmail = document.getElementById('email-box').value.trim();
+  const emailbox = document.getElementById("email-box");
+  emailbox.value = '';
+  sendEmail(order.id, recipientEmail);
+});
