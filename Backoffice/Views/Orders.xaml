@@ -48,6 +48,9 @@
                                         <DataTrigger Binding="{Binding Status}" Value="Processing">
                                             <Setter Property="Foreground" Value="#F2994A"/>
                                         </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=DataGridRow}}" Value="True">
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
@@ -55,7 +58,7 @@
                     </DataGrid.Columns>
                     <DataGrid.RowDetailsTemplate>
                         <DataTemplate>
-                            <DataGrid x:Name="detailGrid" Style="{StaticResource Grid}" ItemsSource="{Binding Items}">
+                            <DataGrid x:Name="detailGrid" Style="{StaticResource GridDetails}" ItemsSource="{Binding Items}">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Width="200" Header="Продукт" Binding="{Binding ProductTitle}"/>
                                     <DataGridTextColumn Width="100" Header="Кількість" Binding="{Binding Quantity}"/>
