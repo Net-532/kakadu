@@ -14,14 +14,14 @@ namespace Kakadu.Backoffice.Services
 
         public User Authenticate(string username, string password)
         {
-           var user =  _userService.GetByUsernameAndPassword(username, password);
-
-            if (user == null)
+            try
+            {
+                return _userService.GetByUsernameAndPassword(username, password);
+            }
+            catch (EntityNotFoundException)
             {
                 throw new AuthenticationException("Користувача не знайдено або пароль неправильний!");
             }
-
-            return user;
         }
     }
 }

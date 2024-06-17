@@ -19,10 +19,12 @@ namespace Kakadu.WebServer.Core
 
     public class HttpRequestDispatcher
     {
-        private static IProductRepository productRepository = new ProductRepositoryXML();
+        private static IProductRepository productRepository = new ProductRepositoryDB();
         private static IProductService productService = new ProductService(productRepository);
-        private static IOrderRepository orderRepository = new OrderRepositoryXML();
+        private static IOrderItemRepository orderItemRepository = new OrderItemRepositoryDB();
+        private static IOrderRepository orderRepository = new OrderRepositoryDB(orderItemRepository);
         private static IOrderService orderService = new OrderService(orderRepository);
+
         private static ProductRequestProcessor productRequestProcessor = new ProductRequestProcessor(productService, new ProductToJsonConverter());
         private static OrderRequestProcessor orderRequestProcessor = new OrderRequestProcessor(orderRepository, productService);
         private static OrderStatusRequestProcessor orderStatusRequestProcessor = new OrderStatusRequestProcessor(orderService, new OrderToJsonConverter());

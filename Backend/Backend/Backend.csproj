@@ -35,15 +35,21 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Persistence\App.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Persistence\DatabaseConnection.cs" />
+    <Compile Include="Repositories\IOrderItemRepository.cs" />
     <Compile Include="Repositories\IOrderRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
+    <Compile Include="Repositories\OrderItemRepositoryDB.cs" />
+    <Compile Include="Repositories\OrderRepositoryDB.cs" />
     <Compile Include="Repositories\OrderRepositoryXML.cs" />
+    <Compile Include="Repositories\ProductRepositoryDB.cs" />
     <Compile Include="Repositories\ProductRepositoryXML.cs" />
     <Compile Include="Repositories\IProductRepository.cs" />
     <Compile Include="Repositories\UserRepositoryXML.cs" />
+    <Compile Include="Repositories\UserRepositoryDB.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\OrderItem.cs" />
     <Compile Include="Entities\Product.cs" />
